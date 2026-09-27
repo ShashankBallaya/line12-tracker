@@ -3,8 +3,13 @@
  * section nears the viewport. The map style is built here from the edition's CSS tokens,
  * on OpenFreeMap vector tiles (OpenMapTiles schema, free, no key), and rebuilt on theme change.
  */
-import maplibregl, { type StyleSpecification, type LngLatLike } from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import type { StyleSpecification, LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+// MapLibre 6 runs tile parsing in a module worker; Vite bundles it and gives us its URL.
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
+
+maplibregl.setWorkerUrl(workerUrl);
 import { MAP_TILES, MAP_GLYPHS, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../config';
 
 interface StationData {
@@ -175,7 +180,7 @@ export async function mount(section: HTMLElement) {
   }
 
   select.addEventListener('change', () => select_(select.value));
-  map.on('click', 'stations', (e) => {
+  map.on('click', 'stations', (e: MapLayerMouseEvent) => {
     const id = e.features?.[0]?.properties?.id as string | undefined;
     if (id) select_(id);
   });
