@@ -1,0 +1,113 @@
+---
+/**
+ * The station fly-around. Base state: the four captions as a list over a quiet panel.
+ * With WebGL, scenes.ts loads src/scripts/three/station.ts into the stage. With motion allowed,
+ * motion.ts pins the stage and turns scroll into camera progress and the current caption.
+ */
+import Grade from './Grade.astro';
+import model from '../data/station-model.json';
+---
+
+<section id="station" class="section stm" aria-labelledby="stm-title" data-stm>
+  <div class="page">
+    <header class="section-head">
+      <h2 id="stm-title">A station, up close</h2>
+      <p>
+        An original model of a typical Line 12 station over Kalyan-Shilphata Road. Scroll to fly around it. Built from
+        published descriptions, not an official design.
+      </p>
+    </header>
+  </div>
+
+  <div class="stm__stage" data-stm-stage>
+    <div class="stm__scene" data-scene="station" aria-hidden="true"></div>
+    <ol class="stm__captions page">
+      {model.captions.map((c, i) => (
+        <li class:list={['stm__caption', { 'is-current': i === 0 }]} data-stm-caption={i}>
+          <h3 class="stm__title">{c.title}</h3>
+          <p class="stm__text">{c.text}</p>
+          <Grade status={c.status} source={c.source_url} />
+        </li>
+      ))}
+    </ol>
+    <p class="stm__label page">Stylized model. Not an official MMRDA design.</p>
+  </div>
+</section>
+
+<style>
+  .stm__stage {
+    position: relative;
+    display: grid;
+  }
+  .stm__scene {
+    position: relative;
+    height: min(78svh, 46rem);
+    background:
+      radial-gradient(var(--halftone) 1px, transparent 1.3px) 0 0 / 6px 6px,
+      var(--paper-2);
+  }
+  .stm__captions {
+    display: grid;
+    gap: var(--s-4);
+    margin-block: var(--s-5) 0;
+    list-style: none;
+  }
+  .stm__caption {
+    display: grid;
+    gap: var(--s-2);
+    padding-top: var(--s-3);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+    max-width: 36rem;
+  }
+  .stm__title {
+    font-size: var(--step-2);
+    text-transform: uppercase;
+  }
+  .stm__text {
+    color: var(--ink-2);
+  }
+  .stm__label {
+    margin-top: var(--s-4);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+
+  /* Pinned fly-around: full-bleed scene, one caption at a time over it. */
+  :global(.stm.is-flying) .stm__stage {
+    height: 100vh;
+    height: 100svh;
+  }
+  :global(.stm.is-flying) .stm__scene {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+  :global(.stm.is-flying) .stm__captions {
+    position: relative;
+    align-self: end;
+    width: 100%;
+    margin: 0;
+    padding-block: var(--s-6);
+    display: grid;
+  }
+  :global(.stm.is-flying) .stm__caption {
+    grid-area: 1 / 1;
+    padding: var(--s-4) var(--s-5);
+    background: color-mix(in srgb, var(--paper) 90%, transparent);
+    border-top-color: var(--signal-graphic);
+    opacity: 0;
+    translate: 0 1rem;
+    transition: opacity 0.4s var(--ease-out), translate 0.5s var(--ease-out);
+  }
+  :global(.stm.is-flying) .stm__caption.is-current {
+    opacity: 1;
+    translate: 0 0;
+  }
+  :global(.stm.is-flying) .stm__label {
+    position: absolute;
+    top: var(--s-5);
+    right: 0;
+    left: 0;
+    text-align: right;
+  }
+</style>

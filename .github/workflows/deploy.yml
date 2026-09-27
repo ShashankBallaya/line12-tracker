@@ -1,0 +1,37 @@
+# Builds the site and deploys it to Cloudflare Pages on every push to main.
+# Needs two repository secrets (Settings > Secrets and variables > Actions):
+#   CLOUDFLARE_API_TOKEN   a token with "Cloudflare Pages: Edit" permission
+#   CLOUDFLARE_ACCOUNT_ID  your Cloudflare account ID
+# Optional repository variables: PUBLIC_MAPILLARY_TOKEN, PUBLIC_STREET_LEVEL_PROVIDER, PUBLIC_GOOGLE_MAPS_KEY
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - run: npm run build
+        env:
+          PUBLIC_MAPILLARY_TOKEN: ${{ vars.PUBLIC_MAPILLARY_TOKEN }}
+          PUBLIC_STREET_LEVEL_PROVIDER: ${{ vars.PUBLIC_STREET_LEVEL_PROVIDER }}
+          PUBLIC_GOOGLE_MAPS_KEY: ${{ vars.PUBLIC_GOOGLE_MAPS_KEY }}
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=line12-tracker --branch=main

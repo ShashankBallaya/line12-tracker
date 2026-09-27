@@ -177,6 +177,24 @@ time {
   color: var(--ink);
 }
 
+/* 3D hosts: the fallback drawing stays until the scene is live, then the canvas takes over. */
+.scene-host {
+  position: relative;
+}
+.lead-3d {
+  position: relative;
+  height: min(19rem, 40vh);
+}
+.scene-host.is-live .lead > svg {
+  display: none;
+}
+.scene-canvas {
+  animation: scene-in 0.8s var(--ease-out) both;
+}
+@keyframes scene-in {
+  from { opacity: 0; }
+}
+
 /* 3D canvases fill their host and sit above the fallback drawing. */
 .scene-canvas {
   position: absolute;

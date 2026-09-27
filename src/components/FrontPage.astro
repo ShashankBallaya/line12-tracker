@@ -48,7 +48,7 @@ const { width: W, height: H, path, points: dots } = schematic();
     <p><Grade status={target.status} source={target.source_url} /></p>
   </aside>
 
-  <div class="front__picture"><LeadPicture /></div>
+  <div class="front__picture scene-host" data-scene="viaduct"><LeadPicture /></div>
 
   <a class="front__strip" href="#route" aria-label={`The route: ${stations.length} stations from ${first} to ${last}. Ride the line.`}>
     <span class="front__strip-end front__strip-end--a">{first}</span>

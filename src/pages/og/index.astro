@@ -1,0 +1,44 @@
+---
+/* Open Graph card source. scripts/og.mjs captures this page at 1200x630 into public/og.png.
+   Not linked from the site and marked noindex. */
+import '../../styles/global.css';
+import { project, formatDate, lastReviewed } from '../../lib/data';
+import { schematic } from '../../lib/route';
+const line = schematic({ width: 1000, top: 20, drop: 60, pad: 10, bottom: 20 });
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Line 12 Tracker card</title>
+    <style>
+      body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: var(--paper); }
+      .card { display: grid; grid-template-rows: auto 1fr auto; height: 630px; }
+      .band { background: var(--signal); color: var(--on-signal); padding: 28px 56px 18px; display: flex; align-items: flex-end; justify-content: space-between; }
+      .band b { font-family: var(--font-display); font-weight: 800; font-stretch: 75%; font-size: 120px; line-height: 0.8; text-transform: uppercase; }
+      .band span { font-family: var(--font-display); font-weight: 600; font-stretch: 87.5%; font-size: 30px; }
+      .body { padding: 36px 56px 0; color: var(--ink); }
+      .body h1 { font-size: 78px; text-transform: uppercase; line-height: 0.9; }
+      .body p { margin-top: 16px; font-size: 26px; color: var(--ink-2); }
+      svg { display: block; margin: 0 56px 36px; width: 1088px; height: 110px; }
+      .casing { stroke: var(--signal-graphic); stroke-width: 20px; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+      .core { stroke: var(--paper); stroke-width: 8px; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+      .dot { fill: var(--ink); stroke: var(--paper); stroke-width: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="band"><b>Line 12</b><span>The unofficial tracker</span></div>
+      <div class="body">
+        <h1>Kalyan to Taloja, {project.length_km.value} km in the air.</h1>
+        <p>{project.stations_count.value} stations. Every figure sourced. Facts checked {formatDate(lastReviewed)}.</p>
+      </div>
+      <svg viewBox={`0 0 ${line.width} ${line.height}`} preserveAspectRatio="none" aria-hidden="true">
+        <path d={line.path} class="casing" vector-effect="non-scaling-stroke" />
+        <path d={line.path} class="core" vector-effect="non-scaling-stroke" />
+        {line.points.map(([x, y]) => <circle cx={x} cy={y} r="7" class="dot" vector-effect="non-scaling-stroke" />)}
+      </svg>
+    </div>
+  </body>
+</html>

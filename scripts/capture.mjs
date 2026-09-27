@@ -79,5 +79,43 @@ for (const [w, h, scheme, name] of [[1440, 900, 'dark', 'desktop'], [390, 844, '
   await p.close();
 }
 
+// Phase 4 scenes, motion on: hero, station mid-flight, train.
+p = await page({ width: 1440, height: 900, scheme: 'dark', reduced: false });
+await sleep(3500);
+await p.screenshot({ path: `${OUT}/desktop-3d-hero.png` });
+// Arrive at the station section first (so the lazy scene loads), then scroll into the pin.
+const stepTo = async (y) => {
+  const from = await p.evaluate(() => window.scrollY);
+  for (let i = 1; i <= 12; i++) {
+    await p.evaluate((v) => window.scrollTo(0, v), from + ((y - from) * i) / 12);
+    await sleep(80);
+  }
+};
+const stationTop = await p.evaluate(() => document.getElementById('station').getBoundingClientRect().top + window.scrollY);
+await stepTo(stationTop);
+await sleep(3000);
+const stageTop = await p.evaluate(() => document.querySelector('[data-stm-stage]').getBoundingClientRect().top + window.scrollY);
+await stepTo(stageTop + 900 * 0.5);
+await sleep(2500);
+await p.screenshot({ path: `${OUT}/desktop-3d-station-start.png` });
+await stepTo(stageTop + 900 * 1.6);
+await sleep(2500);
+await p.screenshot({ path: `${OUT}/desktop-3d-station-mid.png` });
+await stepTo(stageTop + 900 * 2.9);
+await sleep(2500);
+await p.screenshot({ path: `${OUT}/desktop-3d-station-end.png` });
+const trainTop = await p.evaluate(() => document.getElementById('trains').getBoundingClientRect().top + window.scrollY);
+await stepTo(trainTop + 150);
+await sleep(3500);
+await p.screenshot({ path: `${OUT}/desktop-3d-train.png` });
+await p.close();
+p = await page({ width: 390, height: 844, scheme: 'light', reduced: false, mobile: true });
+await p.evaluate(() => document.getElementById('station').scrollIntoView());
+await sleep(3000);
+await p.evaluate(() => window.scrollBy(0, 844 * 1.8));
+await sleep(3000);
+await p.screenshot({ path: `${OUT}/mobile-3d-station.png` });
+await p.close();
+
 await browser.close();
 console.log(`Captured into ${OUT}`);

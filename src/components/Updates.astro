@@ -1,24 +1,33 @@
 ---
-import { socialPosts } from '../lib/data';
+import Grade from './Grade.astro';
+import { socialPosts, timeline, formatDate, outletName } from '../lib/data';
+
+// Latest reports: dated, sourced milestones from the timeline, newest first.
+const latest = timeline
+  .filter((e) => e.date && e.source_url && e.kind !== 'future')
+  .sort((a, b) => (b.date as string).localeCompare(a.date as string))
+  .slice(0, 6);
 ---
 
 <section id="updates" class="section page" aria-labelledby="updates-title">
   <header class="section-head">
     <h2 id="updates-title">Updates</h2>
-    <p>News articles and videos about Line 12, and posts on X picked by hand.</p>
+    <p>The latest reported milestones, each linked to the article or document, and posts on X picked by hand.</p>
   </header>
 
   <div class="updates">
     <div class="updates__col">
-      <h3 class="updates__title">News and videos</h3>
-      <div class="empty">
-        <p class="empty__head">The automatic feed is not running yet.</p>
-        <p>
-          When it starts, this column will list news headlines and YouTube videos about Line 12, refreshed every six
-          hours, each linking to the original. Until then, the sources at the foot of this page carry the latest
-          reports.
-        </p>
-      </div>
+      <h3 class="updates__title">Latest reports</h3>
+      <ol class="reports">
+        {latest.map((e) => (
+          <li class="report">
+            <p class="report__date num"><time datetime={e.date}>{formatDate(e.date)}</time></p>
+            <a class="report__title" href={e.source_url} target="_blank" rel="noopener">{e.title}<span class="visually-hidden"> (opens in a new tab)</span></a>
+            <p class="report__meta">{outletName(e.source_url)} <Grade status={e.status} compact noSource /></p>
+          </li>
+        ))}
+      </ol>
+      <p class="reports__more"><a href="#timeline">Every milestone is in the timeline</a></p>
     </div>
     <div class="updates__col">
       <h3 class="updates__title">On X</h3>
@@ -55,6 +64,45 @@ import { socialPosts } from '../lib/data';
     font-size: var(--step-2);
     text-transform: uppercase;
     margin-bottom: var(--s-4);
+  }
+  .reports {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: var(--rule-w) solid var(--rule);
+  }
+  .report {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--s-1) var(--s-4);
+    padding-block: var(--s-3);
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .report__date {
+    grid-row: span 2;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-1);
+    line-height: 1.1;
+  }
+  .report__title {
+    font-weight: 700;
+    text-decoration-color: transparent;
+  }
+  .report__title:hover {
+    text-decoration-color: var(--signal-line);
+  }
+  .report__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .reports__more {
+    margin-top: var(--s-3);
+    font-size: var(--step--1);
   }
   .empty {
     display: grid;

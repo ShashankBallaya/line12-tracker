@@ -37,5 +37,33 @@
     "last_verified": "2026-09-28",
     "notes": "Single trade-press source (Aug 2025). The DPR plans 3-car trains first and 5 AM to midnight operation."
   },
-  "model_guidance": "Build the 3D train as a generic 3.2 m wide stainless-steel metro car in a 3-car set with an orange line livery. Do not copy any manufacturer's design."
+  "model_guidance": "Build the 3D train as a generic 3.2 m wide stainless-steel metro car in a 3-car set with an orange line livery. Do not copy any manufacturer's design.",
+  "image": {
+    "src": null,
+    "alt": "Line 5 metro train in deep blue livery with orange and brown bands",
+    "caption": "The Line 5 train design. Line 12 extends Line 5, but Line 12's own trains are not ordered yet.",
+    "credit": null,
+    "status": "unverified",
+    "source_url": null,
+    "last_verified": "2026-09-28",
+    "notes": "Owner to add: put the file in public/images/ (e.g. /images/line5-train.jpg), set src, credit and source_url. Only use an image you have the right to publish."
+  },
+  "line5_contract": {
+    "package": "CA-241",
+    "line": "Metro Line 5 (Thane-Bhiwandi-Kalyan), which Line 12 extends",
+    "supplier": "Titagarh Rail Systems",
+    "trains": 22,
+    "cars_per_train": 6,
+    "coaches": 132,
+    "value_crore": 2481,
+    "scope": "Rolling stock, CBTC signalling and train control, telecom, platform screen doors, and depot machinery at Kasheli, with 2 years of defect liability and 5 years of maintenance",
+    "status": "reported",
+    "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+    "also_see": [
+      "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
+      "https://railanalysis.in/metro/titagarh-secures-rs-2481-crore-order-for-manufacturing-132-metro-coaches-of-mumbai-metro-line-5/"
+    ],
+    "last_verified": "2026-09-28",
+    "notes": "Line 5's contract, not Line 12's. Line 12's trains are in its own systems tender (June 2026). Award date not pinned down: reports range from mid to late 2025."
+  }
 }

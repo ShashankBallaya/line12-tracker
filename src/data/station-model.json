@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "description": "Captions for the 3D station fly-around. The model is an original stylized illustration of a typical Line 12 elevated station, not an official design. Each caption is a fact with its own grade.",
+    "last_reviewed": "2026-09-28"
+  },
+  "captions": [
+    {
+      "id": "structure",
+      "title": "Two levels on one row of piers",
+      "text": "The concourse hangs from cantilever arms on the viaduct's own columns. The platforms and trains sit above it.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "median",
+      "title": "Over the middle of the road",
+      "text": "From Kalyan to Sonarpada the line runs above the median of Kalyan-Shilphata Road, so the stations straddle the traffic.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "height",
+      "title": "21 to 23 metres up",
+      "text": "Stations on the line stand 21 to 23 m high.",
+      "status": "reported",
+      "source_url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "length",
+      "title": "About 145 metres long",
+      "text": "Station drawings for Dombivli shared on X show a building about 145 m long with four street entries. Not yet confirmed by an official source.",
+      "status": "unverified",
+      "source_url": null,
+      "last_verified": "2026-09-28"
+    }
+  ]
+}

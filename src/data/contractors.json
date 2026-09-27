@@ -18,7 +18,9 @@
       "id": "systra-db-jv",
       "name": "SYSTRA MVA Consulting and DB Engineering & Consulting JV",
       "role": "General Consultant (Lines 10 and 12)",
-      "tender_ids": ["metro-piu-0002141"],
+      "tender_ids": [
+        "metro-piu-0002141"
+      ],
       "status": "reported",
       "source_url": "https://themetrorailguy.com/2022/12/26/systra-db-awarded-mumbai-metro-line-10-12s-general-consultancy/",
       "last_verified": "2026-09-28"
@@ -27,7 +29,9 @@
       "id": "lkt-enia-jv",
       "name": "LKT Engineering Consultants and Enia Design JV",
       "role": "Detailed Design Consultant",
-      "tender_ids": ["ddc"],
+      "tender_ids": [
+        "ddc"
+      ],
       "status": "reported",
       "source_url": "https://themetrorailguy.com/2023/06/09/lkt-enia-jv-wins-mumbai-metro-line-12s-design-consultant-work/",
       "last_verified": "2026-09-28"
@@ -36,7 +40,9 @@
       "id": "gawar-constructions",
       "name": "Gawar Constructions Ltd",
       "role": "Civil contractor: viaduct and 19 stations (CA-240)",
-      "tender_ids": ["ca-240"],
+      "tender_ids": [
+        "ca-240"
+      ],
       "status": "reported",
       "source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "last_verified": "2026-09-28"
@@ -50,7 +56,7 @@
     },
     {
       "claim": "Titagarh Rail Systems supplies Line 12 rolling stock",
-      "reason": "Wikipedia names Titagarh for the Orange Line, but the Line 12 systems and rolling stock tender was only floated in June 2026. Not shown.",
+      "reason": "Titagarh won Line 5's train and systems contract (CA-241, reported). Line 12's trains are in a separate tender floated in June 2026, so no maker is shown for Line 12.",
       "source_url": "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)"
     }
   ]

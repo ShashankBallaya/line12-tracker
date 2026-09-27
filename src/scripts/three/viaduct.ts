@@ -7,7 +7,12 @@ import * as THREE from 'three';
 import { createStage, lightRig, box, flat, buildTrain, textTexture } from './common';
 
 export async function mount(host: HTMLElement, { reduced }: { reduced: boolean }) {
-  const stage = createStage(host, { shadows: true, animate: !reduced });
+  // The canvas gets its own box above the figure caption; the drawing is hidden once live.
+  const fig = host.querySelector('.lead') ?? host;
+  const frame = document.createElement('div');
+  frame.className = 'lead-3d';
+  fig.prepend(frame);
+  const stage = createStage(frame, { shadows: true, animate: !reduced });
   const { scene } = stage;
   lightRig(scene, { shadows: true, span: 110 });
 

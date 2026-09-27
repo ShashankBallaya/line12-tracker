@@ -68,6 +68,21 @@ if (!reduceMotion) {
     });
   });
 
+  // ---------- Keep scroll positions true when lazy parts change the page height ----------
+  // (the map, the 3D scenes and fonts load after first paint and can push later sections down)
+  let refreshTimer = 0;
+  let lastHeight = document.documentElement.scrollHeight;
+  new ResizeObserver(() => {
+    const h = document.documentElement.scrollHeight;
+    if (Math.abs(h - lastHeight) < 2) return;
+    lastHeight = h;
+    clearTimeout(refreshTimer);
+    refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 150);
+  }).observe(document.body);
+
+  // ---------- The station fly-around: pinned on every screen size ----------
+  setUpStation();
+
   // ---------- Wide screens: the ride and the timeline scrub ----------
   const mm = gsap.matchMedia();
   let rideTrigger: ScrollTrigger | null = null;
@@ -139,6 +154,7 @@ function setUpRide(): ScrollTrigger | null {
     start: 'top top',
     end: () => `+=${window.innerHeight * 0.55 * (stations.length - 1)}`,
     pin: true,
+    refreshPriority: 3,
     scrub: true,
     invalidateOnRefresh: true,
     onUpdate: (self) => {
@@ -170,6 +186,35 @@ function setUpRide(): ScrollTrigger | null {
   return trigger;
 }
 
+/** Pins the station stage; scroll becomes camera progress (for station.ts) and the current caption. */
+function setUpStation() {
+  const section = document.querySelector<HTMLElement>('[data-stm]');
+  const stage = section?.querySelector<HTMLElement>('[data-stm-stage]');
+  if (!section || !stage) return;
+  const captions = [...section.querySelectorAll<HTMLElement>('[data-stm-caption]')];
+  section.classList.add('is-flying');
+  let current = 0;
+  ScrollTrigger.create({
+    trigger: stage,
+    start: 'top top',
+    end: () => `+=${window.innerHeight * 3}`,
+    pin: true,
+    scrub: true,
+    invalidateOnRefresh: true,
+    // Pins are measured in page order: ride (3), station (2), timeline (1).
+    refreshPriority: 2,
+    onUpdate: (self) => {
+      window.dispatchEvent(new CustomEvent('station-progress', { detail: self.progress }));
+      const i = Math.min(captions.length - 1, Math.floor(self.progress * captions.length));
+      if (i !== current) {
+        captions[current].classList.remove('is-current');
+        captions[i].classList.add('is-current');
+        current = i;
+      }
+    },
+  });
+}
+
 /** Pins the timeline and slides the strip sideways as the reader scrolls. */
 function setUpTimeline(): gsap.core.Tween | null {
   const section = document.querySelector<HTMLElement>('[data-timeline]');
@@ -187,6 +232,7 @@ function setUpTimeline(): gsap.core.Tween | null {
       end: () => `+=${distance()}`,
       pin: true,
       scrub: 0.6,
+      refreshPriority: 1,
       invalidateOnRefresh: true,
     },
   });

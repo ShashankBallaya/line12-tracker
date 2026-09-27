@@ -3,6 +3,8 @@ import Grade from './Grade.astro';
 import { rollingstock, formatDate, timeline } from '../lib/data';
 
 const d = rollingstock.dpr_design_assumptions;
+const l5 = rollingstock.line5_contract;
+const img = rollingstock.image as { src: string | null; alt: string; caption: string; credit: string | null; status: string; source_url: string | null };
 const tender = timeline.find((e) => e.id === 'systems-tender')!;
 const specs: [string, string][] = [
   ['Car width', `${d.car_width_m} m`],
@@ -29,8 +31,16 @@ const specs: [string, string][] = [
   </header>
 
   <div class="trains">
-    <figure class="trains__drawing halftone">
-      <svg viewBox="0 0 720 200" role="img" aria-labelledby="train-drawing-title">
+    {img.src ? (
+      <figure class="trains__photo">
+        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+        <figcaption>
+          {img.caption} {img.credit && <>Image: {img.credit}.</>} <Grade status={img.status} source={img.source_url} />
+        </figcaption>
+      </figure>
+    ) : (
+      <figure class="trains__drawing halftone">
+        <svg viewBox="0 0 720 200" role="img" aria-labelledby="train-drawing-title">
         <title id="train-drawing-title">Side view of a generic three-car metro train, each car 3.2 metres wide as planned in the 2019 report.</title>
         <rect x="0" y="160" width="720" height="4" fill="var(--ink)" />
         {[20, 250, 480].map((x, i) => (
@@ -46,13 +56,20 @@ const specs: [string, string][] = [
         <path d="M20 36H700M20 30v12M700 30v12" stroke="var(--ink-3)" stroke-width="1.5" fill="none" />
         <text x="360" y="26" text-anchor="middle" font-size="14" fill="var(--ink-2)" font-family="Mukta, sans-serif">3 cars at opening, 6 cars later</text>
       </svg>
-      <figcaption>Generic drawing, not any maker's design. A rotatable model comes in a later update.</figcaption>
-    </figure>
+        <figcaption>Generic drawing, not any maker's design. Line 12 extends Line 5; its own trains are not ordered yet.</figcaption>
+      </figure>
+    )}
 
     <div class="trains__spec">
       <p class="trains__maker">
         <span class="trains__maker-value">Maker not chosen</span>
         <Grade status={rollingstock.procurement.status} source={rollingstock.procurement.source_url} />
+      </p>
+      <p class="trains__line5">
+        <strong>On Line 5, which Line 12 extends:</strong> {l5.supplier} is building {l5.trains} six-coach trains
+        ({l5.coaches} coaches) with signalling, platform screen doors and depot machinery, for
+        ₹{l5.value_crore.toLocaleString('en-IN')} crore (package {l5.package}). Line 12 may end up with the same design, but its
+        trains are a separate tender. <Grade status={l5.status} source={l5.source_url} />
       </p>
       <dl class="spec">
         {specs.map(([k, v]) => (
@@ -95,6 +112,25 @@ const specs: [string, string][] = [
     height: auto;
     margin-inline: auto;
   }
+  .trains__photo {
+    margin: 0;
+  }
+  .trains__photo img {
+    width: 100%;
+    height: auto;
+    max-height: 34rem;
+    object-fit: cover;
+    background: var(--paper-2);
+  }
+  .trains__photo figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+    padding-top: var(--s-3);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
   .trains__drawing figcaption {
     padding-top: var(--s-3);
     font-size: var(--step--1);
@@ -124,6 +160,11 @@ const specs: [string, string][] = [
   }
   .spec {
     margin: 0;
+  }
+  .trains__line5 {
+    max-width: var(--measure);
+    padding-block: var(--s-4);
+    color: var(--ink-2);
   }
   .spec__row {
     display: flex;

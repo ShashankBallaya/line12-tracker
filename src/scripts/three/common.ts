@@ -54,7 +54,7 @@ export function createStage(host: HTMLElement, { shadows = false, animate = true
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   if (shadows) {
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
   }
   const canvas = renderer.domElement;
   canvas.setAttribute('aria-hidden', 'true');
@@ -77,7 +77,7 @@ export function createStage(host: HTMLElement, { shadows = false, animate = true
   const ro = new ResizeObserver(resize);
   ro.observe(host);
 
-  const clock = new THREE.Clock(false);
+  const timer = new THREE.Timer();
   let visible = false;
   let running = false;
   let raf = 0;
@@ -88,7 +88,8 @@ export function createStage(host: HTMLElement, { shadows = false, animate = true
     if (camera) renderer.render(scene, camera);
   };
   const loop = () => {
-    const dt = Math.min(clock.getDelta(), 0.05);
+    timer.update();
+    const dt = Math.min(timer.getDelta(), 0.05);
     t += dt;
     draw(dt);
     raf = requestAnimationFrame(loop);
@@ -97,11 +98,10 @@ export function createStage(host: HTMLElement, { shadows = false, animate = true
     const should = animate && visible && document.visibilityState === 'visible';
     if (should && !running) {
       running = true;
-      clock.start();
+      timer.reset();
       raf = requestAnimationFrame(loop);
     } else if (!should && running) {
       running = false;
-      clock.stop();
       cancelAnimationFrame(raf);
     }
   };

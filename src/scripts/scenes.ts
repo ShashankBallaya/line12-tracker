@@ -34,6 +34,7 @@ if (mapSection && webgl()) {
 
 const sceneLoaders: Record<string, () => Promise<{ mount: (host: HTMLElement, opts: { reduced: boolean }) => unknown }>> = {
   viaduct: () => import('./three/viaduct'),
+  station: () => import('./three/station'),
 };
 
 if (webgl()) {
