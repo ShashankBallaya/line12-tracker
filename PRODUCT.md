@@ -43,6 +43,10 @@ Every fact is sourced and graded (verified, reported, unverified, conflicting), 
 - Target completion countdown uses the reported May 2028 target and must be labelled as reported, not official.
 - Line 12A is a separate project and stays out of Line 12 totals.
 
+## Brand Commitments
+
+- Name: Line 12 Tracker. Masthead mark "LINE 12" with the Marathi "मेट्रो १२" beside it (confirmed by the owner, 2026-09-28). The Marathi mark is decorative; site copy stays English only.
+
 ## Evidence on Hand
 
 - `src/data/*.json` and `SOURCES.md` (Phase 1 research, reviewed 2026-09-28).

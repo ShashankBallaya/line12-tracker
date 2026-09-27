@@ -43,7 +43,7 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
       {progress.items.map((item) => (
         <li class="work">
           <span class="work__name">{item.activity}</span>
-          <span class="work__pct num"><span data-count={item.percent_complete} data-decimals="2">{item.percent_complete.toFixed(2)}</span>%</span>
+          <span class="work__pct num"><span data-count={item.percent_complete} data-decimals="2">{item.percent_complete.toFixed(2)}</span><span class="work__unit">%</span></span>
           <span
             class="work__track"
             role="meter"
@@ -148,8 +148,13 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
     font-family: var(--font-display);
     font-weight: 800;
     font-stretch: 75%;
-    font-size: var(--step-3);
-    line-height: 1;
+    font-size: var(--step-4);
+    line-height: 0.9;
+  }
+  .work__unit {
+    font-size: 0.5em;
+    margin-left: 0.08em;
+    color: var(--ink-2);
   }
   .work__track {
     grid-column: 1 / -1;

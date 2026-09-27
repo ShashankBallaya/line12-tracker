@@ -32,7 +32,7 @@ for x in range(-60, 150, 14):
     out.append(poly([(x, 4.2, 0), (x + 7, 4.2, 0), (x + 7, 4.8, 0), (x, 4.8, 0)], 'var(--iso-mark)'))
 
 # Ground in front of the road, and the giant "12" painted on it (Tren Urbano reference).
-out.insert(0, poly([(-60, 15, 0), (150, 15, 0), (150, 40, 0), (-60, 40, 0)], 'var(--iso-ground)'))
+out.insert(0, poly([(-60, 15, 0), (150, 15, 0), (150, 50, 0), (-60, 50, 0)], 'var(--iso-ground)'))
 out.append('__TWELVE__')
 
 # Piers far to near (larger x is farther), then caps.
@@ -60,7 +60,7 @@ out += box(-60, 150, 8.0, 8.6, 15.6, 16.8, *CON)
 # Frame: the stretch of line from x=-8 to x=92, ground to above the train roof.
 xs, ys = [], []
 for x in (-8, 92):
-    for y in (-6, 30):
+    for y in (-6, 46):
         for z in (0, 21):
             a, b = P(x, y, z); xs.append(a); ys.append(b)
 pad = 12
@@ -70,8 +70,8 @@ view = f'{vx:.0f} {vy:.0f} {vw:.0f} {vh:.0f}'
 CLIP = f'<clipPath id="lead-clip"><rect x="{vx:.0f}" y="{vy:.0f}" width="{vw:.0f}" height="{vh:.0f}" /></clipPath>'
 
 # The giant "12" lies flat on the ground plane (x axis up-right, y axis down-right).
-mx = f'matrix({C:.4f} {-S:.4f} {C:.4f} {S:.4f} {P(8, 36, 0)[0]:.1f} {P(8, 36, 0)[1]:.1f})'
-twelve = f'<text transform="{mx}" font-family="Anek Latin Variable, sans-serif" font-weight="800" font-stretch="75%" font-size="{K*24:.0f}" fill="var(--iso-twelve)" letter-spacing="-4">12</text>'
+mx = f'matrix({C:.4f} {-S:.4f} {C:.4f} {S:.4f} {P(-4, 45, 0)[0]:.1f} {P(-4, 45, 0)[1]:.1f})'
+twelve = f'<text transform="{mx}" font-family="Anek Latin Variable, sans-serif" font-weight="800" font-stretch="75%" font-size="{K*38:.0f}" fill="var(--iso-twelve)" letter-spacing="-4">12</text>'
 
 svg = f'''<svg viewBox="{view}" role="img" aria-labelledby="lead-title" preserveAspectRatio="xMidYMid meet">
   <title id="lead-title">Isometric drawing of the Line 12 viaduct: concrete piers carry a U-girder deck over a road marked 12, and a three-car train runs on top.</title>

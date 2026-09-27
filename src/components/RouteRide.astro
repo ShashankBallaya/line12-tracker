@@ -297,7 +297,7 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
     top: 1.7rem;
   }
   .ride__tick--side .ride__tick-name {
-    left: 1.6rem;
+    left: 2.4rem;
     top: 50%;
     translate: 0 -50%;
     text-align: left;
@@ -370,7 +370,9 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
     color: var(--signal-line);
   }
   .ride__km span {
-    font-size: 0.4em;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: max(0.4em, 1rem);
     color: var(--ink-2);
   }
   :global(.ride.is-riding) .ride__km {

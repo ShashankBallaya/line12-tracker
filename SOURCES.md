@@ -70,7 +70,9 @@ Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refus
 
 ## Leads to verify (supplied by the owner, 2026-09-28, no source URL yet)
 
-Nothing below is on the site. Each item needs a primary source (MMRDA tender document or notice) first.
+Origin: posts on X by @hadilal and @bodkeitis, which say they come from official tender details. That makes them useful leads but not primary sources: grade them `reported` at best once the specific posts are linked, and `verified` only when the tender document itself is found (mahatenders.gov.in or MMRDA).
+
+Nothing below is on the site yet.
 
 1. **Package "CA-316" line diagram.** It shows revised centre-line chainages: Kalyan -739.050 m, APMC Kalyan -100.650 m, Ganesh Nagar 788.251 m, Pisavali Gaon 2,265.152 m, Golavli 3,353.052 m, Dombivli MIDC 4,520.952 m, Sagaon 5,528.852 m, Sonarpada 6,539.752 m, Manpada 7,592.652 m. After Manpada it shows a new **Katai Naka** station (ch. 9,695.783 m) "to Amandoot" and a branch via **Kolegaon** to **Nilje depot**. The chainages differ from the 2019 DPR by 40 m to 90 m. If confirmed, they replace the DPR chainages in `stations.json`.
 2. **Line 12A overlap.** The diagram fits the Line 12A corridor (Manpada, Katai Naka, Kalyan Phata, Dahisar Mori, joining Line 12 near Khutari). No source yet says whether 12A replaces the original Line 12 stations from Hedutane to Pisarve. Checked: [ThePrint/PTI, 20 Feb 2026](https://theprint.in/india/metro-rail-line-12-to-be-extended-along-kalyan-shilphata-road-at-cost-of-rs-8-4k-cr-sena-mp/2859716/) (does not say).
