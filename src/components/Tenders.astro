@@ -61,8 +61,8 @@ const cr = (v: number | null | undefined) => (v == null ? null : `₹${inr(v)} c
     <ul class="firms__list">
       {contractors.map((c) => (
         <li class="firm">
-          <span class="firm__role">{c.role}</span>
           <span class="firm__name">{c.name}</span>
+          <span class="firm__role">{c.role}</span>
           <Grade status={c.status} source={c.source_url} />
         </li>
       ))}

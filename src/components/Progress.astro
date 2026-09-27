@@ -30,8 +30,8 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
     {phases.map((ph) => (
       <li class:list={['phase', `phase--${ph.state}`]}>
         <span class="phase__bar" aria-hidden="true"></span>
-        <span class="phase__state">{stateLabel[ph.state]}</span>
         <span class="phase__name">{ph.name}</span>
+        <span class="phase__state">{stateLabel[ph.state]}</span>
         <span class="phase__note">{ph.note}</span>
       </li>
     ))}

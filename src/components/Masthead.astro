@@ -1,6 +1,9 @@
 ---
 import { formatDate, lastReviewed } from '../lib/data';
 
+// Edition = the day this page was built (India time). Facts checked = the latest data review.
+const edition = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+
 const inside = [
   ['route', 'Route'],
   ['numbers', 'Numbers'],
@@ -26,7 +29,9 @@ const inside = [
   </div>
   <div class="page masthead__edition">
     <p>
-      Edition of <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>
+      Edition of <time datetime={edition}>{formatDate(edition)}</time>
+      <span class="sep" aria-hidden="true"></span>
+      Facts checked <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>
       <span class="sep" aria-hidden="true"></span>
       Not affiliated with MMRDA
     </p>

@@ -117,7 +117,10 @@ function setUpRide(): ScrollTrigger | null {
   const stations = [...section.querySelectorAll<HTMLElement>('[data-ride-station]')];
   const ticks = [...section.querySelectorAll<HTMLElement>('[data-ride-tick]')];
   const xs = stations.map((s) => parseFloat(getComputedStyle(s).getPropertyValue('--x')));
+  const ys = stations.map((s) => parseFloat(getComputedStyle(s).getPropertyValue('--y')));
   section.classList.add('is-riding');
+  train.style.left = `${xs[0]}%`;
+  train.style.top = `${ys[0]}%`;
 
   let current = -1;
   const setCurrent = (i: number) => {
@@ -142,8 +145,9 @@ function setUpRide(): ScrollTrigger | null {
       const f = self.progress * (stations.length - 1);
       const a = Math.floor(f);
       const b = Math.min(a + 1, stations.length - 1);
-      const x = xs[a] + (xs[b] - xs[a]) * (f - a);
-      train.style.left = `${x}%`;
+      const t = f - a;
+      train.style.left = `${xs[a] + (xs[b] - xs[a]) * t}%`;
+      train.style.top = `${ys[a] + (ys[b] - ys[a]) * t}%`;
       setCurrent(Math.round(f));
     },
   });

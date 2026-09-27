@@ -51,8 +51,7 @@ const specs: [string, string][] = [
 
     <div class="trains__spec">
       <p class="trains__maker">
-        <span class="trains__maker-label">Maker</span>
-        <span class="trains__maker-value">Not chosen</span>
+        <span class="trains__maker-value">Maker not chosen</span>
         <Grade status={rollingstock.procurement.status} source={rollingstock.procurement.source_url} />
       </p>
       <dl class="spec">
@@ -77,10 +76,12 @@ const specs: [string, string][] = [
     gap: var(--s-6);
   }
   @media (min-width: 64rem) {
-    .trains {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: var(--s-7);
-      align-items: start;
+    .spec {
+      columns: 2;
+      column-gap: var(--s-7);
+    }
+    .spec__row {
+      break-inside: avoid;
     }
   }
   .trains__drawing {
@@ -90,7 +91,9 @@ const specs: [string, string][] = [
   }
   .trains__drawing svg {
     width: 100%;
+    max-width: 64rem;
     height: auto;
+    margin-inline: auto;
   }
   .trains__drawing figcaption {
     padding-top: var(--s-3);

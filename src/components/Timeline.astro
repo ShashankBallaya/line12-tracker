@@ -30,10 +30,9 @@ const kindLabel: Record<string, string> = {
         <li class:list={['tl__event', `tl__event--${e.kind}`]}>
           <span class="tl__rail" aria-hidden="true"></span>
           <p class="tl__date num">{e.date ? <time datetime={e.date}>{formatDate(e.date)}</time> : 'Date not announced'}</p>
-          <p class="tl__kind">{kindLabel[e.kind] ?? e.kind}</p>
           <h3 class="tl__title">{e.title}</h3>
           <p class="tl__summary">{e.summary}</p>
-          <p class="tl__grade"><Grade status={e.status} source={e.source_url} /></p>
+          <p class="tl__meta"><span class="tl__kind">{kindLabel[e.kind] ?? e.kind}</span><Grade status={e.status} source={e.source_url} /></p>
         </li>
       ))}
     </ol>
@@ -80,6 +79,12 @@ const kindLabel: Record<string, string> = {
     font-size: var(--step-2);
     line-height: 1;
   }
+  .tl__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2) var(--s-3);
+  }
   .tl__kind {
     font-size: var(--step--1);
     text-transform: uppercase;
@@ -110,6 +115,9 @@ const kindLabel: Record<string, string> = {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  :global(.tl.is-scrubbing) > .page {
+    width: 100%;
   }
   :global(.tl.is-scrubbing) .tl__viewport {
     overflow: hidden;

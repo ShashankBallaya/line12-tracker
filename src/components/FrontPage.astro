@@ -2,6 +2,7 @@
 import Grade from './Grade.astro';
 import LeadPicture from './LeadPicture.astro';
 import { project, stations, formatDate } from '../lib/data';
+import { schematic } from '../lib/route';
 
 const target = project.target_completion;
 const progress = project.progress;
@@ -14,24 +15,8 @@ const earlier = target.alternatives[0];
 const first = stations[0].name;
 const last = stations[stations.length - 1].name;
 
-// Schematic strip, Vignelli style: straight along Kalyan-Shilphata Road, a 45-degree bend
-// where the 2019 alignment leaves the road (about ch. 7,182 m), then straight to Amandoot.
-// Stations sit at their true proportional distance along the line.
-const KALYAN_CH = -860.224;
-const ch = (i: number) => stations[i].location.dpr_chainage_m ?? KALYAN_CH;
-const c0 = ch(0);
-const c1 = ch(stations.length - 1);
-const BEND_CH = 7182;
-const W = 1000, TOP = 26, DROP = 44, X0 = 14, X1 = W - 14;
-// x is proportional to chainage; the diagonal spans DROP units of x starting at the bend.
-const xAt = (c: number) => X0 + ((c - c0) / (c1 - c0)) * (X1 - X0);
-const bendAt = xAt(BEND_CH);
-const pointAt = (c: number) => {
-  const x = xAt(c);
-  return [x, TOP + Math.max(0, Math.min(x - bendAt, DROP))];
-};
-const path = `M${X0} ${TOP} H${bendAt.toFixed(1)} L${(bendAt + DROP).toFixed(1)} ${TOP + DROP} H${X1}`;
-const dots = stations.map((_, i) => pointAt(ch(i)));
+// Schematic strip (shared geometry with the route ride).
+const { width: W, height: H, path, points: dots } = schematic();
 ---
 
 <section class="front page" aria-labelledby="front-headline">
@@ -67,12 +52,12 @@ const dots = stations.map((_, i) => pointAt(ch(i)));
 
   <a class="front__strip" href="#route" aria-label={`The route: ${stations.length} stations from ${first} to ${last}. Ride the line.`}>
     <span class="front__strip-end front__strip-end--a">{first}</span>
-    <svg class="front__strip-line" viewBox={`0 0 ${W} ${TOP + DROP + 20}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <svg class="front__strip-line" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path d={path} class="line-casing" vector-effect="non-scaling-stroke" />
       <path d={path} class="line-core" vector-effect="non-scaling-stroke" />
     </svg>
     <span class="front__strip-dots" aria-hidden="true">
-      {dots.map(([x, y]) => <span class="front__strip-dot" style={`left:${(x / W) * 100}%;top:${(y / (TOP + DROP + 20)) * 100}%`}></span>)}
+      {dots.map(([x, y]) => <span class="front__strip-dot" style={`left:${(x / W) * 100}%;top:${(y / H) * 100}%`}></span>)}
     </span>
     <span class="front__strip-end front__strip-end--b">{last}</span>
     <span class="front__strip-meta num">{stations.length} stations<span aria-hidden="true"> / </span>{project.length_km.value} km</span>
