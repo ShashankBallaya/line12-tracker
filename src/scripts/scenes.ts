@@ -49,8 +49,15 @@ if (webgl()) {
     const load = sceneLoaders[host.dataset.scene ?? ''];
     if (!load) return;
     const mount = () => load().then((m) => m.mount(host, { reduced })).catch((e) => console.error('3D scene failed to load', e));
-    // The hero is on screen at load: wait for idle. Other scenes load as they come near.
-    if (host.dataset.scene === 'viaduct') afterIdle(() => whenNear(host, mount, '300px'));
+    // The hero is on screen at load. Wide screens: load after idle. Phones: load on the first
+    // scroll or touch, so the 3D never slows the first paint on a mobile connection.
+    if (host.dataset.scene === 'viaduct' && window.matchMedia('(max-width: 47.99rem)').matches) {
+      const once = () => {
+        ['scroll', 'touchstart', 'pointerdown'].forEach((t) => window.removeEventListener(t, once));
+        whenNear(host, mount, '300px');
+      };
+      ['scroll', 'touchstart', 'pointerdown'].forEach((t) => window.addEventListener(t, once, { passive: true, once: true }));
+    } else if (host.dataset.scene === 'viaduct') afterIdle(() => whenNear(host, mount, '300px'));
     else whenNear(host, mount, '300px');
   });
 }

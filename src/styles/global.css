@@ -279,7 +279,8 @@ body::after {
 .seen .preloader {
   display: none;
 }
-@media (prefers-reduced-motion: reduce) {
+/* No preloader on phones (it would hold back the first paint) or with reduced motion. */
+@media (prefers-reduced-motion: reduce), (max-width: 63.99rem) {
   .preloader {
     display: none;
   }

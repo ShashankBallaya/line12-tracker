@@ -226,6 +226,34 @@ const { width: W, height: H, path, points: dots } = schematic();
     grid-area: 1 / 3;
     align-self: end;
   }
+  /* Phones: the line gets the full width, station names above and below it. */
+  @media (max-width: 47.99rem) {
+    .front__strip {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .front__strip-end--a {
+      grid-area: 1 / 1;
+      justify-self: start;
+    }
+    .front__strip-line,
+    .front__strip-dots {
+      grid-column: 1;
+      grid-row: 2;
+      height: 4rem;
+    }
+    .front__strip-end--b {
+      grid-area: 3 / 1;
+      justify-self: end;
+    }
+    .front__strip-meta {
+      grid-row: 4;
+    }
+    .front__strip-dot {
+      width: 0.62rem;
+      height: 0.62rem;
+      border-width: 2px;
+    }
+  }
   .front__strip-meta {
     grid-column: 1 / -1;
     justify-self: end;
