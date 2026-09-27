@@ -1,0 +1,94 @@
+---
+/**
+ * Grade mark: how sure we are about a fact, drawn as a mark (never colour alone)
+ * plus a text label and, optionally, the source link.
+ *   verified    solid square with a tick
+ *   reported    open ring
+ *   unverified  dashed square
+ *   conflicting crosshatched square
+ */
+import { gradeLabel, gradeHelp, outletName, type Grade } from '../lib/data';
+
+interface Props {
+  status: Grade | string;
+  source?: string | null;
+  /** Hide the visible label (the mark keeps an accessible name). */
+  compact?: boolean;
+  /** Hide the source link. */
+  noSource?: boolean;
+}
+
+const { status, source, compact = false, noSource = false } = Astro.props;
+const grade = (['verified', 'reported', 'unverified', 'conflicting'].includes(status) ? status : 'unverified') as Grade;
+const label = gradeLabel[grade];
+---
+
+<span class:list={['grade', `grade--${grade}`, { 'grade--compact': compact }]} title={gradeHelp[grade]}>
+  <svg class="grade__mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    {grade === 'verified' && (
+      <>
+        <rect x="1" y="1" width="14" height="14" fill="currentColor" />
+        <path d="M4 8.4 6.9 11 12 5" fill="none" stroke="var(--paper)" stroke-width="2" stroke-linecap="square" />
+      </>
+    )}
+    {grade === 'reported' && <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2" />}
+    {grade === 'unverified' && (
+      <rect x="2" y="2" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2.2" />
+    )}
+    {grade === 'conflicting' && (
+      <>
+        <rect x="1.5" y="1.5" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <path d="M1.5 6.5 6.5 1.5M1.5 11.5 11.5 1.5M4.5 14.5 14.5 4.5M9.5 14.5 14.5 9.5M1.5 9.5 6.5 14.5M1.5 4.5 11.5 14.5M4.5 1.5 14.5 11.5M9.5 1.5 14.5 6.5" stroke="currentColor" stroke-width="1" />
+      </>
+    )}
+  </svg>
+  <span class:list={['grade__label', { 'visually-hidden': compact }]}>{label}</span>
+  {!noSource && source && (
+    <a class="grade__source" href={source} rel="noopener" target="_blank">
+      {outletName(source)}<span class="visually-hidden"> (opens source in a new tab)</span>
+    </a>
+  )}
+</span>
+
+<style>
+  .grade {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink-2);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .grade__mark {
+    width: 0.95em;
+    height: 0.95em;
+    flex: none;
+    color: var(--ink);
+  }
+  .grade--conflicting .grade__mark,
+  .grade--unverified .grade__mark {
+    color: var(--signal-line);
+  }
+  .grade__label {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.86em;
+  }
+  .grade__source {
+    white-space: normal;
+    color: var(--ink-2);
+  }
+  .grade__source::before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 0.9em;
+    margin-right: 0.45em;
+    vertical-align: -0.1em;
+    background: var(--rule);
+  }
+</style>

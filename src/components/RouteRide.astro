@@ -1,0 +1,354 @@
+---
+/**
+ * "The scroll is the ride." Base state: an ordered vertical list of all 19 stations,
+ * every detail visible (works without JS, on phones and with reduced motion).
+ * Enhanced state (wide screens, motion allowed): src/scripts/motion.ts adds .is-riding,
+ * pins the stage and moves the train along a horizontal strip as the reader scrolls.
+ */
+import Grade from './Grade.astro';
+import { stations, tenders } from '../lib/data';
+
+// Kalyan has no DPR chainage. Place it at the start of the CA-240 viaduct (reported, approximate).
+const ca240 = tenders.find((t) => t.id === 'ca-240')!;
+const KALYAN_CH = -860.224;
+const chainage = (s: (typeof stations)[number]) => s.location.dpr_chainage_m ?? KALYAN_CH;
+const first = chainage(stations[0]);
+const last = chainage(stations[stations.length - 1]);
+const pos = (s: (typeof stations)[number]) => ((chainage(s) - first) / (last - first)) * 100;
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<section id="route" class="ride section" aria-labelledby="route-title" data-ride>
+  <div class="page">
+    <header class="section-head">
+      <h2 id="route-title">Route</h2>
+      <p>
+        Nineteen stations, Kalyan to Amandoot. Scroll to ride the line station by station. Positions follow the 2019
+        project report's alignment and are approximate.
+      </p>
+    </header>
+  </div>
+
+  <div class="ride__stage" data-ride-stage>
+    <div class="page ride__frame">
+      <div class="ride__track" aria-hidden="true">
+        <div class="ride__line"></div>
+        {stations.map((s, i) => (
+          <span class:list={['ride__tick', i % 2 ? 'ride__tick--below' : 'ride__tick--above']} style={`--x:${pos(s)}%`} data-ride-tick={i}>
+            <span class="ride__dot"></span>
+            <span class="ride__tick-name">{s.name}</span>
+          </span>
+        ))}
+        <span class="ride__train" data-ride-train></span>
+      </div>
+
+      <ol class="ride__stations">
+        {stations.map((s, i) => (
+          <li class="ride__station" id={`station-${s.id}`} data-ride-station={i} style={`--x:${pos(s)}%`}>
+            <div class="ride__id">
+            <p class="ride__order num">Station {s.order} of {stations.length}</p>
+            <h3 class="ride__name">{s.name}</h3>
+            {s.dpr_name && s.dpr_name !== s.name && <p class="ride__alias">Called "{s.dpr_name}" in the 2019 project report.</p>}
+            <p class="ride__distance num">
+              {s.location.dpr_chainage_m === null ? (
+                <>Position approximate: start of the civil contract's viaduct <Grade status="reported" source={ca240.source_url} /></>
+              ) : s.location.dpr_chainage_m < 0 ? (
+                <>Where the 2019 alignment began <span class="ride__muted">(DPR chainage {s.location.dpr_chainage_m.toLocaleString('en-IN')} m)</span></>
+              ) : (
+                <>{km(s.location.dpr_chainage_m)} km along the 2019 alignment <span class="ride__muted">(DPR chainage {s.location.dpr_chainage_m.toLocaleString('en-IN')} m)</span></>
+              )}
+            </p>
+            </div>
+            <div class="ride__info">
+            {s.interchanges.value.length > 0 && (
+              <p class="ride__interchange">
+                <span class="ride__interchange-bar" aria-hidden="true"></span>
+                Change for {s.interchanges.value.join(', ')}
+                <Grade status={s.interchanges.status} source={s.interchanges.source_url} compact />
+              </p>
+            )}
+            {s.context.length > 0 && (
+              <ul class="ride__context">
+                {s.context.map((c) => (
+                  <li>{cap(c.text.replace(/^DPR: /, ''))} <Grade status={c.status} source={c.source_url} compact /></li>
+                ))}
+              </ul>
+            )}
+            <p class="ride__status">
+              {s.construction_status.value} <Grade status={s.construction_status.status} compact noSource />
+            </p>
+            {s.notes && <p class="ride__note">{s.notes}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <p class="ride__legend">
+        <span class="ride__legend-line" aria-hidden="true"></span>
+        A hollow line marks track that is under construction. No part of Line 12 has opened.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---------- Base: vertical list ---------- */
+  .ride__track,
+  .ride__legend {
+    display: none;
+  }
+  .ride__stations {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 var(--s-6);
+    list-style: none;
+  }
+  /* the line down the left, dashed because it is not built yet */
+  .ride__stations::before {
+    content: '';
+    position: absolute;
+    left: 0.45rem;
+    top: 0.6rem;
+    bottom: 0.6rem;
+    width: 0.85rem;
+    left: 0.3rem;
+    border-radius: 1rem;
+    background: var(--paper);
+    border: 0.3rem solid var(--signal-graphic);
+  }
+  .ride__station {
+    position: relative;
+    display: grid;
+    gap: var(--s-2);
+    padding-block: var(--s-5);
+    border-bottom: var(--rule-w) solid var(--rule);
+    scroll-margin-top: var(--s-6);
+  }
+  .ride__station::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--s-6) + 0.1rem);
+    top: calc(var(--s-5) + 0.35rem);
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 3px solid var(--paper);
+  }
+  .ride__id,
+  .ride__info {
+    display: grid;
+    gap: var(--s-2);
+    align-content: start;
+  }
+  .ride__order {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .ride__name {
+    font-size: var(--step-3);
+    text-transform: uppercase;
+  }
+  .ride__alias,
+  .ride__note {
+    color: var(--ink-3);
+    font-size: var(--step--1);
+    max-width: var(--measure);
+  }
+  .ride__distance {
+    color: var(--ink-2);
+  }
+  .ride__muted {
+    color: var(--ink-3);
+    font-size: var(--step--1);
+  }
+  .ride__interchange {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2) var(--s-3);
+    font-weight: 700;
+  }
+  .ride__interchange-bar {
+    /* two lines meeting: this line (orange) and the other line (ink) */
+    width: 2rem;
+    height: calc(var(--bar) * 2 + 3px);
+    background:
+      linear-gradient(var(--ink), var(--ink)) top / 100% var(--bar) no-repeat,
+      linear-gradient(var(--signal-graphic), var(--signal-graphic)) bottom / 100% var(--bar) no-repeat;
+  }
+  .ride__context {
+    display: grid;
+    gap: var(--s-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: var(--measure);
+  }
+  .ride__context li {
+    position: relative;
+    padding-left: var(--s-5);
+  }
+  .ride__context li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 0.7rem;
+    height: 3px;
+    background: var(--concrete);
+  }
+  .ride__context li :global(.grade) {
+    margin-left: var(--s-1);
+  }
+  .ride__status {
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+
+  /* ---------- Enhanced: the pinned horizontal ride ---------- */
+  :global(.ride.is-riding) .ride__stage {
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    align-items: stretch;
+  }
+  :global(.ride.is-riding) .ride__frame {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    grid-template-areas: 'stations' 'track' 'legend';
+    gap: var(--s-5);
+    padding-block: var(--s-7) var(--s-5);
+  }
+  :global(.ride.is-riding) .ride__track { grid-area: track; }
+  :global(.ride.is-riding) .ride__stations { grid-area: stations; align-self: end; }
+  :global(.ride.is-riding) .ride__legend { grid-area: legend; }
+  :global(.ride.is-riding) .ride__track {
+    display: block;
+    position: relative;
+    height: 8.5rem;
+    margin-inline: var(--s-6);
+  }
+  .ride__line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 0.9rem;
+    translate: 0 -50%;
+    border-radius: 1rem;
+    background: var(--paper);
+    border: 0.3rem solid var(--signal-graphic);
+  }
+  .ride__tick {
+    position: absolute;
+    left: var(--x);
+    top: 50%;
+    translate: -50% -50%;
+    display: grid;
+    justify-items: center;
+  }
+  .ride__dot {
+    width: 1.05rem;
+    height: 1.05rem;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    transition: background-color 0.25s var(--ease-out), scale 0.25s var(--ease-out);
+  }
+  .ride__tick-name {
+    position: absolute;
+    left: 50%;
+    width: max-content;
+    max-width: 7.5rem;
+    translate: -50% 0;
+    font-size: 0.78rem;
+    line-height: 1.1;
+    text-align: center;
+    color: var(--ink-3);
+    transition: color 0.25s;
+  }
+  .ride__tick--above .ride__tick-name {
+    bottom: 1.7rem;
+  }
+  .ride__tick--below .ride__tick-name {
+    top: 1.7rem;
+  }
+  .ride__tick.is-passed .ride__dot {
+    background: var(--ink);
+  }
+  .ride__tick.is-current .ride__dot {
+    background: var(--signal-graphic);
+    scale: 1.5;
+  }
+  .ride__tick.is-current .ride__tick-name {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .ride__train {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 3.2rem;
+    height: calc(var(--bar) * 2.4);
+    translate: -50% -50%;
+    border-radius: 3px;
+    background:
+      linear-gradient(var(--signal), var(--signal)) bottom / 100% 40% no-repeat,
+      var(--ink);
+    will-change: left;
+  }
+
+  :global(.ride.is-riding) .ride__stations {
+    display: grid;
+    padding: 0;
+    min-height: 0;
+  }
+  :global(.ride.is-riding) .ride__stations::before {
+    display: none;
+  }
+  :global(.ride.is-riding) .ride__station {
+    grid-area: 1 / 1;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    column-gap: var(--s-7);
+    align-items: end;
+    align-self: end;
+    padding: 0;
+    border: 0;
+    /* inactive stations stay in the accessibility tree; only the current one is seen */
+    opacity: 0;
+    pointer-events: none;
+    translate: 0 1rem;
+    transition: opacity 0.35s var(--ease-out), translate 0.45s var(--ease-out);
+  }
+  :global(.ride.is-riding) .ride__station::before {
+    display: none;
+  }
+  :global(.ride.is-riding) .ride__station.is-current {
+    opacity: 1;
+    pointer-events: auto;
+    translate: 0 0;
+  }
+  :global(.ride.is-riding) .ride__name {
+    font-size: var(--step-4);
+  }
+  :global(.ride.is-riding) .ride__legend {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .ride__legend-line {
+    width: 3rem;
+    height: 0.8rem;
+    border-radius: 1rem;
+    background: var(--paper);
+    border: 0.25rem solid var(--signal-graphic);
+  }
+</style>

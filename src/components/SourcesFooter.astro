@@ -1,0 +1,165 @@
+---
+import Grade from './Grade.astro';
+import { formatDate, lastReviewed, CORRECTION_URL, REPO_URL, gradeHelp, type Grade as G } from '../lib/data';
+
+const primary = [
+  {
+    name: 'MMRDA, Metro Line 12 project page',
+    note: 'Length, stations, depot, interchanges, cost, riders, monthly progress.',
+    url: 'https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview',
+  },
+  {
+    name: 'Detailed Project Report, Kalyan to Taloja (DMRC for MMRDA, April 2019)',
+    note: 'Design basis, station positions, alignment, planned trains.',
+    url: 'https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf',
+  },
+];
+const grades: G[] = ['verified', 'reported', 'unverified', 'conflicting'];
+// Build date in India time, so it matches the edition date readers see.
+const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+---
+
+<section id="sources" class="section page" aria-labelledby="sources-title">
+  <header class="section-head">
+    <h2 id="sources-title">Sources and corrections</h2>
+    <p>Every figure on this page links to where it came from. This is how to read the marks next to them.</p>
+  </header>
+
+  <div class="sources">
+    <ul class="legend" aria-label="What the marks mean">
+      {grades.map((g) => (
+        <li><Grade status={g} noSource /> <span>{gradeHelp[g]}</span></li>
+      ))}
+    </ul>
+
+    <div>
+      <h3 class="sources__title">Primary sources</h3>
+      <ul class="primary">
+        {primary.map((s) => (
+          <li><a href={s.url} rel="noopener" target="_blank">{s.name}</a><span>{s.note}</span></li>
+        ))}
+      </ul>
+      <p class="sources__more">
+        The full list, with every news and trade source, is in{' '}
+        <a href={`${REPO_URL}/blob/main/SOURCES.md`} rel="noopener" target="_blank">SOURCES.md</a>.
+      </p>
+    </div>
+
+    <div class="correct">
+      <h3 class="sources__title">Spotted a mistake?</h3>
+      <p>Tell us what is wrong and where you saw the right figure. Corrections are public and dated.</p>
+      <a class="correct__btn" href={CORRECTION_URL} rel="noopener" target="_blank">Report a correction on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer class="colophon">
+  <div class="page colophon__inner">
+    <p class="colophon__disclaimer">
+      <strong>Unofficial.</strong> Line 12 Tracker is an independent public-interest site. It is not affiliated with,
+      endorsed by or connected to MMRDA or the Government of Maharashtra. Drawings are original illustrations, not
+      official designs. Check official sources before making decisions.
+    </p>
+    <p class="colophon__meta">
+      Data last reviewed <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>
+      <span aria-hidden="true">/</span>
+      Page built <time datetime={builtAt}>{formatDate(builtAt)}</time>
+      <span aria-hidden="true">/</span>
+      <a href={REPO_URL} rel="noopener" target="_blank">Source code</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .sources {
+    display: grid;
+    gap: var(--s-6);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+    padding-top: var(--s-5);
+  }
+  @media (min-width: 64rem) {
+    .sources {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-7);
+    }
+  }
+  .legend,
+  .primary {
+    display: grid;
+    gap: var(--s-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .legend li {
+    display: grid;
+    gap: var(--s-1);
+    color: var(--ink-2);
+  }
+  .primary li {
+    display: grid;
+    gap: var(--s-1);
+  }
+  .primary a {
+    font-weight: 700;
+  }
+  .primary span,
+  .sources__more {
+    color: var(--ink-2);
+    font-size: var(--step--1);
+  }
+  .sources__more {
+    margin-top: var(--s-4);
+  }
+  .sources__title {
+    font-size: var(--step-2);
+    text-transform: uppercase;
+    margin-bottom: var(--s-4);
+  }
+  .correct p {
+    color: var(--ink-2);
+    margin-bottom: var(--s-5);
+  }
+  .correct__btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: var(--s-2) var(--s-5);
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+  }
+  .correct__btn:hover {
+    background: var(--signal);
+    color: var(--on-signal);
+  }
+  .correct__btn:active {
+    transform: scale(0.98);
+  }
+
+  .colophon {
+    margin-top: var(--s-8);
+    background: var(--paper-2);
+    border-top: var(--bar) solid var(--signal);
+  }
+  .colophon__inner {
+    display: grid;
+    gap: var(--s-4);
+    padding-block: var(--s-7);
+  }
+  .colophon__disclaimer {
+    max-width: var(--measure);
+    font-size: var(--step-1);
+    line-height: 1.45;
+  }
+  .colophon__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+</style>

@@ -1,0 +1,186 @@
+{
+  "_meta": {
+    "description": "Headline facts about Mumbai Metro Line 12 (Kalyan to Taloja). Each fact carries its own source and status.",
+    "status_values": {
+      "verified": "Confirmed by a primary source (MMRDA website or the MMRDA-published DPR).",
+      "reported": "From a reputable secondary source (news or trade press). Not confirmed by a primary source.",
+      "unverified": "Single weak source, or could not be confirmed. Show with a warning in the UI.",
+      "conflicting": "Sources disagree. The value is the most recent credible figure; see 'alternatives'."
+    },
+    "last_reviewed": "2026-09-28"
+  },
+  "name": {
+    "value": "Mumbai Metro Line 12",
+    "also_known_as": ["Metro 12", "Kalyan-Dombivli-Taloja Metro", "Orange Line (southern extension of Line 5)"],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28"
+  },
+  "implementing_agency": {
+    "value": "Mumbai Metropolitan Region Development Authority (MMRDA)",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28"
+  },
+  "line_color": {
+    "value": "Orange Line",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28"
+  },
+  "route": {
+    "value": "Kalyan to Amandoot (Taloja), via Dombivli MIDC, Kalyan Growth Centre, Wadavli, Turbhe and Pisarve",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28"
+  },
+  "length_km": {
+    "value": 23.57,
+    "structure": "Fully elevated",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "history": [
+      { "value": 20.756, "context": "Final DPR, April 2019 (APMC Kalyan to Taloja, 17 stations)", "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf" },
+      { "value": 22.17, "context": "Civil contract CA-240 scope (viaduct chainage -860.224 m to +21,316.022 m, 19 stations)", "source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/" }
+    ],
+    "notes": "Other outlets quote 23.756 km (Free Press Journal, Dec 2024). The UI should show 23.57 km (MMRDA) and explain that the length grew after the DPR when Kalyan and APMC Kalyan stations moved into Line 12 scope."
+  },
+  "stations_count": {
+    "value": 19,
+    "structure": "All elevated",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "history": [
+      { "value": 17, "context": "Final DPR, April 2019", "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf" }
+    ]
+  },
+  "completion_cost_crore_inr": {
+    "value": 5865,
+    "label": "Project completion cost",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "also_see": ["https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"],
+    "notes": "The DPR (April 2019) gives Rs 4,738 crore at March 2018 prices (with taxes, duties and land) and Rs 5,865 crore as completion cost including land and IDC, escalated at 5% a year to March 2026. The DPR's own year-wise table totals Rs 5,459 crore, so the DPR is internally inconsistent. Some trade press quotes Rs 4,132 crore and Rs 5,494 crore; no primary source was found for those figures."
+  },
+  "funding": {
+    "value": "Not confirmed by a primary source",
+    "status": "unverified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+    "last_verified": "2026-09-28",
+    "notes": "The DPR (April 2019) recommends that the project be built fully as a Government initiative, and says the Maharashtra Government will give the Rs 368 crore of land free of cost. It also models an SPV pattern with GoI equity Rs 837 crore, GoM equity Rs 837 crore and a multilateral loan of Rs 3,005 crore, but that is an option, not a decision. Wikipedia says AIIB and the OPEC Fund lent Rs 2,357.25 crore to the Orange Line, but no AIIB or MMRDA document ties that loan to Line 12. Do not show a funding split in the UI until a primary source is found."
+  },
+  "depot": {
+    "value": "Nilje",
+    "area_ha": 31,
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "details_reported": {
+      "area_ha": 30.12,
+      "stabling": "12 stabling lines for 24 six-car trains",
+      "status": "reported",
+      "source_url": "https://www.freepressjournal.in/mumbai/navi-mumbai-orange-metro-line-12-to-connect-kalyan-taloja-set-for-completion-by-december-2027"
+    },
+    "history": [
+      { "value": "Near Pisarve Depot station, 20 ha of private agricultural land", "context": "Final DPR, April 2019 (superseded)", "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf" }
+    ]
+  },
+  "interchanges": {
+    "value": [
+      { "station": "Kalyan", "connects_to": "Metro Line 5 (Thane-Bhiwandi-Kalyan)" },
+      { "station": "Hedutane", "connects_to": "Metro Line 14 (Vikhroli-Badlapur)" },
+      { "station": "Amandoot", "connects_to": "Navi Mumbai Metro Line 1" }
+    ],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "notes": "MMRDA spells it 'Vikroli-Badlapur'. Rail Analysis (Dec 2025) also reports a foot overbridge link to Central Railway at Kalyan Junction (status: reported)."
+  },
+  "daily_ridership_2031": {
+    "value": 262000,
+    "display": "2.62 lakh",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "notes": "Matches the DPR projection of 2,62,320 for 2031 with property development."
+  },
+  "travel_time_benefit": {
+    "value": "Reduces current travel time by 50% to 75%, depending on road conditions",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28"
+  },
+  "current_phase": {
+    "value": "Civil construction (viaduct and stations). Systems and rolling stock tender stage.",
+    "status": "reported",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "notes": "Civil progress is verified (see 'progress'). The systems tender stage is from trade press, June 2026."
+  },
+  "progress": {
+    "as_of": "2026-08-31",
+    "items": [
+      { "activity": "Pile works", "percent_complete": 37.12 },
+      { "activity": "Pile cap works", "percent_complete": 31.54 },
+      { "activity": "Pier works", "percent_complete": 25.88 },
+      { "activity": "Pier cap works (erection)", "percent_complete": 26.84 },
+      { "activity": "U-girder works (erection)", "percent_complete": 18.75 }
+    ],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_verified": "2026-09-28",
+    "notes": "MMRDA updates this table monthly. The Worker pipeline in Phase 5 could re-check it."
+  },
+  "target_completion": {
+    "value": "2028-05",
+    "countdown_date": "2028-05-31",
+    "precision": "month",
+    "status": "conflicting",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-update-kalyantaloja-line-key-link-to-navi-mumbai-airport-crosses-100th-u-girder-milestone-target-completion-may-2028",
+    "last_verified": "2026-09-28",
+    "alternatives": [
+      { "value": "2027-12-31", "context": "MMRDA statement reported by Free Press Journal, Dec 2024", "source_url": "https://www.freepressjournal.in/mumbai/navi-mumbai-orange-metro-line-12-to-connect-kalyan-taloja-set-for-completion-by-december-2027" },
+      { "value": "2024-10-31", "context": "Original DPR assumption (construction 1 Nov 2019 to 31 Oct 2024, opening 1 Nov 2024). Superseded.", "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf" }
+    ],
+    "notes": "The MMRDA project page gives no target date. May 2028 is the most recent reported target (Dec 2025). The countdown uses the last day of that month and the UI must label it 'reported target, not an official date'."
+  },
+  "technical": {
+    "gauge_mm": 1435,
+    "traction": "25 kV AC overhead catenary",
+    "signalling": "CBTC-based continuous automatic train control (ATP, ATO, ATS)",
+    "design_speed_kmph": 90,
+    "max_operating_speed_kmph": 80,
+    "schedule_speed_kmph": 35,
+    "viaduct": "Precast twin U-girders on single piers, bored cast-in-situ pile foundations; I-girders on sharp curves and at points and crossings",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+    "last_verified": "2026-09-28",
+    "notes": "Design values from the April 2019 DPR. The systems contract (not yet awarded) may change them."
+  },
+  "engineering_highlights": {
+    "value": [
+      "54 m span at APMC Kalyan market",
+      "56 m span at Regency Anantam Chowk",
+      "Two 65 m spans over the Central Railway ROB at Patripul",
+      "75 m steel span at the Taloja ROB",
+      "100 m span near Kolegaon over the Virar-Alibaug Multimodal Corridor",
+      "Station heights of 21 m to 23 m"
+    ],
+    "status": "reported",
+    "source_url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+    "last_verified": "2026-09-28"
+  },
+  "related_projects": [
+    {
+      "name": "Metro Line 12A (Kalyan Phata to Taloja via Dahisar Mori)",
+      "summary": "18.4 km elevated corridor with 12 stations, joining Line 12 near Khutari village. Administrative approval of Rs 8,414.53 crore reported in February 2026.",
+      "status": "reported",
+      "source_url": "https://www.newsband.in/article_detail/kalyantaloja-metro-12a-corridor-gets-state-approval",
+      "last_verified": "2026-09-28",
+      "notes": "Separate project. Keep it out of Line 12 totals."
+    }
+  ]
+}

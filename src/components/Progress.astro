@@ -1,0 +1,168 @@
+---
+import Grade from './Grade.astro';
+import { project, timeline, formatDate } from '../lib/data';
+
+const progress = project.progress;
+const systems = timeline.find((e) => e.id === 'systems-tender')!;
+
+/** Project phases. State is written in words and drawn as a pattern, never colour alone. */
+const phases = [
+  { name: 'Planning', state: 'done', note: 'Project report, April 2019' },
+  { name: 'Tenders and design', state: 'done', note: 'Civil contract awarded, March 2024' },
+  { name: 'Civil construction', state: 'now', note: `Piles, piers and girders, ${formatDate(progress.as_of)}` },
+  { name: 'Systems and trains', state: 'started', note: `Tender floated, ${formatDate(systems.date)}` },
+  { name: 'Testing and safety approval', state: 'next', note: 'No date announced' },
+  { name: 'Opening', state: 'next', note: 'Reported target May 2028' },
+] as const;
+const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not started' };
+---
+
+<section id="progress" class="section page" aria-labelledby="progress-title">
+  <header class="section-head">
+    <h2 id="progress-title">Progress</h2>
+    <p>
+      MMRDA publishes one progress table for the whole corridor, updated monthly. It does not publish progress by
+      station.
+    </p>
+  </header>
+
+  <ol class="phases" aria-label="Project phases">
+    {phases.map((ph) => (
+      <li class:list={['phase', `phase--${ph.state}`]}>
+        <span class="phase__bar" aria-hidden="true"></span>
+        <span class="phase__state">{stateLabel[ph.state]}</span>
+        <span class="phase__name">{ph.name}</span>
+        <span class="phase__note">{ph.note}</span>
+      </li>
+    ))}
+  </ol>
+
+  <div class="works">
+    <h3 class="works__title">Civil works complete, as of <time datetime={progress.as_of}>{formatDate(progress.as_of)}</time></h3>
+    <ul class="works__list">
+      {progress.items.map((item) => (
+        <li class="work">
+          <span class="work__name">{item.activity}</span>
+          <span class="work__pct num"><span data-count={item.percent_complete} data-decimals="2">{item.percent_complete.toFixed(2)}</span>%</span>
+          <span
+            class="work__track"
+            role="meter"
+            aria-label={item.activity}
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow={item.percent_complete}
+          >
+            <span class="work__fill" style={`--pct:${item.percent_complete}%`} data-grow></span>
+          </span>
+        </li>
+      ))}
+    </ul>
+    <p><Grade status={progress.status} source={progress.source_url} /></p>
+  </div>
+</section>
+
+<style>
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+    gap: var(--s-4) var(--s-2);
+    margin: 0 0 var(--s-7);
+    padding: 0;
+    list-style: none;
+  }
+  .phase {
+    display: grid;
+    gap: var(--s-1);
+    align-content: start;
+  }
+  .phase__bar {
+    height: calc(var(--bar) * 2);
+    margin-bottom: var(--s-2);
+  }
+  .phase--done .phase__bar {
+    background: var(--ink);
+  }
+  .phase--now .phase__bar {
+    background: var(--signal-graphic);
+  }
+  .phase--started .phase__bar {
+    background: repeating-linear-gradient(to right, var(--signal-graphic) 0 12px, transparent 12px 18px);
+  }
+  .phase--next .phase__bar {
+    border: 2px dashed var(--rule);
+  }
+  .phase__state {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .phase--now .phase__state {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .phase__name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-2);
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .phase--next .phase__name {
+    color: var(--ink-3);
+  }
+  .phase__note {
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+
+  .works {
+    display: grid;
+    gap: var(--s-5);
+    padding-top: var(--s-5);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+  }
+  .works__title {
+    font-size: var(--step-2);
+    text-transform: uppercase;
+  }
+  .works__list {
+    display: grid;
+    gap: var(--s-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .work {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: var(--s-2) var(--s-4);
+  }
+  .work__name {
+    font-weight: 500;
+    font-size: var(--step-1);
+  }
+  .work__pct {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-3);
+    line-height: 1;
+  }
+  .work__track {
+    grid-column: 1 / -1;
+    display: block;
+    height: calc(var(--bar) * 2);
+    background: var(--paper-2);
+    box-shadow: inset 0 0 0 1px var(--rule);
+  }
+  .work__fill {
+    display: block;
+    height: 100%;
+    width: var(--pct);
+    background: var(--signal-graphic);
+    transform-origin: left center;
+  }
+</style>

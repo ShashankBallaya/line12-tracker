@@ -1,0 +1,242 @@
+{
+  "_meta": {
+    "description": "Key milestones, oldest first. 'date_precision' is day, month or year. 'kind' is planning, approval, tender, award, construction, related or future.",
+    "last_reviewed": "2026-09-28"
+  },
+  "events": [
+    {
+      "id": "dpr-agreement",
+      "date": "2017-08-02",
+      "date_precision": "day",
+      "kind": "planning",
+      "title": "MMRDA and DMRC sign DPR agreement",
+      "summary": "MMRDA engages Delhi Metro Rail Corporation to prepare the Detailed Project Report for extending Metro Line 5 from Kalyan to Taloja.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "mmrda-approval",
+      "date": "2018-11-21",
+      "date_precision": "day",
+      "kind": "approval",
+      "title": "MMRDA approves the project",
+      "summary": "Wikipedia gives this date for MMRDA approval. No primary source found. The date is before the final DPR (April 2019), so it may be an in-principle approval.",
+      "status": "unverified",
+      "source_url": "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "draft-dpr",
+      "date": "2019-01",
+      "date_precision": "month",
+      "kind": "planning",
+      "title": "Draft DPR submitted",
+      "summary": "DMRC submits the draft DPR. MMRDA sends comments in February and March 2019.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "final-dpr",
+      "date": "2019-04",
+      "date_precision": "month",
+      "kind": "planning",
+      "title": "Final DPR: 20.756 km, 17 stations, Rs 5,865 crore",
+      "summary": "Final DPR proposes a fully elevated 20.756 km line with 17 stations from APMC Kalyan to Taloja and a depot near Pisarve.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "state-approval",
+      "date": "2019-07-23",
+      "date_precision": "day",
+      "kind": "approval",
+      "title": "State Government approval",
+      "summary": "Wikipedia gives this date for Maharashtra Government approval. No Government Resolution found yet.",
+      "status": "unverified",
+      "source_url": "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "gc-bids",
+      "date": "2022-02",
+      "date_precision": "month",
+      "kind": "tender",
+      "title": "General Consultant bids invited (Lines 10 and 12)",
+      "summary": "MMRDA invites bids for a joint General Consultant for Metro Lines 10 and 12.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2022/02/15/mumbai-metro-line-10-line-12s-general-consultant-bids-invited/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "gc-award",
+      "date": "2022-12",
+      "date_precision": "month",
+      "kind": "award",
+      "title": "SYSTRA MVA and DB Engineering JV appointed General Consultant",
+      "summary": "Joint GC contract for Lines 10 and 12, bid Rs 265.10 crore, 54 months. The JV was named preferred bidder in July 2022.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2022/12/26/systra-db-awarded-mumbai-metro-line-10-12s-general-consultancy/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "civil-tender-1",
+      "date": "2023-02",
+      "date_precision": "month",
+      "kind": "tender",
+      "title": "First civil tender in two packages (CA-185, CA-186)",
+      "summary": "Kalyan to Kolegaon and Kolegaon to Taloja, 17 stations. 11 firms submit 19 bids, opened 31 May 2023.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/05/31/11-bidders-for-mumbai-metro-line-12-kalyan-talojas-civil-work/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ddc-award",
+      "date": "2023-06",
+      "date_precision": "month",
+      "kind": "award",
+      "title": "LKT Engineering and Enia Design JV named detailed design consultant",
+      "summary": "Lowest bid Rs 6.51 crore against an MMRDA estimate of Rs 11.28 crore.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/06/09/lkt-enia-jv-wins-mumbai-metro-line-12s-design-consultant-work/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "civil-tender-1-cancelled",
+      "date": "2023-06",
+      "date_precision": "month",
+      "kind": "tender",
+      "title": "First civil tender cancelled for scope changes",
+      "summary": "The two-package tender is cancelled. The new scope adds Kalyan and APMC Kalyan stations.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "civil-tender-2",
+      "date": "2023-12",
+      "date_precision": "month",
+      "kind": "tender",
+      "title": "Civil works re-tendered as single package CA-240",
+      "summary": "Viaduct and 19 stations, estimate Rs 1,877.88 crore, 30 months.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ca240-lowest-bidder",
+      "date": "2024-02-09",
+      "date_precision": "day",
+      "kind": "tender",
+      "title": "Gawar Constructions emerges lowest bidder for CA-240",
+      "summary": "Bid Rs 2,037.20 crore. J Kumar Infraprojects second at Rs 2,158.62 crore.",
+      "status": "reported",
+      "source_url": "https://metrorailtoday.com/news/gawar-constructions-wins-2037-crore-civil-contract-for-mumbai-metro-line-12",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "foundation-stone",
+      "date": "2024-03-03",
+      "date_precision": "day",
+      "kind": "construction",
+      "title": "Foundation stone laid",
+      "summary": "Maharashtra Chief Minister Eknath Shinde lays the foundation stone for Metro Line 12.",
+      "status": "reported",
+      "source_url": "https://swarajyamag.com/infrastructure/mumbai-metro-foundation-stone-laid-to-progress-with-22-km-line-12-enhancing-transit-between-kalyan-and-navi-mumbai",
+      "also_see": ["https://media.biltrax.com/maharashtra-cm-lays-foundation-of-metro-line-12-in-mmr/"],
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ca240-loa",
+      "date": "2024-03-27",
+      "date_precision": "day",
+      "kind": "award",
+      "title": "Civil contract CA-240 awarded to Gawar Constructions",
+      "summary": "Letter of Award for Rs 1,971.77 crore after negotiation.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "girder-100",
+      "date": "2025-12",
+      "date_precision": "month",
+      "kind": "construction",
+      "title": "100th U-girder launched",
+      "summary": "Near Dombivli MIDC station on Shilphata Road.",
+      "status": "reported",
+      "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-update-kalyantaloja-line-key-link-to-navi-mumbai-airport-crosses-100th-u-girder-milestone-target-completion-may-2028",
+      "also_see": ["https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/"],
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "girder-200",
+      "date": "2026-02",
+      "date_precision": "month",
+      "kind": "construction",
+      "title": "200th U-girder launched",
+      "summary": "Near Golavali station on Kalyan-Shilphata Road. Exact date not stated in the source.",
+      "status": "reported",
+      "source_url": "https://remumbai.in/2026/02/17/metro-line-12-achieves-key-construction-milestone-in-kalyan-dombivli-taloja-corridor/",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "line-12a-approval",
+      "date": "2026-02",
+      "date_precision": "month",
+      "kind": "related",
+      "title": "Metro Line 12A approved (related project)",
+      "summary": "18.4 km, 12 stations, Kalyan Phata to Taloja via Dahisar Mori, Rs 8,414.53 crore. Separate from Line 12.",
+      "status": "reported",
+      "source_url": "https://www.newsband.in/article_detail/kalyantaloja-metro-12a-corridor-gets-state-approval",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "systems-tender",
+      "date": "2026-06",
+      "date_precision": "month",
+      "kind": "tender",
+      "title": "Systems and rolling stock tender floated",
+      "summary": "Trains, CBTC signalling, telecom, power supply, depot equipment, lifts and escalators, with maintenance. Estimate about Rs 4,882 crore.",
+      "status": "reported",
+      "source_url": "https://metrorailnews.in/mmrda-invites-bids-for-rolling-stock-and-signalling-systems-for-mumbai-metro-line-12/",
+      "also_see": ["https://urbanacres.in/mumbai-metro-line-12-tender-advances-network/"],
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "progress-aug-2026",
+      "date": "2026-08-31",
+      "date_precision": "day",
+      "kind": "construction",
+      "title": "Progress snapshot: piles 37%, U-girders 19%",
+      "summary": "Pile works 37.12%, pile caps 31.54%, piers 25.88%, pier caps 26.84%, U-girder erection 18.75%.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "trial-runs",
+      "date": null,
+      "date_precision": null,
+      "kind": "future",
+      "title": "Trial runs",
+      "summary": "No date announced.",
+      "status": "unverified",
+      "source_url": null,
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "opening",
+      "date": "2028-05",
+      "date_precision": "month",
+      "kind": "future",
+      "title": "Target completion (reported)",
+      "summary": "Most recent reported target. Earlier target was 31 December 2027. See project.json target_completion.",
+      "status": "conflicting",
+      "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-update-kalyantaloja-line-key-link-to-navi-mumbai-airport-crosses-100th-u-girder-milestone-target-completion-may-2028",
+      "last_verified": "2026-09-28"
+    }
+  ]
+}

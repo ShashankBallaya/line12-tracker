@@ -1,0 +1,97 @@
+/*
+ * Design tokens. Night edition (dark) is the default when the system asks for dark;
+ * morning edition (light) otherwise. [data-theme] on <html> overrides the system.
+ * One signal colour (Line 12 orange). Everything else is navy, newsprint and concrete.
+ */
+@import '@fontsource-variable/anek-latin/standard.css';
+@import '@fontsource-variable/anek-devanagari/standard.css';
+@import '@fontsource/mukta/400.css';
+@import '@fontsource/mukta/500.css';
+@import '@fontsource/mukta/700.css';
+
+:root {
+  /* Morning edition (light) */
+  --paper: #efe9de;
+  --paper-2: #e5ddcf;
+  --paper-3: #d9d0c0;
+  --ink: #111a28;
+  --ink-2: #4a453e;
+  --ink-3: #5f584f;
+  --rule: #bdb3a2;
+  --rule-strong: #111a28;
+  --signal: #f26b1d;          /* bands and bars, with navy text on top */
+  --signal-line: #c24a08;     /* orange used as text or thin lines on paper (4:1) */
+  --signal-graphic: #d5530a;  /* orange route lines and bars on paper (3:1+) */
+  --on-signal: #0c1422;
+  --concrete: #a69e91;
+  --halftone: rgb(17 26 40 / 0.14);
+  --focus: #c24a08;
+  --selection-bg: #f26b1d;
+  --selection-ink: #0c1422;
+  color-scheme: light;
+
+  /* Type */
+  --font-display: 'Anek Latin Variable', 'Anek Devanagari Variable', system-ui, sans-serif;
+  --font-body: 'Mukta', system-ui, sans-serif;
+  --step--1: clamp(0.84rem, 0.8rem + 0.15vw, 0.92rem);
+  --step-0: clamp(1.02rem, 0.97rem + 0.22vw, 1.14rem);
+  --step-1: clamp(1.25rem, 1.12rem + 0.55vw, 1.55rem);
+  --step-2: clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem);
+  --step-3: clamp(2.1rem, 1.5rem + 2.4vw, 3.6rem);
+  --step-4: clamp(2.8rem, 1.7rem + 4.4vw, 6rem);
+
+  /* Space: one rhythm */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+  --gutter: clamp(1rem, 0.6rem + 1.8vw, 2.5rem);
+  --measure: 68ch;
+  --page-max: 88rem;
+
+  /* The bar module: the one orange shape the whole identity is built from */
+  --bar: 0.5rem;
+  --rule-w: 1px;
+  --rule-heavy: 4px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #0c1422;
+    --paper-2: #121d31;
+    --paper-3: #1a2740;
+    --ink: #ece5d8;
+    --ink-2: #bfb7a9;
+    --ink-3: #978f82;
+    --rule: #2d3a55;
+    --rule-strong: #ece5d8;
+    --signal-line: #f5813c;
+    --signal-graphic: #f26b1d;
+    --halftone: rgb(236 229 216 / 0.09);
+    --focus: #f5813c;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper: #0c1422;
+  --paper-2: #121d31;
+  --paper-3: #1a2740;
+  --ink: #ece5d8;
+  --ink-2: #bfb7a9;
+  --ink-3: #978f82;
+  --rule: #2d3a55;
+  --rule-strong: #ece5d8;
+  --signal-line: #f5813c;
+  --signal-graphic: #f26b1d;
+  --halftone: rgb(236 229 216 / 0.09);
+  --focus: #f5813c;
+  color-scheme: dark;
+}

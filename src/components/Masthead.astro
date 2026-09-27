@@ -1,0 +1,189 @@
+---
+import { formatDate, lastReviewed } from '../lib/data';
+
+const inside = [
+  ['route', 'Route'],
+  ['numbers', 'Numbers'],
+  ['progress', 'Progress'],
+  ['timeline', 'Timeline'],
+  ['tenders', 'Tenders'],
+  ['trains', 'Trains'],
+  ['stations', 'Stations'],
+  ['updates', 'Updates'],
+  ['sources', 'Sources'],
+];
+---
+
+<header class="masthead">
+  <div class="masthead__band">
+    <div class="page masthead__inner">
+      <a class="masthead__title" href="/" aria-label="Line 12 Tracker, home">
+        <span class="masthead__name">Line 12</span>
+        <span class="masthead__mr" lang="mr" aria-hidden="true">मेट्रो १२</span>
+      </a>
+      <p class="masthead__tag">Kalyan to Taloja. The unofficial tracker.</p>
+    </div>
+  </div>
+  <div class="page masthead__edition">
+    <p>
+      Edition of <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>
+      <span class="sep" aria-hidden="true"></span>
+      Not affiliated with MMRDA
+    </p>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2" /><path d="M10 3a7 7 0 0 1 0 14Z" fill="currentColor" /></svg>
+      <span data-theme-label>Switch edition</span>
+    </button>
+  </div>
+  <nav class="page masthead__inside" aria-label="Inside this edition">
+    <span class="masthead__inside-label">Inside</span>
+    <ul>
+      {inside.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .masthead__band {
+    background: var(--signal);
+    color: var(--on-signal);
+  }
+  .masthead__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--s-2) var(--s-6);
+    padding-block: var(--s-4) var(--s-3);
+  }
+  .masthead__title {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-4);
+    text-decoration: none;
+    color: inherit;
+  }
+  .masthead__name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-4);
+    line-height: 0.8;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+  .masthead__mr {
+    font-family: 'Anek Devanagari Variable', var(--font-display);
+    font-weight: 700;
+    font-size: var(--step-2);
+    line-height: 1;
+  }
+  .masthead__tag {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-stretch: 87.5%;
+    font-size: var(--step-1);
+    padding-bottom: 0.2em;
+  }
+  .masthead__edition {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-2) var(--s-4);
+    padding-block: var(--s-3);
+    border-bottom: var(--rule-w) solid var(--rule);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .masthead__edition p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2) var(--s-3);
+  }
+  .sep {
+    width: var(--bar);
+    height: var(--bar);
+    background: var(--signal-graphic);
+  }
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    min-height: 44px;
+    padding: 0 var(--s-3);
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: var(--ink);
+    background: transparent;
+    border: var(--rule-w) solid var(--rule);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
+  }
+  .theme-toggle:hover {
+    border-color: var(--ink);
+    background: var(--paper-2);
+  }
+  .theme-toggle svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .masthead__inside {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    padding-block: var(--s-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .masthead__inside-label {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    text-transform: uppercase;
+    font-size: var(--step-1);
+  }
+  .masthead__inside ul {
+    display: flex;
+    gap: var(--s-1) var(--s-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .masthead__inside a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    white-space: nowrap;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    color: var(--ink-2);
+    transition: color 0.2s;
+  }
+  .masthead__inside a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    height: 3px;
+    background: var(--signal-graphic);
+    scale: 0 1;
+    transform-origin: left;
+    transition: scale 0.3s var(--ease-out);
+  }
+  .masthead__inside a:hover,
+  .masthead__inside a:focus-visible {
+    color: var(--ink);
+  }
+  .masthead__inside a:hover::after,
+  .masthead__inside a:focus-visible::after {
+    scale: 1 1;
+  }
+</style>

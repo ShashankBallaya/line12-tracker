@@ -1,0 +1,110 @@
+{
+  "_meta": {
+    "description": "Tenders and contract packages for Line 12. Values in crore INR. MMRDA's site lists only current notices, so most entries come from trade press (status 'reported'). 'tender_status' is floated, bids_opened, awarded, cancelled or unknown.",
+    "last_reviewed": "2026-09-28"
+  },
+  "tenders": [
+    {
+      "id": "metro-piu-0002141",
+      "package": "MMRDA/Metro-PIU/0002141",
+      "scope": "General Consultant for Metro Lines 10 and 12 (design review, supervision, safety, quality and contract management for civil and systems work)",
+      "floated": "2022-02",
+      "estimated_value_crore": null,
+      "awarded_value_crore": 265.10,
+      "awarded_value_note": "Winning bid for both lines together. Wikipedia gives Rs 183.53 crore, probably the Line 12 share, but no source for that split was found.",
+      "awarded_to": "systra-db-jv",
+      "award_date": "2022-12",
+      "duration_months": 54,
+      "tender_status": "awarded",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2022/12/26/systra-db-awarded-mumbai-metro-line-10-12s-general-consultancy/",
+      "also_see": ["https://themetrorailguy.com/2022/07/29/systra-db-wins-mumbai-metro-line-10-12s-general-consultancy/"],
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ddc",
+      "package": "Detailed Design Consultant (package number not found)",
+      "scope": "Detailed design consultancy for Line 12",
+      "floated": "2023-02",
+      "estimated_value_crore": 11.28,
+      "awarded_value_crore": 6.51,
+      "awarded_to": "lkt-enia-jv",
+      "award_date": "2023-06",
+      "duration_months": 24,
+      "duration_note": "Two years from 1 November 2023, per MMRDA statement reported by Free Press Journal (Dec 2024).",
+      "tender_status": "awarded",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/06/09/lkt-enia-jv-wins-mumbai-metro-line-12s-design-consultant-work/",
+      "also_see": ["https://www.freepressjournal.in/mumbai/navi-mumbai-orange-metro-line-12-to-connect-kalyan-taloja-set-for-completion-by-december-2027"],
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ca-185",
+      "package": "CA-185",
+      "scope": "Elevated viaduct and 9 stations, Kalyan to Kolegaon (ch. -13.383 m to +10,043.275 m)",
+      "floated": "2023-02",
+      "estimated_value_crore": 783.00,
+      "awarded_value_crore": null,
+      "awarded_to": null,
+      "award_date": null,
+      "tender_status": "cancelled",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/05/31/11-bidders-for-mumbai-metro-line-12-kalyan-talojas-civil-work/",
+      "notes": "Cancelled June 2023 for scope changes; replaced by CA-240.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ca-186",
+      "package": "CA-186",
+      "scope": "Elevated viaduct and 8 stations, Kolegaon to Taloja (ch. +10,043.275 m to +20,400 m)",
+      "floated": "2023-02",
+      "estimated_value_crore": 738.80,
+      "awarded_value_crore": null,
+      "awarded_to": null,
+      "award_date": null,
+      "tender_status": "cancelled",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/05/31/11-bidders-for-mumbai-metro-line-12-kalyan-talojas-civil-work/",
+      "notes": "Cancelled June 2023 for scope changes; replaced by CA-240.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ca-240",
+      "package": "CA-240",
+      "scope": "Part design and construction of elevated viaduct (ch. -860.224 m to +21,316.022 m) and 19 elevated stations, Kalyan to Amandoot, plus depot connecting line",
+      "floated": "2023-12",
+      "estimated_value_crore": 1877.88,
+      "lowest_bid_crore": 2037.20,
+      "awarded_value_crore": 1971.77,
+      "awarded_to": "gawar-constructions",
+      "award_date": "2024-03-27",
+      "duration_months": 30,
+      "contract_period_reported": "1 April 2024 to 30 September 2026 (MMRDA statement reported by Free Press Journal, Dec 2024). Progress in Aug 2026 shows this period will be exceeded.",
+      "other_bidders": [
+        { "name": "J Kumar Infraprojects", "bid_crore": 2158.62 },
+        { "name": "Welspun Enterprises", "bid_crore": null, "note": "Technically disqualified" }
+      ],
+      "tender_status": "awarded",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "also_see": ["https://metrorailtoday.com/news/gawar-constructions-wins-2037-crore-civil-contract-for-mumbai-metro-line-12"],
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "systems-2026",
+      "package": "CA-315 (unconfirmed)",
+      "scope": "Rolling stock, CBTC signalling, telecom, traction and power supply, depot equipment, lifts, escalators and other systems, with a 2-year defect liability period and 5 years of maintenance",
+      "floated": "2026-06",
+      "estimated_value_crore": 4882,
+      "awarded_value_crore": null,
+      "awarded_to": null,
+      "award_date": null,
+      "tender_status": "floated",
+      "status": "reported",
+      "source_url": "https://metrorailnews.in/mmrda-invites-bids-for-rolling-stock-and-signalling-systems-for-mumbai-metro-line-12/",
+      "also_see": ["https://urbanacres.in/mumbai-metro-line-12-tender-advances-network/"],
+      "notes": "The package number CA-315 and an EMD of Rs 24.40 crore appeared only in a search snippet from a paywalled page; treat both as unverified. Bidders not known yet.",
+      "last_verified": "2026-09-28"
+    }
+  ]
+}

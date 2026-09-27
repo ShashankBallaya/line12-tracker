@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "description": "Hand-curated X (Twitter) posts, rendered with official embeds only. Add a post by appending an object to 'posts'. 'status' should be 'verified' once you have checked the post yourself.",
+    "last_reviewed": "2026-09-28"
+  },
+  "posts": [],
+  "candidates": [
+    {
+      "url": "https://x.com/TheINIofficial/status/2023285293051424884",
+      "account": "@TheINIofficial (Infra News India, not official)",
+      "topic": "200th U-girder launched near Golavali station",
+      "status": "unverified",
+      "source_url": "https://x.com/TheINIofficial/status/2023285293051424884",
+      "last_verified": "2026-09-28",
+      "notes": "Found in search results only. Review it, then move it into 'posts' if you want it on the site. Prefer posts from MMRDA's official X account (confirm the handle from mmrda.maharashtra.gov.in before use)."
+    }
+  ]
+}

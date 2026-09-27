@@ -1,0 +1,145 @@
+---
+import Grade from './Grade.astro';
+import { rollingstock, formatDate, timeline } from '../lib/data';
+
+const d = rollingstock.dpr_design_assumptions;
+const tender = timeline.find((e) => e.id === 'systems-tender')!;
+const specs: [string, string][] = [
+  ['Car width', `${d.car_width_m} m`],
+  ['Body', d.body],
+  ['Cars per train at opening', `${d.initial_formation_cars}`],
+  ['Cars per train later', `${d.future_formation_cars}`],
+  ['Capacity, 3 cars', `${d.capacity_3_car.toLocaleString('en-IN')} people`],
+  ['Capacity, 6 cars', `${d.capacity_6_car.toLocaleString('en-IN')} people`],
+  ['Trains needed', `${d.rakes_required}`],
+  ['Top operating speed', `${d.max_operating_speed_kmph} km/h`],
+  ['Design speed', `${d.design_speed_kmph} km/h`],
+  ['Seating', d.seating],
+  ['Axle load', `${d.axle_load_t} t`],
+  ['Power', d.traction],
+];
+---
+
+<section id="trains" class="section page" aria-labelledby="trains-title">
+  <header class="section-head">
+    <h2 id="trains-title">Trains</h2>
+    <p>
+      No train has been ordered yet. The trains, signalling and power systems are in one tender floated in {formatDate(tender.date)}. Until a maker is chosen, these are the 2019 project report's planning figures.
+    </p>
+  </header>
+
+  <div class="trains">
+    <figure class="trains__drawing halftone">
+      <svg viewBox="0 0 720 200" role="img" aria-labelledby="train-drawing-title">
+        <title id="train-drawing-title">Side view of a generic three-car metro train, each car 3.2 metres wide as planned in the 2019 report.</title>
+        <rect x="0" y="160" width="720" height="4" fill="var(--ink)" />
+        {[20, 250, 480].map((x, i) => (
+          <g>
+            <rect x={x} y="60" width="220" height="92" rx={i === 1 ? 2 : 10} fill="var(--signal)" />
+            <rect x={x + 16} y="76" width="188" height="30" fill="var(--on-signal)" />
+            <rect x={x} y="120" width="220" height="5" fill="var(--on-signal)" />
+            <rect x={x + 96} y="72" width="28" height="80" fill="var(--on-signal)" opacity="0.35" />
+            <circle cx={x + 50} cy="156" r="9" fill="var(--ink)" />
+            <circle cx={x + 170} cy="156" r="9" fill="var(--ink)" />
+          </g>
+        ))}
+        <path d="M20 36H700M20 30v12M700 30v12" stroke="var(--ink-3)" stroke-width="1.5" fill="none" />
+        <text x="360" y="26" text-anchor="middle" font-size="14" fill="var(--ink-2)" font-family="Mukta, sans-serif">3 cars at opening, 6 cars later</text>
+      </svg>
+      <figcaption>Generic drawing, not any maker's design. A rotatable model comes in a later update.</figcaption>
+    </figure>
+
+    <div class="trains__spec">
+      <p class="trains__maker">
+        <span class="trains__maker-label">Maker</span>
+        <span class="trains__maker-value">Not chosen</span>
+        <Grade status={rollingstock.procurement.status} source={rollingstock.procurement.source_url} />
+      </p>
+      <dl class="spec">
+        {specs.map(([k, v]) => (
+          <div class="spec__row">
+            <dt>{k}</dt>
+            <dd class="num">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="trains__note">
+        Planning figures, not a procured train. Capacity counts 6 standing people per square metre.
+        <Grade status={d.status} source={d.source_url} />
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trains {
+    display: grid;
+    gap: var(--s-6);
+  }
+  @media (min-width: 64rem) {
+    .trains {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--s-7);
+      align-items: start;
+    }
+  }
+  .trains__drawing {
+    margin: 0;
+    padding: var(--s-5) var(--s-4) var(--s-3);
+    background-color: var(--paper-2);
+  }
+  .trains__drawing svg {
+    width: 100%;
+    height: auto;
+  }
+  .trains__drawing figcaption {
+    padding-top: var(--s-3);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .trains__maker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-2) var(--s-4);
+    padding-bottom: var(--s-4);
+    border-bottom: var(--rule-heavy) solid var(--rule-strong);
+  }
+  .trains__maker-label {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .trains__maker-value {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-3);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .spec {
+    margin: 0;
+  }
+  .spec__row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding-block: var(--s-2);
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .spec dt {
+    color: var(--ink-2);
+  }
+  .spec dd {
+    margin: 0;
+    font-weight: 700;
+    text-align: right;
+  }
+  .trains__note {
+    margin-top: var(--s-4);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+</style>

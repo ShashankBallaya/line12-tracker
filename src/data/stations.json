@@ -1,0 +1,744 @@
+{
+  "_meta": {
+    "description": "The 19 Line 12 stations, in order from Kalyan. Names follow the CA-240 civil contract scope. Coordinates are derived from the DPR (April 2019) alignment table, datum assumed WGS84 UTM 43N; they are approximate and must be checked against satellite imagery in Phase 3.",
+    "order_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+    "count_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+    "last_reviewed": "2026-09-28"
+  },
+  "stations": [
+    {
+      "id": "kalyan",
+      "order": 1,
+      "name": "Kalyan",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": null,
+        "lat": null,
+        "dpr_chainage_m": null,
+        "method": null,
+        "status": "unverified",
+        "source_url": null,
+        "notes": "No coordinates in any source found. Place manually in Phase 3."
+      },
+      "interchanges": {
+        "value": [
+          "Metro Line 5 (Thane-Bhiwandi-Kalyan)"
+        ],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Not in the 2019 DPR. Added to Line 12 scope in civil contract CA-240. Rail Analysis (Dec 2025) reports a foot overbridge link to Central Railway at Kalyan Junction.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "apmc-kalyan",
+      "order": 2,
+      "name": "APMC Kalyan",
+      "dpr_name": "APMC - Kalyan",
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.123334,
+        "lat": 19.235591,
+        "dpr_chainage_m": -110.313,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: start of the extension at APMC Market Kalyan, the planned terminal of Metro Line 5; the line runs onto Kalyan-Shilphata Road",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        },
+        {
+          "text": "54 m span at APMC Kalyan market",
+          "source_url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+          "status": "reported"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "In the DPR this was the Line 5 terminal. It moved into Line 12 scope in CA-240. MMRDA lists the Line 5 interchange at 'Kalyan'.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "ganesh-nagar",
+      "order": 3,
+      "name": "Ganesh Nagar",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.122051,
+        "lat": 19.229386,
+        "dpr_chainage_m": 843.771,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: on the median of Kalyan-Shilphata Road; the alignment then turns at Sambhaji Maharaj Chowk (about ch. 1,087 m) and crosses Shree Ram Chowk (about ch. 1,560 m)",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": null,
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "pisavali-gaon",
+      "order": 4,
+      "name": "Pisavali Gaon",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.119093,
+        "lat": 19.218117,
+        "dpr_chainage_m": 2295.898,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: on the median of Kalyan-Shilphata Road",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "DPR text gives ch. 2,320 m; the DPR station table gives 2,295.898 m. The table value is used.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "golavli",
+      "order": 5,
+      "name": "Golavli",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.112457,
+        "lat": 19.210409,
+        "dpr_chainage_m": 3400,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: on the median of Kalyan-Shilphata Road",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        },
+        {
+          "text": "200th U-girder launched near Golavali station (reported Feb 2026)",
+          "source_url": "https://remumbai.in/2026/02/17/metro-line-12-achieves-key-construction-milestone-in-kalyan-dombivli-taloja-corridor/",
+          "status": "reported"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Also spelled Golavali and Golvali.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "dombivli-midc",
+      "order": 6,
+      "name": "Dombivli MIDC",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.104752,
+        "lat": 19.202824,
+        "dpr_chainage_m": 4567.083,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: on the median of Kalyan-Shilphata Road",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        },
+        {
+          "text": "100th U-girder launched near Dombivli MIDC station on Shilphata Road (Dec 2025)",
+          "source_url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+          "status": "reported"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Also spelled Dombivali MIDC.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "sagaon",
+      "order": 7,
+      "name": "Sagaon",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.098462,
+        "lat": 19.195993,
+        "dpr_chainage_m": 5573.311,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: on the median of Kalyan-Shilphata Road",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": null,
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "sonarpada",
+      "order": 8,
+      "name": "Sonarpada",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.092393,
+        "lat": 19.187607,
+        "dpr_chainage_m": 6700,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: at Manpada Circle",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": null,
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "manpada",
+      "order": 9,
+      "name": "Manpada",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.091795,
+        "lat": 19.18014,
+        "dpr_chainage_m": 7689.746,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Sonar-Pada village, after the alignment leaves Kalyan-Shilphata Road (about ch. 7,182 m) for the proposed DP road of the MMRDA growth centre",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Wikipedia lists it as 'Manpada (Dombivali East)'.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "hedutane",
+      "order": 10,
+      "name": "Hedutane",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.099075,
+        "lat": 19.171438,
+        "dpr_chainage_m": 8947.974,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [
+          "Metro Line 14 (Vikhroli-Badlapur)"
+        ],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Hedutane village",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Interchange listed by MMRDA.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "kolegaon",
+      "order": 11,
+      "name": "Kolegaon",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.094996,
+        "lat": 19.165025,
+        "dpr_chainage_m": 9978.357,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Hedutane village area",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        },
+        {
+          "text": "100 m span near Kolegaon over the Virar-Alibaug Multimodal Corridor",
+          "source_url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+          "status": "reported"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": null,
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "nilje-gaon",
+      "order": 12,
+      "name": "Nilje Gaon",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.094559,
+        "lat": 19.157555,
+        "dpr_chainage_m": 11093.376,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: on a straight alignment near Nilje village; a river crossing follows at about ch. 12,100 m to 12,180 m",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        },
+        {
+          "text": "Line 12 depot is at Nilje (31 ha)",
+          "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Also spelled Nilaje Gaon.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "vadavli",
+      "order": 13,
+      "name": "Vadavli (Khu.)",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.09397,
+        "lat": 19.145505,
+        "dpr_chainage_m": 12553.4,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Vadavli Khurd village",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "MMRDA spells it Wadavli. The depot reportedly connects via this station (Free Press Journal, Dec 2024).",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "bale",
+      "order": 14,
+      "name": "Bale",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.094337,
+        "lat": 19.132676,
+        "dpr_chainage_m": 13974.564,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Narivali village",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": null,
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "waklan",
+      "order": 15,
+      "name": "Waklan",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.090886,
+        "lat": 19.119933,
+        "dpr_chainage_m": 15478.984,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: near Waklan / Turbhe village, on private agricultural land",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Also spelled Vaklan.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "turbhe",
+      "order": 16,
+      "name": "Turbhe",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.089232,
+        "lat": 19.112553,
+        "dpr_chainage_m": 16326.986,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Turbhe village",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Not the Turbhe in Navi Mumbai (Thane-Belapur road). Make this clear in the UI.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "pisarve-depot",
+      "order": 17,
+      "name": "Pisarve Depot",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.089476,
+        "lat": 19.104879,
+        "dpr_chainage_m": 17176.971,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Turbhe village near a pond; named for the DPR depot site, which later moved to Nilje",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "The name comes from the DPR depot plan. The depot is now at Nilje, so the name may change.",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "pisarve",
+      "order": 18,
+      "name": "Pisarve",
+      "dpr_name": null,
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.088123,
+        "lat": 19.088702,
+        "dpr_chainage_m": 18981.937,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: in Pisarve village",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": null,
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "amandoot",
+      "order": 19,
+      "name": "Amandoot",
+      "dpr_name": "Taloja",
+      "type": "Elevated",
+      "name_status": "reported",
+      "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
+      "location": {
+        "lng": 73.090676,
+        "lat": 19.075988,
+        "dpr_chainage_m": 20492.296,
+        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
+        "status": "unverified",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+      },
+      "interchanges": {
+        "value": [
+          "Navi Mumbai Metro Line 1"
+        ],
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+      },
+      "context": [
+        {
+          "text": "DPR: terminal on the right side of Taloja Phase 1 road, reached through the CIDCO metro depot area",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+          "status": "verified"
+        },
+        {
+          "text": "75 m steel span at Taloja ROB",
+          "source_url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+          "status": "reported"
+        }
+      ],
+      "construction_status": {
+        "value": "Under construction (civil works across the corridor)",
+        "status": "reported",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
+        "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
+      },
+      "notes": "Called 'Taloja' in the DPR. DPR text gives ch. 20,525.676 m; the station table gives 20,492.296 m. The table value is used.",
+      "last_verified": "2026-09-28"
+    }
+  ]
+}

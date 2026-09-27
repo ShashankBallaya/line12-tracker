@@ -1,0 +1,25 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# secrets: never commit these (see README)
+.dev.vars
+.env
+.env.*
+
+# local tooling
+.claude/
+.agents/
+skills-lock.json
+.impeccable/review/
+.impeccable/config.local.json
+.wrangler/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.impeccable/questions/

@@ -1,0 +1,142 @@
+---
+/**
+ * Milestones. Base: vertical list. Enhanced (wide screen, motion allowed): motion.ts adds
+ * .is-scrubbing, pins the section and slides the strip sideways as the reader scrolls.
+ */
+import Grade from './Grade.astro';
+import { timeline, formatDate } from '../lib/data';
+
+const kindLabel: Record<string, string> = {
+  planning: 'Planning',
+  approval: 'Approval',
+  tender: 'Tender',
+  award: 'Award',
+  construction: 'Construction',
+  related: 'Related project',
+  future: 'Still to come',
+};
+---
+
+<section id="timeline" class="section tl" aria-labelledby="timeline-title" data-timeline>
+  <div class="page">
+    <header class="section-head">
+      <h2 id="timeline-title">Timeline</h2>
+      <p>From the first report in 2017 to the reported opening target. Dates show only as much precision as the source gives.</p>
+    </header>
+  </div>
+  <div class="tl__viewport" data-timeline-viewport>
+    <ol class="tl__strip page" data-timeline-strip>
+      {timeline.map((e) => (
+        <li class:list={['tl__event', `tl__event--${e.kind}`]}>
+          <span class="tl__rail" aria-hidden="true"></span>
+          <p class="tl__date num">{e.date ? <time datetime={e.date}>{formatDate(e.date)}</time> : 'Date not announced'}</p>
+          <p class="tl__kind">{kindLabel[e.kind] ?? e.kind}</p>
+          <h3 class="tl__title">{e.title}</h3>
+          <p class="tl__summary">{e.summary}</p>
+          <p class="tl__grade"><Grade status={e.status} source={e.source_url} /></p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .tl__strip {
+    display: grid;
+    gap: 0;
+    margin-block: 0;
+    list-style: none;
+  }
+  .tl__event {
+    position: relative;
+    display: grid;
+    gap: var(--s-2);
+    align-content: start;
+    padding: var(--s-5) 0 var(--s-5) var(--s-6);
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .tl__rail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--bar);
+    background: var(--ink);
+  }
+  .tl__event--future .tl__rail {
+    background: repeating-linear-gradient(to bottom, var(--rule) 0 8px, transparent 8px 14px);
+  }
+  .tl__event--related .tl__rail {
+    background: var(--concrete);
+  }
+  .tl__event--construction .tl__rail,
+  .tl__event--award .tl__rail {
+    background: var(--signal-graphic);
+  }
+  .tl__date {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-2);
+    line-height: 1;
+  }
+  .tl__kind {
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .tl__title {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-stretch: 100%;
+    font-size: var(--step-1);
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+  .tl__summary {
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .tl__event--future .tl__date,
+  .tl__event--future .tl__title {
+    color: var(--ink-3);
+  }
+
+  /* ---------- Enhanced: horizontal, scroll-driven ---------- */
+  :global(.tl.is-scrubbing) {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  :global(.tl.is-scrubbing) .tl__viewport {
+    overflow: hidden;
+  }
+  :global(.tl.is-scrubbing) .tl__strip {
+    display: flex;
+    width: max-content;
+    max-width: none;
+    gap: var(--s-6);
+    padding-block: var(--s-4) var(--s-6);
+    will-change: transform;
+  }
+  :global(.tl.is-scrubbing) .tl__event {
+    width: 21rem;
+    padding: var(--s-5) 0 0;
+    border-bottom: 0;
+  }
+  :global(.tl.is-scrubbing) .tl__rail {
+    right: calc(-1 * var(--s-6));
+    bottom: auto;
+    width: auto;
+    height: var(--bar);
+  }
+  :global(.tl.is-scrubbing) .tl__event:last-child .tl__rail {
+    right: 0;
+  }
+  :global(.tl.is-scrubbing) .tl__event--future .tl__rail {
+    background: repeating-linear-gradient(to right, var(--rule) 0 8px, transparent 8px 14px);
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+import FrontPage from '../components/FrontPage.astro';
+import RouteRide from '../components/RouteRide.astro';
+import Numbers from '../components/Numbers.astro';
+import Progress from '../components/Progress.astro';
+import Timeline from '../components/Timeline.astro';
+import Tenders from '../components/Tenders.astro';
+import Trains from '../components/Trains.astro';
+import Stations from '../components/Stations.astro';
+import Updates from '../components/Updates.astro';
+import SourcesFooter from '../components/SourcesFooter.astro';
+---
+
+<Base
+  title="Line 12 Tracker: Kalyan to Taloja Metro, unofficial"
+  description="An unofficial, sourced tracker for Mumbai Metro Line 12 (Kalyan to Taloja): route, stations, progress, timeline, tenders and trains. Every figure links to its source."
+>
+  <Masthead />
+  <main id="main">
+    <FrontPage />
+    <RouteRide />
+    <Numbers />
+    <Progress />
+    <Timeline />
+    <Tenders />
+    <Trains />
+    <Stations />
+    <Updates />
+    <SourcesFooter />
+  </main>
+</Base>

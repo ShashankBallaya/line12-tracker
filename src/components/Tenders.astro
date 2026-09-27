@@ -1,0 +1,276 @@
+---
+import Grade from './Grade.astro';
+import { tenders, contractors, excludedClaims, formatDate, inr } from '../lib/data';
+
+const statusLabel: Record<string, string> = {
+  floated: 'Open',
+  bids_opened: 'Bids opened',
+  awarded: 'Awarded',
+  cancelled: 'Cancelled',
+  unknown: 'Unknown',
+};
+const who = (id: string | null) => (id ? contractors.find((c) => c.id === id)?.name ?? id : null);
+const cr = (v: number | null | undefined) => (v == null ? null : `₹${inr(v)} cr`);
+---
+
+<section id="tenders" class="section page" aria-labelledby="tenders-title">
+  <header class="section-head">
+    <h2 id="tenders-title">Tenders and contracts</h2>
+    <p>
+      Every package we could trace, with its value in crore rupees. MMRDA keeps only current notices online, so most
+      of these come from trade press.
+    </p>
+  </header>
+
+  <div class="table-wrap" role="region" aria-labelledby="tenders-title" tabindex="0">
+    <table class="tenders">
+      <thead>
+        <tr>
+          <th scope="col">Package</th>
+          <th scope="col">Scope</th>
+          <th scope="col">Floated</th>
+          <th scope="col" class="r">Estimate</th>
+          <th scope="col" class="r">Awarded</th>
+          <th scope="col">Awarded to</th>
+          <th scope="col">Status</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tenders.map((t) => (
+          <tr class:list={[`is-${t.tender_status}`]}>
+            <th scope="row" data-label="Package">{t.package}</th>
+            <td data-label="Scope">{t.scope}</td>
+            <td data-label="Floated">{formatDate(t.floated)}</td>
+            <td data-label="Estimate" class="r">{cr(t.estimated_value_crore) ?? <span class="nil">Not published</span>}</td>
+            <td data-label="Awarded" class="r">
+              {cr(t.awarded_value_crore) ?? <span class="nil">None</span>}
+              {t.award_date && <span class="sub">{formatDate(t.award_date)}</span>}
+            </td>
+            <td data-label="Awarded to">{who(t.awarded_to) ?? <span class="nil">None</span>}</td>
+            <td data-label="Status"><span class="pill">{statusLabel[t.tender_status] ?? t.tender_status}</span></td>
+            <td data-label="Source"><Grade status={t.status} source={t.source_url} /></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="firms">
+    <h3 class="firms__title">Who is building it</h3>
+    <ul class="firms__list">
+      {contractors.map((c) => (
+        <li class="firm">
+          <span class="firm__role">{c.role}</span>
+          <span class="firm__name">{c.name}</span>
+          <Grade status={c.status} source={c.source_url} />
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <aside class="unprinted" aria-labelledby="unprinted-title">
+    <h3 id="unprinted-title">Claims we did not print</h3>
+    <ul>
+      {excludedClaims.map((x) => (
+        <li><strong>{x.claim}.</strong> {x.reason}</li>
+      ))}
+    </ul>
+  </aside>
+</section>
+
+<style>
+  .table-wrap {
+    overflow-x: auto;
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+  }
+  .tenders {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+    line-height: 1.4;
+  }
+  .tenders th,
+  .tenders td {
+    padding: var(--s-3) var(--s-3) var(--s-3) 0;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .tenders thead th {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .tenders tbody th {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-1);
+    line-height: 1.05;
+    min-width: 7rem;
+    max-width: 11rem;
+  }
+  .tenders td:nth-child(2) {
+    min-width: 16rem;
+    color: var(--ink-2);
+  }
+  .tenders td:nth-child(6) {
+    min-width: 10rem;
+  }
+  .tenders td:last-child {
+    min-width: 8.5rem;
+  }
+  .tenders td:last-child :global(.grade) {
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+  .tenders .r {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .sub {
+    display: block;
+    color: var(--ink-3);
+  }
+  .nil {
+    color: var(--ink-3);
+  }
+  .pill {
+    display: inline-block;
+    padding: 0.1em 0.55em;
+    border: 1.5px solid currentColor;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .is-awarded .pill {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .is-floated .pill {
+    background: var(--signal);
+    color: var(--on-signal);
+    border-color: var(--signal);
+  }
+  .is-cancelled th,
+  .is-cancelled td:nth-child(2) {
+    text-decoration: line-through;
+    text-decoration-color: var(--signal-line);
+  }
+
+  /* Phones: each tender becomes a labelled block, one field per row. */
+  @media (max-width: 47.99rem) {
+    .table-wrap {
+      overflow: visible;
+    }
+    .tenders,
+    .tenders tbody,
+    .tenders tr {
+      display: block;
+    }
+    .tenders thead {
+      position: absolute;
+      clip: rect(0 0 0 0);
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .tenders tr {
+      padding-block: var(--s-4);
+      border-bottom: var(--rule-w) solid var(--rule);
+    }
+    .tenders tbody th,
+    .tenders td {
+      display: grid;
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: var(--s-3);
+      max-width: none;
+      min-width: 0 !important;
+      padding: var(--s-1) 0;
+      border: 0;
+      text-align: left !important;
+    }
+    .tenders tbody th {
+      font-size: var(--step-2);
+    }
+    .tenders tbody th::before,
+    .tenders td::before {
+      content: attr(data-label);
+      color: var(--ink-3);
+      font-family: var(--font-body);
+      font-stretch: 100%;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: 0.3em;
+    }
+    .tenders td > :not(.sub) {
+      justify-self: start;
+    }
+    .tenders td .sub {
+      grid-column: 2;
+    }
+  }
+
+  .firms {
+    margin-top: var(--s-7);
+  }
+  .firms__title,
+  .unprinted h3 {
+    font-size: var(--step-2);
+    text-transform: uppercase;
+    margin-bottom: var(--s-4);
+  }
+  .firms__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 0 var(--s-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: var(--rule-w) solid var(--rule);
+  }
+  .firm {
+    display: grid;
+    gap: var(--s-1);
+    align-content: start;
+    padding-block: var(--s-4);
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .firm__role {
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .firm__name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-2);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .unprinted {
+    margin-top: var(--s-7);
+    padding: var(--s-5);
+    background: var(--paper-2);
+    border-top: var(--rule-heavy) solid var(--signal);
+  }
+  .unprinted ul {
+    display: grid;
+    gap: var(--s-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: var(--measure);
+    color: var(--ink-2);
+  }
+</style>

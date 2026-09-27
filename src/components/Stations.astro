@@ -1,0 +1,99 @@
+---
+import Grade from './Grade.astro';
+import { stations, stationsMeta } from '../lib/data';
+---
+
+<section id="stations" class="section page" aria-labelledby="stations-title">
+  <header class="section-head">
+    <h2 id="stations-title">Stations</h2>
+    <p>All nineteen, in order from Kalyan. Names follow the civil contract. Select a station to ride to it.</p>
+  </header>
+
+  <ol class="directory">
+    {stations.map((s) => (
+      <li class="entry">
+        <a class="entry__link" href={`#station-${s.id}`}>
+          <span class="entry__order num">{String(s.order).padStart(2, '0')}</span>
+          <span class="entry__name">{s.name}</span>
+        </a>
+        {s.interchanges.value.length > 0 && <span class="entry__change">Interchange: {s.interchanges.value.join(', ')}</span>}
+        {s.location.lat === null && <span class="entry__change">Position not yet mapped</span>}
+      </li>
+    ))}
+  </ol>
+  <p class="directory__source">
+    Station list and order <Grade status="reported" source={stationsMeta.order_source_url} />
+    <span aria-hidden="true">,</span> station count <Grade status="verified" source={stationsMeta.count_source_url} />
+  </p>
+</section>
+
+<style>
+  .directory {
+    columns: 16rem auto;
+    column-gap: var(--s-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+  }
+  .entry {
+    break-inside: avoid;
+    display: grid;
+    gap: var(--s-1);
+    padding-block: var(--s-3);
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .entry__link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-3);
+    min-height: 44px;
+    text-decoration: none;
+  }
+  .entry__order {
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    width: 1.6rem;
+    flex: none;
+  }
+  .entry__name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-2);
+    line-height: 1;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 0.2em;
+  }
+  .entry__name::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--bar);
+    background: var(--signal-graphic);
+    scale: 0 1;
+    transform-origin: left;
+    transition: scale 0.35s var(--ease-out);
+  }
+  .entry__link:hover .entry__name::after,
+  .entry__link:focus-visible .entry__name::after {
+    scale: 1 1;
+  }
+  .entry__change {
+    padding-left: calc(1.6rem + var(--s-3));
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+  .directory__source {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+    margin-top: var(--s-4);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+</style>

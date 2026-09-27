@@ -1,0 +1,185 @@
+---
+import Grade from './Grade.astro';
+import { project, inr } from '../lib/data';
+
+const p = project;
+const hist = (h: { value: number | string; context: string }[]) => h;
+---
+
+<section id="numbers" class="section page" aria-labelledby="numbers-title">
+  <header class="section-head">
+    <h2 id="numbers-title">Numbers</h2>
+    <p>The line in figures. Old figures stay on the page, struck through, so you can see how the project changed.</p>
+  </header>
+
+  <dl class="facts">
+    <div class="fact">
+      <dt>Length</dt>
+      <dd class="fact__figure">
+        <span class="fact__big num" data-count={p.length_km.value} data-decimals="2">{p.length_km.value}</span>
+        <span class="fact__unit">km, fully elevated</span>
+      </dd>
+      <dd class="fact__history">
+        {hist(p.length_km.history).map((h) => <span><s class="superseded num">{h.value} km</s> {h.context.split('(')[0].trim()}</span>)}
+      </dd>
+      <dd class="fact__grade"><Grade status={p.length_km.status} source={p.length_km.source_url} /></dd>
+    </div>
+
+    <div class="fact">
+      <dt>Stations</dt>
+      <dd class="fact__figure">
+        <span class="fact__big num" data-count={p.stations_count.value}>{p.stations_count.value}</span>
+        <span class="fact__unit">all elevated</span>
+      </dd>
+      <dd class="fact__history">
+        {hist(p.stations_count.history).map((h) => <span><s class="superseded num">{h.value}</s> {h.context}</span>)}
+      </dd>
+      <dd class="fact__grade"><Grade status={p.stations_count.status} source={p.stations_count.source_url} /></dd>
+    </div>
+
+    <div class="fact">
+      <dt>Completion cost</dt>
+      <dd class="fact__figure">
+        <span class="fact__big num"><span aria-hidden="true">₹</span><span data-count={p.completion_cost_crore_inr.value}>{inr(p.completion_cost_crore_inr.value)}</span></span>
+        <span class="fact__unit">crore<span class="visually-hidden"> rupees</span></span>
+      </dd>
+      <dd class="fact__history">
+        <span>Includes land, taxes and interest during construction, escalated to March 2026 in the 2019 report.</span>
+      </dd>
+      <dd class="fact__grade"><Grade status={p.completion_cost_crore_inr.status} source={p.completion_cost_crore_inr.source_url} /></dd>
+    </div>
+
+    <div class="fact">
+      <dt>Funding</dt>
+      <dd class="fact__figure">
+        <span class="fact__words">Not confirmed</span>
+      </dd>
+      <dd class="fact__history">
+        <span>The 2019 report recommends building it as a fully government project. No official document yet ties any loan to Line 12.</span>
+      </dd>
+      <dd class="fact__grade"><Grade status={p.funding.status} source={p.funding.source_url} /></dd>
+    </div>
+
+    <div class="fact">
+      <dt>Daily riders by 2031</dt>
+      <dd class="fact__figure">
+        <span class="fact__big num" data-count="2.62" data-decimals="2">2.62</span>
+        <span class="fact__unit">lakh a day (projected)</span>
+      </dd>
+      <dd class="fact__grade"><Grade status={p.daily_ridership_2031.status} source={p.daily_ridership_2031.source_url} /></dd>
+    </div>
+
+    <div class="fact">
+      <dt>Depot</dt>
+      <dd class="fact__figure">
+        <span class="fact__words">{p.depot.value}</span>
+        <span class="fact__unit num">{p.depot.area_ha} ha</span>
+      </dd>
+      <dd class="fact__history">
+        <span><s class="superseded">Near Pisarve, 20 ha</s> 2019 project report</span>
+      </dd>
+      <dd class="fact__grade"><Grade status={p.depot.status} source={p.depot.source_url} /></dd>
+    </div>
+
+    <div class="fact fact--wide">
+      <dt>Interchanges</dt>
+      <dd class="fact__figure">
+        <ul class="fact__list">
+          {p.interchanges.value.map((i) => <li><strong>{i.station}</strong> for {i.connects_to}</li>)}
+        </ul>
+      </dd>
+      <dd class="fact__grade"><Grade status={p.interchanges.status} source={p.interchanges.source_url} /></dd>
+    </div>
+
+    <div class="fact fact--wide">
+      <dt>Travel time</dt>
+      <dd class="fact__figure">
+        <span class="fact__words">50 to 75% shorter</span>
+        <span class="fact__unit">than by road today, depending on traffic (MMRDA estimate)</span>
+      </dd>
+      <dd class="fact__grade"><Grade status={p.travel_time_benefit.status} source={p.travel_time_benefit.source_url} /></dd>
+    </div>
+  </dl>
+</section>
+
+<style>
+  .facts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin: 0;
+    border-top: var(--rule-w) solid var(--rule);
+  }
+  @media (min-width: 48rem) {
+    .facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--s-7);
+    }
+  }
+  .fact {
+    display: grid;
+    gap: var(--s-2);
+    align-content: start;
+    padding-block: var(--s-5);
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .fact dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-stretch: 87.5%;
+    font-size: var(--step-1);
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .fact dd {
+    margin: 0;
+  }
+  .fact__figure {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-1) var(--s-3);
+  }
+  .fact__big {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-4);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .fact__words {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-3);
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .fact__unit {
+    font-size: var(--step-1);
+    color: var(--ink-2);
+  }
+  .fact__history {
+    display: grid;
+    gap: var(--s-1);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    max-width: 48ch;
+  }
+  .fact__list {
+    display: grid;
+    gap: var(--s-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--step-1);
+  }
+  .fact__list strong {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-2);
+    text-transform: uppercase;
+    margin-right: var(--s-2);
+  }
+</style>

@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "description": "Rolling stock for Line 12. No supplier is appointed yet. The design values below are DPR planning assumptions, not a procured train. The UI must say so.",
+    "last_reviewed": "2026-09-28"
+  },
+  "procurement": {
+    "manufacturer": null,
+    "value": "Not yet awarded. Included in the systems tender floated in June 2026.",
+    "status": "reported",
+    "source_url": "https://metrorailnews.in/mmrda-invites-bids-for-rolling-stock-and-signalling-systems-for-mumbai-metro-line-12/",
+    "last_verified": "2026-09-28"
+  },
+  "dpr_design_assumptions": {
+    "car_width_m": 3.2,
+    "body": "Stainless steel",
+    "axle_load_t": 17,
+    "seating": "Longitudinal",
+    "class": "One class, air-conditioned",
+    "initial_formation_cars": 3,
+    "future_formation_cars": 6,
+    "capacity_3_car": 862,
+    "capacity_6_car": 1756,
+    "capacity_basis": "6 standees per square metre",
+    "rakes_required": 15,
+    "design_speed_kmph": 90,
+    "max_operating_speed_kmph": 80,
+    "traction": "25 kV AC overhead",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
+    "last_verified": "2026-09-28",
+    "notes": "Verified as DPR assumptions (April 2019). The procured train may differ."
+  },
+  "reported_operations": {
+    "value": "6-car rakes shared with Line 5; 5 to 7 minute peak frequency; 6 AM to 10 PM",
+    "status": "unverified",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/mumbai-metro-line-12-to-connect-kalyan--taloja---nm-airport/77782",
+    "last_verified": "2026-09-28",
+    "notes": "Single trade-press source (Aug 2025). The DPR plans 3-car trains first and 5 AM to midnight operation."
+  },
+  "model_guidance": "Build the 3D train as a generic 3.2 m wide stainless-steel metro car in a 3-car set with an orange line livery. Do not copy any manufacturer's design."
+}

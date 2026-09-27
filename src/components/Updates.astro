@@ -1,0 +1,77 @@
+---
+import { socialPosts } from '../lib/data';
+---
+
+<section id="updates" class="section page" aria-labelledby="updates-title">
+  <header class="section-head">
+    <h2 id="updates-title">Updates</h2>
+    <p>News articles and videos about Line 12, and posts on X picked by hand.</p>
+  </header>
+
+  <div class="updates">
+    <div class="updates__col">
+      <h3 class="updates__title">News and videos</h3>
+      <div class="empty">
+        <p class="empty__head">The automatic feed is not running yet.</p>
+        <p>
+          When it starts, this column will list news headlines and YouTube videos about Line 12, refreshed every six
+          hours, each linking to the original. Until then, the sources at the foot of this page carry the latest
+          reports.
+        </p>
+      </div>
+    </div>
+    <div class="updates__col">
+      <h3 class="updates__title">On X</h3>
+      {socialPosts.length === 0 ? (
+        <div class="empty">
+          <p class="empty__head">No posts picked yet.</p>
+          <p>Posts appear here only after a person has checked them. They are shown with X's official embed.</p>
+        </div>
+      ) : (
+        <ul class="posts">
+          {socialPosts.map((p) => (
+            <li><blockquote class="twitter-tweet" data-dnt="true"><a href={p.url}>View post on X</a></blockquote></li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .updates {
+    display: grid;
+    gap: var(--s-6);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+    padding-top: var(--s-5);
+  }
+  @media (min-width: 56rem) {
+    .updates {
+      grid-template-columns: 1.5fr 1fr;
+      gap: var(--s-7);
+    }
+  }
+  .updates__title {
+    font-size: var(--step-2);
+    text-transform: uppercase;
+    margin-bottom: var(--s-4);
+  }
+  .empty {
+    display: grid;
+    gap: var(--s-2);
+    padding: var(--s-5);
+    border: 2px dashed var(--rule);
+    color: var(--ink-2);
+    max-width: var(--measure);
+  }
+  .empty__head {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: var(--step-1);
+  }
+  .posts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>
