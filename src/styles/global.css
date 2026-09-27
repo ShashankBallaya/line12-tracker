@@ -293,20 +293,24 @@ body::after {
   z-index: 150;
   width: 28px;
   height: 28px;
-  border: 2px solid var(--signal-graphic);
-  border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.2s, width 0.25s var(--ease-out), height 0.25s var(--ease-out), top 0.25s var(--ease-out), left 0.25s var(--ease-out), background-color 0.25s;
+  transition: opacity 0.2s;
+}
+/* The visible ring scales on a child, so only transform and opacity animate. */
+.cursor-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--signal-graphic);
+  border-radius: 50%;
+  transition: scale 0.25s var(--ease-out), background-color 0.25s;
 }
 .cursor-ring.is-on {
   opacity: 1;
 }
-.cursor-ring.is-hot {
-  top: -24px;
-  left: -24px;
-  width: 48px;
-  height: 48px;
+.cursor-ring.is-hot::before {
+  scale: 1.7;
   background: color-mix(in srgb, var(--signal) 18%, transparent);
 }
 [data-magnetic] {
