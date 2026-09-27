@@ -233,7 +233,7 @@
       "date_precision": "month",
       "kind": "future",
       "title": "Target completion (reported)",
-      "summary": "Most recent reported target. Earlier target was 31 December 2027. See project.json target_completion.",
+      "summary": "The most recent reported target. The earlier reported target was 31 December 2027. MMRDA has not published a date.",
       "status": "conflicting",
       "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-update-kalyantaloja-line-key-link-to-navi-mumbai-airport-crosses-100th-u-girder-milestone-target-completion-may-2028",
       "last_verified": "2026-09-28"

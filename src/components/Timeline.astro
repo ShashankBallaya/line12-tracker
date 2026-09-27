@@ -52,19 +52,19 @@ const kindLabel: Record<string, string> = {
     display: grid;
     gap: var(--s-2);
     align-content: start;
-    padding: var(--s-5) 0 var(--s-5) var(--s-6);
-    border-bottom: var(--rule-w) solid var(--rule);
+    padding: var(--s-5) 0 var(--s-6);
   }
+  /* category bar across the top of each milestone, same grammar as the horizontal strip */
   .tl__rail {
     position: absolute;
     left: 0;
+    right: 0;
     top: 0;
-    bottom: 0;
-    width: var(--bar);
+    height: var(--bar);
     background: var(--ink);
   }
   .tl__event--future .tl__rail {
-    background: repeating-linear-gradient(to bottom, var(--rule) 0 8px, transparent 8px 14px);
+    background: repeating-linear-gradient(to right, var(--rule) 0 8px, transparent 8px 14px);
   }
   .tl__event--related .tl__rail {
     background: var(--concrete);
@@ -129,9 +129,6 @@ const kindLabel: Record<string, string> = {
   }
   :global(.tl.is-scrubbing) .tl__rail {
     right: calc(-1 * var(--s-6));
-    bottom: auto;
-    width: auto;
-    height: var(--bar);
   }
   :global(.tl.is-scrubbing) .tl__event:last-child .tl__rail {
     right: 0;

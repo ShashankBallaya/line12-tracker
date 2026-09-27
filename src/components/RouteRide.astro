@@ -220,13 +220,14 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
     position: relative;
     width: 100%;
     display: grid;
-    grid-template-rows: minmax(0, 1fr) auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas: 'stations' 'track' 'legend';
-    gap: var(--s-5);
-    padding-block: var(--s-7) var(--s-5);
+    align-content: center;
+    gap: var(--s-7);
+    padding-block: var(--s-6);
   }
   :global(.ride.is-riding) .ride__track { grid-area: track; }
-  :global(.ride.is-riding) .ride__stations { grid-area: stations; align-self: end; }
+  :global(.ride.is-riding) .ride__stations { grid-area: stations; min-height: 16rem; align-content: end; }
   :global(.ride.is-riding) .ride__legend { grid-area: legend; }
   :global(.ride.is-riding) .ride__track {
     display: block;

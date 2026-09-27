@@ -25,12 +25,24 @@ async function page({ width, height, scheme, reduced, mobile = false }) {
 }
 
 // Full pages, static (reduced motion shows every section in its complete base state).
+// Chrome repeats content in single captures taller than ~16k px, so long pages are
+// captured in slices: name.png, name-2.png, name-3.png ... top to bottom, no overlap.
+async function fullPageSlices(p, name, width) {
+  const total = await p.evaluate(() => document.documentElement.scrollHeight);
+  const SLICE = 8000;
+  for (let y = 0, i = 1; y < total; y += SLICE, i++) {
+    const height = Math.min(SLICE, total - y);
+    await p.screenshot({ path: `${OUT}/${name}${i === 1 ? '' : `-${i}`}.png`, clip: { x: 0, y, width, height }, captureBeyondViewport: true });
+  }
+  return total;
+}
+
 let p = await page({ width: 1440, height: 900, scheme: 'dark', reduced: true });
-await p.screenshot({ path: `${OUT}/desktop.png`, fullPage: true });
+console.log('desktop height', await fullPageSlices(p, 'desktop', 1440));
 await p.close();
 
 p = await page({ width: 390, height: 844, scheme: 'light', reduced: true, mobile: true });
-await p.screenshot({ path: `${OUT}/mobile.png`, fullPage: true });
+console.log('mobile height', await fullPageSlices(p, 'mobile', 390));
 await p.close();
 
 // Motion on: first viewport, the ride mid-way, the timeline mid-scrub.
