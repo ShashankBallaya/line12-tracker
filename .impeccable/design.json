@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T20:01:59+00:00",
+  "title": "Design System: Line 12 Tracker",
+  "extensions": {
+    "colorMeta": {
+      "signal": {
+        "role": "primary",
+        "displayName": "Line 12 Orange",
+        "canonical": "oklch(68.4% 0.185 44.9)",
+        "tonalRamp": [
+          "#1b0300",
+          "#421500",
+          "#6d2b04",
+          "#9d410a",
+          "#d05912",
+          "#fc7b39",
+          "#feb696",
+          "#ffe9e0"
+        ],
+        "cssVar": "--signal"
+      },
+      "signal-line": {
+        "role": "primary",
+        "displayName": "Orange Ink",
+        "canonical": "oklch(56.4% 0.167 42.1)",
+        "tonalRamp": [
+          "#1c0200",
+          "#441300",
+          "#702804",
+          "#a13d0a",
+          "#d1581f",
+          "#f97c48",
+          "#ffb598",
+          "#ffe9e1"
+        ],
+        "cssVar": "--signal-line"
+      },
+      "signal-graphic": {
+        "role": "primary",
+        "displayName": "Orange Rail",
+        "canonical": "oklch(60.7% 0.178 42.4)",
+        "tonalRamp": [
+          "#1d0200",
+          "#431400",
+          "#702701",
+          "#a13d05",
+          "#d5530b",
+          "#fe783e",
+          "#fdb69a",
+          "#fee9e1"
+        ],
+        "cssVar": "--signal-graphic"
+      },
+      "on-signal": {
+        "role": "neutral",
+        "displayName": "Navy Pressroom",
+        "canonical": "oklch(19.1% 0.031 261.1)",
+        "tonalRamp": [
+          "#070b13",
+          "#20252e",
+          "#394253",
+          "#576273",
+          "#788396",
+          "#9aa6b9",
+          "#becade",
+          "#e8effb"
+        ],
+        "cssVar": "--on-signal"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Newsprint",
+        "canonical": "oklch(93.6% 0.016 82.8)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#272520",
+          "#464138",
+          "#666157",
+          "#878278",
+          "#aaa49a",
+          "#cec8be",
+          "#f2eee7"
+        ],
+        "cssVar": "--paper"
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "Folded Newsprint",
+        "canonical": "oklch(90.0% 0.021 81.8)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#28251e",
+          "#484136",
+          "#676054",
+          "#898175",
+          "#aca497",
+          "#d0c8ba",
+          "#f3eee5"
+        ],
+        "cssVar": "--paper-2"
+      },
+      "paper-3": {
+        "role": "neutral",
+        "displayName": "Old Newsprint",
+        "canonical": "oklch(86.0% 0.024 82.1)",
+        "tonalRamp": [
+          "#0e0b05",
+          "#29241d",
+          "#484134",
+          "#686052",
+          "#8a8173",
+          "#ada495",
+          "#d1c8b8",
+          "#f3eee4"
+        ],
+        "cssVar": "--paper-3"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Pressroom Navy",
+        "canonical": "oklch(21.6% 0.031 259.0)",
+        "tonalRamp": [
+          "#070b13",
+          "#20252e",
+          "#384353",
+          "#576273",
+          "#778395",
+          "#9aa6b9",
+          "#bdcade",
+          "#e7effb"
+        ],
+        "cssVar": "--ink"
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(39.3% 0.013 76.5)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#272521",
+          "#46413a",
+          "#666059",
+          "#87817a",
+          "#aaa49c",
+          "#cec8c0",
+          "#f2eee9"
+        ],
+        "cssVar": "--ink-2"
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Marginal Ink",
+        "canonical": "oklch(46.4% 0.017 74.2)",
+        "tonalRamp": [
+          "#0e0b07",
+          "#282420",
+          "#474138",
+          "#676057",
+          "#898177",
+          "#aca49a",
+          "#d0c8bd",
+          "#f3eee7"
+        ],
+        "cssVar": "--ink-3"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Column Rule",
+        "canonical": "oklch(77.0% 0.026 81.1)",
+        "tonalRamp": [
+          "#0f0a05",
+          "#29241c",
+          "#494132",
+          "#696051",
+          "#8a8171",
+          "#aea493",
+          "#d2c8b6",
+          "#f4eee3"
+        ],
+        "cssVar": "--rule"
+      },
+      "concrete": {
+        "role": "neutral",
+        "displayName": "Concrete",
+        "canonical": "oklch(70.2% 0.021 80.1)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#28241e",
+          "#484136",
+          "#676054",
+          "#898175",
+          "#aca497",
+          "#d0c8ba",
+          "#f3eee5"
+        ],
+        "cssVar": "--concrete"
+      },
+      "night-paper": {
+        "role": "neutral",
+        "displayName": "Newsprint, night edition",
+        "canonical": "oklch(19.1% 0.031 261.1)",
+        "tonalRamp": [
+          "#070b13",
+          "#20252e",
+          "#394253",
+          "#576273",
+          "#788396",
+          "#9aa6b9",
+          "#becade",
+          "#e8effb"
+        ],
+        "cssVar": "--paper"
+      },
+      "night-paper-2": {
+        "role": "neutral",
+        "displayName": "Folded Newsprint, night edition",
+        "canonical": "oklch(23.1% 0.042 261.7)",
+        "tonalRamp": [
+          "#060b16",
+          "#1e2532",
+          "#364259",
+          "#54627a",
+          "#75839c",
+          "#97a6c0",
+          "#bacae5",
+          "#e6effe"
+        ],
+        "cssVar": "--paper-2"
+      },
+      "night-paper-3": {
+        "role": "neutral",
+        "displayName": "Old Newsprint, night edition",
+        "canonical": "oklch(27.4% 0.050 262.6)",
+        "tonalRamp": [
+          "#050b18",
+          "#1d2534",
+          "#34425d",
+          "#52617e",
+          "#7283a1",
+          "#94a6c5",
+          "#b8caeb",
+          "#e6efff"
+        ],
+        "cssVar": "--paper-3"
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Pressroom Navy, night edition (cream)",
+        "canonical": "oklch(92.4% 0.019 83.1)",
+        "tonalRamp": [
+          "#0d0b06",
+          "#28251f",
+          "#474137",
+          "#666055",
+          "#888276",
+          "#aba498",
+          "#cfc8bc",
+          "#f2eee6"
+        ],
+        "cssVar": "--ink"
+      },
+      "night-ink-2": {
+        "role": "neutral",
+        "displayName": "Faded Ink, night edition",
+        "canonical": "oklch(78.2% 0.021 81.8)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#28251e",
+          "#484135",
+          "#676054",
+          "#898174",
+          "#aca496",
+          "#d0c8ba",
+          "#f3eee5"
+        ],
+        "cssVar": "--ink-2"
+      },
+      "night-ink-3": {
+        "role": "neutral",
+        "displayName": "Marginal Ink, night edition",
+        "canonical": "oklch(65.3% 0.021 80.1)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#28241e",
+          "#484135",
+          "#686054",
+          "#898174",
+          "#aca497",
+          "#d0c8ba",
+          "#f3eee5"
+        ],
+        "cssVar": "--ink-3"
+      },
+      "night-rule": {
+        "role": "neutral",
+        "displayName": "Column Rule, night edition",
+        "canonical": "oklch(35.0% 0.051 264.2)",
+        "tonalRamp": [
+          "#050b18",
+          "#1e2534",
+          "#34425d",
+          "#53617f",
+          "#7382a1",
+          "#95a5c6",
+          "#b9caeb",
+          "#e7efff"
+        ],
+        "cssVar": "--rule"
+      },
+      "night-signal-line": {
+        "role": "primary",
+        "displayName": "Orange Ink, night edition",
+        "canonical": "oklch(72.2% 0.163 48.4)",
+        "tonalRamp": [
+          "#1b0400",
+          "#401700",
+          "#6c2d00",
+          "#9b4401",
+          "#cd5d03",
+          "#f5813c",
+          "#feb691",
+          "#ffeadf"
+        ],
+        "cssVar": "--signal-line"
+      },
+      "night-signal-graphic": {
+        "role": "primary",
+        "displayName": "Orange Rail, night edition",
+        "canonical": "oklch(68.4% 0.185 44.9)",
+        "tonalRamp": [
+          "#1b0300",
+          "#421500",
+          "#6d2b04",
+          "#9d410a",
+          "#d05912",
+          "#fc7b39",
+          "#feb696",
+          "#ffe9e0"
+        ],
+        "cssVar": "--signal-graphic"
+      },
+      "halftone": {
+        "role": "neutral",
+        "displayName": "Halftone Screen",
+        "canonical": "rgb(17 26 40 / 0.14)",
+        "cssVar": "--halftone"
+      },
+      "night-halftone": {
+        "role": "neutral",
+        "displayName": "Halftone Screen, night edition",
+        "canonical": "rgb(236 229 216 / 0.09)",
+        "cssVar": "--halftone"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Front-page headline, masthead LINE 12, pinned station name. Uppercase, font-stretch 75%.",
+        "cssVar": "--step-4"
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Countdown days, big numbers, progress percentages, painted ride distance. Tabular lining.",
+        "cssVar": "--step-4"
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads, station names in the vertical route, maker name. Uppercase.",
+        "cssVar": "--step-3"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-heads, phase and firm names, directory entries, timeline dates. Uppercase.",
+        "cssVar": "--step-2"
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Fact names, masthead tagline, countdown title. Uppercase, font-stretch 87.5%.",
+        "cssVar": "--step-1"
+      },
+      "standfirst": {
+        "displayName": "Standfirst",
+        "purpose": "Paragraph under a headline, in Faded Ink.",
+        "cssVar": "--step-1"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running copy, max 68ch.",
+        "cssVar": "--step-0"
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Source lines, captions, notes, fact history.",
+        "cssVar": "--step--1"
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Table heads, grade words, phase states, edition line, pills. Names data; never a kicker above a heading.",
+        "cssVar": "--step--1"
+      }
+    },
+    "shadows": [
+      {
+        "name": "none",
+        "value": "none",
+        "purpose": "The system is flat. No elevation shadows exist."
+      },
+      {
+        "name": "track-hairline",
+        "value": "inset 0 0 0 1px var(--rule)",
+        "purpose": "Outlines the works progress track. A hairline, not elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one CSS easing, for every hover and state transition (0.2s to 0.45s)."
+      },
+      {
+        "name": "duration-hover",
+        "value": "0.2s",
+        "purpose": "Colour, border and underline-thickness changes on links and buttons."
+      },
+      {
+        "name": "duration-reveal",
+        "value": "0.3s to 0.35s",
+        "purpose": "Orange underline draw on index links and directory entries; arrow nudge on the ride button."
+      },
+      {
+        "name": "duration-station",
+        "value": "0.35s opacity, 0.45s translate",
+        "purpose": "Current-station swap in the pinned route ride."
+      },
+      {
+        "name": "headline-reveal",
+        "value": "GSAP expo.out, 1.1s, stagger 0.12s, yPercent 105, masked lines",
+        "purpose": "Front headline rises line by line on load."
+      },
+      {
+        "name": "counter",
+        "value": "GSAP expo.out, 1.4s, trigger top 88%, once",
+        "purpose": "Counts up to the printed figure on first view."
+      },
+      {
+        "name": "bar-grow",
+        "value": "GSAP expo.out, 1.2s, scaleX from 0, trigger top 90%, once",
+        "purpose": "Progress fills grow from the left on first view."
+      },
+      {
+        "name": "ride-scrub",
+        "value": "pin, scrub true, 0.55 x viewport height per station, min-width 64rem",
+        "purpose": "The scroll is the ride: the train moves along the line."
+      },
+      {
+        "name": "timeline-scrub",
+        "value": "pin, scrub 0.6, min-width 64rem",
+        "purpose": "The timeline strip slides sideways."
+      },
+      {
+        "name": "smooth-scroll",
+        "value": "Lenis lerp 0.12 on the GSAP ticker",
+        "purpose": "Smooth scroll and in-page anchor travel."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce disables all GSAP and Lenis; CSS durations 0.01ms",
+        "purpose": "Every section is complete in its base state."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone-table",
+        "value": "max-width 47.99rem",
+        "purpose": "Tender table becomes labelled blocks."
+      },
+      {
+        "name": "md",
+        "value": "48rem",
+        "purpose": "Numbers list goes to two columns."
+      },
+      {
+        "name": "updates",
+        "value": "56rem",
+        "purpose": "Updates split 1.5fr / 1fr."
+      },
+      {
+        "name": "lg",
+        "value": "64rem",
+        "purpose": "Two-column front page, three-column sources, two-column spec, pinned ride and timeline."
+      }
+    ],
+    "rules": [
+      {
+        "name": "rule-w",
+        "value": "1px",
+        "purpose": "Column rules between rows."
+      },
+      {
+        "name": "rule-heavy",
+        "value": "4px",
+        "purpose": "Opens every section and major block, in ink (rule-strong)."
+      }
+    ],
+    "focus": {
+      "value": "outline 3px solid var(--focus); outline-offset 3px; border-radius 2px",
+      "purpose": "Orange Ink focus ring on every focusable element."
+    },
+    "halftone": {
+      "value": "radial-gradient(var(--halftone) 1px, transparent 1.3px) at 6px 6px",
+      "purpose": "Printed-picture areas only."
+    }
+  },
+  "components": [
+    {
+      "name": "Signal Button",
+      "kind": "button",
+      "refersTo": "button-signal",
+      "description": "Primary action on the front page (\"Ride the line\"): orange fill, condensed display type, down arrow.",
+      "html": "<a class=\"ds-btn-signal\" href=\"#route\">Ride the line <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v15M5 12l7 7 7-7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ".ds-btn-signal { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 48px; padding: 0.5rem 1.5rem; background: var(--signal, #f26b1d); color: var(--on-signal, #0c1422); font-family: 'Anek Latin Variable', system-ui, sans-serif; font-weight: 800; font-stretch: 75%; font-size: 1.4rem; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-signal svg { width: 1.3em; height: 1.3em; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-signal:hover svg { transform: translateY(3px); } .ds-btn-signal:active { transform: scale(0.98); } .ds-btn-signal:focus-visible { outline: 3px solid var(--focus, #c24a08); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Secondary action (file a correction): navy fill that turns orange on hover.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\">File a correction</a>",
+      "css": ".ds-btn-ink { display: inline-flex; align-items: center; min-height: 48px; padding: 0.5rem 1.5rem; background: var(--ink, #111a28); color: var(--paper, #efe9de); font-family: 'Mukta', system-ui, sans-serif; font-weight: 700; text-decoration: none; border-radius: 4px; transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ink:hover { background: var(--signal, #f26b1d); color: var(--on-signal, #0c1422); } .ds-btn-ink:active { transform: scale(0.98); } .ds-btn-ink:focus-visible { outline: 3px solid var(--focus, #c24a08); outline-offset: 3px; }"
+    },
+    {
+      "name": "Edition Toggle",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Outlined toggle that switches between the morning and night editions.",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"M10 3a7 7 0 0 1 0 14Z\" fill=\"currentColor\"/></svg>Switch edition</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 0.75rem; font-family: 'Mukta', system-ui, sans-serif; font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink, #111a28); background: transparent; border: 1px solid var(--rule, #bdb3a2); border-radius: 4px; cursor: pointer; transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-outline svg { width: 1.1rem; height: 1.1rem; } .ds-btn-outline:hover { border-color: var(--ink, #111a28); background: var(--paper-2, #e5ddcf); } .ds-btn-outline:focus-visible { outline: 3px solid var(--focus, #c24a08); outline-offset: 3px; }"
+    },
+    {
+      "name": "Masthead and Inside Index",
+      "kind": "nav",
+      "refersTo": "masthead-band",
+      "description": "Orange band with LINE 12 and the Marathi mark, then the Inside index with orange draw-on underlines.",
+      "html": "<header class=\"ds-mast\"><div class=\"ds-mast__band\"><span class=\"ds-mast__name\">Line 12</span><span class=\"ds-mast__mr\" lang=\"mr\" aria-hidden=\"true\">मेट्रो १२</span></div><nav class=\"ds-mast__inside\" aria-label=\"Inside\"><span class=\"ds-mast__label\">Inside</span><a href=\"#\">Route</a><a href=\"#\">Numbers</a><a href=\"#\">Progress</a><a href=\"#\">Tenders</a></nav></header>",
+      "css": ".ds-mast__band { display: flex; align-items: baseline; gap: 1rem; padding: 1rem 1.5rem 0.75rem; background: var(--signal, #f26b1d); color: var(--on-signal, #0c1422); } .ds-mast__name { font-family: 'Anek Latin Variable', system-ui, sans-serif; font-weight: 800; font-stretch: 75%; font-size: 4rem; line-height: 0.8; text-transform: uppercase; letter-spacing: -0.02em; } .ds-mast__mr { font-family: 'Anek Devanagari Variable', system-ui, sans-serif; font-weight: 700; font-size: 1.8rem; } .ds-mast__inside { display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem; } .ds-mast__label { font-family: 'Anek Latin Variable', system-ui, sans-serif; font-weight: 800; font-stretch: 75%; font-size: 1.4rem; text-transform: uppercase; } .ds-mast__inside a { position: relative; display: inline-flex; align-items: center; min-height: 44px; font-family: 'Mukta', system-ui, sans-serif; font-weight: 500; color: var(--ink-2, #4a453e); text-decoration: none; transition: color 0.2s; } .ds-mast__inside a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 8px; height: 3px; background: var(--signal-graphic, #d5530a); scale: 0 1; transform-origin: left; transition: scale 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-mast__inside a:hover, .ds-mast__inside a:focus-visible { color: var(--ink, #111a28); } .ds-mast__inside a:hover::after, .ds-mast__inside a:focus-visible::after { scale: 1 1; }"
+    },
+    {
+      "name": "Tender Status Pills",
+      "kind": "chip",
+      "refersTo": "pill-awarded",
+      "description": "Full pills for tender status: navy for awarded, orange for floated, outline otherwise.",
+      "html": "<span class=\"ds-pill ds-pill--awarded\">Awarded</span> <span class=\"ds-pill ds-pill--floated\">Floated</span> <span class=\"ds-pill\">Planned</span>",
+      "css": ".ds-pill { display: inline-block; padding: 0.1em 0.55em; border: 1.5px solid currentColor; border-radius: 999px; font-family: 'Mukta', system-ui, sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink, #111a28); } .ds-pill--awarded { background: var(--ink, #111a28); color: var(--paper, #efe9de); border-color: var(--ink, #111a28); } .ds-pill--floated { background: var(--signal, #f26b1d); color: var(--on-signal, #0c1422); border-color: var(--signal, #f26b1d); }"
+    },
+    {
+      "name": "Grade Mark",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Confidence mark on every figure: drawn glyph, uppercase word, hairline, source link. Never colour alone.",
+      "html": "<span class=\"ds-grade\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><rect x=\"1\" y=\"1\" width=\"14\" height=\"14\" fill=\"currentColor\"/><path d=\"M4 8.4 6.9 11 12 5\" fill=\"none\" stroke=\"#efe9de\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg><span class=\"ds-grade__label\">Verified</span><a href=\"#\">MMRDA</a></span> <span class=\"ds-grade ds-grade--warn\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-dasharray=\"3 2.2\"/></svg><span class=\"ds-grade__label\">Unverified</span></span>",
+      "css": ".ds-grade { display: inline-flex; align-items: center; gap: 0.4em; font-family: 'Mukta', system-ui, sans-serif; font-size: 0.88rem; font-weight: 500; color: var(--ink-2, #4a453e); } .ds-grade svg { width: 0.95em; height: 0.95em; color: var(--ink, #111a28); } .ds-grade--warn svg { color: var(--signal-line, #c24a08); } .ds-grade__label { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.86em; } .ds-grade a { color: var(--ink-2, #4a453e); text-decoration: underline; text-decoration-color: var(--signal-line, #c24a08); text-underline-offset: 0.2em; } .ds-grade a::before { content: ''; display: inline-block; width: 1px; height: 0.9em; margin-right: 0.45em; vertical-align: -0.1em; background: var(--rule, #bdb3a2); } .ds-grade a:hover { text-decoration-thickness: 3px; } .ds-grade a:focus-visible { outline: 3px solid var(--focus, #c24a08); outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Head",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Opens every inside page: heavy ink rule, orange bar module, uppercase name, standfirst.",
+      "html": "<header class=\"ds-section\"><h2>Progress</h2><p>How far construction has come, by work package, as MMRDA last reported it.</p></header>",
+      "css": ".ds-section { display: grid; gap: 1rem; padding-top: 2rem; border-top: 4px solid var(--ink, #111a28); } .ds-section::before { content: ''; width: 4.5rem; height: 0.5rem; background: var(--signal-graphic, #d5530a); } .ds-section h2 { margin: 0; font-family: 'Anek Latin Variable', system-ui, sans-serif; font-weight: 800; font-stretch: 75%; font-size: 3rem; line-height: 0.95; letter-spacing: -0.01em; text-transform: uppercase; } .ds-section p { margin: 0; max-width: 68ch; font-family: 'Mukta', system-ui, sans-serif; font-size: 1.4rem; line-height: 1.4; color: var(--ink-2, #4a453e); }"
+    },
+    {
+      "name": "Works Progress Bar",
+      "kind": "custom",
+      "refersTo": "progress-fill",
+      "description": "Reported percentage as a big condensed figure over a flat orange fill.",
+      "html": "<div class=\"ds-work\"><span class=\"ds-work__name\">Pile works</span><span class=\"ds-work__pct\">62<small>%</small></span><span class=\"ds-work__track\"><span class=\"ds-work__fill\" style=\"width:62%\"></span></span></div>",
+      "css": ".ds-work { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 0.5rem 1rem; } .ds-work__name { font-family: 'Mukta', system-ui, sans-serif; font-weight: 500; font-size: 1.4rem; } .ds-work__pct { font-family: 'Anek Latin Variable', system-ui, sans-serif; font-weight: 800; font-stretch: 75%; font-size: 4rem; line-height: 0.9; font-variant-numeric: tabular-nums lining-nums; } .ds-work__pct small { font-size: 0.5em; color: var(--ink-2, #4a453e); } .ds-work__track { grid-column: 1 / -1; display: block; height: 1rem; background: var(--paper-2, #e5ddcf); box-shadow: inset 0 0 0 1px var(--rule, #bdb3a2); } .ds-work__fill { display: block; height: 100%; background: var(--signal-graphic, #d5530a); }"
+    },
+    {
+      "name": "Route Strip",
+      "kind": "custom",
+      "refersTo": "station-dot",
+      "description": "Vignelli schematic: hollow orange line (not built yet), one 45-degree bend, ink dots with paper rings.",
+      "html": "<div class=\"ds-route\"><svg viewBox=\"0 0 1000 90\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path class=\"ds-route__casing\" d=\"M14 26 H420 L464 70 H986\"/><path class=\"ds-route__core\" d=\"M14 26 H420 L464 70 H986\"/></svg><span class=\"ds-route__dot\" style=\"left:1.4%;top:29%\"></span><span class=\"ds-route__dot\" style=\"left:25%;top:29%\"></span><span class=\"ds-route__dot\" style=\"left:60%;top:78%\"></span><span class=\"ds-route__dot\" style=\"left:98.6%;top:78%\"></span></div>",
+      "css": ".ds-route { position: relative; height: 4.5rem; } .ds-route svg { position: absolute; inset: 0; width: 100%; height: 100%; } .ds-route path { fill: none; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; } .ds-route__casing { stroke: var(--signal-graphic, #d5530a); stroke-width: 14px; } .ds-route__core { stroke: var(--paper, #efe9de); stroke-width: 5px; } .ds-route__dot { position: absolute; width: 0.85rem; height: 0.85rem; translate: -50% -50%; border-radius: 50%; background: var(--ink, #111a28); border: 2.5px solid var(--paper, #efe9de); transition: scale 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-route:hover .ds-route__dot { scale: 1.2; }"
+    },
+    {
+      "name": "Quiet Panel",
+      "kind": "card",
+      "refersTo": "panel-quiet",
+      "description": "The only filled container: a second sheet of newsprint under a 4px orange rule.",
+      "html": "<aside class=\"ds-panel\"><h3>Not printed yet</h3><ul><li>Rolling stock supplier: no award reported.</li><li>Per-station progress: not published.</li></ul></aside>",
+      "css": ".ds-panel { padding: 1.5rem; background: var(--paper-2, #e5ddcf); border-top: 4px solid var(--signal, #f26b1d); } .ds-panel h3 { margin: 0 0 1rem; font-family: 'Anek Latin Variable', system-ui, sans-serif; font-weight: 800; font-stretch: 75%; font-size: 2rem; line-height: 1; text-transform: uppercase; } .ds-panel ul { display: grid; gap: 0.75rem; margin: 0; padding: 0; list-style: none; max-width: 68ch; font-family: 'Mukta', system-ui, sans-serif; color: var(--ink-2, #4a453e); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Late City Edition",
+    "overview": "**Creative North Star: \"The Late City Edition\"**\n\nThe site is a newspaper with one story. It prints in two editions: the night edition (navy paper, cream ink) when the system asks for dark, and the morning edition (warm newsprint, navy ink) otherwise. A reader can switch editions from the masthead. Every page element is a part of a paper: a masthead band, an edition line, an \"Inside\" index, a front page with a headline, a standfirst and a lead picture, then inside pages that each open under a heavy rule, and a corrections column at the back.\n\nThe whole identity is one orange shape, the bar module (0.5rem tall). It is the masthead band, the marker on top of every section head, the separator squares in the edition line, the progress fills, the timeline rails, the hover underline in the index and the station directory, and the casing of the route line itself. Everything else is navy, newsprint and concrete. The route is drawn after Vignelli: thick parallel strokes, one 45-degree bend, dot stations, and x spaced by true chainage. The line is not built yet, so it prints hollow (an orange casing with a paper core). The lead picture follows the Tren Urbano and MASP references: a flat-shaded isometric viaduct and train on an orange halftone field, a giant \"12\" painted on the road, and concrete in greys with only the train band in orange.\n\nDensity is editorial, not dashboard. Sections are solid blocks with a deep gap before the next rule. Facts sit in ruled lists and tables, not cards. Status is always a mark or a stroke pattern plus a word, never hue alone.",
+    "keyCharacteristics": [
+      "One signal colour (Line 12 orange), used as bars, bands, lines and large figures, never as body text.",
+      "Heavy condensed display grotesk (Anek Latin at 75% width, weight 800), set uppercase, against a plain humanist body (Mukta).",
+      "Tabular lining numerals for every figure, date and table.",
+      "Hairline column rules and 4px heavy rules carry the structure. No shadows, no cards.",
+      "Status grammar: solid, dashed, gapped or hollow strokes; tick, ring, dashed square, crosshatch marks.",
+      "Two editions from one token set. Only the paper, ink, rule and orange-on-paper values flip.",
+      "Motion is the ride: the reader scrolls the train along the line, station by station. Without motion, the page is complete."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Orange is the only hue. It appears as the bar module, the route and big figures. Every other colour is paper, ink, rule or concrete.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Oranges Rule",
+        "body": "Pick the orange by job, not by taste: signal for fills that carry navy text, signal-graphic for shapes drawn on paper, signal-line for strokes and large figures on paper. Never set body-size text in any orange.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Editions Rule",
+        "body": "Every colour is written as a token that both editions define. Components never hard-code a hex; the lead picture's isometric palette is the one exception, because it always sits on the orange field.",
+        "section": "colors"
+      },
+      {
+        "name": "The Squeeze Rule",
+        "body": "Display type is Anek at 75% width and weight 800, uppercase, with line-height under 1. A display line at normal width or in sentence case is off-world. The one exception is the timeline event title, which drops to Mukta 700 so a long sentence stays readable.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every number, date and table uses tabular lining numerals. Figures line up down a column like a stock page.",
+        "section": "typography"
+      },
+      {
+        "name": "The Balanced Head Rule",
+        "body": "Headings balance their lines; paragraphs wrap pretty. No orphan word on a headline.",
+        "section": "typography"
+      },
+      {
+        "name": "The Edition Rule",
+        "body": "Structure is printed with rules, not boxes. A heavy 4px ink rule opens each section and each major block; 1px column rules separate rows. If you reach for a card, use a rule instead.",
+        "section": "layout"
+      },
+      {
+        "name": "The True Spacing Rule",
+        "body": "On the route, x is proportional to chainage. Stations keep their real relative spacing on the front strip and in the ride, from the same shared geometry.",
+        "section": "layout"
+      },
+      {
+        "name": "The Printed Page Rule",
+        "body": "Nothing floats above the paper. A surface is either the page, a second sheet (paper-2), or an orange band. State never adds a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Halftone Rule",
+        "body": "The dot screen (1px dots on a 6px grid) goes only on printed-picture areas. It is never a page background.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** build every new accent from the bar module: a 0.5rem hard-edged orange rectangle, or a multiple of it (1rem for progress bars).",
+      "**Do** open every section with a 4px ink rule and a section head of bar, uppercase name and standfirst.",
+      "**Do** pick the orange by job: signal under navy text, signal-graphic for shapes on paper, signal-line for strokes and large figures.",
+      "**Do** draw status as a mark or stroke pattern plus a word: solid, gapped, dashed or hollow; tick, ring, dashed square, crosshatch.",
+      "**Do** set every figure in tabular lining numerals, and give it a grade mark and a source link.",
+      "**Do** keep superseded figures on the page, struck through in Orange Ink.",
+      "**Do** write colours as tokens that both editions define, so the night and morning editions stay in step.",
+      "**Do** keep every section fully readable with motion off."
+    ],
+    "donts": [
+      "**Don't** add drop shadows, floating cards or glass panels. The paper is flat.",
+      "**Don't** introduce a second accent hue. Status, category and emphasis use orange, ink, rule and concrete only.",
+      "**Don't** set body-size text in any orange; Orange Ink is 4.06:1 on morning paper.",
+      "**Don't** put the halftone screen on a page background; it belongs to printed pictures.",
+      "**Don't** set display type at normal width, in a light weight, or in sentence case.",
+      "**Don't** round the bar module or the rules. Radius belongs to dots, lines, controls and pills only.",
+      "**Don't** use a small uppercase tracked label above a heading as a kicker. Labels name data and sit beside or under it."
+    ]
+  }
+}

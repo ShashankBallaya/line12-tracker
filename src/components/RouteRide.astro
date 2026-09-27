@@ -111,11 +111,10 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
     padding: 0 0 0 var(--s-6);
     list-style: none;
   }
-  /* the line down the left, dashed because it is not built yet */
+  /* the line down the left, hollow because it is not built yet */
   .ride__stations::before {
     content: '';
     position: absolute;
-    left: 0.45rem;
     top: 0.6rem;
     bottom: 0.6rem;
     width: 0.85rem;
