@@ -37,67 +37,75 @@ if (!reduceMotion) {
     });
   });
 
-  // ---------- Counters: the final value is already in the DOM; we count up to it ----------
-  document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-    const end = Number(el.dataset.count);
-    const decimals = Number(el.dataset.decimals ?? 0);
-    const state = { v: 0 };
-    const fmt = (v: number) => v.toLocaleString('en-IN', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 88%',
-      once: true,
-      onEnter: () =>
-        gsap.to(state, {
-          v: end,
-          duration: 1.4,
-          ease: 'expo.out',
-          onUpdate: () => (el.textContent = fmt(state.v)),
-          onComplete: () => (el.textContent = fmt(end)),
-        }),
-    });
-  });
-
-  // ---------- Progress bars grow from the left on first view ----------
-  gsap.utils.toArray<HTMLElement>('[data-grow]').forEach((bar) => {
-    gsap.from(bar, {
-      scaleX: 0,
-      duration: 1.2,
-      ease: 'expo.out',
-      scrollTrigger: { trigger: bar, start: 'top 90%', once: true },
-    });
-  });
-
-  // ---------- Keep scroll positions true when lazy parts change the page height ----------
-  // (the map, the 3D scenes and fonts load after first paint and can push later sections down)
-  let refreshTimer = 0;
-  let lastHeight = document.documentElement.scrollHeight;
-  new ResizeObserver(() => {
-    const h = document.documentElement.scrollHeight;
-    if (Math.abs(h - lastHeight) < 2) return;
-    lastHeight = h;
-    clearTimeout(refreshTimer);
-    refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 150);
-  }).observe(document.body);
-
-  // ---------- The station fly-around: pinned on every screen size ----------
-  setUpStation();
-
-  // ---------- Wide screens: the ride and the timeline scrub ----------
-  const mm = gsap.matchMedia();
+  // Everything below the first screen is set up when the browser is idle, so building
+  // the scroll animations never delays the first paint. It still runs long before a
+  // reader can scroll that far.
   let rideTrigger: ScrollTrigger | null = null;
+  const whenIdle = (fn: () => void) =>
+    'requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 1200 }) : setTimeout(fn, 200);
+  whenIdle(() => {
+    // ---------- Counters: the final value is already in the DOM; we count up to it ----------
+    document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
+      const end = Number(el.dataset.count);
+      const decimals = Number(el.dataset.decimals ?? 0);
+      const state = { v: 0 };
+      const fmt = (v: number) => v.toLocaleString('en-IN', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 88%',
+        once: true,
+        onEnter: () =>
+          gsap.to(state, {
+            v: end,
+            duration: 1.4,
+            ease: 'expo.out',
+            onUpdate: () => (el.textContent = fmt(state.v)),
+            onComplete: () => (el.textContent = fmt(end)),
+          }),
+      });
+    });
 
-  mm.add('(min-width: 64rem)', () => {
-    rideTrigger = setUpRide();
-    const tl = setUpTimeline();
-    return () => {
-      rideTrigger?.kill();
-      rideTrigger = null;
-      tl?.scrollTrigger?.kill();
-      tl?.kill();
-      document.querySelector('[data-ride]')?.classList.remove('is-riding');
-      document.querySelector('[data-timeline]')?.classList.remove('is-scrubbing');
-    };
+    // ---------- Progress bars grow from the left on first view ----------
+    gsap.utils.toArray<HTMLElement>('[data-grow]').forEach((bar) => {
+      gsap.from(bar, {
+        scaleX: 0,
+        duration: 1.2,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: bar, start: 'top 90%', once: true },
+      });
+    });
+
+    // ---------- Keep scroll positions true when lazy parts change the page height ----------
+    // (the map, the 3D scenes and fonts load after first paint and can push later sections down)
+    let refreshTimer = 0;
+    let lastHeight = document.documentElement.scrollHeight;
+    new ResizeObserver(() => {
+      const h = document.documentElement.scrollHeight;
+      if (Math.abs(h - lastHeight) < 2) return;
+      lastHeight = h;
+      clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 150);
+    }).observe(document.body);
+
+    // ---------- The station fly-around: pinned on every screen size ----------
+    setUpStation();
+
+    // ---------- Wide screens: the ride and the timeline scrub ----------
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 64rem)', () => {
+      rideTrigger = setUpRide();
+      const tl = setUpTimeline();
+      return () => {
+        rideTrigger?.kill();
+        rideTrigger = null;
+        tl?.scrollTrigger?.kill();
+        tl?.kill();
+        document.querySelector('[data-ride]')?.classList.remove('is-riding');
+        document.querySelector('[data-timeline]')?.classList.remove('is-scrubbing');
+      };
+    });
+
   });
 
   // ---------- In-page links go through Lenis (and into the ride when it is pinned) ----------
