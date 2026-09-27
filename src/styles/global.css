@@ -163,6 +163,28 @@ time {
   background-size: 6px 6px;
 }
 
+/* Grade mark inside script-built panels (the map). Mirrors Grade.astro. */
+.mini-grade {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  vertical-align: middle;
+  font-size: var(--step--1);
+}
+.mini-grade svg {
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--ink);
+}
+
+/* 3D canvases fill their host and sit above the fallback drawing. */
+.scene-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 /* Small source line under facts. */
 .source-line {
   display: inline-flex;

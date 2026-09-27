@@ -1,0 +1,229 @@
+---
+/**
+ * Alignment map and street level. Base state (no JS, or before the map loads): the station list
+ * with coordinates and outside links. The map (MapLibre, loaded only when this section nears the
+ * viewport) adds the route and stations; choosing a station fills the panel, including street level.
+ */
+import Grade from './Grade.astro';
+import { stations, stationsMeta, formatDate } from '../lib/data';
+import { STREET_LEVEL_PROVIDER, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../config';
+import alignment from '../data/alignment-dpr-2019.geojson?raw';
+
+const mapped = stations.filter((s) => s.location.lat !== null);
+const alignMeta = JSON.parse(alignment).properties;
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+
+// Serialised for the map script: only public, sourced fields.
+const payload = stations.map((s) => ({
+  id: s.id,
+  order: s.order,
+  name: s.name,
+  lat: s.location.lat,
+  lng: s.location.lng,
+  interchanges: s.interchanges.value,
+  context: s.context.map((c) => ({ text: cap(c.text.replace(/^DPR: /, '')), status: c.status, source: c.source_url })),
+  status: s.construction_status.value,
+  note: s.notes,
+}));
+const streetConfig = {
+  provider: STREET_LEVEL_PROVIDER,
+  mapillary: Boolean(MAPILLARY_TOKEN),
+  google: Boolean(GOOGLE_MAPS_KEY),
+};
+---
+
+<section id="map" class="section page mapsec" aria-labelledby="map-title" data-map-section>
+  <header class="section-head">
+    <h2 id="map-title">Map</h2>
+    <p>
+      The line on a street map. Choose a station to see where it sits, what surrounds it and what the street looks
+      like today. The route is drawn from the 2019 project report and is approximate.
+    </p>
+  </header>
+
+  <div class="mapsec__layout">
+    <div class="mapsec__map-wrap">
+      <div class="mapsec__map" data-map aria-label="Map of the Line 12 route" role="region"></div>
+      <p class="mapsec__map-note">
+        <span class="mapsec__key" aria-hidden="true"></span> Route under construction, positions approximate
+        <Grade status={alignMeta.status} source={alignMeta.source_url} compact />
+      </p>
+    </div>
+
+    <div class="mapsec__side">
+      <label class="mapsec__pick">
+        <span>Station</span>
+        <select data-map-select>
+          {stations.map((s) => (
+            <option value={s.id} disabled={s.location.lat === null}>
+              {String(s.order).padStart(2, '0')} {s.name}{s.location.lat === null ? ' (not yet mapped)' : ''}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <article class="panel" data-map-panel aria-live="polite">
+        <h3 class="panel__name" data-panel-name>{mapped[0].name}</h3>
+        <p class="panel__coords num" data-panel-coords>
+          {mapped[0].location.lat?.toFixed(5)}, {mapped[0].location.lng?.toFixed(5)} (approximate)
+        </p>
+        <div data-panel-body>
+          <p class="panel__muted">Choose a station on the map or in the list.</p>
+        </div>
+
+        <div class="street" data-street>
+          <h4 class="street__title">Street level</h4>
+          <div class="street__view" data-street-view>
+            <p class="panel__muted">The street view for the chosen station appears here.</p>
+          </div>
+          <p class="street__links" data-street-links></p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="panel__muted">The interactive map needs JavaScript. Station positions are listed under Route.</p>
+  </noscript>
+
+  <script type="application/json" data-map-stations set:html={JSON.stringify(payload)} />
+  <script type="application/json" data-map-alignment set:html={alignment} />
+  <script type="application/json" data-street-config set:html={JSON.stringify(streetConfig)} />
+  <p class="visually-hidden">Station data last reviewed {formatDate(stationsMeta.last_reviewed)}.</p>
+</section>
+
+<style>
+  .mapsec__layout {
+    display: grid;
+    gap: var(--s-5);
+  }
+  @media (min-width: 64rem) {
+    .mapsec__layout {
+      grid-template-columns: minmax(0, 1.6fr) minmax(20rem, 1fr);
+      gap: var(--s-6);
+      align-items: start;
+    }
+  }
+  .mapsec__map {
+    height: clamp(22rem, 62vh, 40rem);
+    background: var(--paper-2);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+  }
+  .mapsec__map-note {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-top: var(--s-2);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .mapsec__key {
+    width: 2.4rem;
+    height: 0.8rem;
+    border-radius: 1rem;
+    background: var(--paper);
+    border: 0.25rem solid var(--signal-graphic);
+  }
+  .mapsec__side {
+    display: grid;
+    gap: var(--s-4);
+  }
+  .mapsec__pick {
+    display: grid;
+    gap: var(--s-1);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .mapsec__pick select {
+    min-height: 48px;
+    padding: 0 var(--s-3);
+    font: inherit;
+    font-size: var(--step-0);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: var(--rule-w) solid var(--rule);
+    border-radius: 4px;
+  }
+  .panel {
+    display: grid;
+    gap: var(--s-3);
+    padding-top: var(--s-4);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+  }
+  .panel__name {
+    font-size: var(--step-3);
+    text-transform: uppercase;
+  }
+  .panel__coords,
+  .panel__muted {
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  .panel :global(.panel__list) {
+    display: grid;
+    gap: var(--s-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .panel :global(.panel__label) {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .street {
+    display: grid;
+    gap: var(--s-2);
+    margin-top: var(--s-3);
+  }
+  .street__title {
+    font-size: var(--step-1);
+    text-transform: uppercase;
+  }
+  .street__view {
+    min-height: 10rem;
+    background: var(--paper-2);
+    display: grid;
+    place-items: center;
+    padding: var(--s-3);
+  }
+  .street__view :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .street__view :global(iframe) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 0;
+  }
+  .street__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+    font-size: var(--step--1);
+  }
+  /* MapLibre chrome in the edition's colours */
+  .mapsec__map :global(.maplibregl-ctrl-group) {
+    background: var(--paper);
+    border-radius: 4px;
+  }
+  .mapsec__map :global(.maplibregl-ctrl-group button + button) {
+    border-top-color: var(--rule);
+  }
+  .mapsec__map :global(.maplibregl-ctrl-attrib) {
+    background: color-mix(in srgb, var(--paper) 85%, transparent);
+    color: var(--ink-2);
+    font-size: 0.72rem;
+  }
+  .mapsec__map :global(.maplibregl-ctrl-attrib a) {
+    color: var(--ink-2);
+  }
+</style>

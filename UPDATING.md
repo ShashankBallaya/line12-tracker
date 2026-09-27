@@ -90,12 +90,28 @@ Posts are never scraped. You choose them.
 
 The site shows it with X's official embed. Only add posts you have read and checked.
 
-## Blocking a news link (after Phase 5)
+## Newer satellite imagery
 
-When the automatic news feed is live, you can hide a bad link without redeploying:
+Esri adds new imagery releases every few weeks. To refresh the before/after dates:
 
 ```bash
-npx wrangler d1 execute line12 --remote --command "INSERT INTO blocked_urls (url) VALUES ('https://example.com/bad-article')"
+node scripts/build-wayback.mjs
 ```
 
-Full instructions arrive with Phase 5.
+It rewrites `src/data/beforeafter.json` with the latest release and its real capture date. Commit and push.
+
+## Your own ground photos
+
+1. Put two photos of the same spot in `public/photos/` (for example `manpada-2024-06.jpg` and `manpada-2026-09.jpg`). Keep each under 400 KB.
+2. Add a pair to `pairs` in `src/data/photos.json`:
+
+```json
+{
+  "place": "Manpada Circle, looking south",
+  "credit": "Shashank Ballaya",
+  "before": { "src": "/photos/manpada-2024-06.jpg", "alt": "Manpada Circle before piers were built", "date": "2024-06-15" },
+  "after": { "src": "/photos/manpada-2026-09.jpg", "alt": "Manpada Circle with the viaduct overhead", "date": "2026-09-20" }
+}
+```
+
+The pair appears under the satellite comparison.

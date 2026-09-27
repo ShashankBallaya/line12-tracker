@@ -1,0 +1,7 @@
+{
+  "_meta": {
+    "description": "Your own dated ground photos, shown as before/after pairs under the satellite comparison. Put the image files in public/photos/ and add a pair below. See UPDATING.md.",
+    "last_reviewed": "2026-09-28"
+  },
+  "pairs": []
+}

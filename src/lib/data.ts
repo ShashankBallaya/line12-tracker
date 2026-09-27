@@ -68,6 +68,7 @@ export function outletName(url: string | null | undefined): string {
     'constructionworld.in': 'Construction World',
     'en.wikipedia.org': 'Wikipedia',
     'x.com': 'X',
+    'livingatlas.arcgis.com': 'Esri Wayback',
   };
   if (url.includes('Metro%20Line%2012.pdf')) return 'MMRDA DPR (2019)';
   return known[host] ?? host;

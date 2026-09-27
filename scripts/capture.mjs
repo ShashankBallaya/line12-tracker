@@ -68,5 +68,16 @@ await sleep(1200);
 await p.screenshot({ path: `${OUT}/desktop-first-light.png` });
 await p.close();
 
+// Phase 3 sections: map (after tiles load) and before/after, desktop and mobile.
+for (const [w, h, scheme, name] of [[1440, 900, 'dark', 'desktop'], [390, 844, 'light', 'mobile']]) {
+  p = await page({ width: w, height: h, scheme, reduced: true, mobile: w < 500 });
+  for (const id of ['map', 'before-after']) {
+    await p.evaluate((i) => document.getElementById(i).scrollIntoView(), id);
+    await sleep(id === 'map' ? 6000 : 3000);
+    await p.screenshot({ path: `${OUT}/${name}-${id}.png` });
+  }
+  await p.close();
+}
+
 await browser.close();
 console.log(`Captured into ${OUT}`);

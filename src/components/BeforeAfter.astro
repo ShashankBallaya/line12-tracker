@@ -1,0 +1,290 @@
+---
+/**
+ * Before / after: the same spot from above, before construction and now, from Esri World Imagery
+ * Wayback (dates are the real capture dates from Esri's metadata, see scripts/build-wayback.mjs).
+ * Plain <img> tile mosaics, no map library. The slider is a native range input (keyboard friendly).
+ * Optional dated ground photos from src/data/photos.json appear below when the owner adds them.
+ */
+import Grade from './Grade.astro';
+import data from '../data/beforeafter.json';
+import photos from '../data/photos.json';
+import { formatDate } from '../lib/data';
+
+const Z = data._meta.zoom;
+const TILE = 256;
+const VIEW_W = 1024; // imagery pixels shown across the frame
+const VIEW_H = 768;
+
+function mosaic(lat: number, lng: number, url: string) {
+  const n = 2 ** Z;
+  const px = ((lng + 180) / 360) * n * TILE;
+  const s = Math.sin((lat * Math.PI) / 180);
+  const py = (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * n * TILE;
+  const left = px - VIEW_W / 2;
+  const top = py - VIEW_H / 2;
+  const x0 = Math.floor(left / TILE);
+  const y0 = Math.floor(top / TILE);
+  const tiles = [];
+  for (let row = 0; row < VIEW_H / TILE + 1; row++) {
+    for (let col = 0; col < VIEW_W / TILE + 1; col++) {
+      const x = x0 + col;
+      const y = y0 + row;
+      tiles.push({
+        src: url.replace('{level}', String(Z)).replace('{row}', String(y)).replace('{col}', String(x)),
+        left: (((x * TILE - left) / VIEW_W) * 100).toFixed(3),
+        top: (((y * TILE - top) / VIEW_H) * 100).toFixed(3),
+      });
+    }
+  }
+  return tiles;
+}
+const month = (d: string) => formatDate(d.slice(0, 7));
+interface Shot { src: string; alt: string; date: string }
+const pairs = photos.pairs as { place: string; credit: string; before: Shot; after: Shot }[];
+---
+
+<section id="before-after" class="section page ba" aria-labelledby="ba-title" data-ba>
+  <header class="section-head">
+    <h2 id="ba-title">Before and after</h2>
+    <p>
+      The same spots from above, before construction began in March 2024 and in the latest imagery. Drag the handle
+      or use the arrow keys to compare.
+    </p>
+  </header>
+
+  <div class="ba__tabs" role="group" aria-label="Choose a spot">
+    {data.spots.map((s, i) => (
+      <button type="button" class="ba__tab" aria-pressed={i === 0 ? 'true' : 'false'} data-ba-tab={s.id}>{s.title}</button>
+    ))}
+  </div>
+
+  {data.spots.map((s, i) => (
+    <figure class="ba__spot" data-ba-spot={s.id} hidden={i !== 0}>
+      <div class="ba__frame" style="--pos:50%">
+        <div class="ba__layer ba__layer--before" aria-hidden="true">
+          {mosaic(s.lat, s.lng, s.before.tile_url).map((t) => (
+            <img src={t.src} alt="" loading="lazy" decoding="async" style={`left:${t.left}%;top:${t.top}%`} />
+          ))}
+        </div>
+        <div class="ba__layer ba__layer--after" aria-hidden="true">
+          {mosaic(s.lat, s.lng, s.after.tile_url).map((t) => (
+            <img src={t.src} alt="" loading="lazy" decoding="async" style={`left:${t.left}%;top:${t.top}%`} />
+          ))}
+        </div>
+        <span class="ba__tag ba__tag--before">{month(s.before.captured)}</span>
+        <span class="ba__tag ba__tag--after">{month(s.after.captured)}</span>
+        <span class="ba__handle" aria-hidden="true"></span>
+        <input
+          class="ba__range"
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          aria-label={`Compare ${s.title}: left shows ${month(s.before.captured)}, right shows ${month(s.after.captured)}`}
+          data-ba-range
+        />
+      </div>
+      <figcaption class="ba__caption">
+        <span>
+          {s.title}, from above. Before: captured {formatDate(s.before.captured)} ({s.before.provider}). After: captured
+          {' '}{formatDate(s.after.captured)} ({s.after.provider}). Imagery: Esri World Imagery Wayback.
+        </span>
+        <Grade status={s.status} source={s.source_url} />
+        <span class="ba__approx">Centred on the approximate station position.</span>
+      </figcaption>
+    </figure>
+  ))}
+
+  {pairs.length > 0 && (
+    <div class="ba__photos">
+      <h3 class="ba__photos-title">From the ground</h3>
+      <ul>
+        {pairs.map((p) => (
+          <li>
+            <figure>
+              <div class="ba__pair">
+                <img src={p.before.src} alt={p.before.alt} loading="lazy" />
+                <img src={p.after.src} alt={p.after.alt} loading="lazy" />
+              </div>
+              <figcaption class="ba__caption">
+                {p.place}: {formatDate(p.before.date)} and {formatDate(p.after.date)}. Photos: {p.credit}.
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</section>
+
+<style>
+  .ba__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-bottom: var(--s-4);
+  }
+  .ba__tab {
+    min-height: 44px;
+    padding: 0 var(--s-4);
+    font: inherit;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: transparent;
+    border: var(--rule-w) solid var(--rule);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease-out), color 0.2s, border-color 0.2s;
+  }
+  .ba__tab:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .ba__tab[aria-pressed='true'] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  .ba__spot {
+    margin: 0;
+  }
+  .ba__frame {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    max-height: 78vh;
+    overflow: hidden;
+    background: var(--paper-2);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+    touch-action: pan-y;
+  }
+  @media (min-width: 64rem) {
+    .ba__frame {
+      aspect-ratio: 16 / 9;
+    }
+  }
+  .ba__layer {
+    position: absolute;
+    inset: 0;
+  }
+  .ba__layer img {
+    position: absolute;
+    width: 25%;
+    height: 33.3334%;
+    max-width: none;
+  }
+  @media (min-width: 64rem) {
+    /* wider frame: same imagery, cropped top and bottom */
+    .ba__layer {
+      inset: -16.67% 0;
+    }
+  }
+  .ba__layer--after {
+    clip-path: inset(0 0 0 var(--pos));
+  }
+  .ba__handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    width: 4px;
+    translate: -50% 0;
+    background: var(--signal);
+    pointer-events: none;
+  }
+  .ba__handle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.6rem;
+    height: 2.6rem;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: var(--signal)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6 3 12l6 6M15 6l6 6-6 6' fill='none' stroke='%230c1422' stroke-width='2.5'/%3E%3C/svg%3E")
+      center / 60% no-repeat;
+  }
+  .ba__range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+  .ba__frame:has(.ba__range:focus-visible) {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+  .ba__tag {
+    position: absolute;
+    top: var(--s-3);
+    padding: 0.2em 0.6em;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-1);
+    text-transform: uppercase;
+    background: var(--paper);
+    color: var(--ink);
+    pointer-events: none;
+  }
+  .ba__tag--before {
+    left: var(--s-3);
+  }
+  .ba__tag--after {
+    right: var(--s-3);
+    background: var(--signal);
+    color: var(--on-signal);
+  }
+  .ba__caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2) var(--s-3);
+    margin-top: var(--s-3);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+  .ba__approx {
+    color: var(--ink-3);
+  }
+  .ba__photos {
+    margin-top: var(--s-7);
+  }
+  .ba__photos-title {
+    font-size: var(--step-2);
+    text-transform: uppercase;
+    margin-bottom: var(--s-4);
+  }
+  .ba__photos ul {
+    display: grid;
+    gap: var(--s-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ba__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-2);
+  }
+</style>
+
+<script>
+  // Tabs choose the spot; the range moves the divider. Works on keyboard and touch.
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((root) => {
+    const tabs = root.querySelectorAll<HTMLButtonElement>('[data-ba-tab]');
+    tabs.forEach((tab) =>
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
+        root.querySelectorAll<HTMLElement>('[data-ba-spot]').forEach((s) => (s.hidden = s.dataset.baSpot !== tab.dataset.baTab));
+      }),
+    );
+    root.querySelectorAll<HTMLInputElement>('[data-ba-range]').forEach((range) => {
+      const frame = range.closest<HTMLElement>('.ba__frame')!;
+      range.addEventListener('input', () => frame.style.setProperty('--pos', `${range.value}%`));
+    });
+  });
+</script>

@@ -12,7 +12,7 @@ Live site: https://line12-tracker.pages.dev (after the Cloudflare Pages setup be
 - GSAP (ScrollTrigger, SplitText) and Lenis for motion, all disabled under `prefers-reduced-motion`
 - Fonts: Anek Latin, Anek Devanagari and Mukta (Ek Type, Mumbai), self-hosted through Fontsource
 - Hosting: Cloudflare Pages, deployed from this GitHub repo
-- Later phases: MapLibre GL (map), Three.js (3D), a Cloudflare Worker with D1 and cron (news and video feed)
+- MapLibre GL on OpenFreeMap tiles for the map; Esri Wayback imagery for before/after; Three.js for 3D. Heavy parts load only when their section is near.
 
 ## Project layout
 
@@ -26,6 +26,7 @@ src/
 scripts/
   validate-data.mjs       Checks every data entry has source_url, last_verified and a valid status.
   draw-lead-picture.py    Generates the isometric lead picture (src/components/LeadPicture.astro).
+  build-wayback.mjs       Picks before/after satellite imagery and capture dates (writes src/data/beforeafter.json).
   capture.mjs             Dev-only screenshots for design review (needs local Chrome).
 SOURCES.md         Every source used, with open questions.
 PRODUCT.md         Product context for design work.
@@ -66,12 +67,17 @@ Do this once, in the Cloudflare dashboard:
 
 After that, every push to `main` deploys automatically, and every pull request gets a preview URL.
 
-## Secrets
+## Environment variables (all optional)
 
-The site itself needs no secrets. The news and video Worker (Phase 5) will need a YouTube Data API key:
+| Variable | What it does |
+|---|---|
+| `PUBLIC_MAPILLARY_TOKEN` | Mapillary client token. Shows the nearest street-level photo (with its capture date) for each station. Free: create one at mapillary.com/dashboard/developers. |
+| `PUBLIC_STREET_LEVEL_PROVIDER` | `mapillary` (default) or `google`. |
+| `PUBLIC_GOOGLE_MAPS_KEY` | Only for `google`: a Maps Embed API key restricted to your domain. Needs a Google billing account. |
 
-- Production: `npx wrangler secret put YOUTUBE_API_KEY` (from the Worker's folder).
-- Local development: put it in a `.dev.vars` file. `.dev.vars` is in `.gitignore`. Never commit it.
+`PUBLIC_` values are built into the page, so only use client tokens restricted to your domain. Set them in Cloudflare Pages > Settings > Environment variables, or locally in `.env` (gitignored). Without them the site shows "Open in Mapillary / Street View" links instead.
+
+There are no server secrets: the site is fully static.
 
 ## How to update the facts
 

@@ -52,7 +52,17 @@ Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refus
 - Method: parse the table, convert easting and northing to latitude and longitude, and interpolate each station at its DPR chainage.
 - Assumption: WGS84, UTM zone 43N. The DPR does not state the datum. If it is Everest 1830, positions can be off by a few hundred metres.
 - Check: consecutive points agree with their chainage spacing, and the start point falls at APMC Kalyan. Still, treat all positions as approximate.
+- Check (Phase 3, 2026-09-28): drawn over OpenStreetMap roads, the DPR line runs along Kalyan-Shilphata Road and leaves it near Manpada, and the Dombivli MIDC point falls on the road in Esri imagery that shows the new viaduct. The UTM 43N / WGS84 assumption holds at map scale. Positions stay marked approximate.
 - Limit: this is the 2019 alignment. It does not include Kalyan station (added later) or any later realignment. Kalyan station has no coordinates yet.
+
+## Map and imagery sources
+
+| Source | Used for | Licence / terms |
+|---|---|---|
+| [OpenFreeMap](https://openfreemap.org) vector tiles, [OpenMapTiles](https://openmaptiles.org) schema | Base map | Free, no key. Attribution shown on the map. |
+| [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors | Map data | ODbL, attribution shown |
+| [Esri World Imagery Wayback](https://livingatlas.arcgis.com/wayback/) | Before and after imagery (Maxar 10 May 2022, Vantor 12 Oct 2025) | Esri terms of use, attribution shown. Capture dates from Esri's imagery metadata service. |
+| [Mapillary](https://www.mapillary.com) (optional) | Street-level photos with capture dates | CC BY-SA 4.0, needs `PUBLIC_MAPILLARY_TOKEN` |
 
 ## Items that need your review
 
