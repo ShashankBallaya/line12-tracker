@@ -1,5 +1,10 @@
 ---
 import '../styles/global.css';
+import anekUrl from '@fontsource-variable/anek-latin/files/anek-latin-latin-standard-normal.woff2?url';
+import muktaUrl from '@fontsource/mukta/files/mukta-latin-400-normal.woff2?url';
+import { schematic } from '../lib/route';
+
+const pre = schematic({ width: 1000, top: 30, drop: 70, pad: 10, bottom: 30 });
 
 interface Props {
   title: string;
@@ -22,6 +27,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="theme-color" content="#0c1422" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#efe9de" media="(prefers-color-scheme: light)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={anekUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={muktaUrl} as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -49,10 +56,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       try {
         var t = localStorage.getItem('l12-theme');
         if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+        // The route-drawing preloader plays once per visit.
+        if (sessionStorage.getItem('l12-seen')) document.documentElement.classList.add('seen');
+        else sessionStorage.setItem('l12-seen', '1');
       } catch (e) {}
     </script>
   </head>
   <body>
+    <div class="preloader" aria-hidden="true">
+      <svg viewBox={`0 0 ${pre.width} ${pre.height}`} preserveAspectRatio="xMidYMid meet">
+        <path d={pre.path} pathLength="1" class="preloader__casing" />
+        <path d={pre.path} pathLength="1" class="preloader__core" />
+      </svg>
+    </div>
     <a class="skip-link" href="#main">Skip to the paper</a>
     <slot />
     <script>
@@ -60,6 +76,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       import '../scripts/theme';
       import '../scripts/countdown';
       import '../scripts/scenes';
+      import '../scripts/pointer';
     </script>
   </body>
 </html>

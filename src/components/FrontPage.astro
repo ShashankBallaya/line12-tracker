@@ -30,7 +30,7 @@ const { width: W, height: H, path, points: dots } = schematic();
       work at about {pct('Pile works')} per cent and U-girder erection at about {pct('U-girder')} per cent.
     </p>
     <p class="front__grade"><Grade status={progress.status} source={progress.source_url} /></p>
-    <a class="front__ride" href="#route">
+    <a class="front__ride" href="#route" data-magnetic>
       Ride the line
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" /></svg>
     </a>
@@ -50,7 +50,7 @@ const { width: W, height: H, path, points: dots } = schematic();
 
   <div class="front__picture scene-host" data-scene="viaduct"><LeadPicture /></div>
 
-  <a class="front__strip" href="#route" aria-label={`The route: ${stations.length} stations from ${first} to ${last}. Ride the line.`}>
+  <a class="front__strip" href="#route">
     <span class="front__strip-end front__strip-end--a">{first}</span>
     <svg class="front__strip-line" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path d={path} class="line-casing" vector-effect="non-scaling-stroke" />
@@ -60,7 +60,7 @@ const { width: W, height: H, path, points: dots } = schematic();
       {dots.map(([x, y]) => <span class="front__strip-dot" style={`left:${(x / W) * 100}%;top:${(y / H) * 100}%`}></span>)}
     </span>
     <span class="front__strip-end front__strip-end--b">{last}</span>
-    <span class="front__strip-meta num">{stations.length} stations<span aria-hidden="true"> / </span>{project.length_km.value} km</span>
+    <span class="front__strip-meta num">{stations.length} stations<span aria-hidden="true"> / </span>{project.length_km.value} km<span class="visually-hidden">. Ride the line.</span></span>
   </a>
 </section>
 

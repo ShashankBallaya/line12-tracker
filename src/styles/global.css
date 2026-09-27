@@ -181,12 +181,17 @@ time {
 .scene-host {
   position: relative;
 }
-.lead-3d {
+.lead {
   position: relative;
-  height: min(19rem, 40vh);
+}
+.lead-3d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 .scene-host.is-live .lead > svg {
-  display: none;
+  visibility: hidden;
 }
 .scene-canvas {
   animation: scene-in 0.8s var(--ease-out) both;
@@ -201,6 +206,129 @@ time {
   inset: 0;
   width: 100% !important;
   height: 100% !important;
+}
+
+/* Newsprint grain over everything, very faint (public/grain.png: generated noise, seed 1212). */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  background: url('/grain.png') repeat;
+  background-size: 96px;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+}
+:root[data-theme='dark'] body::after {
+  mix-blend-mode: screen;
+  opacity: 0.035;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) body::after {
+    mix-blend-mode: screen;
+    opacity: 0.035;
+  }
+}
+
+/* Preloader: the route draws itself once per visit, never blocking the page underneath. */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 0 8vw;
+  background: var(--paper);
+  pointer-events: none;
+  animation: preloader-out 0.45s var(--ease-out) 1.05s both;
+}
+.preloader svg {
+  width: min(70rem, 100%);
+  height: auto;
+  overflow: visible;
+}
+.preloader path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: preloader-draw 0.95s var(--ease-out) forwards;
+}
+.preloader__casing {
+  stroke: var(--signal-graphic);
+  stroke-width: 22;
+}
+.preloader__core {
+  stroke: var(--paper);
+  stroke-width: 9;
+  animation-delay: 0.08s !important;
+}
+@keyframes preloader-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes preloader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.seen .preloader {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    display: none;
+  }
+}
+
+/* Cursor ring (mouse only, see scripts/pointer.ts). */
+.cursor-ring {
+  position: fixed;
+  top: -14px;
+  left: -14px;
+  z-index: 150;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--signal-graphic);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, width 0.25s var(--ease-out), height 0.25s var(--ease-out), top 0.25s var(--ease-out), left 0.25s var(--ease-out), background-color 0.25s;
+}
+.cursor-ring.is-on {
+  opacity: 1;
+}
+.cursor-ring.is-hot {
+  top: -24px;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  background: color-mix(in srgb, var(--signal) 18%, transparent);
+}
+[data-magnetic] {
+  transition: transform 0.35s var(--ease-out);
+}
+
+/* Edition switch: the new edition wipes in as a circle from the switch. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: edition-in 0.7s var(--ease-out);
+}
+@keyframes edition-in {
+  from {
+    clip-path: circle(0 at var(--vt-x, 90%) var(--vt-y, 8%));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 90%) var(--vt-y, 8%));
+  }
 }
 
 /* Small source line under facts. */

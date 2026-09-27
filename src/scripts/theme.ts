@@ -20,9 +20,22 @@ function render() {
   button?.setAttribute('aria-label', theme === 'dark' ? 'Switch to the light morning edition' : 'Switch to the dark night edition');
 }
 
-button?.addEventListener('click', () => {
+button?.addEventListener('click', (event) => {
   const next = current() === 'dark' ? 'light' : 'dark';
-  root.dataset.theme = next;
+  const apply = () => {
+    root.dataset.theme = next;
+  };
+  // The new edition wipes in as a circle from the switch (View Transitions, where supported).
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+  if (doc.startViewTransition && !reduced) {
+    const r = button.getBoundingClientRect();
+    root.style.setProperty('--vt-x', `${event.clientX || r.left + r.width / 2}px`);
+    root.style.setProperty('--vt-y', `${event.clientY || r.top + r.height / 2}px`);
+    doc.startViewTransition(apply);
+  } else {
+    apply();
+  }
   try {
     localStorage.setItem('l12-theme', next);
   } catch {

@@ -8,10 +8,17 @@ import { createStage, lightRig, box, flat, buildTrain, textTexture } from './com
 
 export async function mount(host: HTMLElement, { reduced }: { reduced: boolean }) {
   // The canvas gets its own box above the figure caption; the drawing is hidden once live.
+  // The canvas sits exactly over the drawing's box, so swapping them never moves the page.
   const fig = host.querySelector('.lead') ?? host;
+  const drawing = fig.querySelector('svg');
   const frame = document.createElement('div');
   frame.className = 'lead-3d';
   fig.prepend(frame);
+  if (drawing) {
+    const fit = () => (frame.style.height = `${drawing.getBoundingClientRect().height}px`);
+    fit();
+    new ResizeObserver(fit).observe(drawing);
+  }
   const stage = createStage(frame, { shadows: true, animate: !reduced });
   const { scene } = stage;
   lightRig(scene, { shadows: true, span: 110 });
