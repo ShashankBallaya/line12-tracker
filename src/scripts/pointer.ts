@@ -41,9 +41,10 @@ if (fine && !reduced) {
       const r = el.getBoundingClientRect();
       const dx = e.clientX - (r.left + r.width / 2);
       const dy = e.clientY - (r.top + r.height / 2);
-      el.style.transform = `translate(${dx * 0.22}px, ${dy * 0.32}px)`;
+      // `translate`, not `transform`, so the :active press scale still applies.
+      el.style.translate = `${dx * 0.22}px ${dy * 0.32}px`;
     });
-    el.addEventListener('pointerleave', () => (el.style.transform = ''));
+    el.addEventListener('pointerleave', () => (el.style.translate = ''));
   });
 }
 

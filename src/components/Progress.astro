@@ -61,7 +61,7 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
     <p><Grade status={progress.status} source={progress.source_url} /></p>
 
     <div class="overall">
-      <p class="overall__pct num">{overall.percent_complete.toFixed(2)}<span class="work__unit">%</span></p>
+      <p class="overall__pct num"><span data-count={overall.percent_complete} data-decimals="2">{overall.percent_complete.toFixed(2)}</span><span class="work__unit">%</span></p>
       <p class="overall__text">
         <strong>Whole line, as reported on <time datetime={overall.as_of}>{formatDate(overall.as_of)}</time>.</strong>{' '}
         Loksatta quotes unnamed MMRDA sources. MMRDA's table above gives no overall figure, and the report does not

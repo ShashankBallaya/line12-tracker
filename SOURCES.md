@@ -92,6 +92,7 @@ Nothing below is on the site yet.
 4. **Nilje depot layout drawing.** Shows stabling and inspection sheds, internal roads, a 2.22 ha TOD green area and 2.30 ha staff quarters land. Not used until sourced.
 5. **Station elevation, section and render (Dombivli).** Useful as a description for the stylized 3D station in Phase 4 (cantilevered roof over the platform, patterned side cladding). The drawings themselves are not reproduced.
 6. **Train render with "LINE 5" livery.** This is a Line 5 train, not Line 12. The Line 12 trains are not ordered yet. Not used.
+7. **Station finishing tenders (posts on X, 8 Sep 2026).** @bodkeitis and @Maha7Arindam report two MMRDA tenders for architectural finishing, roofing, facade and plumbing at 11 stations from Kalyan to **Katai Naka** (Kalyan, APMC Kalyan, Ganesh Nagar, Pisavali Gaon, Golavali; Dombivli MIDC, Sagaon, Sonarpada, Manpada, Kolegaon, Katai Naka). This supports lead 1. The posts are shown in Updates as reported; the station list changes only when the tender document is found.
 
 ## Not found
 

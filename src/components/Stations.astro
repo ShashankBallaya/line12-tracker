@@ -76,11 +76,15 @@ import { stations, stationsMeta } from '../lib/data';
     background: var(--signal-graphic);
     scale: 0 1;
     transform-origin: left;
-    transition: scale 0.35s var(--ease-out);
+    transition: scale 0.2s var(--ease-out);
   }
-  .entry__link:hover .entry__name::after,
   .entry__link:focus-visible .entry__name::after {
     scale: 1 1;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .entry__link:hover .entry__name::after {
+      scale: 1 1;
+    }
   }
   .entry__change {
     padding-left: calc(1.6rem + var(--s-3));

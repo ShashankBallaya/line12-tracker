@@ -68,7 +68,7 @@ const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata
       <a href={REPO_URL} rel="noopener" target="_blank">Source code</a>
     </p>
     <p class="colophon__credit">
-      Contributor{' '}
+      Maintained by{' '}
       <a href="https://x.com/SBallaya" rel="noopener me" target="_blank">@SBallaya<span class="visually-hidden"> on X (opens in a new tab)</span></a>
     </p>
   </div>
@@ -134,14 +134,16 @@ const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata
     font-weight: 700;
     text-decoration: none;
     border-radius: 4px;
-    transition: background-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
-  }
-  .correct__btn:hover {
-    background: var(--signal);
-    color: var(--on-signal);
+    transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), translate 0.35s var(--ease-out), scale 0.16s var(--ease-out);
   }
   .correct__btn:active {
-    transform: scale(0.98);
+    scale: 0.97;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .correct__btn:hover {
+      background: var(--signal);
+      color: var(--on-signal);
+    }
   }
 
   .colophon {

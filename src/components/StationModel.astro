@@ -97,11 +97,12 @@ import model from '../data/station-model.json';
     border-top-color: var(--signal-graphic);
     opacity: 0;
     translate: 0 1rem;
-    transition: opacity 0.4s var(--ease-out), translate 0.5s var(--ease-out);
+    transition: opacity 0.15s var(--ease-out), translate 0.15s var(--ease-out);
   }
   :global(.stm.is-flying) .stm__caption.is-current {
     opacity: 1;
     translate: 0 0;
+    transition: opacity 0.3s var(--ease-out) 0.06s, translate 0.3s var(--ease-out) 0.06s;
   }
   :global(.stm.is-flying) .stm__label {
     position: absolute;

@@ -59,8 +59,10 @@ a {
   transition: text-decoration-thickness 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
 
-a:hover {
-  text-decoration-thickness: 3px;
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration-thickness: 3px;
+  }
 }
 
 :focus-visible {
@@ -314,8 +316,9 @@ body::after {
   scale: 1.7;
   background: color-mix(in srgb, var(--signal) 18%, transparent);
 }
+/* Magnetic pull moves `translate`; presses use `scale`, so the two never fight. */
 [data-magnetic] {
-  transition: transform 0.35s var(--ease-out);
+  transition: translate 0.35s var(--ease-out), scale 0.16s var(--ease-out);
 }
 
 /* Edition switch: the new edition wipes in as a circle from the switch. */
@@ -325,7 +328,7 @@ body::after {
   mix-blend-mode: normal;
 }
 ::view-transition-new(root) {
-  animation: edition-in 0.7s var(--ease-out);
+  animation: edition-in 0.5s var(--ease-out);
 }
 @keyframes edition-in {
   from {

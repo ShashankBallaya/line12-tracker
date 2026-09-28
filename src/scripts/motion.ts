@@ -52,12 +52,12 @@ if (!reduceMotion) {
       const fmt = (v: number) => v.toLocaleString('en-IN', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
       ScrollTrigger.create({
         trigger: el,
-        start: 'top 88%',
+        start: 'top 90%',
         once: true,
         onEnter: () =>
           gsap.to(state, {
             v: end,
-            duration: 1.4,
+            duration: 1.2,
             ease: 'expo.out',
             onUpdate: () => (el.textContent = fmt(state.v)),
             onComplete: () => (el.textContent = fmt(end)),

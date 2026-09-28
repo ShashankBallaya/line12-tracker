@@ -1,10 +1,84 @@
 {
   "_meta": {
-    "description": "Hand-curated X (Twitter) posts, rendered with official embeds only. Add a post by appending an object to 'posts'. 'status' should be 'verified' once you have checked the post yourself.",
+    "description": "Hand-curated X (Twitter) posts, newest first. Each post is printed as a ruled row (date, author, text); X's script loads only when a reader asks for one full post with its photos. 'status' grades the post's claims, not the account: posts by enthusiasts are 'reported' at best. Dates come from the post ID.",
     "last_reviewed": "2026-09-28"
   },
-  "posts": [],
+  "posts": [
+    {
+      "url": "https://x.com/bodkeitis/status/2103876217736962323",
+      "author": "Swarup Bodke",
+      "handle": "bodkeitis",
+      "date": "2026-09-26",
+      "text": "Mumbai Metro line 12 First PPC (Precast Prestressed Concrete) Platform level erection for a metro station on Line 12. Station name undisclosed. (PCRO)",
+      "status": "reported",
+      "source_url": "https://x.com/bodkeitis/status/2103876217736962323",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "url": "https://x.com/jaideepkane/status/2103688510549172326",
+      "author": "JAIDEEP",
+      "handle": "jaideepkane",
+      "date": "2026-09-26",
+      "text": "Mumbai Metro Line 12 On Ground Progress Update. Pic1: Line 12 viaduct at 23 m height. Pic2: Line 12 viaduct at 23 m height. Pic3: Sonarpada casting yard. Pic4: Amandoot metro station work.",
+      "status": "reported",
+      "source_url": "https://x.com/jaideepkane/status/2103688510549172326",
+      "last_verified": "2026-09-28",
+      "notes": "Text shortened for the fallback: the post also links a full video and tags @MMRDAOfficial."
+    },
+    {
+      "url": "https://x.com/Maha7Arindam/status/2097325955882872835",
+      "author": "Arindam Mahapatra",
+      "handle": "Maha7Arindam",
+      "date": "2026-09-08",
+      "text": "MMRDA has issued 2 separate tenders for various works related to construction of 11 stations of Line 12 between Kalyan and Katai Naka.",
+      "status": "reported",
+      "source_url": "https://x.com/Maha7Arindam/status/2097325955882872835",
+      "last_verified": "2026-09-28",
+      "notes": "Lead: names Katai Naka as a Line 12 station. Not in the station list until the tender document is found."
+    },
+    {
+      "url": "https://x.com/bodkeitis/status/2097319559766179852",
+      "author": "Swarup Bodke",
+      "handle": "bodkeitis",
+      "date": "2026-09-08",
+      "text": "MMRDA has invited bids for architectural finishing, roof sheeting, external facade, water supply, sanitary installation and drainage for 6 stations of Mumbai Metro Line 12: Dombivali MIDC, Sagaon, Sonarpada, Manpada, Kolegaon, Katai Naka.",
+      "status": "reported",
+      "source_url": "https://x.com/bodkeitis/status/2097319559766179852",
+      "last_verified": "2026-09-28",
+      "notes": "Original is in capitals; written in sentence case for the fallback."
+    },
+    {
+      "url": "https://x.com/bodkeitis/status/2097308554667679826",
+      "author": "Swarup Bodke",
+      "handle": "bodkeitis",
+      "date": "2026-09-08",
+      "text": "MMRDA has invited bids for architectural finishing, roof sheeting, external facade, water supply, sanitary installation and drainage for 5 stations of Mumbai Metro Line 12: Kalyan, APMC Kalyan, Ganesh Nagar, Pisavali Gaon, Golavali.",
+      "status": "reported",
+      "source_url": "https://x.com/bodkeitis/status/2097308554667679826",
+      "last_verified": "2026-09-28",
+      "notes": "Original is in capitals; written in sentence case for the fallback."
+    },
+    {
+      "url": "https://x.com/Maha7Arindam/status/2092489255948025861",
+      "author": "Arindam Mahapatra",
+      "handle": "Maha7Arindam",
+      "date": "2026-08-26",
+      "text": "August 2026 update of Metro 12 between Kalyan and Kharghar (Amandoot). 1st LHS-RHS pillar casting work has started near Amandoot metro station (Pic 3). Supporting structures in station area has been cleared.",
+      "status": "reported",
+      "source_url": "https://x.com/Maha7Arindam/status/2092489255948025861",
+      "last_verified": "2026-09-28"
+    }
+  ],
   "candidates": [
+    {
+      "url": "https://x.com/haldilal/status/1936701290131619876",
+      "account": "@haldilal (DNT)",
+      "topic": "Opinion on why work is fast (22 Jun 2025)",
+      "status": "unverified",
+      "source_url": "https://x.com/haldilal/status/1936701290131619876",
+      "last_verified": "2026-09-28",
+      "notes": "Supplied by the owner on 2026-09-28. Held back: it is an opinion that guesses at political support and funding, with no facts to source. Move it into 'posts' if you still want it shown."
+    },
     {
       "url": "https://x.com/TheINIofficial/status/2023285293051424884",
       "account": "@TheINIofficial (Infra News India, not official)",

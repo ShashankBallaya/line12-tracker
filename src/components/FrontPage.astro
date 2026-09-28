@@ -128,18 +128,20 @@ const { width: W, height: H, path, points: dots } = schematic();
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 4px;
-    transition: transform 0.3s var(--ease-out), background-color 0.2s;
+    transition: translate 0.35s var(--ease-out), scale 0.16s var(--ease-out);
   }
   .front__ride svg {
     width: 1.3em;
     height: 1.3em;
-    transition: transform 0.3s var(--ease-out);
-  }
-  .front__ride:hover svg {
-    transform: translateY(3px);
+    transition: transform 0.2s var(--ease-out);
   }
   .front__ride:active {
-    transform: scale(0.98);
+    scale: 0.97;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .front__ride:hover svg {
+      transform: translateY(3px);
+    }
   }
   .front__countdown {
     display: grid;
@@ -213,10 +215,12 @@ const { width: W, height: H, path, points: dots } = schematic();
     border-radius: 50%;
     background: var(--ink);
     border: 2.5px solid var(--paper);
-    transition: scale 0.3s var(--ease-out);
+    transition: scale 0.2s var(--ease-out);
   }
-  .front__strip:hover .front__strip-dot {
-    scale: 1.2;
+  @media (hover: hover) and (pointer: fine) {
+    .front__strip:hover .front__strip-dot {
+      scale: 1.2;
+    }
   }
   .front__strip-end--a {
     grid-area: 1 / 1;

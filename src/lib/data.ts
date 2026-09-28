@@ -28,7 +28,16 @@ export const tenders = tendersJson.tenders;
 export const contractors = contractorsJson.contractors;
 export const excludedClaims = contractorsJson.excluded_claims;
 export const rollingstock = rollingstockJson;
-export const socialPosts = socialJson.posts as { url: string; status: Grade; source_url: string; last_verified: string }[];
+export const socialPosts = socialJson.posts as {
+  url: string;
+  author: string;
+  handle: string;
+  date: string;
+  text: string;
+  status: Grade;
+  source_url: string;
+  last_verified: string;
+}[];
 
 export type Station = (typeof stations)[number];
 export type TimelineEvent = (typeof timeline)[number];

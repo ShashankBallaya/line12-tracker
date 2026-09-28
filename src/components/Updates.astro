@@ -34,14 +34,35 @@ const latest = timeline
       {socialPosts.length === 0 ? (
         <div class="empty">
           <p class="empty__head">No posts picked yet.</p>
-          <p>Posts appear here only after a person has checked them. They are shown with X's official embed.</p>
+          <p>Posts appear here only after a person has checked them.</p>
         </div>
       ) : (
-        <ul class="posts">
-          {socialPosts.map((p) => (
-            <li><blockquote class="twitter-tweet" data-dnt="true"><a href={p.url}>View post on X</a></blockquote></li>
-          ))}
-        </ul>
+        <>
+          <p class="posts__note">Posts by people who follow the project, not by MMRDA. Their claims count as reported.</p>
+          {/* A ruled list like the reports. X's script loads only when a reader asks for one full post. */}
+          <ol class="posts">
+            {socialPosts.map((p) => {
+              const id = p.url.split('/status/')[1].split(/[?/]/)[0];
+              return (
+                <li class="post">
+                  <p class="post__date num"><time datetime={p.date}>{formatDate(p.date)}</time></p>
+                  <div class="post__body">
+                    <p class="post__by">{p.author} <span class="post__handle">@{p.handle}</span></p>
+                    <p class="post__text">{p.text}</p>
+                    <p class="post__meta">
+                      <Grade status={p.status} compact noSource />
+                      <a href={p.url} target="_blank" rel="noopener">Open on X<span class="visually-hidden"> (opens in a new tab)</span></a>
+                      <button class="post__more" type="button" aria-expanded="false" aria-controls={`xpost-${id}`} data-x-show={id}>
+                        <span data-x-label>Show full post</span>
+                      </button>
+                    </p>
+                    <div class="post__embed" id={`xpost-${id}`} hidden aria-live="polite"></div>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </>
       )}
     </div>
   </div>
@@ -90,8 +111,10 @@ const latest = timeline
     font-weight: 700;
     text-decoration-color: transparent;
   }
-  .report__title:hover {
-    text-decoration-color: var(--signal-line);
+  @media (hover: hover) and (pointer: fine) {
+    .report__title:hover {
+      text-decoration-color: var(--signal-line);
+    }
   }
   .report__meta {
     display: flex;
@@ -117,9 +140,120 @@ const latest = timeline
     color: var(--ink);
     font-size: var(--step-1);
   }
+  .posts__note {
+    max-width: var(--measure);
+    margin-bottom: var(--s-3);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+  /* Same grammar as .reports: hairline rows, the date as a condensed figure on the left. */
   .posts {
     margin: 0;
     padding: 0;
     list-style: none;
+    border-top: var(--rule-w) solid var(--rule);
+  }
+  .post {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--s-1) var(--s-4);
+    padding-block: var(--s-3);
+    border-bottom: var(--rule-w) solid var(--rule);
+  }
+  .post__date {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-1);
+    line-height: 1.1;
+  }
+  .post__body {
+    display: grid;
+    gap: var(--s-1);
+    min-width: 0;
+  }
+  .post__by {
+    font-weight: 700;
+  }
+  .post__handle {
+    font-weight: 400;
+    color: var(--ink-3);
+  }
+  .post__text {
+    color: var(--ink-2);
+    overflow-wrap: anywhere;
+  }
+  .post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--s-3);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+  /* A text control, not a box: it opens more of the row, it does not start a task. */
+  .post__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    min-height: 44px;
+    padding: 0;
+    font: inherit;
+    font-weight: 500;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .post__more span {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--signal-line);
+    transition: text-decoration-thickness 0.2s var(--ease-out);
+  }
+  .post__more::after {
+    content: '';
+    width: 0.42em;
+    height: 0.42em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    rotate: 45deg;
+    translate: 0 -0.12em;
+    transition: rotate 0.2s var(--ease-out), translate 0.2s var(--ease-out);
+  }
+  .post__more[aria-expanded='true']::after {
+    rotate: 225deg;
+    translate: 0 0.12em;
+  }
+  .post__more[aria-busy='true'] {
+    color: var(--ink-3);
+    cursor: progress;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .post__more:hover span {
+      text-decoration-thickness: 3px;
+    }
+  }
+  .post__embed {
+    padding-top: var(--s-1);
+  }
+  .post__embed[hidden] {
+    display: none;
+  }
+  .post__embed :global(.twitter-tweet-rendered),
+  .post__embed :global(iframe) {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  .post__embed :global(.post__fail) {
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+  /* On a phone the date sits above the post like a dateline, so the text gets the full width. */
+  @media (max-width: 30rem) {
+    .post {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 </style>

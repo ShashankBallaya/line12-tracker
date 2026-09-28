@@ -131,11 +131,16 @@ const inside = [
     border: var(--rule-w) solid var(--rule);
     border-radius: 4px;
     cursor: pointer;
-    transition: border-color 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
+    transition: border-color 0.2s var(--ease-out), background-color 0.2s var(--ease-out), translate 0.35s var(--ease-out), scale 0.16s var(--ease-out);
   }
-  .theme-toggle:hover {
-    border-color: var(--ink);
-    background: var(--paper-2);
+  .theme-toggle:active {
+    scale: 0.97;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .theme-toggle:hover {
+      border-color: var(--ink);
+      background: var(--paper-2);
+    }
   }
   .theme-toggle svg {
     width: 1.1rem;
@@ -184,14 +189,20 @@ const inside = [
     background: var(--signal-graphic);
     scale: 0 1;
     transform-origin: left;
-    transition: scale 0.3s var(--ease-out);
+    transition: scale 0.2s var(--ease-out);
   }
-  .masthead__inside a:hover,
   .masthead__inside a:focus-visible {
     color: var(--ink);
   }
-  .masthead__inside a:hover::after,
   .masthead__inside a:focus-visible::after {
     scale: 1 1;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .masthead__inside a:hover {
+      color: var(--ink);
+    }
+    .masthead__inside a:hover::after {
+      scale: 1 1;
+    }
   }
 </style>
