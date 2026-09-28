@@ -27,28 +27,28 @@ colors:
   night-halftone: "rgb(236 229 216 / 0.09)"
 typography:
   display:
-    fontFamily: "'Anek Latin Variable', 'Anek Devanagari Variable', system-ui, sans-serif"
+    fontFamily: "'Anek Latin Variable', system-ui, sans-serif"
     fontSize: "clamp(2.8rem, 1.7rem + 4.4vw, 6rem)"
     fontWeight: 800
     lineHeight: 0.88
     letterSpacing: "-0.02em"
     fontVariation: "'wdth' 75"
   headline:
-    fontFamily: "'Anek Latin Variable', 'Anek Devanagari Variable', system-ui, sans-serif"
+    fontFamily: "'Anek Latin Variable', system-ui, sans-serif"
     fontSize: "clamp(2.1rem, 1.5rem + 2.4vw, 3.6rem)"
     fontWeight: 800
     lineHeight: 0.95
     letterSpacing: "-0.01em"
     fontVariation: "'wdth' 75"
   title:
-    fontFamily: "'Anek Latin Variable', 'Anek Devanagari Variable', system-ui, sans-serif"
+    fontFamily: "'Anek Latin Variable', system-ui, sans-serif"
     fontSize: "clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem)"
     fontWeight: 800
     lineHeight: 1
     letterSpacing: "-0.01em"
     fontVariation: "'wdth' 75"
   subhead:
-    fontFamily: "'Anek Latin Variable', 'Anek Devanagari Variable', system-ui, sans-serif"
+    fontFamily: "'Anek Latin Variable', system-ui, sans-serif"
     fontSize: "clamp(1.25rem, 1.12rem + 0.55vw, 1.55rem)"
     fontWeight: 700
     lineHeight: 1.05
@@ -75,7 +75,7 @@ typography:
     lineHeight: 1.2
     letterSpacing: "0.06em"
   figure:
-    fontFamily: "'Anek Latin Variable', 'Anek Devanagari Variable', system-ui, sans-serif"
+    fontFamily: "'Anek Latin Variable', system-ui, sans-serif"
     fontSize: "clamp(2.8rem, 1.7rem + 4.4vw, 6rem)"
     fontWeight: 800
     lineHeight: 0.85
@@ -233,9 +233,9 @@ Warm newsprint and night navy, cut by one orange.
 
 ## Typography
 
-**Display Font:** Anek Latin Variable (with Anek Devanagari Variable, then system-ui)
+**Display Font:** Anek Latin Variable (then system-ui)
 **Body Font:** Mukta (with system-ui)
-**Masthead Marathi:** Anek Devanagari Variable, weight 700, for the decorative "मेट्रो १२" mark only.
+**Masthead Marathi:** Anek Devanagari, weight 700, for the decorative "मेट्रो १२" mark only, cut to its glyphs by scripts/subset-fonts.py.
 
 **Character:** A condensed, heavy headline grotesk shouts like a front page; a calm, open humanist body reads like the column underneath. The display face is always squeezed to 75% width (87.5% for subheads); the body is never condensed.
 

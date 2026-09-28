@@ -5,7 +5,9 @@
  */
 import * as maplibregl from 'maplibre-gl';
 import type { StyleSpecification, LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
+// Linked at mount, not imported: an imported stylesheet would be hoisted into the page head
+// and block the first paint for a map that loads only near its section.
+import mapCssUrl from 'maplibre-gl/dist/maplibre-gl.css?url';
 // MapLibre 6 runs tile parsing in a module worker; Vite bundles it and gives us its URL.
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 
@@ -90,7 +92,21 @@ function buildStyle(alignment: GeoJSON.FeatureCollection, stations: StationData[
   };
 }
 
+function loadMapCss(): Promise<void> {
+  if (document.querySelector('link[data-maplibre-css]')) return Promise.resolve();
+  return new Promise((resolve) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = mapCssUrl;
+    link.dataset.maplibreCss = '';
+    // Build the map either way: without the sheet only the controls look plain.
+    link.onload = link.onerror = () => resolve();
+    document.head.appendChild(link);
+  });
+}
+
 export async function mount(section: HTMLElement) {
+  await loadMapCss();
   const container = section.querySelector<HTMLElement>('[data-map]')!;
   const select = section.querySelector<HTMLSelectElement>('[data-map-select]')!;
   const nameEl = section.querySelector<HTMLElement>('[data-panel-name]')!;

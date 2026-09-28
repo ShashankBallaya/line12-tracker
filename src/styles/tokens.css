@@ -4,10 +4,57 @@
  * One signal colour (Line 12 orange). Everything else is navy, newsprint and concrete.
  */
 @import '@fontsource-variable/anek-latin/standard.css';
-@import '@fontsource-variable/anek-devanagari/standard.css';
 @import '@fontsource/mukta/400.css';
 @import '@fontsource/mukta/500.css';
 @import '@fontsource/mukta/700.css';
+
+/* Small cuts made by scripts/subset-fonts.py (rerun it if the mark changes).
+   The rupee faces come after the full faces, so for ₹ the browser picks them and does
+   not fetch each family's 15 to 81 KB latin-ext file for one symbol. */
+@font-face {
+  font-family: 'Anek Latin Variable';
+  font-style: normal;
+  font-weight: 100 800;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url('../assets/fonts/anek-latin-rupee.woff2') format('woff2-variations');
+  unicode-range: U+20B9;
+}
+@font-face {
+  font-family: 'Mukta';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/mukta-rupee-400.woff2') format('woff2');
+  unicode-range: U+20B9;
+}
+@font-face {
+  font-family: 'Mukta';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/mukta-rupee-500.woff2') format('woff2');
+  unicode-range: U+20B9;
+}
+@font-face {
+  font-family: 'Mukta';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/mukta-rupee-700.woff2') format('woff2');
+  unicode-range: U+20B9;
+}
+
+/* The masthead's Marathi mark only: Anek Devanagari at weight 700, cut to its 8 glyphs
+   (2.6 KB instead of 710 KB). */
+@font-face {
+  font-family: 'Anek Devanagari Mark';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/anek-devanagari-mark.woff2') format('woff2');
+  unicode-range: U+0900-097F;
+}
 
 :root {
   /* Morning edition (light) */
@@ -31,7 +78,7 @@
   color-scheme: light;
 
   /* Type */
-  --font-display: 'Anek Latin Variable', 'Anek Devanagari Variable', system-ui, sans-serif;
+  --font-display: 'Anek Latin Variable', system-ui, sans-serif;
   --font-body: 'Mukta', system-ui, sans-serif;
   --step--1: clamp(0.84rem, 0.8rem + 0.15vw, 0.92rem);
   --step-0: clamp(1.02rem, 0.97rem + 0.22vw, 1.14rem);
