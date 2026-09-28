@@ -37,13 +37,23 @@ if (!reduceMotion) {
     });
   });
 
-  // Everything below the first screen is set up when the browser is idle, so building
-  // the scroll animations never delays the first paint. It still runs long before a
-  // reader can scroll that far.
+  // Everything below the first screen is set up later, so building the scroll animations
+  // never delays the first paint. Wide screens: when the browser is idle. Phones: on the
+  // reader's first touch, scroll or key, as the 3D hero does; on a slow phone the setup is
+  // one long task, and until a reader moves the page already shows every final value.
   let rideTrigger: ScrollTrigger | null = null;
   const whenIdle = (fn: () => void) =>
     'requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 1200 }) : setTimeout(fn, 200);
-  whenIdle(() => {
+  const onFirstMove = (fn: () => void) => {
+    const events = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'keydown'] as const;
+    const go = () => {
+      events.forEach((t) => window.removeEventListener(t, go));
+      fn();
+    };
+    events.forEach((t) => window.addEventListener(t, go, { passive: true, once: true }));
+  };
+  const later = window.matchMedia('(max-width: 63.99rem)').matches ? onFirstMove : whenIdle;
+  later(() => {
     // ---------- Counters: the final value is already in the DOM; we count up to it ----------
     document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
       const end = Number(el.dataset.count);
@@ -123,7 +133,18 @@ if (!reduceMotion) {
       const y = rideTrigger.start + (Number(stationIndex) / (count - 1)) * (rideTrigger.end - rideTrigger.start);
       lenis.scrollTo(y + 1);
     } else {
-      lenis.scrollTo(target, { offset: -8 });
+      // Sections passed on the way lay out as they come near (content-visibility) and
+      // pins can resize, so the target may move during the scroll. Check on arrival and
+      // settle up to twice.
+      const land = (tries: number) =>
+        lenis.scrollTo(target, {
+          offset: -8,
+          duration: tries === 2 ? undefined : 0.4,
+          onComplete: () => {
+            if (tries > 0 && Math.abs(target.getBoundingClientRect().top - 8) > 2) land(tries - 1);
+          },
+        });
+      land(2);
     }
     history.replaceState(null, '', `#${id}`);
     if (target === document.getElementById('main') || id === 'main') target.focus?.();

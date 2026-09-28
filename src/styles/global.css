@@ -136,6 +136,24 @@ time {
   border-top: var(--rule-heavy) solid var(--rule-strong);
 }
 
+/* Off-screen sections skip layout and paint until they near the viewport, which cuts a
+   full-page layout about tenfold on a phone. 'auto' keeps each section's real size once it
+   has rendered. Pinned sections (ride, station, timeline) and the map measure themselves,
+   so they always lay out. */
+.section:not([data-ride], [data-stm], [data-timeline], [data-map-section]) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
+}
+/* Under 64rem the ride and the timeline do not pin (they are plain lists), and the ride's
+   19 stations are the largest block on the page. */
+@media (max-width: 63.99rem) {
+  .section[data-ride],
+  .section[data-timeline] {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 3000px;
+  }
+}
+
 /* Section head: the orange bar module sits on top of the heading, then the literal name. */
 .section-head {
   display: grid;
