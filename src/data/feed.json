@@ -1,9 +1,21 @@
 {
   "_meta": {
     "description": "Written by scripts/fetch-feed.mjs. Do not edit by hand: add an item's URL to exclude_urls in feed-sources.json to hide it. Items are found automatically and are not checked by a person.",
-    "updated_at": "2026-09-28T07:04:56.407Z"
+    "updated_at": "2026-09-28T19:44:02.963Z"
   },
   "news": [
+    {
+      "title": "Kalyan-Taloja Metro Line 12 Crosses 53% Work, May 2028 Target Set",
+      "outlet": "Urban Acres",
+      "date": "2026-09-28",
+      "url": "https://urbanacres.in/kalyan-taloja-metro-line-12-crosses-53-work-may-2028-target-set/"
+    },
+    {
+      "title": "Metro Line 12 Crosses 53% Completion as MMRDA Targets May 2028 Commissioning",
+      "outlet": "Re-Mumbai",
+      "date": "2026-09-28",
+      "url": "https://remumbai.in/2026/09/28/metro-line-12-crosses-53-completion-as-mmrda-targets-may-2028-commissioning/"
+    },
     {
       "title": "Panvel Civic Body Approves Water, Infrastructure Projects; Rejects LED Streetlight, Metro Line 12 Funding Proposals",
       "outlet": "Re-Mumbai",
