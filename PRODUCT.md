@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro (static-first, islands), TypeScript. GSAP + ScrollTrigger + SplitText, Lenis, Three.js (lazy), MapLibre GL. Cloudflare Pages for the site (GitHub repo `ShashankBallaya/line12-tracker`, public). A separate Cloudflare Worker with cron and D1 for the news and video feed (Phase 5). Set by the user's brief.
+Astro (static-first, islands), TypeScript. GSAP + ScrollTrigger + SplitText, Lenis, Three.js (lazy), MapLibre GL. Cloudflare Pages for the site (GitHub repo `ShashankBallaya/line12-tracker`, public). Set by the user's brief. News and video feed (Phase 5, deferred until the owner says to resume): a scheduled GitHub Actions job fetches Google News RSS and the YouTube Data API, commits a JSON file to `src/data/`, and Cloudflare Pages rebuilds. No Worker and no D1, so the feed stays on free tiers (decided 2026-09-28).
 
 ## Users
 
@@ -28,7 +28,7 @@ Every fact is sourced and graded (verified, reported, unverified, conflicting), 
 ## Operating Context
 
 - Many visitors arrive on phones, often on mobile data.
-- Data lives in `src/data/*.json`; the owner edits it by hand. News and videos update automatically every 6 hours (Phase 5).
+- Data lives in `src/data/*.json`; the owner edits it by hand. News and videos will update automatically every 6 hours through GitHub Actions (Phase 5, deferred).
 - Corrections come through GitHub issues on the public repo.
 
 ## Capabilities and Constraints
@@ -38,7 +38,7 @@ Every fact is sourced and graded (verified, reported, unverified, conflicting), 
 - No copied official drawings or renders. 3D models are original and stylized.
 - No em dashes anywhere in site copy.
 - English only at launch. Copy must be structured so Marathi can be added later.
-- No API keys in the repo (Wrangler secrets, `.dev.vars` gitignored).
+- No API keys in the repo (GitHub Actions secrets for the feed job, `.dev.vars` gitignored).
 - Targets: Lighthouse performance 90+, accessibility 100. Respect `prefers-reduced-motion`.
 - Target completion countdown uses the reported May 2028 target and must be labelled as reported, not official.
 - Line 12A is a separate project and stays out of Line 12 totals.

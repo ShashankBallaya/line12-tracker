@@ -10,6 +10,9 @@ import { STREET_LEVEL_PROVIDER, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../conf
 import alignment from '../data/alignment-dpr-2019.geojson?raw';
 
 const mapped = stations.filter((s) => s.location.lat !== null);
+// Same first choice as the map script.
+const first = mapped.find((s) => s.id === 'dombivli-midc') ?? mapped[0];
+const DPR_WHERE = 'approximate, from the 2019 project report';
 const alignMeta = JSON.parse(alignment).properties;
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
@@ -20,6 +23,7 @@ const payload = stations.map((s) => ({
   name: s.name,
   lat: s.location.lat,
   lng: s.location.lng,
+  where: s.location.label ?? DPR_WHERE,
   interchanges: s.interchanges.value,
   context: s.context.map((c) => ({ text: cap(c.text.replace(/^DPR: /, '')), status: c.status, source: c.source_url })),
   status: s.construction_status.value,
@@ -43,7 +47,7 @@ const streetConfig = {
 
   <div class="mapsec__layout">
     <div class="mapsec__map-wrap">
-      <div class="mapsec__map" data-map aria-label="Map of the Line 12 route" role="region"></div>
+      <div class="mapsec__map" data-map aria-label="Map of the Mumbai Metro Line 12 route" role="region"></div>
       <p class="mapsec__map-note">
         <span class="mapsec__key" aria-hidden="true"></span> Route under construction, positions approximate
         <Grade status={alignMeta.status} source={alignMeta.source_url} compact />
@@ -63,9 +67,9 @@ const streetConfig = {
       </label>
 
       <article class="panel" data-map-panel aria-live="polite">
-        <h3 class="panel__name" data-panel-name>{mapped[0].name}</h3>
+        <h3 class="panel__name" data-panel-name>{first.name}</h3>
         <p class="panel__coords num" data-panel-coords>
-          {mapped[0].location.lat?.toFixed(5)}, {mapped[0].location.lng?.toFixed(5)} (approximate)
+          {first.location.lat?.toFixed(5)}, {first.location.lng?.toFixed(5)} ({first.location.label ?? DPR_WHERE})
         </p>
         <div data-panel-body>
           <p class="panel__muted">Choose a station on the map or in the list.</p>

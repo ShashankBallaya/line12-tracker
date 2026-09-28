@@ -43,6 +43,7 @@ Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refus
 | Newsband | 20 Feb 2026 | Line 12A approval (related project) | https://www.newsband.in/article_detail/kalyantaloja-metro-12a-corridor-gets-state-approval |
 | Metro Rail News | 1 Jun 2026 | Systems and rolling stock tender, about Rs 4,882 cr | https://metrorailnews.in/mmrda-invites-bids-for-rolling-stock-and-signalling-systems-for-mumbai-metro-line-12/ |
 | Urban Acres | 1 Jun 2026 | Same tender, about Rs 4,900 cr | https://urbanacres.in/mumbai-metro-line-12-tender-advances-network/ |
+| Loksatta (Marathi) | 27 Sep 2026 | 53.87% overall progress (unnamed MMRDA sources), May 2028 target, 19-station list with Kalyan, Nilje depot about 45 ha | https://www.loksatta.com/mumbai/kalyan-taloja-metro-12-construction-status-mmrda-mumbai-print-news-rnb-99-6159080/ |
 | Wikipedia, Orange Line | read 28 Sep 2026 | Approval dates and claims marked unverified | https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro) |
 
 ## Derived data
@@ -53,7 +54,8 @@ Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refus
 - Assumption: WGS84, UTM zone 43N. The DPR does not state the datum. If it is Everest 1830, positions can be off by a few hundred metres.
 - Check: consecutive points agree with their chainage spacing, and the start point falls at APMC Kalyan. Still, treat all positions as approximate.
 - Check (Phase 3, 2026-09-28): drawn over OpenStreetMap roads, the DPR line runs along Kalyan-Shilphata Road and leaves it near Manpada, and the Dombivli MIDC point falls on the road in Esri imagery that shows the new viaduct. The UTM 43N / WGS84 assumption holds at map scale. Positions stay marked approximate.
-- Limit: this is the 2019 alignment. It does not include Kalyan station (added later) or any later realignment. Kalyan station has no coordinates yet.
+- Limit: this is the 2019 alignment. It does not include Kalyan station (added later) or any later realignment.
+- Kalyan station: 19°14'19.2"N 73°07'38.5"E (19.238667, 73.127361), supplied by the site owner on 2026-09-28. No published source gives this position; it is graded reported.
 
 ## Map and imagery sources
 

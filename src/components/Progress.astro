@@ -3,6 +3,7 @@ import Grade from './Grade.astro';
 import { project, timeline, formatDate } from '../lib/data';
 
 const progress = project.progress;
+const overall = progress.overall_reported;
 const systems = timeline.find((e) => e.id === 'systems-tender')!;
 
 /** Project phases. State is written in words and drawn as a pattern, never colour alone. */
@@ -58,6 +59,16 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
       ))}
     </ul>
     <p><Grade status={progress.status} source={progress.source_url} /></p>
+
+    <div class="overall">
+      <p class="overall__pct num">{overall.percent_complete.toFixed(2)}<span class="work__unit">%</span></p>
+      <p class="overall__text">
+        <strong>Whole line, as reported on <time datetime={overall.as_of}>{formatDate(overall.as_of)}</time>.</strong>{' '}
+        Loksatta quotes unnamed MMRDA sources. MMRDA's table above gives no overall figure, and the report does not
+        say how this one was measured, so do not compare it with the figures above.
+      </p>
+      <p><Grade status={overall.status} source={overall.source_url} /></p>
+    </div>
   </div>
 </section>
 
@@ -162,6 +173,33 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
     height: calc(var(--bar) * 2);
     background: var(--paper-2);
     box-shadow: inset 0 0 0 1px var(--rule);
+  }
+  .overall {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--s-2) var(--s-5);
+    padding-top: var(--s-5);
+    border-top: var(--rule-w) dashed var(--rule);
+  }
+  .overall__pct {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-4);
+    line-height: 0.9;
+  }
+  .overall__text {
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .overall > p:last-child {
+    grid-column: 1 / -1;
+  }
+  @media (max-width: 40rem) {
+    .overall {
+      grid-template-columns: 1fr;
+    }
   }
   .work__fill {
     display: block;

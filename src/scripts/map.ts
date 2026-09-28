@@ -18,6 +18,7 @@ interface StationData {
   name: string;
   lat: number | null;
   lng: number | null;
+  where: string;
   interchanges: string[];
   context: { text: string; status: string; source: string | null }[];
   status: string;
@@ -162,7 +163,7 @@ export async function mount(section: HTMLElement) {
     selected = id;
     select.value = id;
     nameEl.textContent = s.name;
-    coordsEl.textContent = `${s.lat.toFixed(5)}, ${s.lng!.toFixed(5)} (approximate, from the 2019 project report)`;
+    coordsEl.textContent = `${s.lat.toFixed(5)}, ${s.lng!.toFixed(5)} (${s.where})`;
     const rows: string[] = [];
     rows.push(`<li><span class="panel__label">Order</span>Station ${s.order} of ${stations.length}</li>`);
     if (s.interchanges.length) rows.push(`<li><span class="panel__label">Interchange</span>${s.interchanges.map(esc).join(', ')}</li>`);

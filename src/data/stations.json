@@ -15,13 +15,14 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": null,
-        "lat": null,
+        "lng": 73.127361,
+        "lat": 19.238667,
         "dpr_chainage_m": null,
-        "method": null,
-        "status": "unverified",
+        "method": "Supplied by the site owner on 2026-09-28 as 19°14'19.2\"N 73°07'38.5\"E",
+        "label": "supplied by the site owner, 28 Sep 2026",
+        "status": "reported",
         "source_url": null,
-        "notes": "No coordinates in any source found. Place manually in Phase 3."
+        "notes": "Not in the 2019 DPR, so no DPR coordinates exist. No published source gives this position. The 2019 route line on the map does not reach it."
       },
       "interchanges": {
         "value": [
@@ -37,7 +38,7 @@
         "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
-      "notes": "Not in the 2019 DPR. Added to Line 12 scope in civil contract CA-240. Rail Analysis (Dec 2025) reports a foot overbridge link to Central Railway at Kalyan Junction.",
+      "notes": "Not in the 2019 DPR. Added to Line 12 scope in civil contract CA-240. Rail Analysis (Dec 2025) reports a foot overbridge link to Central Railway at Kalyan Junction. Loksatta (27 Sep 2026) lists Kalyan first among the 19 stations.",
       "last_verified": "2026-09-28"
     },
     {

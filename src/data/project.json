@@ -132,7 +132,15 @@
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
     "last_verified": "2026-09-28",
-    "notes": "MMRDA updates this table monthly. The Worker pipeline in Phase 5 could re-check it."
+    "notes": "MMRDA updates this table monthly. The Phase 5 feed job could re-check it.",
+    "overall_reported": {
+      "percent_complete": 53.87,
+      "as_of": "2026-09-27",
+      "status": "reported",
+      "source_url": "https://www.loksatta.com/mumbai/kalyan-taloja-metro-12-construction-status-mmrda-mumbai-print-news-rnb-99-6159080/",
+      "last_verified": "2026-09-28",
+      "notes": "Loksatta (Marathi, 27 Sep 2026) quotes unnamed MMRDA sources: 53.87 per cent of the whole line is complete. MMRDA's own table gives no overall figure and the method behind this one is not stated, so it is not comparable with the activity figures."
+    }
   },
   "target_completion": {
     "value": "2028-05",
