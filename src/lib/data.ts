@@ -10,6 +10,7 @@ import tendersJson from '../data/tenders.json';
 import contractorsJson from '../data/contractors.json';
 import rollingstockJson from '../data/rollingstock.json';
 import socialJson from '../data/social.json';
+import feedJson from '../data/feed.json';
 
 /** How sure we are about a fact. See SOURCES.md. */
 export type Grade = 'verified' | 'reported' | 'unverified' | 'conflicting';
@@ -38,6 +39,13 @@ export const socialPosts = socialJson.posts as {
   source_url: string;
   last_verified: string;
 }[];
+
+/** Automatic feed (scripts/fetch-feed.mjs). Found by a script, not checked by a person. */
+export const feed = feedJson as {
+  _meta: { updated_at: string };
+  news: { title: string; outlet: string; date: string; url: string }[];
+  videos: { id: string; title: string; channel: string; date: string; url: string }[];
+};
 
 export type Station = (typeof stations)[number];
 export type TimelineEvent = (typeof timeline)[number];

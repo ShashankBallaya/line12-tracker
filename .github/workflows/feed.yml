@@ -1,0 +1,53 @@
+# Every 6 hours: fetch news and videos about Line 12 into src/data/feed.json.
+# Commits and deploys only when the feed finds something new.
+# Optional repository secret (Settings > Secrets and variables > Actions):
+#   YOUTUBE_API_KEY   a YouTube Data API v3 key. Without it, the job fetches news only.
+name: Update news feed
+
+on:
+  schedule:
+    # Minute 23 avoids the top-of-the-hour queue. Times are UTC.
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  deployments: write
+
+concurrency:
+  group: feed
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # The fetch and the data check use Node's own modules only, so no npm install.
+      - run: node scripts/fetch-feed.mjs
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      - run: node scripts/validate-data.mjs
+      - id: commit
+        run: |
+          if git diff --quiet -- src/data/feed.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "line12-feed[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/feed.json
+          git commit -m "Feed: new news or video items"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: fetch
+    if: needs.fetch.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit

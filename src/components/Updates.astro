@@ -1,18 +1,29 @@
 ---
 import Grade from './Grade.astro';
-import { socialPosts, timeline, formatDate, outletName } from '../lib/data';
+import { socialPosts, timeline, feed, formatDate, outletName } from '../lib/data';
 
 // Latest reports: dated, sourced milestones from the timeline, newest first.
 const latest = timeline
   .filter((e) => e.date && e.source_url && e.kind !== 'future')
   .sort((a, b) => (b.date as string).localeCompare(a.date as string))
   .slice(0, 6);
+
+// The automatic feed: the ten newest headlines the timeline does not already link to,
+// and videos only once the feed has found some.
+const bare = (u: string) => u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+const curated = new Set(timeline.map((e) => e.source_url && bare(e.source_url)).filter(Boolean));
+const news = feed.news.filter((n) => !curated.has(bare(n.url))).slice(0, 10);
+const videos = feed.videos.slice(0, 6);
+const feedUpdated = feed._meta.updated_at.slice(0, 10);
 ---
 
 <section id="updates" class="section page" aria-labelledby="updates-title">
   <header class="section-head">
     <h2 id="updates-title">Updates</h2>
-    <p>The latest reported milestones, each linked to the article or document, and posts on X picked by hand.</p>
+    <p>
+      The latest reported milestones, each linked to the article or document, posts on X picked by hand, and news
+      that a script finds every six hours.
+    </p>
   </header>
 
   <div class="updates">
@@ -66,6 +77,49 @@ const latest = timeline
       )}
     </div>
   </div>
+
+  <div class="updates updates--feed">
+    <div class="updates__col">
+      <h3 class="updates__title">In the news</h3>
+      <p class="posts__note">
+        Found automatically in the outlets' own feeds, not checked by a person. Last new item found{' '}
+        <time datetime={feedUpdated}>{formatDate(feedUpdated)}</time>.
+      </p>
+      {news.length === 0 ? (
+        <div class="empty">
+          <p class="empty__head">Nothing found yet.</p>
+          <p>Headlines about Line 12 appear here when an outlet publishes one.</p>
+        </div>
+      ) : (
+        <ol class="reports">
+          {news.map((n) => (
+            <li class="report">
+              <p class="report__date num"><time datetime={n.date}>{formatDate(n.date)}</time></p>
+              <a class="report__title" href={n.url} target="_blank" rel="noopener">{n.title}<span class="visually-hidden"> (opens in a new tab)</span></a>
+              <p class="report__meta">{n.outlet}</p>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+    {videos.length > 0 && (
+      <div class="updates__col">
+        <h3 class="updates__title">Videos</h3>
+        <p class="posts__note">Found automatically on YouTube, not checked by a person.</p>
+        <ol class="videos">
+          {videos.map((v) => (
+            <li class="video">
+              <a class="video__link" href={v.url} target="_blank" rel="noopener">
+                <img class="video__thumb" src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt="" width="320" height="180" loading="lazy" decoding="async" />
+                <span class="video__title">{v.title}<span class="visually-hidden"> (video on YouTube, opens in a new tab)</span></span>
+              </a>
+              <p class="report__meta">{v.channel}, <time datetime={v.date}>{formatDate(v.date)}</time></p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    )}
+  </div>
 </section>
 
 <style>
@@ -80,6 +134,45 @@ const latest = timeline
       grid-template-columns: 1.5fr 1fr;
       gap: var(--s-7);
     }
+  }
+  .updates--feed {
+    margin-top: var(--s-7);
+  }
+  .videos {
+    display: grid;
+    gap: var(--s-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: var(--rule-w) solid var(--rule);
+    padding-top: var(--s-3);
+  }
+  .video {
+    display: grid;
+    gap: var(--s-1);
+  }
+  .video__link {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: var(--s-3);
+    align-items: start;
+    font-weight: 700;
+    text-decoration-color: transparent;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .video__link:hover {
+      text-decoration-color: var(--signal-line);
+    }
+  }
+  .video__thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--paper-2);
+  }
+  .video .report__meta {
+    padding-left: calc(8rem + var(--s-3));
   }
   .updates__title {
     font-size: var(--step-2);

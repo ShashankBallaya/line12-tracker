@@ -77,18 +77,42 @@ In `src/data/project.json`, edit `target_completion`:
 Posts are never scraped. You choose them.
 
 1. Open the post on X and copy its URL.
-2. Add it to `posts` in `src/data/social.json`:
+2. Add it to `posts` in `src/data/social.json`, newest first:
 
 ```json
 {
   "url": "https://x.com/SomeAccount/status/1234567890",
-  "status": "verified",
+  "author": "Display Name",
+  "handle": "SomeAccount",
+  "date": "2026-10-01",
+  "text": "The post's text, as written.",
+  "status": "reported",
   "source_url": "https://x.com/SomeAccount/status/1234567890",
   "last_verified": "2026-10-01"
 }
 ```
 
-The site shows it with X's official embed. Only add posts you have read and checked.
+The site prints the post as a row (date, author, text). A reader can open X's full embed, with photos, from that row. `status` grades the post's claims: posts by people who follow the project are `reported` at best.
+
+### News and videos (automatic)
+
+A GitHub Actions job (`.github/workflows/feed.yml`) runs every 6 hours. It reads the outlets' own RSS feeds and, if a key is set, YouTube. It keeps only items about Line 12, writes `src/data/feed.json`, and commits and deploys only when it finds something new. Do not edit `feed.json` by hand.
+
+What you can change, in `src/data/feed-sources.json`:
+
+- **Hide an item:** add its URL to `exclude_urls`. The next run removes it.
+- **Add an outlet:** add an RSS feed to `news_feeds`. For a WordPress site, `https://site/?s=taloja&feed=rss2` gives its Line 12 articles. Do not add Google News: its feed is for personal readers only.
+- **Change what counts as Line 12:** edit the patterns in `match`.
+
+To run it by hand: GitHub > Actions > Update news feed > Run workflow. Or locally: `node scripts/fetch-feed.mjs`.
+
+**Videos need a YouTube key.** Without one, the job fetches news only and the Videos list stays hidden.
+
+1. In Google Cloud Console, create a project and enable **YouTube Data API v3**.
+2. Create an API key and restrict it to that API.
+3. In GitHub: Settings > Secrets and variables > Actions > New repository secret. Name it `YOUTUBE_API_KEY`.
+
+The job uses about 200 of the 10,000 free daily quota units for each run, so it stays free.
 
 ## Newer satellite imagery
 

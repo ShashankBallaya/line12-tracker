@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "description": "Written by scripts/fetch-feed.mjs. Do not edit by hand: add an item's URL to exclude_urls in feed-sources.json to hide it. Items are found automatically and are not checked by a person.",
+    "updated_at": "2026-09-28T07:04:56.407Z"
+  },
+  "news": [
+    {
+      "title": "Panvel Civic Body Approves Water, Infrastructure Projects; Rejects LED Streetlight, Metro Line 12 Funding Proposals",
+      "outlet": "Re-Mumbai",
+      "date": "2026-07-28",
+      "url": "https://remumbai.in/2026/07/28/panvel-civic-body-approves-water-infrastructure-projects-rejects-led-streetlight-metro-line-12-funding-proposals/"
+    },
+    {
+      "title": "MMRDA Announces Mumbai Metro Line 12 Extension at ₹8,415 Crore",
+      "outlet": "Metro Rail News",
+      "date": "2026-02-21",
+      "url": "https://metrorailnews.in/mumbai-metro-line-12-extension/"
+    },
+    {
+      "title": "MMRDA achieves milestone as Mumbai Metro Line-12 launches 200th U-Girder near Golavali",
+      "outlet": "Rail Analysis India",
+      "date": "2026-02-16",
+      "url": "https://railanalysis.in/metro/mmrda-achieves-milestone-as-mumbai-metro-line-12-launches-200th-u-girder-near-golavali/"
+    },
+    {
+      "title": "MMRDA’s Mumbai Metro Line-12 marks major milestone with 100th U-Girder launch near Dombivli",
+      "outlet": "Rail Analysis India",
+      "date": "2025-12-15",
+      "url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/"
+    }
+  ],
+  "videos": []
+}

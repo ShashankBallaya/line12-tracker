@@ -1,4 +1,6 @@
-# Builds the site and deploys it to Cloudflare Pages on every push to main.
+# Builds the site and deploys it to Cloudflare Pages on every push to main,
+# and when the feed job (feed.yml) commits new items (a push by a workflow
+# does not start other workflows, so feed.yml calls this one).
 # Needs two repository secrets (Settings > Secrets and variables > Actions):
 #   CLOUDFLARE_API_TOKEN   a token with "Cloudflare Pages: Edit" permission
 #   CLOUDFLARE_ACCOUNT_ID  your Cloudflare account ID
@@ -9,6 +11,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call:
+
+# One deploy at a time; a newer one replaces a queued one.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -19,6 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A called run must build the feed commit, not the commit that started the schedule.
+          ref: ${{ github.event_name == 'push' && github.sha || 'main' }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22

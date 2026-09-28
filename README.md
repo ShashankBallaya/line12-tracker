@@ -77,7 +77,7 @@ After that, every push to `main` deploys automatically, and every pull request g
 
 `PUBLIC_` values are built into the page, so only use client tokens restricted to your domain. Set them in Cloudflare Pages > Settings > Environment variables, or locally in `.env` (gitignored). Without them the site shows "Open in Mapillary / Street View" links instead.
 
-There are no server secrets: the site is fully static.
+The site itself is fully static. The news feed job has one optional GitHub Actions secret, `YOUTUBE_API_KEY` (see [UPDATING.md](UPDATING.md#news-and-videos-automatic)).
 
 ## How to update the facts
 
