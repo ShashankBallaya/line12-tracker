@@ -1,7 +1,8 @@
 {
   "_meta": {
-    "description": "Your own dated ground photos, shown as before/after pairs under the satellite comparison. Put the image files in public/photos/ and add a pair below. See UPDATING.md.",
+    "description": "Your own dated ground photos. 'pairs' are before/after pairs shown under the satellite comparison. 'stations' holds photos for each station page, keyed by the station id in stations.json. Put the image files in public/photos/ (location data removed) and add entries below. See UPDATING.md.",
     "last_reviewed": "2026-09-28"
   },
-  "pairs": []
+  "pairs": [],
+  "stations": {}
 }

@@ -45,6 +45,17 @@
   unicode-range: U+20B9;
 }
 
+/* Marathi text on the pages: the station names and a few fixed phrases, at weight 700, cut to the
+   glyphs HarfBuzz draws for them (about 6 KB). */
+@font-face {
+  font-family: 'Anek Devanagari Text';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/anek-devanagari-text.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+200C-200D;
+}
+
 /* The masthead's Marathi mark only: Anek Devanagari at weight 700, cut to its 8 glyphs
    (2.6 KB instead of 710 KB). */
 @font-face {

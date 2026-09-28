@@ -11,6 +11,7 @@ import contractorsJson from '../data/contractors.json';
 import rollingstockJson from '../data/rollingstock.json';
 import socialJson from '../data/social.json';
 import feedJson from '../data/feed.json';
+import photosJson from '../data/photos.json';
 
 /** How sure we are about a fact. See SOURCES.md. */
 export type Grade = 'verified' | 'reported' | 'unverified' | 'conflicting';
@@ -46,6 +47,18 @@ export const feed = feedJson as {
   news: { title: string; outlet: string; date: string; url: string }[];
   videos: { id: string; title: string; channel: string; date: string; url: string }[];
 };
+
+/** The owner's own dated ground photos for one station page. Never stock or official images. */
+export interface StationPhoto {
+  src: string;
+  alt: string;
+  date: string;
+  credit: string;
+  width: number;
+  height: number;
+  caption?: string;
+}
+export const stationPhotos = photosJson.stations as Record<string, StationPhoto[]>;
 
 export type Station = (typeof stations)[number];
 export type TimelineEvent = (typeof timeline)[number];

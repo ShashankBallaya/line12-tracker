@@ -114,6 +114,14 @@ To run it by hand: GitHub > Actions > Update news feed > Run workflow. Or locall
 
 The job uses about 200 of the 10,000 free daily quota units for each run, so it stays free.
 
+## Station pages, status page and search files
+
+These are built from the data files. You never edit them by hand:
+
+- `/stations/` and one page per station come from `src/data/stations.json`. A new station there gets its own page and a sitemap entry.
+- `/status/` answers common questions from `project.json`, `contractors.json` and `rollingstock.json`. When a fact changes there, the answer changes too.
+- `sitemap.xml` and `llms.txt` (a plain summary for AI assistants) are rebuilt on every deploy.
+
 ## Newer satellite imagery
 
 Esri adds new imagery releases every few weeks. To refresh the before/after dates:
@@ -139,3 +147,29 @@ It rewrites `src/data/beforeafter.json` with the latest release and its real cap
 ```
 
 The pair appears under the satellite comparison.
+
+### Photos on a station page
+
+Every station page has a photo slot beside its headline. Until you add a photo, it shows a dashed frame that says "No ground photo yet".
+
+1. Remove the location data from the photo first. Phone photos carry the exact GPS point where you took them. The site shows only the station and the date.
+2. Put the file in `public/photos/`, for example `sagaon-2026-10.jpg`. Keep it under 400 KB and at least 1200 px wide.
+3. Add it under `stations` in `src/data/photos.json`, keyed by the station id (the last part of the page address, for example `sagaon`):
+
+```json
+"stations": {
+  "sagaon": [
+    {
+      "src": "/photos/sagaon-2026-10.jpg",
+      "alt": "Piers for Sagaon station rising from the median of Kalyan-Shilphata Road",
+      "caption": "Looking towards Dombivli from the footpath",
+      "date": "2026-10-04",
+      "credit": "Shashank Ballaya",
+      "width": 1600,
+      "height": 1200
+    }
+  ]
+}
+```
+
+The first photo fills the slot. Any more appear under "More from the ground" further down the page. `width` and `height` are the file's real pixel size, so the page does not jump while the photo loads.

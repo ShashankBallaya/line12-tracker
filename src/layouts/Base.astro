@@ -3,16 +3,57 @@ import '../styles/global.css';
 import anekUrl from '@fontsource-variable/anek-latin/files/anek-latin-latin-standard-normal.woff2?url';
 import muktaUrl from '@fontsource/mukta/files/mukta-latin-400-normal.woff2?url';
 import { schematic } from '../lib/route';
+import { lastReviewed } from '../lib/data';
 
 const pre = schematic({ width: 1000, top: 30, drop: 70, pad: 10, bottom: 30 });
 
 interface Props {
   title: string;
   description: string;
+  /** Page-specific schema.org nodes, added to the site graph (breadcrumbs, stations, FAQ). */
+  schema?: Record<string, unknown>[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// The route-drawing preloader belongs to the front page; inside pages open straight on their answer.
+const front = Astro.url.pathname === '/';
+const siteUrl = Astro.site!.toString();
+// One graph per page: the site, the page, what it is about, then the page's own nodes.
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#site`,
+      name: 'Line 12 Tracker',
+      url: siteUrl,
+      inLanguage: 'en-IN',
+      publisher: { '@id': `${siteUrl}#maintainer` },
+    },
+    { '@type': 'Person', '@id': `${siteUrl}#maintainer`, name: 'Shashank Ballaya', url: 'https://x.com/SBallaya' },
+    {
+      '@type': 'Thing',
+      '@id': `${siteUrl}#line12`,
+      name: 'Mumbai Metro Line 12',
+      alternateName: ['Metro Line 12', 'Metro 12', 'Kalyan-Taloja Metro', 'Kalyan-Dombivli-Taloja Metro', 'Orange Line extension'],
+      description: 'An elevated metro line under construction from Kalyan to Taloja in the Mumbai Metropolitan Region, built by MMRDA.',
+      sameAs: ['https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)', 'https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview'],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#page`,
+      url: canonical.toString(),
+      name: title,
+      description,
+      inLanguage: 'en-IN',
+      isPartOf: { '@id': `${siteUrl}#site` },
+      about: { '@id': `${siteUrl}#line12` },
+      dateModified: lastReviewed,
+    },
+    ...schema,
+  ],
+};
 ---
 
 <!doctype html>
@@ -41,16 +82,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@SBallaya" />
     <meta name="author" content="Shashank Ballaya" />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Line 12 Tracker',
-      url: Astro.site?.toString(),
-      description,
-      inLanguage: 'en-IN',
-      author: { '@type': 'Person', name: 'Shashank Ballaya', url: 'https://x.com/SBallaya' },
-      about: { '@type': 'Thing', name: 'Mumbai Metro Line 12 (Kalyan to Taloja)' },
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
     <script is:inline>
       // Apply a saved theme before first paint. Storage can be blocked; the system theme is the fallback.
       try {
@@ -63,12 +95,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </script>
   </head>
   <body>
-    <div class="preloader" aria-hidden="true">
-      <svg viewBox={`0 0 ${pre.width} ${pre.height}`} preserveAspectRatio="xMidYMid meet">
-        <path d={pre.path} pathLength="1" class="preloader__casing" />
-        <path d={pre.path} pathLength="1" class="preloader__core" />
-      </svg>
-    </div>
+    {front && (
+      <div class="preloader" aria-hidden="true">
+        <svg viewBox={`0 0 ${pre.width} ${pre.height}`} preserveAspectRatio="xMidYMid meet">
+          <path d={pre.path} pathLength="1" class="preloader__casing" />
+          <path d={pre.path} pathLength="1" class="preloader__core" />
+        </svg>
+      </div>
+    )}
     <a class="skip-link" href="#main">Skip to the paper</a>
     <slot />
     <script>

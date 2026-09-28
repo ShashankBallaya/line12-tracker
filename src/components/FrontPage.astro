@@ -46,6 +46,7 @@ const { width: W, height: H, path, points: dots } = schematic();
       {formatDate(earlier.value)}. MMRDA's project page gives no date.
     </p>
     <p><Grade status={target.status} source={target.source_url} /></p>
+    <p class="front__status"><a href="/status/">Opening date and status, answered</a></p>
   </aside>
 
   <div class="front__picture scene-host" data-scene="viaduct"><LeadPicture /></div>
@@ -161,6 +162,12 @@ const { width: W, height: H, path, points: dots } = schematic();
     font-size: var(--step-4);
     line-height: 0.85;
     color: var(--ink);
+  }
+  .front__status a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 500;
   }
   .front__target {
     color: var(--ink-2);

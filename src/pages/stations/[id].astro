@@ -1,0 +1,230 @@
+---
+/**
+ * One page per station: everything the data holds about it, each fact with its grade.
+ * Built from src/data/stations.json; nothing here is typed by hand.
+ */
+import Base from '../../layouts/Base.astro';
+import Masthead from '../../components/Masthead.astro';
+import Colophon from '../../components/Colophon.astro';
+import Grade from '../../components/Grade.astro';
+import { stations, stationsMeta, stationPhotos, project, formatDate, type Station } from '../../lib/data';
+import '../../styles/inner.css';
+
+export function getStaticPaths() {
+  return stations.map((s, i) => ({ params: { id: s.id }, props: { i } }));
+}
+
+const { i } = Astro.props as { i: number };
+const s: Station = stations[i];
+const prev = stations[i - 1];
+const next = stations[i + 1];
+const total = stations.length;
+const loc = s.location as Station['location'] & { label?: string };
+const where = loc.label ?? 'approximate, from the 2019 project report';
+const ch = loc.dpr_chainage_m;
+const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+const target = project.target_completion;
+const site = Astro.site!.toString();
+// The maintainer's own dated photos, when there are any; otherwise the slot waits for them.
+const photos = stationPhotos[s.id] ?? [];
+const [lead, ...more] = photos;
+
+const title = `${s.name} Metro Station, Mumbai Metro Line 12 (Kalyan to Taloja)`;
+const description = `${s.name} is station ${s.order} of ${total} on Mumbai Metro Line 12, Kalyan to Taloja. Where it is, what is around it, interchanges and construction status, each with its source.`;
+
+const schema: Record<string, unknown>[] = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Line 12 Tracker', item: site },
+      { '@type': 'ListItem', position: 2, name: 'Stations', item: `${site}stations/` },
+      { '@type': 'ListItem', position: 3, name: s.name, item: `${site}stations/${s.id}/` },
+    ],
+  },
+  {
+    '@type': 'TrainStation',
+    name: `${s.name} metro station`,
+    alternateName: `${s.name_mr} मेट्रो स्थानक`,
+    description: `Elevated station ${s.order} of ${total} on Mumbai Metro Line 12 (Kalyan to Taloja). Under construction.`,
+    url: `${site}stations/${s.id}/`,
+    address: { '@type': 'PostalAddress', addressRegion: 'Maharashtra', addressCountry: 'IN' },
+    ...(loc.lat !== null ? { geo: { '@type': 'GeoCoordinates', latitude: loc.lat, longitude: loc.lng } } : {}),
+    containedInPlace: { '@id': `${site}#line12` },
+  },
+];
+---
+
+<Base title={title} description={description} schema={schema}>
+  <Masthead home={false} />
+  <main id="main" class="page inner">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Line 12</a></li>
+        <li><a href="/stations/">Stations</a></li>
+        <li aria-current="page">{s.name}</li>
+      </ol>
+    </nav>
+
+    <div class="inner__lead">
+      <header class="inner__head">
+        <h1 class="inner__title">{s.name} metro station</h1>
+        <p class="inner__mr mr" lang="mr">{s.name_mr} मेट्रो स्थानक</p>
+        <p class="inner__standfirst">
+          Station {s.order} of {total} on Mumbai Metro Line 12, which will run fully elevated from Kalyan to Taloja.{' '}
+          {s.type}. Under construction.
+        </p>
+      </header>
+
+      {lead ? (
+        <figure class="shot">
+          <img src={lead.src} alt={lead.alt} width={lead.width} height={lead.height} decoding="async" />
+          <figcaption>
+            {lead.caption && <span>{lead.caption}</span>}
+            <span class="shot__meta">Photo by {lead.credit}, <time datetime={lead.date}>{formatDate(lead.date)}</time></span>
+          </figcaption>
+        </figure>
+      ) : (
+        <figure class="shot shot--empty">
+          <div class="shot__frame">
+            <svg viewBox="0 0 48 36" aria-hidden="true" focusable="false">
+              <rect x="2" y="7" width="44" height="27" rx="2" fill="none" stroke="currentColor" stroke-width="2.5" />
+              <path d="M16 7l3-5h10l3 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+              <circle cx="24" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="2.5" />
+            </svg>
+            <p class="shot__empty-head">No ground photo yet</p>
+            <p>Dated photos of {s.name} from the street will appear here.</p>
+          </div>
+        </figure>
+      )}
+    </div>
+
+    <dl class="facts">
+      <div>
+        <dt>Where</dt>
+        <dd>
+          {loc.lat !== null ? (
+            <>
+              <p class="num">{loc.lat.toFixed(5)}, {loc.lng!.toFixed(5)} ({where})</p>
+              <p>
+                <a href="/#map">See it on the map</a>
+                <span aria-hidden="true"> / </span>
+                <a href={`https://www.openstreetmap.org/?mlat=${loc.lat}&mlon=${loc.lng}#map=17/${loc.lat}/${loc.lng}`} target="_blank" rel="noopener">OpenStreetMap<span class="visually-hidden"> (opens in a new tab)</span></a>
+              </p>
+            </>
+          ) : (
+            <p>Position not yet mapped.</p>
+          )}
+          <p class="grades"><Grade status={loc.status} source={loc.source_url} /></p>
+        </dd>
+      </div>
+
+      {ch !== null && (
+        <div>
+          <dt>Along the line</dt>
+          <dd>
+            <p>
+              {ch < 0 ? 'Where the 2019 alignment began' : `${km(ch)} km along the 2019 alignment`}{' '}
+              <span class="fact__note num">(DPR chainage {ch.toLocaleString('en-IN')} m)</span>
+            </p>
+          </dd>
+        </div>
+      )}
+
+      <div>
+        <dt>Next stations</dt>
+        <dd>
+          <ul>
+            {prev && <li>Towards Kalyan: <a href={`/stations/${prev.id}/`}>{prev.name}</a></li>}
+            {next && <li>Towards Taloja: <a href={`/stations/${next.id}/`}>{next.name}</a></li>}
+            {!prev && <li>{s.name} is the first station, at the Kalyan end.</li>}
+            {!next && <li>{s.name} is the last station, at the Taloja end.</li>}
+          </ul>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Interchange</dt>
+        <dd>
+          <p>{s.interchanges.value.length ? s.interchanges.value.join(', ') : 'None announced'}</p>
+          <p class="grades"><Grade status={s.interchanges.status} source={s.interchanges.source_url} /></p>
+        </dd>
+      </div>
+
+      {s.context.length > 0 && (
+        <div>
+          <dt>Around the station</dt>
+          <dd>
+            <ul class="graded">
+              {s.context.map((c) => (
+                <li>
+                  <span>{cap(c.text.replace(/^DPR: /, ''))}</span>
+                  <span class="grades"><Grade status={c.status} source={c.source_url} /></span>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      )}
+
+      <div>
+        <dt>Construction</dt>
+        <dd>
+          <p>{s.construction_status.value}</p>
+          {s.construction_status.notes && <p class="fact__note">{s.construction_status.notes}</p>}
+          <p class="grades"><Grade status={s.construction_status.status} source={s.construction_status.source_url} /></p>
+        </dd>
+      </div>
+
+      <div>
+        <dt>When it opens</dt>
+        <dd>
+          <p>
+            No date has been announced for this station on its own. For Line 12 as a whole, the reported target is{' '}
+            {formatDate(target.value)}; an earlier reported target was {formatDate(target.alternatives[0].value)}.
+          </p>
+          <p class="grades"><Grade status={target.status} source={target.source_url} /></p>
+          <p><a href="/status/">Line 12 status and opening date, answered</a></p>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Name</dt>
+        <dd>
+          <p>{s.name}{s.dpr_name && s.dpr_name !== s.name ? ` (the 2019 project report calls it ${s.dpr_name})` : ''}</p>
+          {s.notes && <p class="fact__note">{s.notes}</p>}
+          <p class="grades"><Grade status={s.name_status} source={s.name_source_url} /></p>
+          <p>In Marathi: <span class="mr" lang="mr">{s.name_mr}</span></p>
+          <p class="grades"><Grade status={stationsMeta.names_mr_status} source={stationsMeta.names_mr_source_url} /></p>
+        </dd>
+      </div>
+    </dl>
+
+    {more.length > 0 && (
+      <section class="inner__block" aria-labelledby="more-photos">
+        <h2 id="more-photos">More from the ground</h2>
+        <ul class="shots">
+          {more.map((ph) => (
+            <li>
+              <figure class="shot">
+                <img src={ph.src} alt={ph.alt} width={ph.width} height={ph.height} loading="lazy" decoding="async" />
+                <figcaption>
+                  {ph.caption && <span>{ph.caption}</span>}
+                  <span class="shot__meta">Photo by {ph.credit}, <time datetime={ph.date}>{formatDate(ph.date)}</time></span>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <p class="inner__block fact__note">
+      Facts checked <time datetime={s.last_verified}>{formatDate(s.last_verified)}</time>.{' '}
+      <a href="/stations/">All {total} stations</a>
+      <span aria-hidden="true"> / </span>
+      <a href="/">The full Line 12 tracker</a>
+    </p>
+  </main>
+  <Colophon />
+</Base>

@@ -1,0 +1,59 @@
+---
+/** The back of the paper on every page: disclaimer, dates, source code, maintainer. */
+import { formatDate, lastReviewed, REPO_URL } from '../lib/data';
+
+// Build date in India time, so it matches the edition date readers see.
+const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+---
+
+<footer class="colophon">
+  <div class="page colophon__inner">
+    <p class="colophon__disclaimer">
+      <strong>Unofficial.</strong> Line 12 Tracker is an independent public-interest site. It is not affiliated with,
+      endorsed by or connected to MMRDA or the Government of Maharashtra. Drawings are original illustrations, not
+      official designs. Check official sources before making decisions.
+    </p>
+    <p class="colophon__meta">
+      Data last reviewed <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>
+      <span aria-hidden="true">/</span>
+      Page built <time datetime={builtAt}>{formatDate(builtAt)}</time>
+      <span aria-hidden="true">/</span>
+      <a href={REPO_URL} rel="noopener" target="_blank">Source code</a>
+    </p>
+    <p class="colophon__credit">
+      Maintained by{' '}
+      <a href="https://x.com/SBallaya" rel="noopener me" target="_blank">@SBallaya<span class="visually-hidden"> on X (opens in a new tab)</span></a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .colophon {
+    margin-top: var(--s-8);
+    background: var(--paper-2);
+    border-top: var(--bar) solid var(--signal);
+  }
+  .colophon__inner {
+    display: grid;
+    gap: var(--s-4);
+    padding-block: var(--s-7);
+  }
+  .colophon__disclaimer {
+    max-width: var(--measure);
+    font-size: var(--step-1);
+    line-height: 1.45;
+  }
+  .colophon__credit {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-stretch: 87.5%;
+    font-size: var(--step-1);
+  }
+  .colophon__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+</style>

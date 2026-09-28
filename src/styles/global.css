@@ -154,6 +154,15 @@ time {
   }
 }
 
+/* Marathi names beside the English ones (station names from Loksatta, see stations.json). */
+.mr {
+  font-family: 'Anek Devanagari Text', var(--font-display);
+  font-weight: 700;
+  font-stretch: 100%;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 /* Section head: the orange bar module sits on top of the heading, then the literal name. */
 .section-head {
   display: grid;

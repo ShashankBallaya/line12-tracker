@@ -1,0 +1,208 @@
+/*
+ * Inside pages (stations, status): the same paper, one story per page.
+ * A breadcrumb line, a headline with its standfirst, then ruled fact rows (DESIGN.md: rules, not cards).
+ */
+.inner {
+  padding-block: var(--s-7) var(--s-8);
+}
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--s-2);
+  margin: 0 0 var(--s-5);
+  padding: 0;
+  list-style: none;
+  font-size: var(--step--1);
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.crumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+}
+.crumbs li + li::before {
+  content: '';
+  width: var(--bar);
+  height: var(--bar);
+  background: var(--signal-graphic);
+}
+.crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.inner__head {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 60rem;
+  margin-bottom: var(--s-6);
+}
+.inner__head::before {
+  content: '';
+  width: 4.5rem;
+  height: var(--bar);
+  background: var(--signal-graphic);
+}
+.inner__title {
+  font-size: var(--step-4);
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.inner__mr {
+  font-size: var(--step-2);
+  line-height: 1.2;
+  color: var(--ink-2);
+}
+.inner__standfirst {
+  max-width: 52ch;
+  font-size: var(--step-1);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* Fact rows: label on the left, the fact and its grade on the right. */
+.facts {
+  margin: 0;
+  border-top: var(--rule-heavy) solid var(--rule-strong);
+}
+.facts > div {
+  display: grid;
+  gap: var(--s-1) var(--s-5);
+  padding-block: var(--s-4);
+  border-bottom: var(--rule-w) solid var(--rule);
+}
+@media (min-width: 48rem) {
+  .facts > div {
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+}
+.facts dt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 87.5%;
+  font-size: var(--step-1);
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+.facts dd {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+  max-width: var(--measure);
+}
+.facts .fact__note {
+  font-size: var(--step--1);
+  color: var(--ink-2);
+}
+.facts ul {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Facts with their own grade: the text, then its grade on the next line. */
+.facts .graded li {
+  display: grid;
+  gap: var(--s-1);
+}
+/* One or more grade marks under a fact, each with its own source, never run together. */
+.grades {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-1) var(--s-5);
+}
+
+.inner__block {
+  margin-top: var(--s-7);
+}
+.inner__block h2 {
+  margin-bottom: var(--s-4);
+  font-size: var(--step-2);
+  text-transform: uppercase;
+}
+
+/* Lead: the headline block and the station photo side by side on wide screens. */
+.inner__lead {
+  display: grid;
+  /* minmax(0, 1fr): the photo frame's aspect ratio must not set the column's minimum width. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-5) var(--s-7);
+  margin-bottom: var(--s-6);
+}
+.inner__lead .inner__head {
+  margin-bottom: 0;
+}
+@media (min-width: 64rem) {
+  .inner__lead {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: end;
+  }
+}
+
+/* A printed photo: flat, captioned, dated. The empty slot is a dashed frame (DESIGN.md: dashed
+   means nothing here yet), sized like a photo so the page does not shift when one arrives. */
+.shot {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+}
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--paper-2);
+}
+.shot figcaption {
+  display: grid;
+  gap: var(--s-1);
+  font-size: var(--step--1);
+  color: var(--ink-2);
+}
+.shot__meta {
+  color: var(--ink-3);
+}
+.shot__frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  gap: var(--s-2);
+  aspect-ratio: 16 / 9;
+  padding: var(--s-5);
+  border: 2px dashed var(--rule);
+  color: var(--ink-2);
+  text-align: center;
+  font-size: var(--step--1);
+}
+@media (min-width: 64rem) {
+  .shot__frame {
+    aspect-ratio: 4 / 3;
+  }
+}
+.shot__frame svg {
+  justify-self: center;
+  width: 2.5rem;
+  height: auto;
+  color: var(--ink-3);
+}
+.shot__empty-head {
+  font-weight: 700;
+  font-size: var(--step-0);
+  color: var(--ink);
+}
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--s-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
