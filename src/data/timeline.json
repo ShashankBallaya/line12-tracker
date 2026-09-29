@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Key milestones, oldest first. 'date_precision' is day, month or year. 'kind' is planning, approval, tender, award, construction, related or future.",
-    "last_reviewed": "2026-09-28"
+    "last_reviewed": "2026-09-29"
   },
   "events": [
     {
@@ -21,10 +21,10 @@
       "date_precision": "day",
       "kind": "approval",
       "title": "MMRDA approves the project",
-      "summary": "Wikipedia gives this date for MMRDA approval. No primary source found. The date is before the final DPR (April 2019), so it may be an in-principle approval.",
-      "status": "unverified",
-      "source_url": "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
-      "last_verified": "2026-09-28"
+      "summary": "MMRDA's 146th Authority Meeting, held on 21 Nov 2018, approved the project.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-03/tender_document.pdf",
+      "last_verified": "2026-09-29"
     },
     {
       "id": "draft-dpr",
@@ -50,14 +50,14 @@
     },
     {
       "id": "state-approval",
-      "date": "2019-07-23",
+      "date": "2019-09-06",
       "date_precision": "day",
       "kind": "approval",
       "title": "State Government approval",
-      "summary": "Wikipedia gives this date for Maharashtra Government approval. No Government Resolution found yet.",
-      "status": "unverified",
-      "source_url": "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
-      "last_verified": "2026-09-28"
+      "summary": "The Maharashtra Government approved the project by a Government Resolution dated 6 Sep 2019. Wikipedia gives 23 Jul 2019, which may be the Cabinet decision.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-03/tender_document.pdf",
+      "last_verified": "2026-09-29"
     },
     {
       "id": "gc-bids",
@@ -145,7 +145,9 @@
       "summary": "Maharashtra Chief Minister Eknath Shinde lays the foundation stone for Metro Line 12.",
       "status": "reported",
       "source_url": "https://swarajyamag.com/infrastructure/mumbai-metro-foundation-stone-laid-to-progress-with-22-km-line-12-enhancing-transit-between-kalyan-and-navi-mumbai",
-      "also_see": ["https://media.biltrax.com/maharashtra-cm-lays-foundation-of-metro-line-12-in-mmr/"],
+      "also_see": [
+        "https://media.biltrax.com/maharashtra-cm-lays-foundation-of-metro-line-12-in-mmr/"
+      ],
       "last_verified": "2026-09-28"
     },
     {
@@ -168,7 +170,9 @@
       "summary": "Near Dombivli MIDC station on Shilphata Road.",
       "status": "reported",
       "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-update-kalyantaloja-line-key-link-to-navi-mumbai-airport-crosses-100th-u-girder-milestone-target-completion-may-2028",
-      "also_see": ["https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/"],
+      "also_see": [
+        "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/"
+      ],
       "last_verified": "2026-09-28"
     },
     {
@@ -202,7 +206,9 @@
       "summary": "Trains, CBTC signalling, telecom, power supply, depot equipment, lifts and escalators, with maintenance. Estimate about Rs 4,882 crore.",
       "status": "reported",
       "source_url": "https://metrorailnews.in/mmrda-invites-bids-for-rolling-stock-and-signalling-systems-for-mumbai-metro-line-12/",
-      "also_see": ["https://urbanacres.in/mumbai-metro-line-12-tender-advances-network/"],
+      "also_see": [
+        "https://urbanacres.in/mumbai-metro-line-12-tender-advances-network/"
+      ],
       "last_verified": "2026-09-28"
     },
     {
@@ -217,17 +223,6 @@
       "last_verified": "2026-09-28"
     },
     {
-      "id": "trial-runs",
-      "date": null,
-      "date_precision": null,
-      "kind": "future",
-      "title": "Trial runs",
-      "summary": "No date announced.",
-      "status": "unverified",
-      "source_url": null,
-      "last_verified": "2026-09-28"
-    },
-    {
       "id": "opening",
       "date": "2028-05",
       "date_precision": "month",
@@ -236,6 +231,17 @@
       "summary": "The most recent reported target. The earlier reported target was 31 December 2027. MMRDA has not published a date.",
       "status": "conflicting",
       "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-update-kalyantaloja-line-key-link-to-navi-mumbai-airport-crosses-100th-u-girder-milestone-target-completion-may-2028",
+      "last_verified": "2026-09-28"
+    },
+    {
+      "id": "trial-runs",
+      "date": null,
+      "date_precision": null,
+      "kind": "future",
+      "title": "Trial runs",
+      "summary": "No date announced.",
+      "status": "unverified",
+      "source_url": null,
       "last_verified": "2026-09-28"
     }
   ]

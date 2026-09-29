@@ -69,7 +69,7 @@ const answers: Answer[] = [
   {
     id: 'cost',
     q: 'How much does Metro Line 12 cost?',
-    a: `MMRDA gives a project completion cost of Rs ${inr(p.completion_cost_crore_inr.value)} crore, including land, taxes and interest during construction. Funding has not been confirmed by a primary source.`,
+    a: `MMRDA's loan invitation of March 2026 gives an estimated cost of Rs ${inr(p.completion_cost_crore_inr.value)} crore, plus interest during construction. MMRDA's project page still gives Rs ${inr(p.completion_cost_crore_inr.alternatives[0].value)} crore, the 2019 report's completion cost. To pay for it, MMRDA invited banks in March 2026 to lend Rs 7,800 crore; no lender has been named yet.`,
     grades: [
       { status: p.completion_cost_crore_inr.status, source: p.completion_cost_crore_inr.source_url },
       { status: p.funding.status, source: p.funding.source_url },
@@ -102,7 +102,7 @@ const answers: Answer[] = [
   {
     id: 'riders',
     q: 'How many people will use Line 12?',
-    a: `About ${p.daily_ridership_2031.display} riders a day by 2031, as projected. MMRDA says it will cut current travel time by 50% to 75%, depending on road conditions.`,
+    a: `About ${p.daily_ridership_2031.display} riders a day by 2031, as projected. MMRDA says the line saves about ${p.travel_time_benefit.minutes_saved} minutes between Kalyan and Taloja, cutting road travel time by 50% to 75% depending on traffic.`,
     grades: [
       { status: p.daily_ridership_2031.status, source: p.daily_ridership_2031.source_url },
       { status: p.travel_time_benefit.status, source: p.travel_time_benefit.source_url },

@@ -19,7 +19,10 @@ export const GET: APIRoute = ({ site }) => {
 - Length: ${p.length_km.value} km, fully elevated, ${p.stations_count.value} stations (MMRDA, verified).
 - Opening: no official date. Latest reported target ${formatDate(t.value)}; earlier reported target ${formatDate(t.alternatives[0].value)} (sources conflict).
 - Progress (MMRDA, ${formatDate(prog.as_of)}): ${prog.items.map((i) => `${i.activity} ${i.percent_complete}%`).join('; ')}.
-- Cost: Rs ${inr(p.completion_cost_crore_inr.value)} crore project completion cost (MMRDA, verified).
+- Cost: Rs ${inr(p.completion_cost_crore_inr.value)} crore plus interest during construction (MMRDA loan invitation, March 2026); MMRDA's project page still gives Rs ${inr(p.completion_cost_crore_inr.alternatives[0].value)} crore (sources conflict).
+- Funding: MMRDA invited banks in March 2026 to lend Rs 7,800 crore for Line 12; no lender named yet.
+- Approvals: MMRDA Authority, 21 Nov 2018; Government of Maharashtra GR, 6 Sep 2019 (verified).
+- Route and stations: MMRDA approved alignment of 20 Mar 2025, 22.17 km centre line from Kalyan to Amandoot, where it meets Navi Mumbai Metro Line 1.
 - Interchanges: ${p.interchanges.value.map((x) => `${x.station} (${x.connects_to})`).join('; ')}.
 - Depot: ${p.depot.value}, about ${p.depot.area_ha} ha.
 - Builder: MMRDA; civil contract CA-240 with Gawar Constructions (reported).

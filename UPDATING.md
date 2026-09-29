@@ -114,6 +114,16 @@ To run it by hand: GitHub > Actions > Update news feed > Run workflow. Or locall
 
 The job uses about 200 of the 10,000 free daily quota units for each run, so it stays free.
 
+## Route line and station positions
+
+They come from MMRDA's approved alignment KMZ, published on its [Metro Influence Zone for NOC](https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc) page. When MMRDA publishes a newer file:
+
+```bash
+python scripts/build-alignment.py
+```
+
+It downloads the file, rewrites `src/data/alignment-mmrda-2025.geojson`, moves every station in `stations.json` to MMRDA's point, and keeps each earlier position under `location.earlier`. Then run `node scripts/build-wayback.mjs`, because the satellite spots sit on station positions. Check the printed list: any station that moved more than 50 m will say so on its page.
+
 ## Station pages, status page and search files
 
 These are built from the data files. You never edit them by hand:

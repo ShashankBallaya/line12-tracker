@@ -7,12 +7,12 @@
 import Grade from './Grade.astro';
 import { stations, stationsMeta, formatDate } from '../lib/data';
 import { STREET_LEVEL_PROVIDER, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../config';
-import alignment from '../data/alignment-dpr-2019.geojson?raw';
+import alignment from '../data/alignment-mmrda-2025.geojson?raw';
 
 const mapped = stations.filter((s) => s.location.lat !== null);
 // Same first choice as the map script.
 const first = mapped.find((s) => s.id === 'dombivli-midc') ?? mapped[0];
-const DPR_WHERE = 'approximate, from the 2019 project report';
+const WHERE = "MMRDA's approved alignment, 20 Mar 2025";
 const alignMeta = JSON.parse(alignment).properties;
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
@@ -23,11 +23,18 @@ const payload = stations.map((s) => ({
   name: s.name,
   lat: s.location.lat,
   lng: s.location.lng,
-  where: s.location.label ?? DPR_WHERE,
+  where: WHERE,
   interchanges: s.interchanges.value,
-  context: s.context.map((c) => ({ text: cap(c.text.replace(/^DPR: /, '')), status: c.status, source: c.source_url })),
+  context: s.context.map((c) => ({ text: cap(c.text.replace(/^DPR: /, 'In the 2019 project report: ')), status: c.status, source: c.source_url })),
   status: s.construction_status.value,
-  note: s.notes,
+  note: [
+    ...((s.location as { earlier?: { basis: string; distance_m: number }[] }).earlier ?? [])
+      .filter((e) => e.distance_m >= 50)
+      .map((e) => `${cap(e.basis)} put it ${e.distance_m.toLocaleString('en-IN')} m from here.`),
+    s.notes,
+  ]
+    .filter(Boolean)
+    .join(' ') || null,
 }));
 const streetConfig = {
   provider: STREET_LEVEL_PROVIDER,
@@ -41,7 +48,7 @@ const streetConfig = {
     <h2 id="map-title">Map</h2>
     <p>
       The line on a street map. Choose a station to see where it sits, what surrounds it and what the street looks
-      like today. The route is drawn from the 2019 project report and is approximate.
+      like today. The route and stations come from MMRDA's approved alignment of 20 March 2025.
     </p>
   </header>
 
@@ -49,7 +56,7 @@ const streetConfig = {
     <div class="mapsec__map-wrap">
       <div class="mapsec__map" data-map aria-label="Map of the Mumbai Metro Line 12 route" role="region"></div>
       <p class="mapsec__map-note">
-        <span class="mapsec__key" aria-hidden="true"></span> Route under construction, positions approximate
+        <span class="mapsec__key" aria-hidden="true"></span> Route under construction, MMRDA's approved alignment
         <Grade status={alignMeta.status} source={alignMeta.source_url} compact />
       </p>
     </div>
@@ -69,7 +76,7 @@ const streetConfig = {
       <article class="panel" data-map-panel aria-live="polite">
         <h3 class="panel__name" data-panel-name>{first.name}</h3>
         <p class="panel__coords num" data-panel-coords>
-          {first.location.lat?.toFixed(5)}, {first.location.lng?.toFixed(5)} ({first.location.label ?? DPR_WHERE})
+          {first.location.lat?.toFixed(5)}, {first.location.lng?.toFixed(5)} ({WHERE})
         </p>
         <div data-panel-body>
           <p class="panel__muted">Choose a station on the map or in the list.</p>

@@ -38,13 +38,13 @@ const hist = (h: { value: number | string; context: string }[]) => h;
     </div>
 
     <div class="fact">
-      <dt>Completion cost</dt>
+      <dt>Estimated cost</dt>
       <dd class="fact__figure">
         <span class="fact__big num"><span aria-hidden="true">₹</span><span data-count={p.completion_cost_crore_inr.value}>{inr(p.completion_cost_crore_inr.value)}</span></span>
-        <span class="fact__unit">crore<span class="visually-hidden"> rupees</span></span>
+        <span class="fact__unit">crore<span class="visually-hidden"> rupees</span>, plus interest during construction</span>
       </dd>
       <dd class="fact__history">
-        <span>Includes land, taxes and interest during construction, escalated to March 2026 in the 2019 report.</span>
+        <span>MMRDA's loan invitation, March 2026. MMRDA's project page still gives ₹{inr(p.completion_cost_crore_inr.alternatives[0].value)} crore, the 2019 report's figure.</span>
       </dd>
       <dd class="fact__grade"><Grade status={p.completion_cost_crore_inr.status} source={p.completion_cost_crore_inr.source_url} /></dd>
     </div>
@@ -52,10 +52,10 @@ const hist = (h: { value: number | string; context: string }[]) => h;
     <div class="fact">
       <dt>Funding</dt>
       <dd class="fact__figure">
-        <span class="fact__words">Not confirmed</span>
+        <span class="fact__words">Loan sought</span>
       </dd>
       <dd class="fact__history">
-        <span>The 2019 report recommends building it as a fully government project. No official document yet ties any loan to Line 12.</span>
+        <span>In March 2026 MMRDA invited banks to lend ₹7,800 crore for Line 12, alongside fares and State support. No lender has been named yet.</span>
       </dd>
       <dd class="fact__grade"><Grade status={p.funding.status} source={p.funding.source_url} /></dd>
     </div>
@@ -94,8 +94,8 @@ const hist = (h: { value: number | string; context: string }[]) => h;
     <div class="fact fact--wide">
       <dt>Travel time</dt>
       <dd class="fact__figure">
-        <span class="fact__words">50 to 75% shorter</span>
-        <span class="fact__unit">than by road today, depending on traffic (MMRDA estimate)</span>
+        <span class="fact__words">About {p.travel_time_benefit.minutes_saved} minutes saved</span>
+        <span class="fact__unit">Kalyan to Taloja; 50 to 75% shorter than by road today, depending on traffic (MMRDA estimates)</span>
       </dd>
       <dd class="fact__grade"><Grade status={p.travel_time_benefit.status} source={p.travel_time_benefit.source_url} /></dd>
     </div>

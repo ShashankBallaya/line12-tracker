@@ -1,6 +1,6 @@
 # Sources
 
-Research for Phase 1. Last reviewed: 2026-09-28.
+Research for Phase 1. Last reviewed: 2026-09-29.
 
 Every data point in `src/data/*.json` has a `source_url`, a `last_verified` date and a `status`.
 
@@ -21,6 +21,10 @@ Every data point in `src/data/*.json` has a `source_url`, a `last_verified` date
    https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf
 
 Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refuse to fetch it. Browsers load it normally.
+3. **MMRDA, Metro Line 12 approved alignment (KMZ), final 20 Mar 2025.** Published on the Metro Influence Zone for NOC page. Centre line (22.166 km from the start point at Kalyan to the end point past Amandoot), the 1.229 km Nilje depot connection, and a point for each of the 19 stations. Used for the route line and every station position.
+   https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc (file: https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line_12_4.kmz)
+4. **MMRDA, Invitation of Expression of Interest for a Rs 14,100 Cr loan for Metro Lines 10 and 12, March 2026.** Page 7: MMRDA approval (146th Authority Meeting, 21 Nov 2018), State approval (GR dated 6 Sep 2019), civil contract awarded March 2024, estimated cost Rs 11,516 Cr plus IDC, loan requirement Rs 7,800 Cr, about 45 minutes saved, interchanges at Kalyan and Amandoot. It also repeats the 2019 DPR length and station count (20.756 km plus 0.5 km, 17 stations).
+   https://mmrda.maharashtra.gov.in/sites/default/files/2026-03/tender_document.pdf
 
 ## Secondary sources (reputable news and trade press)
 
@@ -48,7 +52,11 @@ Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refus
 
 ## Derived data
 
-`src/data/alignment-dpr-2019.geojson` and the station coordinates in `stations.json` come from DPR Table 4.3 (213 alignment points, chainage -403.688 m to 20,645.678 m).
+Since 2026-09-29 the route line (`src/data/alignment-mmrda-2025.geojson`) and every station position come from MMRDA's approved alignment of 20 Mar 2025 (primary source 3), built by `scripts/build-alignment.py`. Station points are graded verified. Each station's distance along the line (`along_m`) is measured along the centre line from MMRDA's start point at Kalyan; every station point lies within 8 m of the line. The earlier positions below are kept in `stations.json` under `location.earlier`. Compared with them, most stations moved 5 to 35 m; Nilje Gaon moved 561 m (the 2025 line runs straight where the 2019 line curved east through the wetlands), Sonarpada 111 m, Pisarve 107 m, Hedutane and Manpada about 60 m, and Amandoot 963 m (see below).
+
+### Before 2026-09-29: the 2019 DPR
+
+`src/data/alignment-dpr-2019.geojson` (kept for history) and the earlier station coordinates came from DPR Table 4.3 (213 alignment points, chainage -403.688 m to 20,645.678 m).
 
 - Method: parse the table, convert easting and northing to latitude and longitude, and interpolate each station at its DPR chainage.
 - Assumption: WGS84, UTM zone 43N. The DPR does not state the datum. If it is Everest 1830, positions can be off by a few hundred metres.
@@ -56,6 +64,7 @@ Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refus
 - Check (Phase 3, 2026-09-28): drawn over OpenStreetMap roads, the DPR line runs along Kalyan-Shilphata Road and leaves it near Manpada, and the Dombivli MIDC point falls on the road in Esri imagery that shows the new viaduct. The UTM 43N / WGS84 assumption holds at map scale. Positions stay marked approximate.
 - Limit: this is the 2019 alignment. It does not include Kalyan station (added later) or any later realignment.
 - Kalyan station: 19°14'19.2"N 73°07'38.5"E (19.238667, 73.127361), supplied by the site owner on 2026-09-28. No published source gives this position; it is graded reported.
+- Amandoot check (2026-09-29): the DPR alignment's last point (point 213, ch. 20,645.678 m, E 299156.552, N 2110184.877) converts to 19.074685, 73.091173, about 45 m from the Navi Mumbai Metro Line 1 station OpenStreetMap calls Panchanand, and the route line ends there exactly. The DPR station position (ch. 20,492.296 m) sits 153 m before it, as expected. But Line 12 is being built elsewhere: the site owner's photos of 26 Aug 2026 show station piers SP01 to SP05 beside the Line 1 station that Google Maps and [a post on X](https://x.com/Maha7Arindam/status/2092489255948025861) call Amandoot (OpenStreetMap: Sector 34), 959 m west. The owner's reading (19.07378, 73.081859) was 36 m from the point MMRDA's 2025 alignment gives for Amandoot, which the site now uses. The 2025 line ends about 350 m further west, past the station.
 
 ## Map and imagery sources
 
@@ -69,11 +78,11 @@ Note: the MMRDA server has an incomplete TLS certificate chain. Some tools refus
 ## Items that need your review
 
 1. **Target completion date (countdown).** Sources conflict: 31 Dec 2027 (MMRDA statement, Dec 2024) and May 2028 (reported Dec 2025). MMRDA's page gives no date. I set the countdown to 31 May 2028, labelled "reported target". Do you accept that, or do you want the countdown hidden until MMRDA publishes a date?
-2. **Funding.** No primary source ties AIIB or OPEC Fund loans to Line 12. The funding field says "not confirmed". The "at a glance" stat will show cost only.
-3. **Approval dates.** MMRDA approval (21 Nov 2018) and State approval (23 Jul 2019) come only from Wikipedia. A Government Resolution from gr.maharashtra.gov.in would verify the second one.
-4. **Cost figures.** MMRDA says Rs 5,865 crore. Trade press also quotes Rs 4,132 crore and Rs 5,494 crore without sources. Only Rs 5,865 crore is used.
+2. **Funding.** Resolved 2026-09-29: MMRDA's loan invitation (primary source 4) seeks Rs 7,800 Cr for Line 12. No lender named yet, and still no primary source ties the AIIB or OPEC Fund loans to Line 12.
+3. **Approval dates.** Resolved 2026-09-29 by primary source 4: MMRDA approval 21 Nov 2018 (146th Authority Meeting) and State approval by GR dated 6 Sep 2019. Wikipedia's 23 Jul 2019 may be the Cabinet decision.
+4. **Cost figures.** Two MMRDA figures now conflict: Rs 11,516 Cr plus IDC (loan invitation, March 2026, shown first) and Rs 5,865 Cr (project page, the 2019 DPR figure). Trade press also quotes Rs 4,132 Cr and Rs 5,494 Cr without sources; those are not used.
 5. **Length.** MMRDA says 23.57 km. Older figures (20.756 km in the DPR, 22.17 km in CA-240) are kept as history.
-6. **Station coordinates.** Approximate, datum assumed. Phase 3 will check each one against satellite imagery.
+6. **Station coordinates.** Resolved 2026-09-29: MMRDA's approved alignment (primary source 3) gives every station point.
 7. **Systems tender number.** "CA-315" and the EMD come from a search snippet of a paywalled page. Marked unverified.
 8. **General Consultant value.** Rs 265.10 crore covers Lines 10 and 12 together. There is no source for the Line 12 share.
 9. **Line 12A.** Separate 18.4 km project approved in Feb 2026. It is listed under `related_projects` and kept out of Line 12 totals. Should the site cover it?
@@ -86,7 +95,7 @@ Origin: posts on X by @hadilal and @bodkeitis, which say they come from official
 
 Nothing below is on the site yet.
 
-1. **Package "CA-316" line diagram.** It shows revised centre-line chainages: Kalyan -739.050 m, APMC Kalyan -100.650 m, Ganesh Nagar 788.251 m, Pisavali Gaon 2,265.152 m, Golavli 3,353.052 m, Dombivli MIDC 4,520.952 m, Sagaon 5,528.852 m, Sonarpada 6,539.752 m, Manpada 7,592.652 m. After Manpada it shows a new **Katai Naka** station (ch. 9,695.783 m) "to Amandoot" and a branch via **Kolegaon** to **Nilje depot**. The chainages differ from the 2019 DPR by 40 m to 90 m. If confirmed, they replace the DPR chainages in `stations.json`.
+1. **Package "CA-316" line diagram.** It shows revised centre-line chainages: Kalyan -739.050 m, APMC Kalyan -100.650 m, Ganesh Nagar 788.251 m, Pisavali Gaon 2,265.152 m, Golavli 3,353.052 m, Dombivli MIDC 4,520.952 m, Sagaon 5,528.852 m, Sonarpada 6,539.752 m, Manpada 7,592.652 m. After Manpada it shows a new **Katai Naka** station (ch. 9,695.783 m) "to Amandoot" and a branch via **Kolegaon** to **Nilje depot**. The chainages differ from the 2019 DPR by 40 m to 90 m. If confirmed, they replace the DPR chainages in `stations.json`. Check (2026-09-29): MMRDA's approved alignment of 20 Mar 2025 (primary source 3) has the same 19 stations as CA-240 and no Katai Naka station on Line 12, so the Katai Naka leads most likely belong to Line 12A. Its station spacing (Kalyan to Manpada) agrees with this diagram within 25 m.
 2. **Line 12A overlap.** The diagram fits the Line 12A corridor (Manpada, Katai Naka, Kalyan Phata, Dahisar Mori, joining Line 12 near Khutari). No source yet says whether 12A replaces the original Line 12 stations from Hedutane to Pisarve. Checked: [ThePrint/PTI, 20 Feb 2026](https://theprint.in/india/metro-rail-line-12-to-be-extended-along-kalyan-shilphata-road-at-cost-of-rs-8-4k-cr-sena-mp/2859716/) (does not say).
 3. **Summary line "22.17 km, 12 stations, Rs 8,416 crore+".** Conflicts with MMRDA (23.57 km, 19 stations, Rs 5,865 crore). 22.17 km is the CA-240 scope; 12 stations and about Rs 8,415 crore match Line 12A; Rs 8,416 crore is Line 5's cost. Not used.
 4. **Nilje depot layout drawing.** Shows stabling and inspection sheds, internal roads, a 2.22 ha TOD green area and 2.30 ha staff quarters land. Not used until sourced.

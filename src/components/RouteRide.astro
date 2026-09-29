@@ -6,10 +6,9 @@
  * pins the stage and moves the train along a horizontal strip as the reader scrolls.
  */
 import Grade from './Grade.astro';
-import { stations, tenders } from '../lib/data';
+import { stations } from '../lib/data';
 import { schematic } from '../lib/route';
 
-const ca240 = tenders.find((t) => t.id === 'ca-240')!;
 // Same bent schematic as the front page, drawn at poster weight.
 const line = schematic({ width: 1000, top: 30, drop: 70, pad: 10, bottom: 30 });
 const px = (i: number) => (line.points[i][0] / line.width) * 100;
@@ -25,8 +24,8 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
     <header class="section-head">
       <h2 id="route-title">Route</h2>
       <p>
-        Nineteen stations, Kalyan to Amandoot. Scroll to ride the line station by station. Positions follow the 2019
-        project report's alignment and are approximate.
+        Nineteen stations, Kalyan to Amandoot. Scroll to ride the line station by station. Distances follow MMRDA's
+        approved alignment of 20 March 2025.
       </p>
     </header>
   </div>
@@ -52,19 +51,12 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
           <li class="ride__station" id={`station-${s.id}`} data-ride-station={i} style={`--x:${px(i)}%;--y:${py(i)}%`}>
             <div class="ride__id">
             <h3 class="ride__name">{s.name}</h3>
-            {s.location.dpr_chainage_m !== null && s.location.dpr_chainage_m >= 0 && (
-              <p class="ride__km num" aria-hidden="true">{km(s.location.dpr_chainage_m)}<span> km</span></p>
-            )}
+            <p class="ride__km num" aria-hidden="true">{km(s.location.along_m)}<span> km</span></p>
             <p class="ride__order num">Station {s.order} of {stations.length}</p>
             {s.dpr_name && s.dpr_name !== s.name && <p class="ride__alias">Called "{s.dpr_name}" in the 2019 project report.</p>}
             <p class="ride__distance num">
-              {s.location.dpr_chainage_m === null ? (
-                <>Position approximate: start of the civil contract's viaduct <Grade status="reported" source={ca240.source_url} /></>
-              ) : s.location.dpr_chainage_m < 0 ? (
-                <>Where the 2019 alignment began <span class="ride__muted">(DPR chainage {s.location.dpr_chainage_m.toLocaleString('en-IN')} m)</span></>
-              ) : (
-                <>{km(s.location.dpr_chainage_m)} km along the 2019 alignment <span class="ride__muted">(DPR chainage {s.location.dpr_chainage_m.toLocaleString('en-IN')} m)</span></>
-              )}
+              <span class="visually-hidden">{km(s.location.along_m)} km </span>from the start of the line at Kalyan{' '}
+              <Grade status={s.location.status} source={s.location.source_url} compact />
             </p>
             </div>
             <div class="ride__info">

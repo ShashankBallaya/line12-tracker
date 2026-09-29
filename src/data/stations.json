@@ -1,12 +1,12 @@
 {
   "_meta": {
-    "description": "The 19 Line 12 stations, in order from Kalyan. Names follow the CA-240 civil contract scope. Coordinates are derived from the DPR (April 2019) alignment table, datum assumed WGS84 UTM 43N; they are approximate and must be checked against satellite imagery in Phase 3.",
+    "description": "The 19 Line 12 stations, in order from Kalyan. Names follow the CA-240 civil contract scope. Positions are MMRDA's station points from the approved alignment of 20 Mar 2025 (scripts/build-alignment.py); earlier positions are kept under location.earlier.",
     "order_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
     "count_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview",
     "names_mr_source_url": "https://www.loksatta.com/mumbai/kalyan-taloja-metro-12-construction-status-mmrda-mumbai-print-news-rnb-99-6159080/",
     "names_mr_status": "reported",
     "names_mr_notes": "Marathi station names as Loksatta lists them (27 Sep 2026), in the same order as this file. One change: Loksatta prints 'एपीएम कल्याण'; this file uses 'एपीएमसी कल्याण' to match the English APMC.",
-    "last_reviewed": "2026-09-28"
+    "last_reviewed": "2026-09-29"
   },
   "stations": [
     {
@@ -19,14 +19,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.127361,
-        "lat": 19.238667,
+        "lng": 73.127588,
+        "lat": 19.238784,
+        "along_m": 143,
         "dpr_chainage_m": null,
-        "method": "Supplied by the site owner on 2026-09-28 as 19°14'19.2\"N 73°07'38.5\"E",
-        "label": "supplied by the site owner, 28 Sep 2026",
-        "status": "reported",
-        "source_url": null,
-        "notes": "Not in the 2019 DPR, so no DPR coordinates exist. No published source gives this position. The 2019 route line on the map does not reach it."
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"KALYAN METRO STATION 01\". along_m is measured along the centre line from the start point at Kalyan; the point is 2 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.238667,
+            "lng": 73.127361,
+            "basis": "the site owner's reading, 28 Sep 2026",
+            "distance_m": 27
+          }
+        ]
       },
       "interchanges": {
         "value": [
@@ -43,7 +50,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Not in the 2019 DPR. Added to Line 12 scope in civil contract CA-240. Rail Analysis (Dec 2025) reports a foot overbridge link to Central Railway at Kalyan Junction. Loksatta (27 Sep 2026) lists Kalyan first among the 19 stations.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "apmc-kalyan",
@@ -55,12 +62,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.123334,
-        "lat": 19.235591,
+        "lng": 73.123058,
+        "lat": 19.235419,
+        "along_m": 757,
         "dpr_chainage_m": -110.313,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"APMC KALYAN METRO STATION 02\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.235591,
+            "lng": 73.123334,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 35
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -86,7 +102,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "In the DPR this was the Line 5 terminal. It moved into Line 12 scope in CA-240. MMRDA lists the Line 5 interchange at 'Kalyan'.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "ganesh-nagar",
@@ -98,12 +114,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.122051,
-        "lat": 19.229386,
+        "lng": 73.122072,
+        "lat": 19.229425,
+        "along_m": 1654,
         "dpr_chainage_m": 843.771,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"GANESH NAGAR METRO STATION 03\". along_m is measured along the centre line from the start point at Kalyan; the point is 0 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.229386,
+            "lng": 73.122051,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 5
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -124,7 +149,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": null,
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "pisavali-gaon",
@@ -136,12 +161,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.119093,
-        "lat": 19.218117,
+        "lng": 73.118949,
+        "lat": 19.217986,
+        "along_m": 3138,
         "dpr_chainage_m": 2295.898,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"PISAVALI METRO STATION 04\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.218117,
+            "lng": 73.119093,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 21
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -162,7 +196,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "DPR text gives ch. 2,320 m; the DPR station table gives 2,295.898 m. The table value is used.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "golavli",
@@ -174,12 +208,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.112457,
-        "lat": 19.210409,
+        "lng": 73.112485,
+        "lat": 19.210449,
+        "along_m": 4218,
         "dpr_chainage_m": 3400,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"GOLAVALI METRO STATION 05\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.210409,
+            "lng": 73.112457,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 5
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -205,7 +248,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Also spelled Golavali and Golvali.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "dombivli-midc",
@@ -217,12 +260,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.104752,
-        "lat": 19.202824,
+        "lng": 73.104794,
+        "lat": 19.202711,
+        "along_m": 5399,
         "dpr_chainage_m": 4567.083,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"DOMBIVALI METRO STATION 06\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.202824,
+            "lng": 73.104752,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 13
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -248,7 +300,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Also spelled Dombivali MIDC.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "sagaon",
@@ -260,12 +312,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.098462,
-        "lat": 19.195993,
+        "lng": 73.09851,
+        "lat": 19.1959,
+        "along_m": 6405,
         "dpr_chainage_m": 5573.311,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"SAGAON METRO STATION 07\". along_m is measured along the centre line from the start point at Kalyan; the point is 2 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.195993,
+            "lng": 73.098462,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 12
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -286,7 +347,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": null,
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "sonarpada",
@@ -298,12 +359,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.092393,
-        "lat": 19.187607,
+        "lng": 73.093042,
+        "lat": 19.188393,
+        "along_m": 7419,
         "dpr_chainage_m": 6700,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"SONARPADA METRO STATION 08\". along_m is measured along the centre line from the start point at Kalyan; the point is 0 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.187607,
+            "lng": 73.092393,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 111
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -324,7 +394,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": null,
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "manpada",
@@ -336,12 +406,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.091795,
-        "lat": 19.18014,
+        "lng": 73.091396,
+        "lat": 19.180542,
+        "along_m": 8471,
         "dpr_chainage_m": 7689.746,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"MANPADA METRO STATION 09\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.18014,
+            "lng": 73.091795,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 61
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -362,7 +441,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Wikipedia lists it as 'Manpada (Dombivali East)'.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "hedutane",
@@ -374,12 +453,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.099075,
-        "lat": 19.171438,
+        "lng": 73.09852,
+        "lat": 19.171216,
+        "along_m": 9791,
         "dpr_chainage_m": 8947.974,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"HEDUTANE METRO STATION 10\". along_m is measured along the centre line from the start point at Kalyan; the point is 0 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.171438,
+            "lng": 73.099075,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 63
+          }
+        ]
       },
       "interchanges": {
         "value": [
@@ -402,7 +490,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Interchange listed by MMRDA.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "kolegaon",
@@ -414,12 +502,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.094996,
-        "lat": 19.165025,
+        "lng": 73.094962,
+        "lat": 19.164988,
+        "along_m": 10763,
         "dpr_chainage_m": 9978.357,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"KOLEGAON METRO STATION 11\". along_m is measured along the centre line from the start point at Kalyan; the point is 2 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.165025,
+            "lng": 73.094996,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 5
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -445,7 +542,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": null,
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "nilje-gaon",
@@ -457,12 +554,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.094559,
-        "lat": 19.157555,
+        "lng": 73.093951,
+        "lat": 19.15254,
+        "along_m": 12344,
         "dpr_chainage_m": 11093.376,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"NILJE GAON METRO STATION 12\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.157555,
+            "lng": 73.094559,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 561
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -488,7 +594,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Also spelled Nilaje Gaon.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "vadavli",
@@ -500,12 +606,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.09397,
-        "lat": 19.145505,
+        "lng": 73.093895,
+        "lat": 19.145419,
+        "along_m": 13136,
         "dpr_chainage_m": 12553.4,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"VADAVALI METRO STATION 13\". along_m is measured along the centre line from the start point at Kalyan; the point is 8 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.145505,
+            "lng": 73.09397,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 12
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -526,7 +641,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "MMRDA spells it Wadavli. The depot reportedly connects via this station (Free Press Journal, Dec 2024).",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "bale",
@@ -538,12 +653,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.094337,
-        "lat": 19.132676,
+        "lng": 73.094374,
+        "lat": 19.13256,
+        "along_m": 14566,
         "dpr_chainage_m": 13974.564,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"BALE METRO STATION 14\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.132676,
+            "lng": 73.094337,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 13
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -564,7 +688,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": null,
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "waklan",
@@ -576,12 +700,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.090886,
-        "lat": 19.119933,
+        "lng": 73.090852,
+        "lat": 19.119879,
+        "along_m": 16073,
         "dpr_chainage_m": 15478.984,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"WAKLAN METRO STATION 15\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.119933,
+            "lng": 73.090886,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 7
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -602,7 +735,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Also spelled Vaklan.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "turbhe",
@@ -614,12 +747,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.089232,
-        "lat": 19.112553,
+        "lng": 73.08882,
+        "lat": 19.112353,
+        "along_m": 16950,
         "dpr_chainage_m": 16326.986,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"TURBHE METRO STATION 16\". along_m is measured along the centre line from the start point at Kalyan; the point is 0 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.112553,
+            "lng": 73.089232,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 49
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -640,7 +782,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "This Turbhe is a village near Taloja, not Turbhe in Navi Mumbai on the Thane-Belapur road.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "pisarve-depot",
@@ -652,12 +794,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.089476,
-        "lat": 19.104879,
+        "lng": 73.089444,
+        "lat": 19.104684,
+        "along_m": 17805,
         "dpr_chainage_m": 17176.971,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"PISARVE DEPOT METRO STATION 17\". along_m is measured along the centre line from the start point at Kalyan; the point is 0 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.104879,
+            "lng": 73.089476,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 22
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -678,7 +829,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "The name comes from the DPR depot plan. The depot is now at Nilje, so the name may change.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "pisarve",
@@ -690,12 +841,21 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.088123,
-        "lat": 19.088702,
+        "lng": 73.088315,
+        "lat": 19.08776,
+        "along_m": 19710,
         "dpr_chainage_m": 18981.937,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"PISARVE METRO STATION 18\". along_m is measured along the centre line from the start point at Kalyan; the point is 1 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.088702,
+            "lng": 73.088123,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 107
+          }
+        ]
       },
       "interchanges": {
         "value": [],
@@ -716,7 +876,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": null,
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     },
     {
       "id": "amandoot",
@@ -728,12 +888,27 @@
       "name_status": "reported",
       "name_source_url": "https://themetrorailguy.com/2024/02/09/gawar-wins-mumbai-metro-line-12s-construction-contract-ca-240/",
       "location": {
-        "lng": 73.090676,
-        "lat": 19.075988,
+        "lng": 73.081734,
+        "lat": 19.074078,
+        "along_m": 21809,
         "dpr_chainage_m": 20492.296,
-        "method": "Interpolated from DPR Table 4.3 alignment coordinates at the DPR station chainage",
-        "status": "unverified",
-        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+        "method": "MMRDA approved alignment of 20 Mar 2025 (KMZ on the Metro Influence Zone page): point \"AMANDOOT METRO STATION 19\". along_m is measured along the centre line from the start point at Kalyan; the point is 3 m from the line.",
+        "status": "verified",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+        "earlier": [
+          {
+            "lat": 19.075988,
+            "lng": 73.090676,
+            "basis": "the 2019 project report (DPR)",
+            "distance_m": 963
+          },
+          {
+            "lat": 19.07378,
+            "lng": 73.081859,
+            "basis": "the site owner's reading, 29 Sep 2026",
+            "distance_m": 36
+          }
+        ]
       },
       "interchanges": {
         "value": [
@@ -744,13 +919,18 @@
       },
       "context": [
         {
-          "text": "DPR: terminal on the right side of Taloja Phase 1 road, reached through the CIDCO metro depot area",
+          "text": "In the 2019 plan: terminal on the right side of Taloja Phase 1 road, reached through the CIDCO metro depot area",
           "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf",
           "status": "verified"
         },
         {
           "text": "75 m steel span at Taloja ROB",
           "source_url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+          "status": "reported"
+        },
+        {
+          "text": "Line 12 station piers SP01 to SP05 stand beside Navi Mumbai Metro Line 1's Amandoot station (Aug 2026)",
+          "source_url": "https://x.com/Maha7Arindam/status/2092489255948025861",
           "status": "reported"
         }
       ],
@@ -761,7 +941,7 @@
         "notes": "MMRDA publishes corridor-wide progress only, not per-station progress."
       },
       "notes": "Called 'Taloja' in the DPR. DPR text gives ch. 20,525.676 m; the station table gives 20,492.296 m. The table value is used.",
-      "last_verified": "2026-09-28"
+      "last_verified": "2026-09-29"
     }
   ]
 }

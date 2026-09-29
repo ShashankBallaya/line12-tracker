@@ -19,8 +19,10 @@ const s: Station = stations[i];
 const prev = stations[i - 1];
 const next = stations[i + 1];
 const total = stations.length;
-const loc = s.location as Station['location'] & { label?: string };
-const where = loc.label ?? 'approximate, from the 2019 project report';
+const loc = s.location as Station['location'] & { earlier?: { basis: string; distance_m: number }[] };
+const where = "MMRDA's approved alignment, 20 Mar 2025";
+// Only moves a reader would notice on the map; readings within a few dozen metres are not news.
+const moved = (loc.earlier ?? []).filter((e) => e.distance_m >= 50);
 const ch = loc.dpr_chainage_m;
 const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
@@ -115,21 +117,22 @@ const schema: Record<string, unknown>[] = [
           ) : (
             <p>Position not yet mapped.</p>
           )}
+          {moved.map((e) => (
+            <p class="fact__note">{cap(e.basis)} put it {e.distance_m.toLocaleString('en-IN')} m from here.</p>
+          ))}
           <p class="grades"><Grade status={loc.status} source={loc.source_url} /></p>
         </dd>
       </div>
 
-      {ch !== null && (
-        <div>
-          <dt>Along the line</dt>
-          <dd>
-            <p>
-              {ch < 0 ? 'Where the 2019 alignment began' : `${km(ch)} km along the 2019 alignment`}{' '}
-              <span class="fact__note num">(DPR chainage {ch.toLocaleString('en-IN')} m)</span>
-            </p>
-          </dd>
-        </div>
-      )}
+      <div>
+        <dt>Along the line</dt>
+        <dd>
+          <p>
+            {km(loc.along_m)} km from the start of the line at Kalyan
+            {ch !== null && <span class="fact__note num"> (2019 project report: chainage {ch.toLocaleString('en-IN')} m)</span>}
+          </p>
+        </dd>
+      </div>
 
       <div>
         <dt>Next stations</dt>
@@ -158,7 +161,7 @@ const schema: Record<string, unknown>[] = [
             <ul class="graded">
               {s.context.map((c) => (
                 <li>
-                  <span>{cap(c.text.replace(/^DPR: /, ''))}</span>
+                  <span>{cap(c.text.replace(/^DPR: /, 'In the 2019 project report: '))}</span>
                   <span class="grades"><Grade status={c.status} source={c.source_url} /></span>
                 </li>
               ))}
