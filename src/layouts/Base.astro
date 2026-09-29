@@ -26,7 +26,9 @@ const graph = {
     {
       '@type': 'WebSite',
       '@id': `${siteUrl}#site`,
+      // Google reads the site name from here on the home page (a pages.dev subdomain otherwise shows as "Cloudflare").
       name: 'Line 12 Tracker',
+      alternateName: ['Line 12 Tracker, Mumbai Metro', 'Metro Line 12 Tracker'],
       url: siteUrl,
       inLanguage: 'en-IN',
       publisher: { '@id': `${siteUrl}#maintainer` },
@@ -68,6 +70,11 @@ const graph = {
     <meta name="theme-color" content="#0c1422" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#efe9de" media="(prefers-color-scheme: light)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- PNG icons for search results (a multiple of 48 px) and phone home screens. -->
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+    <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href={anekUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={muktaUrl} as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
@@ -79,6 +86,8 @@ const graph = {
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Line 12 Tracker: Watch Mumbai Metro Line 12 rise, pillar by pillar. Kalyan to Taloja, 23.57 km, 19 stations." />
     <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Line 12 Tracker" />
+    <meta name="application-name" content="Line 12 Tracker" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@SBallaya" />
     <meta name="author" content="Shashank Ballaya" />
