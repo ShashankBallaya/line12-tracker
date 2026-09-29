@@ -140,7 +140,7 @@ Esri adds new imagery releases every few weeks. To refresh the before/after date
 node scripts/build-wayback.mjs
 ```
 
-It rewrites `src/data/beforeafter.json` with the latest release and its real capture date. Commit and push.
+It rewrites `src/data/beforeafter.json` with the latest release and its real capture date. Commit and push. A GitHub Actions job (`.github/workflows/imagery.yml`) also runs it on the 3rd of every month and deploys, so the site picks up new imagery, and shows when it last checked, without you.
 
 ## Your own ground photos
 

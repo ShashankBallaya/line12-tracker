@@ -41,6 +41,9 @@ function mosaic(lat: number, lng: number, url: string) {
 const month = (d: string) => formatDate(d.slice(0, 7));
 interface Shot { src: string; alt: string; date: string }
 const pairs = photos.pairs as { place: string; credit: string; before: Shot; after: Shot }[];
+// The newest "after" capture across the spots, and when the site last asked Esri for newer imagery.
+const latestCapture = data.spots.map((s) => s.after.captured).sort().at(-1)!;
+const checked = data._meta.last_reviewed;
 ---
 
 <section id="before-after" class="section page ba" aria-labelledby="ba-title" data-ba>
@@ -49,6 +52,10 @@ const pairs = photos.pairs as { place: string; credit: string; before: Shot; aft
     <p>
       The same spots from above, before construction began in March 2024 and in the latest imagery. Drag the handle
       or use the arrow keys to compare.
+    </p>
+    <p class="ba__fresh">
+      The latest image is Esri's newest of this area, captured <time datetime={latestCapture}>{formatDate(latestCapture)}</time>.
+      The site checks for newer imagery every month; last checked <time datetime={checked}>{formatDate(checked)}</time>.
     </p>
   </header>
 
@@ -118,6 +125,10 @@ const pairs = photos.pairs as { place: string; credit: string; before: Shot; aft
 </section>
 
 <style>
+  .section-head .ba__fresh {
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
   .ba__tabs {
     display: flex;
     flex-wrap: wrap;
