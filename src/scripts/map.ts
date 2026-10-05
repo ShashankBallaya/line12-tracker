@@ -118,7 +118,10 @@ export async function mount(section: HTMLElement) {
   const alignment: GeoJSON.FeatureCollection = JSON.parse(section.querySelector('[data-map-alignment]')!.textContent!);
   const street = JSON.parse(section.querySelector('[data-street-config]')!.textContent!) as { provider: string; mapillary: boolean; google: boolean };
 
-  let selected = stations.find((s) => s.id === 'dombivli-midc' && s.lat !== null)?.id ?? stations.find((s) => s.lat !== null)!.id;
+  // A station page links here as /?station=<id>#map, so the map opens on that station.
+  const asked = new URLSearchParams(location.search).get('station');
+  const linked = stations.find((s) => s.id === asked && s.lat !== null)?.id;
+  let selected = linked ?? stations.find((s) => s.id === 'dombivli-midc' && s.lat !== null)?.id ?? stations.find((s) => s.lat !== null)!.id;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const map = new maplibregl.Map({
@@ -203,5 +206,5 @@ export async function mount(section: HTMLElement) {
   });
   map.on('mouseenter', 'stations', () => (map.getCanvas().style.cursor = 'pointer'));
   map.on('mouseleave', 'stations', () => (map.getCanvas().style.cursor = ''));
-  map.once('load', () => select_(selected, false));
+  map.once('load', () => select_(selected, Boolean(linked)));
 }
