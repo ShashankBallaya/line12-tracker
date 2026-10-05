@@ -54,6 +54,8 @@ export interface StationPhoto {
   alt: string;
   date: string;
   credit: string;
+  /** The photographer's X handle without the @, when the photo is not the owner's. */
+  handle?: string;
   /** The photographer's own post, when the photo is not the owner's. */
   source_url?: string;
   width: number;
@@ -61,6 +63,20 @@ export interface StationPhoto {
   caption?: string;
 }
 export const stationPhotos = photosJson.stations as Record<string, StationPhoto[]>;
+
+/** People who shared their photos with permission (those with an X handle), and the stations they cover. */
+export const photoContributors = (() => {
+  const byHandle = new Map<string, { credit: string; handle: string; stations: string[] }>();
+  for (const s of stations) {
+    for (const ph of stationPhotos[s.id] ?? []) {
+      if (!ph.handle) continue;
+      const c = byHandle.get(ph.handle) ?? { credit: ph.credit, handle: ph.handle, stations: [] };
+      if (!c.stations.includes(s.name)) c.stations.push(s.name);
+      byHandle.set(ph.handle, c);
+    }
+  }
+  return [...byHandle.values()];
+})();
 
 export type Station = (typeof stations)[number];
 export type TimelineEvent = (typeof timeline)[number];
