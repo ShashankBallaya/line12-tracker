@@ -1,0 +1,226 @@
+---
+/**
+ * A small drawing of the whole line with one station marked: where it sits between Kalyan and Amandoot.
+ * Drawn at build time from MMRDA's approved alignment. Plain SVG and HTML: no script, no tiles, no keys.
+ * The line is turned so Kalyan is on the left and Amandoot on the right; the arrow shows north.
+ * It follows the route-line grammar: a hollow line (orange casing, paper core), ink dots with a paper
+ * ring, the current station in orange, and the stacked-bar interchange mark.
+ */
+import alignmentRaw from '../data/alignment-mmrda-2025.geojson?raw';
+import { stations, type Station } from '../lib/data';
+
+interface Props {
+  station: Station;
+}
+const { station } = Astro.props;
+
+const alignment = JSON.parse(alignmentRaw) as GeoJSON.FeatureCollection<GeoJSON.LineString> & { properties: { source_url: string } };
+const line = alignment.features.find((f) => f.properties?.name === 'Line 12 centre line')!.geometry.coordinates;
+
+// Flatten longitude to ground distance at this latitude, then turn the line so its two ends sit level.
+const k = Math.cos((19.15 * Math.PI) / 180);
+const [ax, ay] = [line[0][0] * k, line[0][1]];
+const [bx, by] = [line.at(-1)![0] * k, line.at(-1)![1]];
+const turn = -Math.atan2(by - ay, bx - ax);
+const cos = Math.cos(turn);
+const sin = Math.sin(turn);
+// Screen y runs down, map y runs up: flip it.
+const rotate = (lng: number, lat: number) => {
+  const x = lng * k - ax;
+  const y = lat - ay;
+  return [x * cos - y * sin, -(x * sin + y * cos)] as const;
+};
+
+// Room above for the station name, and a little below for the end name.
+const W = 640;
+const PAD_X = 22;
+const PAD_TOP = 64;
+const PAD_BOTTOM = 24;
+const turned = line.map(([lng, lat]) => rotate(lng, lat));
+const xs = turned.map((p) => p[0]);
+const ys = turned.map((p) => p[1]);
+const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+const scale = (W - PAD_X * 2) / (maxX - minX);
+const H = Math.round((maxY - minY) * scale + PAD_TOP + PAD_BOTTOM);
+const place = (lng: number, lat: number) => {
+  const [x, y] = rotate(lng, lat);
+  return [+((x - minX) * scale + PAD_X).toFixed(1), +((y - minY) * scale + PAD_TOP).toFixed(1)] as const;
+};
+// HTML labels sit over the drawing in percentages, so they keep real type sizes at every width.
+const pct = (x: number, y: number) => `left:${((x / W) * 100).toFixed(2)}%;top:${((y / H) * 100).toFixed(2)}%`;
+
+const path = 'M' + line.map(([lng, lat]) => place(lng, lat).join(',')).join('L');
+const dots = stations
+  .filter((s) => s.location.lat !== null)
+  .map((s) => ({ s, at: place(s.location.lng!, s.location.lat!), here: s.id === station.id, change: s.interchanges.value.length > 0 }));
+const here = dots.find((d) => d.here)!;
+const first = dots[0];
+const last = dots.at(-1)!;
+// An end label gives way when the marked station sits close to that end, so labels never collide.
+const clear = (d: (typeof dots)[number]) => !d.here && Math.abs(here.at[0] - d.at[0]) > 150;
+const align = here.at[0] < W * 0.2 ? 'start' : here.at[0] > W * 0.8 ? 'end' : 'middle';
+
+// North, turned the same way as the line: the screen direction of a step due north.
+const [n0x, n0y] = rotate(73.1, 19.1);
+const [n1x, n1y] = rotate(73.1, 19.2);
+const nLen = Math.hypot(n1x - n0x, n1y - n0y);
+const [nx, ny] = [(n1x - n0x) / nLen, (n1y - n0y) / nLen];
+// SVG turns clockwise from straight up.
+const northDeg = +((Math.atan2(nx, -ny) * 180) / Math.PI).toFixed(1);
+// Bottom left is always empty: the line leaves Kalyan near the top of the drawing.
+const NORTH = [52, H - 34] as const;
+
+const label = `Drawing of Line 12 from Kalyan to Amandoot with ${station.name} marked, station ${station.order} of ${stations.length}.`;
+---
+
+<figure class="locator">
+  <div class="locator__plot">
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label}>
+      <path class="locator__casing" d={path} />
+      <path class="locator__core" d={path} />
+      {dots.map((d) => !d.here && <circle class="locator__stop" cx={d.at[0]} cy={d.at[1]} r="5.5" />)}
+      {dots.map(
+        (d) =>
+          d.change && (
+            <g transform={`translate(${d.at[0] - 9} ${d.at[1] + (d.here ? 17 : 11)})`}>
+              <rect class="locator__change-top" width="18" height="5" />
+              <rect class="locator__change-bottom" y="5" width="18" height="5" />
+            </g>
+          ),
+      )}
+      <circle class="locator__here" cx={here.at[0]} cy={here.at[1]} r="10" />
+      <path class="locator__north" d="M0,-17 L8,11 L0,5 L-8,11 Z" transform={`translate(${NORTH[0]} ${NORTH[1]}) rotate(${northDeg})`} />
+    </svg>
+    <span class={`locator__name locator__name--${align}`} style={pct(here.at[0], here.at[1])} aria-hidden="true">{station.name}</span>
+    {clear(first) && <span class="locator__end locator__end--first" style={pct(first.at[0], first.at[1])} aria-hidden="true">{first.s.name}</span>}
+    {clear(last) && <span class="locator__end locator__end--last" style={pct(last.at[0], last.at[1])} aria-hidden="true">{last.s.name}</span>}
+    <span class="locator__n" style={pct(NORTH[0] + nx * 32, NORTH[1] + ny * 32)} aria-hidden="true">N</span>
+  </div>
+  <figcaption>
+    <span class="locator__keys" aria-hidden="true">
+      <span class="locator__key">
+        <svg viewBox="0 0 14 14" width="14" height="14"><circle class="locator__stop" cx="7" cy="7" r="5" /></svg> Station
+      </span>
+      <span class="locator__key">
+        <svg viewBox="0 0 18 10" width="18" height="10"><rect class="locator__change-top" width="18" height="5" /><rect class="locator__change-bottom" y="5" width="18" height="5" /></svg> Interchange
+      </span>
+    </span>
+    <span>
+      Drawn from <a href={alignment.properties.source_url} rel="noopener">MMRDA's approved alignment</a> of 20 Mar 2025, turned so Kalyan is on the left.
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .locator {
+    display: grid;
+    gap: var(--s-3);
+    margin: 0;
+  }
+  .locator__plot {
+    position: relative;
+  }
+  .locator svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* The line is not built yet, so it prints hollow: an orange casing with a paper core. */
+  .locator__casing,
+  .locator__core {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .locator__casing {
+    stroke: var(--signal-graphic);
+    stroke-width: 11;
+  }
+  .locator__core {
+    stroke: var(--paper);
+    stroke-width: 4;
+  }
+  .locator__stop {
+    fill: var(--ink);
+    stroke: var(--paper);
+    stroke-width: 2.5;
+  }
+  .locator__here {
+    fill: var(--signal-graphic);
+    stroke: var(--ink);
+    stroke-width: 3.5;
+  }
+  .locator__change-top {
+    fill: var(--ink);
+  }
+  .locator__change-bottom {
+    fill: var(--signal-graphic);
+  }
+  .locator__north {
+    fill: var(--ink-2);
+  }
+
+  .locator__name,
+  .locator__end,
+  .locator__n {
+    position: absolute;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  /* Station name: title type, squeezed, above its dot. */
+  .locator__name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-2);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    transform: translate(-50%, calc(-100% - 0.85rem));
+  }
+  .locator__name--start {
+    transform: translate(-0.6rem, calc(-100% - 0.85rem));
+  }
+  .locator__name--end {
+    transform: translate(calc(-100% + 0.6rem), calc(-100% - 0.85rem));
+  }
+  /* End names and the north letter: label type. */
+  .locator__end,
+  .locator__n {
+    font-size: var(--step--1);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .locator__end--first {
+    transform: translate(-0.4rem, calc(-100% - 0.7rem));
+  }
+  .locator__end--last {
+    transform: translate(calc(-100% + 0.4rem), 0.9rem);
+  }
+  .locator__n {
+    font-weight: 700;
+    transform: translate(-50%, -50%);
+  }
+
+  .locator figcaption {
+    display: grid;
+    gap: var(--s-2);
+    font-size: var(--step--1);
+    line-height: 1.3;
+    color: var(--ink-3);
+  }
+  .locator__keys {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1) var(--s-5);
+    color: var(--ink-2);
+  }
+  .locator__key {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+  }
+</style>

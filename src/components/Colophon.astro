@@ -10,13 +10,15 @@ const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata
   <div class="page colophon__inner">
     {photoContributors.length > 0 && (
       <section class="thanks" aria-labelledby="thanks-head">
-        <h2 id="thanks-head" class="thanks__kicker">Ground photos by</h2>
+        <h2 id="thanks-head" class="visually-hidden">Photo credits</h2>
         <ul class="thanks__list">
           {photoContributors.map((c) => (
             <li>
-              <span class="thanks__name">{c.credit}</span>
-              <a class="thanks__handle" href={`https://x.com/${c.handle}`} rel="noopener" target="_blank">@{c.handle}<span class="visually-hidden"> on X (opens in a new tab)</span></a>
-              <span class="thanks__what">Photos of {c.stations.join(', ')} {c.stations.length > 1 ? 'stations' : 'station'}, shared with permission. Thank you.</span>
+              <p class="thanks__name">{c.credit}</p>
+              <p class="thanks__line">
+                <a class="thanks__handle" href={`https://x.com/${c.handle}`} rel="noopener" target="_blank">@{c.handle}<span class="visually-hidden"> on X (opens in a new tab)</span></a>
+                <span>Ground photos of {c.stations.join(', ')} {c.stations.length > 1 ? 'stations' : 'station'}, shared with permission. Thank you.</span>
+              </p>
             </li>
           ))}
         </ul>
@@ -52,50 +54,54 @@ const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata
     gap: var(--s-4);
     padding-block: var(--s-7);
   }
+  /* Photo credits: the section-head bar, then the name in display type. */
   .thanks {
     display: grid;
-    padding-left: var(--s-4);
-    border-left: var(--bar) solid var(--signal);
-    gap: var(--s-3);
+    gap: var(--s-4);
     padding-bottom: var(--s-6);
-    border-bottom: 1px solid var(--rule);
+    border-bottom: var(--rule-w) solid var(--rule);
   }
-  .thanks__kicker {
-    font-size: var(--step--1);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--signal-line);
+  .thanks::before {
+    content: '';
+    width: 4.5rem;
+    height: var(--bar);
+    background: var(--signal-graphic);
   }
   .thanks__list {
     display: grid;
-    gap: var(--s-4);
+    gap: var(--s-5);
     margin: 0;
     padding: 0;
     list-style: none;
   }
   .thanks__list li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--s-1) var(--s-4);
+    display: grid;
+    gap: var(--s-2);
   }
   .thanks__name {
     font-family: var(--font-display);
     font-weight: 800;
-    font-stretch: 87.5%;
+    font-stretch: 75%;
     font-size: var(--step-4);
-    line-height: 0.95;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .thanks__line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-1) var(--s-4);
+    color: var(--ink-2);
   }
   .thanks__handle {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 800;
+    font-stretch: 75%;
     font-size: var(--step-2);
-  }
-  .thanks__what {
-    flex-basis: 100%;
-    color: var(--ink-2);
+    line-height: 1;
+    color: var(--ink);
   }
   .colophon__disclaimer {
     max-width: var(--measure);
