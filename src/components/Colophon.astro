@@ -1,6 +1,14 @@
 ---
-/** The back of the paper on every page: photo credits, disclaimer, dates, source code, maintainer. */
-import { formatDate, lastReviewed, REPO_URL, photoContributors } from '../lib/data';
+/** The back of the paper on every page: disclaimer, dates, source code, maintainer, and on a station page the photo credits. */
+import { formatDate, lastReviewed, REPO_URL, photoContributorsFor, stations } from '../lib/data';
+
+interface Props {
+  /** The station page this footer closes. Photo credits show only on the page whose photos they are. */
+  stationId?: string;
+}
+const { stationId } = Astro.props;
+const credits = stationId ? photoContributorsFor(stationId) : [];
+const stationName = stations.find((s) => s.id === stationId)?.name;
 
 // Build date in India time, so it matches the edition date readers see.
 const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
@@ -8,16 +16,16 @@ const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata
 
 <footer class="colophon">
   <div class="page colophon__inner">
-    {photoContributors.length > 0 && (
+    {credits.length > 0 && (
       <section class="thanks" aria-labelledby="thanks-head">
         <h2 id="thanks-head" class="visually-hidden">Photo credits</h2>
         <ul class="thanks__list">
-          {photoContributors.map((c) => (
+          {credits.map((c) => (
             <li>
               <p class="thanks__name">{c.credit}</p>
               <p class="thanks__line">
                 <a class="thanks__handle" href={`https://x.com/${c.handle}`} rel="noopener" target="_blank">@{c.handle}<span class="visually-hidden"> on X (opens in a new tab)</span></a>
-                <span>Ground photos of {c.stations.join(', ')} {c.stations.length > 1 ? 'stations' : 'station'}, shared with permission. Thank you.</span>
+                <span>Ground photos of {stationName} station on this page, shared with permission. Thank you.</span>
               </p>
             </li>
           ))}

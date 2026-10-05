@@ -64,19 +64,14 @@ export interface StationPhoto {
 }
 export const stationPhotos = photosJson.stations as Record<string, StationPhoto[]>;
 
-/** People who shared their photos with permission (those with an X handle), and the stations they cover. */
-export const photoContributors = (() => {
-  const byHandle = new Map<string, { credit: string; handle: string; stations: string[] }>();
-  for (const s of stations) {
-    for (const ph of stationPhotos[s.id] ?? []) {
-      if (!ph.handle) continue;
-      const c = byHandle.get(ph.handle) ?? { credit: ph.credit, handle: ph.handle, stations: [] };
-      if (!c.stations.includes(s.name)) c.stations.push(s.name);
-      byHandle.set(ph.handle, c);
-    }
+/** People who shared their photos with permission (those with an X handle) on one station page. */
+export const photoContributorsFor = (stationId: string) => {
+  const byHandle = new Map<string, { credit: string; handle: string }>();
+  for (const ph of stationPhotos[stationId] ?? []) {
+    if (ph.handle && !byHandle.has(ph.handle)) byHandle.set(ph.handle, { credit: ph.credit, handle: ph.handle });
   }
   return [...byHandle.values()];
-})();
+};
 
 export type Station = (typeof stations)[number];
 export type TimelineEvent = (typeof timeline)[number];
