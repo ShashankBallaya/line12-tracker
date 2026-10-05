@@ -48,12 +48,14 @@ export const feed = feedJson as {
   videos: { id: string; title: string; channel: string; date: string; url: string }[];
 };
 
-/** The owner's own dated ground photos for one station page. Never stock or official images. */
+/** Dated ground photos for one station page, by the owner or by people who gave permission. Never stock or official images. */
 export interface StationPhoto {
   src: string;
   alt: string;
   date: string;
   credit: string;
+  /** The photographer's own post, when the photo is not the owner's. */
+  source_url?: string;
   width: number;
   height: number;
   caption?: string;

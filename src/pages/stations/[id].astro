@@ -28,7 +28,7 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 const target = project.target_completion;
 const site = Astro.site!.toString();
-// The maintainer's own dated photos, when there are any; otherwise the slot waits for them.
+// Dated ground photos (the maintainer's, or shared with permission), when there are any; otherwise the slot waits for them.
 const photos = stationPhotos[s.id] ?? [];
 const [lead, ...more] = photos;
 
@@ -83,7 +83,7 @@ const schema: Record<string, unknown>[] = [
           <img src={lead.src} alt={lead.alt} width={lead.width} height={lead.height} decoding="async" />
           <figcaption>
             {lead.caption && <span>{lead.caption}</span>}
-            <span class="shot__meta">Photo by {lead.credit}, <time datetime={lead.date}>{formatDate(lead.date)}</time></span>
+            <span class="shot__meta">Photo by {lead.source_url ? <a href={lead.source_url} rel="noopener">{lead.credit}</a> : lead.credit}, <time datetime={lead.date}>{formatDate(lead.date)}</time></span>
           </figcaption>
         </figure>
       ) : (
@@ -213,7 +213,7 @@ const schema: Record<string, unknown>[] = [
                 <img src={ph.src} alt={ph.alt} width={ph.width} height={ph.height} loading="lazy" decoding="async" />
                 <figcaption>
                   {ph.caption && <span>{ph.caption}</span>}
-                  <span class="shot__meta">Photo by {ph.credit}, <time datetime={ph.date}>{formatDate(ph.date)}</time></span>
+                  <span class="shot__meta">Photo by {ph.source_url ? <a href={ph.source_url} rel="noopener">{ph.credit}</a> : ph.credit}, <time datetime={ph.date}>{formatDate(ph.date)}</time></span>
                 </figcaption>
               </figure>
             </li>

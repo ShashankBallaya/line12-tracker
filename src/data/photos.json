@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "description": "Your own dated ground photos. 'pairs' are before/after pairs shown under the satellite comparison. 'stations' holds photos for each station page, keyed by the station id in stations.json. Put the image files in public/photos/ (location data removed) and add entries below. See UPDATING.md.",
-    "last_reviewed": "2026-10-04"
+    "description": "Dated ground photos, by the owner or by people who gave permission to use them. 'pairs' are before/after pairs shown under the satellite comparison. 'stations' holds photos for each station page, keyed by the station id in stations.json. Put the image files in public/photos/ (location data removed) and add entries below. See UPDATING.md.",
+    "last_reviewed": "2026-10-06"
   },
   "pairs": [],
   "stations": {
@@ -23,6 +23,88 @@
         "credit": "Shashank Ballaya",
         "width": 1200,
         "height": 1600
+      }
+    ],
+    "amandoot": [
+      {
+        "src": "/photos/amandoot-2026-08-26-a.jpg",
+        "alt": "Station piers SP01 and SP02 for Amandoot station with their wide pier caps, and round pier P648 in front, on cleared muddy ground under a cloudy sky",
+        "caption": "Station piers SP01 and SP02, with the temporary steel supports now removed",
+        "date": "2026-08-26",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2092489255948025861",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/photos/amandoot-2026-08-26-b.jpg",
+        "alt": "A row of Line 12 station piers on cleared ground beside the green arched roof of Navi Mumbai Metro Line 1's Amandoot station",
+        "caption": "The station area beside Navi Mumbai Metro Line 1's Amandoot station",
+        "date": "2026-08-26",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2092489255948025861",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/photos/amandoot-2026-08-26-c.jpg",
+        "alt": "Two tall reinforcement cages for new piers on a muddy site, with workers below and the Navi Mumbai Metro Line 1 viaduct behind",
+        "caption": "Reinforcement cages for the first pair of piers on the left and right of the line",
+        "date": "2026-08-26",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2092489255948025861",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "src": "/photos/amandoot-2026-08-26-d.jpg",
+        "alt": "A finished pier with its pier cap beside a road, more piers beyond, and the Navi Mumbai Metro Line 1 viaduct on the right with traffic below",
+        "caption": "Finished piers beside the road, with the Line 1 viaduct on the right",
+        "date": "2026-08-26",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2092489255948025861",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "src": "/photos/amandoot-2026-08-26-e.jpg",
+        "alt": "An elevated viaduct section with its deck and parapets complete, standing on a row of piers among trees",
+        "caption": "The reversal area beyond Amandoot, which the photographer reports is complete",
+        "date": "2026-08-26",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2092493069941936517",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "src": "/photos/amandoot-2026-07-08-a.jpg",
+        "alt": "Station piers for Amandoot station held up by rusty steel trestles and blue formwork, with pier SP01 in the centre",
+        "caption": "Station piers SP01 and SP02 on temporary steel supports during pier cap casting",
+        "date": "2026-07-08",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2074820038897582352",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/photos/amandoot-2026-07-08-b.jpg",
+        "alt": "The Amandoot station piers on steel trestles, seen from a wet paved footpath with tall residential towers behind",
+        "caption": "The same station piers from the footpath, during the monsoon",
+        "date": "2026-07-08",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2074820038897582352",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/photos/amandoot-2026-07-08-c.jpg",
+        "alt": "Blue steel formwork around a pier beside the Line 1 Amandoot station building, with a red mobile crane on the right",
+        "caption": "Formwork for a pier beside the Line 1 station building",
+        "date": "2026-07-08",
+        "credit": "Arindam Mahapatra",
+        "source_url": "https://x.com/Maha7Arindam/status/2074820038897582352",
+        "width": 1600,
+        "height": 1200
       }
     ]
   }

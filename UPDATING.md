@@ -183,3 +183,5 @@ Every station page has a photo slot beside its headline. Until you add a photo, 
 ```
 
 The first photo fills the slot. Any more appear under "More from the ground" further down the page. `width` and `height` are the file's real pixel size, so the page does not jump while the photo loads.
+
+A photo by someone else needs their permission first. Put their name in `credit` and add `source_url` with a link to their own post. The credit then links to that post.
