@@ -1,8 +1,29 @@
 {
   "_meta": {
     "description": "Your own dated ground photos. 'pairs' are before/after pairs shown under the satellite comparison. 'stations' holds photos for each station page, keyed by the station id in stations.json. Put the image files in public/photos/ (location data removed) and add entries below. See UPDATING.md.",
-    "last_reviewed": "2026-09-28"
+    "last_reviewed": "2026-10-04"
   },
   "pairs": [],
-  "stations": {}
+  "stations": {
+    "apmc-kalyan": [
+      {
+        "src": "/photos/apmc-kalyan-2026-10-04-a.jpg",
+        "alt": "Precast prestressed concrete span girder resting on the pier caps at APMC Kalyan, with piers SP.09 and CSP.10 in front and traffic on the road below, at night",
+        "caption": "Newly installed span girder above piers SP.09 and CSP.10, one of two installed at the station",
+        "date": "2026-10-04",
+        "credit": "Shashank Ballaya",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "src": "/photos/apmc-kalyan-2026-10-04-b.jpg",
+        "alt": "Second precast prestressed concrete span girder on the pier cap beside pier SP.02 at APMC Kalyan, at night",
+        "caption": "The second newly installed span girder, beside pier SP.02",
+        "date": "2026-10-04",
+        "credit": "Shashank Ballaya",
+        "width": 1200,
+        "height": 1600
+      }
+    ]
+  }
 }

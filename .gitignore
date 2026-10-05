@@ -23,3 +23,6 @@ skills-lock.json
 Thumbs.db
 .vscode/
 .impeccable/questions/
+
+# owner photo originals (carry GPS): never commit
+ground/
