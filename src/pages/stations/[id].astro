@@ -128,8 +128,7 @@ const schema: Record<string, unknown>[] = [
       <div>
         <dt>Along the line</dt>
         <dd>
-          {/* Trial on one station first; the owner decides before it goes on every page. */}
-          {s.id === 'amandoot' && loc.lat !== null && <LocatorMap station={s} />}
+          {loc.lat !== null && <LocatorMap station={s} />}
           <p>
             {km(loc.along_m)} km from the start of the line at Kalyan
             {ch !== null && <span class="fact__note num"> (2019 project report: chainage {ch.toLocaleString('en-IN')} m)</span>}

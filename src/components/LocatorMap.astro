@@ -59,6 +59,11 @@ const last = dots.at(-1)!;
 // An end label gives way when the marked station sits close to that end, so labels never collide.
 const clear = (d: (typeof dots)[number]) => !d.here && Math.abs(here.at[0] - d.at[0]) > 150;
 const align = here.at[0] < W * 0.2 ? 'start' : here.at[0] > W * 0.8 ? 'end' : 'middle';
+// The name sits above the highest point of the line under it, so it never lands on the line.
+// Its reach covers a long name at phone width, where it spans the most of the drawing.
+const REACH = 260;
+const [from, to] = align === 'start' ? [here.at[0] - 20, here.at[0] + REACH] : align === 'end' ? [here.at[0] - REACH, here.at[0] + 20] : [here.at[0] - REACH / 2, here.at[0] + REACH / 2];
+const nameY = Math.min(here.at[1], ...line.map(([lng, lat]) => place(lng, lat)).filter(([x]) => x >= from && x <= to).map(([, y]) => y));
 
 // North, turned the same way as the line: the screen direction of a step due north.
 const [n0x, n0y] = rotate(73.1, 19.1);
@@ -91,7 +96,7 @@ const label = `Drawing of Line 12 from Kalyan to Amandoot with ${station.name} m
       <circle class="locator__here" cx={here.at[0]} cy={here.at[1]} r="10" />
       <path class="locator__north" d="M0,-17 L8,11 L0,5 L-8,11 Z" transform={`translate(${NORTH[0]} ${NORTH[1]}) rotate(${northDeg})`} />
     </svg>
-    <span class={`locator__name locator__name--${align}`} style={pct(here.at[0], here.at[1])} aria-hidden="true">{station.name}</span>
+    <span class={`locator__name locator__name--${align}`} style={pct(here.at[0], nameY)} aria-hidden="true">{station.name}</span>
     {clear(first) && <span class="locator__end locator__end--first" style={pct(first.at[0], first.at[1])} aria-hidden="true">{first.s.name}</span>}
     {clear(last) && <span class="locator__end locator__end--last" style={pct(last.at[0], last.at[1])} aria-hidden="true">{last.s.name}</span>}
     <span class="locator__n" style={pct(NORTH[0] + nx * 32, NORTH[1] + ny * 32)} aria-hidden="true">N</span>
