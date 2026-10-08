@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "description": "The 17 Line 5 station points in MMRDA's alignment file (uploaded March 2025), in order from Kapurbawdi. Positions come from that file (scripts/build-alignment-line5.py). Phase 1 is Kapurbawdi to Dhamankar Naka. 'revised_plan_2026' says what the revised plan (State approval 22 Apr 2026, Union approval 29 Aug 2026) does with each station, from news reports of that approval; MMRDA has not published the revised station list. 'eia_chainage_m' is the station's chainage in MMRDA's Phase 1 environmental report (Sep 2023). The report's chainages do not match the distances between the station points in the alignment file (for example Kalher to Purna: 0.83 km in the report, about 2 km apart on the map); they are kept as published. 'same_site_as' names a station of another line at the same place, with the distance between the two points.",
+  "description": "The 17 Line 5 station points in MMRDA's alignment file (uploaded March 2025), in order from Kapurbawdi. Positions come from that file (scripts/build-alignment-line5.py). 'phase' follows the revised split (post on X, 31 Aug 2026): 1 Kapurbawdi to Dhamankar Naka, 2 Dhamankar Naka to Durgadi, 3 Durgadi to Kalyan. 'revised_plan_2026' says what the revised plan (State approval 22 Apr 2026, Union approval 29 Aug 2026) does with each station, from news reports of that approval; MMRDA has not published the revised station list. 'eia_chainage_m' is the station's chainage in MMRDA's Phase 1 environmental report (Sep 2023). The report's chainages do not match the distances between the station points in the alignment file (for example Kalher to Purna: 0.83 km in the report, about 2 km apart on the map); they are kept as published. 'same_site_as' names a station of another line at the same place, with the distance between the two points.",
   "order_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
   "count_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
   "names_mr_source_url": "https://mmrda.maharashtra.gov.in/mr/projects/transport/metro-line-5/overview",
@@ -561,11 +561,12 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Moved to Line 5A",
+    "value": "Kept on Line 5, at the end of Phase 2 and the start of Phase 3",
     "name_in_plan": "Durgadi",
     "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
-    "last_verified": "2026-10-09"
+    "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
+    "last_verified": "2026-10-09",
+    "notes": "Indian Infrastructure and Construction World (Sep 2026) put the stations beyond Durgadi on Line 5A instead."
    },
    "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file. MMRDA's Line 5 page lists \"Lal Chowki\" between Kon Gaon and Kalyan, instead of Durgadi Fort and Sahajanand Chowk.",
    "last_verified": "2026-10-09"
@@ -575,7 +576,7 @@
    "order": 15,
    "name": "Sahajanand Chowk",
    "name_mr": null,
-   "phase": 2,
+   "phase": 3,
    "type": "Elevated",
    "name_status": "verified",
    "name_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
@@ -615,7 +616,7 @@
    "order": 16,
    "name": "Kalyan",
    "name_mr": "कल्याण स्टेशन",
-   "phase": 2,
+   "phase": 3,
    "type": "Elevated",
    "name_status": "verified",
    "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
@@ -635,7 +636,7 @@
     ],
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
-    "notes": "MMRDA's Line 5 page says the line will connect with Line 12 and the Central Railway. In the revised plan of 2026, Kalyan is on Line 5A."
+    "notes": "MMRDA's Line 5 page says the line will connect with Line 12 and the Central Railway. In the revised plan Kalyan is reached by Phase 3, from Durgadi."
    },
    "context": [],
    "construction_status": {
@@ -645,11 +646,12 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Moved to Line 5A",
+    "value": "Kept on Line 5, on Phase 3",
     "name_in_plan": "Kalyan",
     "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
-    "last_verified": "2026-10-09"
+    "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
+    "last_verified": "2026-10-09",
+    "notes": "Indian Infrastructure and Construction World (Sep 2026) put Kalyan on Line 5A instead."
    },
    "notes": "MMRDA's Line 5 page calls it \"Kalyan Station\".",
    "last_verified": "2026-10-09",
@@ -664,7 +666,7 @@
    "order": 17,
    "name": "APMC Kalyan",
    "name_mr": "कल्याण एपीएमसी",
-   "phase": 2,
+   "phase": 3,
    "type": "Elevated",
    "name_status": "verified",
    "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",

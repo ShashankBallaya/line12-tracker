@@ -97,8 +97,8 @@
       "date": "2026-04-22",
       "date_precision": "day",
       "kind": "approval",
-      "title": "State approves the revised Line 5 and the new Line 5A",
-      "summary": "34.2 km and 19 stations in all: Line 5 from Thane to Durgadi, and Line 5A from Durgadi to Kalyan and towards Ulhasnagar.",
+      "title": "State approves the revised Line 5 and Line 5A",
+      "summary": "34.2 km in all, from Thane through Bhiwandi and Durgadi to Kalyan, with an extension towards Ulhasnagar.",
       "status": "reported",
       "source_url": "https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/",
       "last_verified": "2026-10-09"
@@ -108,15 +108,15 @@
       "date": "2026-08-29",
       "date_precision": "day",
       "kind": "approval",
-      "title": "Union Government approves the revised Lines 5 and 5A",
-      "summary": "The report gives Rs 18,131 crore for both lines together, Rs 4,063 crore of it for Line 5A.",
+      "title": "Union Government approves Phases 2 and 3 and Line 5A",
+      "summary": "Phase 2, Dhamankar Naka to Durgadi (10.48 km); Phase 3, Durgadi to Kalyan (11.82 km); and Line 5A, the Bhoirwadi to Ulhasnagar spur (5.27 km). MMRDA is to call tenders.",
       "status": "reported",
-      "source_url": "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/",
+      "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
       "last_verified": "2026-10-09",
       "also_see": [
-        "https://x.com/bodkeitis/status/2094307767142244544"
+        "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/"
       ],
-      "notes": "A post on X two days later (Swarup Bodke, 31 Aug 2026) splits the approval into Phase 2, Dhamankar Naka to Durgadi (10.48 km); Phase 3, Durgadi to Kalyan (11.82 km); and Line 5A, the Bhoirwadi to Ulhasnagar spur (5.27 km), and says MMRDA will tender all three soon."
+      "notes": "Approval date 29 Aug 2026 from Indian Infrastructure (3 Sep 2026), which gives Rs 18,131 crore for Lines 5 and 5A together and calls the section beyond Durgadi Line 5A. The phase split is from the post on X (31 Aug 2026)."
     },
     {
       "id": "phase1-civil-complete",
@@ -156,8 +156,8 @@
       "date": "2030",
       "date_precision": "year",
       "kind": "future",
-      "title": "Target: Bhiwandi to Kalyan, with Line 5A",
-      "summary": "Reported target of 2030-31 for the rest of Line 5 and for Line 5A towards Ulhasnagar.",
+      "title": "Target: Phases 2 and 3, and Line 5A",
+      "summary": "Reported target of 2030-31 for Line 5 beyond Dhamankar Naka and for the Line 5A spur to Ulhasnagar.",
       "status": "reported",
       "source_url": "https://metrorailnews.in/center-approved-mumbai-metro-line-5-and-5a/",
       "last_verified": "2026-10-09"
