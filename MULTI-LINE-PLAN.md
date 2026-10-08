@@ -96,15 +96,58 @@ Each step ships on its own and leaves the live site working.
 4. **Routes under `/line-12/`** with `[line]` dynamic routes, the hub page, `_redirects`, sitemap and `llms.txt` per line. Ship this with the domain (step 5), not before.
 5. **Domain move.** Custom domain on Cloudflare Pages, `site` in `astro.config.mjs`, Search Console property for the new domain plus the Change of Address tool, 301 from `pages.dev`. Note: `_redirects` cannot match on host name, so the `pages.dev` to new-domain redirect needs Cloudflare Bulk Redirects (to check before this step).
 6. **Line 5 research.** First pass done 2026-10-09: `src/data/lines/line-5/` (project, stations, timeline, tenders, contractors, alignment), sources and open questions in `SOURCES.md` under "Line 5". Line 5 is in `lines.json`, but no page builds it until step 7. Same rules as Line 12: every fact sourced and graded.
-7. **Line 5 pages.** Data files only, plus a feed match block and any per-line assets. Cross-links at Kalyan.
+7. **Line 5 pages.** Next (owner, 2026-10-09). Line 5 gets the full Line 12 treatment, on the same components and page layout. What it needs is listed under "Line 5 page" below.
 8. **Line 4, then Line 2B.** Data and research only, if steps 2 to 4 hold.
+
+## Line 5 page: what it needs to match Line 12
+
+Status 2026-10-09. The page reuses Line 12's components and layout; this list is what Line 5 still lacks, section by section. "Data" means a sourced, graded file in `src/data/lines/line-5/`; "code" means a shared component change that must keep Line 12 byte-identical.
+
+### Already in place
+
+- `project.json`, `stations.json` (18 stations, 3 spur stations, 3 dropped), `timeline.json`, `tenders.json`, `contractors.json`, `alignment-mmrda-2025.geojson` (route in parts: current, underground, spur, superseded), and the sources in `SOURCES.md`.
+- Decisions: countdown to 31 Dec 2026 for Phase 1 (labelled target); the Line 5A spur on the Line 5 page; Kapurbawdi as station 1 and the interchange with Line 4.
+
+### Shared code that must learn new shapes (do first)
+
+1. **Schematic strip** (`src/lib/route.ts`, `FrontPage`, `RouteRide`, `Base` preloader, OG card). Today: one line, one 45-degree bend. Line 5 needs several bends, a loop at Kalyan, a branch (the spur at Bhoirwadi), an underground stretch, and a station without a position (Kongaon West). Design the schematic for a branch before building it.
+2. **Map** (`MapSection`, `scripts/map.ts`). Draw the GeoJSON parts differently: current line, underground stretch (dashed), spur, dropped 2017 route (faint, or off by default), and dropped stations. Today it draws one line.
+3. **Progress** (`Progress.astro`). The six phases and the `systems-tender` event are Line 12's. Move phases into `project.json` per line. Line 5 has three phases in very different states: Phase 1 built and near opening, Phases 2 and 3 approved and not started.
+4. **Station lists and pages** (`Stations`, `RouteRide`, `stations/[id]`, `LocatorMap`). Handle `spur_stations` and `dropped_stations`, an underground station (Bhiwandi), a station without a position, and `same_site_as` links (Kalyan to Line 12; Kapurbawdi to Line 4, as plain text until Line 4 has pages). The locator map assumes one line from Kalyan to Amandoot.
+5. **Line 12 facts in shared code**: the list under step 3 above. Each one moves into Line 12's data or shows only for Line 12.
+6. **Two lines, one colour.** Line 5 and Line 12 are both orange. On the hub, at Kalyan and on any shared map, show the line number with the colour every time.
+
+### Data and assets still to make
+
+| Section | Line 12 has | Line 5 needs |
+|---|---|---|
+| Lead picture | Isometric drawing of the viaduct over a road marked 12 (`draw-lead-picture.py`) | Its own drawing. Candidate signature: the 550 m Kasheli creek viaduct, or the double-decker metro and flyover between Rajnoli and Durgadi (reported). |
+| Hero 3D scene | `three/viaduct.ts` | A Line 5 variant, same engine. |
+| 3D station | `three/station.ts` + `station-model.json` captions | Phase 1 stations are a different design: spine and wings, two levels, about 145 m long, platforms about 13.5 m above the road (MMRDA environmental report, verified). New model and sourced captions. |
+| Before and after | `beforeafter.json` from `build-wayback.mjs` | Make the script take a line. Phase 1 is built, so the pairs will be dramatic: imagery from before Feb 2020 (construction start) against the latest. Kasheli creek, Anjurphata, Dhamankar Naka. |
+| Trains | `rollingstock.json` | A Line 5 file: Titagarh CA-241, 22 six-car trains, car size and capacity (MMRDA page). The owner's "LINE 5" train render lead, once sourced. |
+| Ground photos | `photos.json` (owner, and Arindam with permission) | Phase 1 is built and near the owner: dated photos of Kapurbawdi, Kasheli, Dhamankar Naka. Same rules: EXIF stripped, plates blurred. |
+| Updates | `social.json`, feed match block | A `line_5` block in `feed-sources.json`. Patterns must keep "Line 5" and "Metro 5" but not other cities' Line 5 (Pune, Chennai, Bengaluru all have one). Posts by @bodkeitis and @Maha7Arindam as reported. |
+| Status page | `status.astro`, Line 12 answers | Line 5 answers: when Phase 1 opens, which stations open first, where it meets Line 4, what happens past Bhiwandi, where the spur goes. |
+| Station pages | 19 pages, Marathi names, street level | 18 + 3 spur pages. Marathi names missing for Kapurbawdi, Durgadi, Khadakpada, Bhoirwadi, Shivaji Path, Kongaon West and the spur stations (Wikipedia has some, unverified). |
+| OG card, llms.txt, sitemap | Line 12 | Per line, in step 4. |
+
+### New for Line 5 (Line 12 does not have it yet)
+
+- **Opening mode.** Phase 1 may open before the end of 2026. Plan sections for a running line: opening date, timings, fares, frequency, and "open" against "under construction" per station. Line 12 will need the same later.
+- **Phase status at a glance.** One line in three phases at three stages (built, approved, approved), plus a spur.
+- **The 2017 plan against the 2026 plan.** A short "what changed" view: Gopal Nagar, Sahajanand Chowk and APMC Kalyan dropped, the loop to Kalyan, Bhiwandi underground.
+
+### Facts still missing (see `SOURCES.md`, Line 5)
+
+Trial-run and CMRS dates; the tunnel's route at Bhiwandi; a position for Kongaon West; approval dates 2016 to 2018; final AIIB and OPEC Fund amounts; the remaining packages; a newer route for Phase 3 and the spur than the tentative key plan of March 2026 (that tender was cancelled).
 
 ## Risks
 
 - **SEO dip.** Pages that rank today change URL. The 301s and one combined move keep this short. Check Search Console for two weeks after.
 - **Performance.** `import.meta.glob` with `eager` pulls every line into each page. Load one line per page so the station page goal (see `perf/station-page`) is not hurt.
-- **Merge conflict** with `perf/station-page`. Merge or park that branch before step 3.
-- **Scope creep.** The 3D model, before/after and lead picture took most of Line 12's effort. New lines launch without them.
+- **Parked branch.** `perf/station-page` was parked on 2026-10-09; redo its small changes on top of the multi-line code rather than rebase it.
+- **Scope creep.** The 3D model, before/after and lead picture took most of Line 12's effort. Line 5 gets them (owner's decision); Lines 4 and 2B launch without them unless the owner decides otherwise.
 - **Feed noise.** "Line 4" and "Line 2B" are common strings. Each line needs tight match patterns, and the 12 vs 12A rule must hold.
 
 ## Questions for the owner
