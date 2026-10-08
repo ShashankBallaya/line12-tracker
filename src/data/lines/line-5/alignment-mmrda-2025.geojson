@@ -1,13 +1,13 @@
 {
  "type": "FeatureCollection",
  "properties": {
-  "note": "Kapurbawdi to the Ulhas river bridge at Durgadi: derived from MMRDA's alignment file for Line 5 (https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line-5.kml), which gives the corridor as a polygon about 50 m wide; the centre line runs midway between its two sides, along the road medians of Agra Road, the Bhiwandi bypass and Kalyan-Bhiwandi Road (verified). Past the bridge, Phase 3 to Kalyan and the Line 5A spur to Ulhasnagar are traced from the tentative key plan in MMRDA's tender documents of March 2026 (reported, good to about 50 m; scripts/data/line5-extension-keyplan.json). Simplified to about 1 m by scripts/build-alignment-line5.py.",
+  "note": "Kapurbawdi to the Ulhas river bridge at Durgadi: from the station north of the curve onto Ghodbunder Road, OpenStreetMap's Line 5 tracks (ODbL; scripts/data/line5-kapurbawdi-osm.json); then derived from MMRDA's alignment file for Line 5 (https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line-5.kml), which gives the corridor as a polygon about 50 m wide; the centre line runs midway between its two sides, along the road medians of Agra Road, the Bhiwandi bypass and Kalyan-Bhiwandi Road (verified). Past the bridge, Phase 3 to Kalyan and the Line 5A spur to Ulhasnagar are traced from the tentative key plan in MMRDA's tender documents of March 2026 (reported, good to about 50 m; scripts/data/line5-extension-keyplan.json). Simplified to about 1 m by scripts/build-alignment-line5.py.",
   "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
   "status": "verified",
   "last_verified": "2026-10-09",
-  "length_m": 24141,
-  "fork_m": 21445,
-  "centre_line_m": 28173,
+  "length_m": 25298,
+  "fork_m": 22602,
+  "centre_line_m": 29330,
   "spur_m": 4882
  },
  "features": [
@@ -16,54 +16,98 @@
    "properties": {
     "name": "Line 5 centre line",
     "part": "current",
-    "note": "Phase 1 (built) and Phase 2 (approved) from Kapurbawdi to the Ulhas river bridge, from MMRDA's 2025 file (verified); then Phase 3 to Kalyan from the tender key plan (reported). Phase 3 starts 21.45 km from Kapurbawdi."
+    "note": "Phase 1 (built) and Phase 2 (approved) from Kapurbawdi to the Ulhas river bridge, from MMRDA's 2025 file (verified); then Phase 3 to Kalyan from the tender key plan (reported). Phase 3 starts 22.60 km from Kapurbawdi."
    },
    "geometry": {
     "type": "LineString",
     "coordinates": [
      [
-      72.978853,
-      19.217987
+      72.977123,
+      19.227847
      ],
      [
-      72.978894,
-      19.217765
+      72.977553,
+      19.223905
      ],
      [
-      72.97947,
-      19.217861
+      72.977826,
+      19.221659
      ],
      [
-      72.979514,
-      19.21784
+      72.978062,
+      19.220509
      ],
      [
-      72.979797,
-      19.217905
+      72.978323,
+      19.218364
      ],
      [
-      72.98056,
-      19.218033
+      72.978361,
+      19.218183
      ],
      [
-      72.982278,
-      19.218319
+      72.978399,
+      19.218091
      ],
      [
-      72.982492,
-      19.218337
+      72.978442,
+      19.218008
      ],
      [
-      72.982506,
-      19.218367
+      72.978559,
+      19.217856
      ],
      [
-      72.983466,
-      19.218529
+      72.978631,
+      19.217784
      ],
      [
-      72.983843,
-      19.21862
+      72.978783,
+      19.217682
+     ],
+     [
+      72.978861,
+      19.217637
+     ],
+     [
+      72.979141,
+      19.217534
+     ],
+     [
+      72.979239,
+      19.217507
+     ],
+     [
+      72.979427,
+      19.217489
+     ],
+     [
+      72.979808,
+      19.21752
+     ],
+     [
+      72.981873,
+      19.217876
+     ],
+     [
+      72.982242,
+      19.217966
+     ],
+     [
+      72.982605,
+      19.218083
+     ],
+     [
+      72.983139,
+      19.218275
+     ],
+     [
+      72.983673,
+      19.218491
+     ],
+     [
+      72.983745,
+      19.218596
      ],
      [
       72.984113,
@@ -410,10 +454,6 @@
       19.294487
      ],
      [
-      73.062079,
-      19.295459
-     ],
-     [
       73.062245,
       19.2956
      ],
@@ -432,10 +472,6 @@
      [
       73.062994,
       19.29586
-     ],
-     [
-      73.06315,
-      19.295848
      ],
      [
       73.063284,
@@ -928,10 +964,6 @@
       19.294487
      ],
      [
-      73.062079,
-      19.295459
-     ],
-     [
       73.062245,
       19.2956
      ],
@@ -950,10 +982,6 @@
      [
       73.062994,
       19.29586
-     ],
-     [
-      73.06315,
-      19.295848
      ],
      [
       73.063284,

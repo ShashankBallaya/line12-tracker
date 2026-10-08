@@ -19,13 +19,21 @@
    "name_status": "verified",
    "name_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
    "location": {
-    "lng": 72.980643,
-    "lat": 19.218042,
-    "along_m": 212,
+    "lng": 72.9774245,
+    "lat": 19.2241429,
+    "along_m": 413,
     "eia_chainage_m": null,
-    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kapurbawdi(M)station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+    "method": "OpenStreetMap's Kapurbawdi Station (https://www.openstreetmap.org/node/8342841400), on the Line 4 viaduct over Ghodbunder Road, where Line 5's tracks run alongside; checked on satellite imagery by the owner (Google Maps) and on Esri imagery, 2026-10-09. The point is 11 m from the line.",
+    "status": "reported",
+    "source_url": "https://www.openstreetmap.org/node/8342841400",
+    "earlier": [
+     {
+      "lat": 19.218042,
+      "lng": 72.980643,
+      "basis": "MMRDA's alignment file of March 2025, which puts it on the curve east of Ghodbunder Road, where there is no station",
+      "distance_m": 758
+     }
+    ]
    },
    "interchanges": {
     "value": [
@@ -64,7 +72,7 @@
    "location": {
     "lng": 72.988592,
     "lat": 19.220853,
-    "along_m": 1115,
+    "along_m": 2272,
     "eia_chainage_m": 1766.85,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Balkum Naka(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
     "status": "verified",
@@ -104,7 +112,7 @@
    "location": {
     "lng": 73.016358,
     "lat": 19.239844,
-    "along_m": 4815,
+    "along_m": 5972,
     "eia_chainage_m": 5551.704,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kasheli(M)Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 3 m from that line.",
     "status": "verified",
@@ -144,7 +152,7 @@
    "location": {
     "lng": 73.019526,
     "lat": 19.251814,
-    "along_m": 6265,
+    "along_m": 7422,
     "eia_chainage_m": 7416.328,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kalhar(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 7 m from that line.",
     "status": "verified",
@@ -184,7 +192,7 @@
    "location": {
     "lng": 73.032815,
     "lat": 19.264678,
-    "along_m": 8283,
+    "along_m": 9440,
     "eia_chainage_m": 8250.753,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Purna(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 5 m from that line.",
     "status": "verified",
@@ -224,7 +232,7 @@
    "location": {
     "lng": 73.042806,
     "lat": 19.274433,
-    "along_m": 9795,
+    "along_m": 10952,
     "eia_chainage_m": 10527.568,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Anjurphata(M)Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 4 m from that line.",
     "status": "verified",
@@ -264,7 +272,7 @@
    "location": {
     "lng": 73.054086,
     "lat": 19.287582,
-    "along_m": 11680,
+    "along_m": 12837,
     "eia_chainage_m": 12125.569,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Dhamankar Naka (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
     "status": "verified",
@@ -304,7 +312,7 @@
    "location": {
     "lng": 73.059736,
     "lat": 19.293304,
-    "along_m": 12552,
+    "along_m": 13708,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Bhiwandi(M) Statiion\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 6 m from that line.",
     "status": "verified",
@@ -346,7 +354,7 @@
    "location": {
     "lng": 73.074129,
     "lat": 19.281687,
-    "along_m": 14993,
+    "along_m": 16150,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Temghar(M)station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 3 m from that line.",
     "status": "verified",
@@ -386,7 +394,7 @@
    "location": {
     "lng": 73.084077,
     "lat": 19.268677,
-    "along_m": 16780,
+    "along_m": 17936,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Rajnouli Village(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 4 m from that line.",
     "status": "verified",
@@ -426,7 +434,7 @@
    "location": {
     "lng": 73.090116,
     "lat": 19.261601,
-    "along_m": 17799,
+    "along_m": 18956,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Gove Gaon MIDC(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 0 m from that line.",
     "status": "verified",
@@ -466,7 +474,7 @@
    "location": {
     "lng": 73.106445,
     "lat": 19.248077,
-    "along_m": 20101,
+    "along_m": 21257,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kon Gaon (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 8 m from that line.",
     "status": "verified",
@@ -545,7 +553,7 @@
    "location": {
     "lng": 73.121357,
     "lat": 19.24949,
-    "along_m": 21995,
+    "along_m": 23152,
     "eia_chainage_m": null,
     "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 550 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
     "status": "reported",
@@ -594,7 +602,7 @@
    "location": {
     "lng": 73.134705,
     "lat": 19.253137,
-    "along_m": 23505,
+    "along_m": 24662,
     "keyplan_chainage_m": 2060,
     "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 2,060 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
     "status": "reported",
@@ -633,7 +641,7 @@
    "location": {
     "lng": 73.145196,
     "lat": 19.247668,
-    "along_m": 24775,
+    "along_m": 25932,
     "keyplan_chainage_m": 3330,
     "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 3,330 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
     "status": "reported",
@@ -672,7 +680,7 @@
    "location": {
     "lng": 73.139449,
     "lat": 19.239522,
-    "along_m": 26735,
+    "along_m": 27892,
     "keyplan_chainage_m": 5290,
     "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 5,290 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
     "status": "reported",
@@ -711,7 +719,7 @@
    "location": {
     "lng": 73.126342,
     "lat": 19.238679,
-    "along_m": 28002,
+    "along_m": 29159,
     "eia_chainage_m": null,
     "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 6,557 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
     "status": "reported",
@@ -771,7 +779,7 @@
    "location": {
     "lng": 73.064573,
     "lat": 19.294454,
-    "along_m": 13243,
+    "along_m": 14400,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Gopal Nagar (M) station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 11 m from that line.",
     "status": "verified",
@@ -811,7 +819,7 @@
    "location": {
     "lng": 73.128399,
     "lat": 19.244614,
-    "along_m": 22568,
+    "along_m": 23724,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Sahajanand Chowk (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 3 m from that line.",
     "status": "verified",
@@ -851,7 +859,7 @@
    "location": {
     "lng": 73.122788,
     "lat": 19.235337,
-    "along_m": 24007,
+    "along_m": 25164,
     "eia_chainage_m": null,
     "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"APMC Kalyan (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
     "status": "verified",

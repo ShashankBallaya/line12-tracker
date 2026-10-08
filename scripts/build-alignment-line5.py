@@ -8,6 +8,8 @@
 # as one polygon about 50 m wide, and a point for each of 17 stations. This script:
 #   - derives the centre line as the midpoints between the polygon's two long sides (the two ends of
 #     the polygon are its tips at Kapurbawdi and past APMC Kalyan),
+#   - at Kapurbawdi, where MMRDA's file stops at the curve onto Ghodbunder Road, continues the line north
+#     to Kapurbawdi station along Line 5's two tracks in OpenStreetMap (scripts/data/line5-kapurbawdi-osm.json),
 #   - writes src/data/lines/line-5/alignment-mmrda-2025.geojson (simplified to ~1 m) in four parts:
 #     the centre line (MMRDA's file to the bridge, then Phase 3 to Kalyan from the key plan), the
 #     stretch from Dhamankar Naka to Temghar that the revised plan of 2026 puts underground (its
@@ -34,6 +36,7 @@ K = '{http://www.opengis.net/kml/2.2}'
 STATIONS = 'src/data/lines/line-5/stations.json'
 OUT = 'src/data/lines/line-5/alignment-mmrda-2025.geojson'
 KEYPLAN = 'scripts/data/line5-extension-keyplan.json'
+KAPURBAWDI = 'scripts/data/line5-kapurbawdi-osm.json'
 MMRDA_PR = 'https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf'
 
 # KML placemark name -> station id in stations.json.
@@ -145,6 +148,28 @@ for k in range(0, len(side_a), 5):
     q = min((seg_nearest(a, b, p)[:2] for a, b in zip(window, window[1:])), key=lambda r: r[1])[0]
     mid.append(((p[0] + q[0]) / 2, (p[1] + q[1]) / 2))
 centre = simplify(mid, 1.0)
+
+# ---------- Kapurbawdi: MMRDA's file stops at the curve; OSM's tracks go on north to the station ----------
+KAP = json.load(open(KAPURBAWDI, encoding='utf-8'))
+tracks = [densify([to_xy(*c) for c in t], 2.0) for t in KAP['tracks']]
+for t in tracks:
+    if t[0][1] < t[-1][1]:
+        t.reverse()  # run from the north end, past the station
+osm_mid = []
+for p in tracks[0][::5]:
+    q = min((seg_nearest(a, b, p)[:2] for a, b in zip(tracks[1], tracks[1][1:])), key=lambda r: r[1])[0]
+    osm_mid.append(((p[0] + q[0]) / 2, (p[1] + q[1]) / 2))
+
+
+def nearest_on_centre(p):
+    return min(((i, *seg_nearest(a, b, p)[:2]) for i, (a, b) in enumerate(zip(centre, centre[1:]))), key=lambda r: r[2])
+
+
+join = next((i for i, p in enumerate(osm_mid) if nearest_on_centre(p)[2] <= 8), None)
+if join is None:
+    sys.exit("OpenStreetMap's Line 5 tracks never meet MMRDA's line at Kapurbawdi")
+k, q, _ = nearest_on_centre(osm_mid[join])
+centre = simplify(osm_mid[:join] + [q] + centre[k + 1:], 1.0)
 cum_c = [0.0]
 for a, b in zip(centre, centre[1:]):
     cum_c.append(cum_c[-1] + math.dist(a, b))
@@ -171,7 +196,8 @@ along_of = {}
 for kml_name, sid in KML_NAMES.items():
     lng, lat = points[kml_name]
     off, at = along(lng, lat)
-    if off > 25:
+    # MMRDA's Kapurbawdi point sits on the rounded tip of its corridor, off the real curve; it is replaced below.
+    if off > (60 if sid == 'kapurbawdi' else 25):
         sys.exit(f'{kml_name} is {off:.0f} m from the derived centre line')
     if at < last:
         sys.exit(f'{kml_name} is out of order along the line')
@@ -202,6 +228,20 @@ def cut(s0, s1):
         return centre[-1]
     inner = [q for q, c in zip(centre, cum_c) if s0 < c < s1]
     return [[round(c, 6) for c in to_ll(*q)] for q in [point(s0), *inner, point(s1)]]
+
+
+# ---------- Kapurbawdi station: OpenStreetMap's point, not MMRDA's ----------
+kap = by_id['kapurbawdi']['location']
+k_off, k_at = along(KAP['station']['lng'], KAP['station']['lat'])
+moved = round(math.dist(to_xy(KAP['station']['lng'], KAP['station']['lat']), to_xy(kap['lng'], kap['lat'])))
+kap['earlier'] = [{'lat': kap['lat'], 'lng': kap['lng'], 'basis': "MMRDA's alignment file of March 2025, which puts it on the curve east of Ghodbunder Road, where there is no station", 'distance_m': moved}]
+kap.update({
+    'lng': KAP['station']['lng'], 'lat': KAP['station']['lat'], 'along_m': round(k_at),
+    'method': f"OpenStreetMap's Kapurbawdi Station ({KAP['station']['osm']}), on the Line 4 viaduct over Ghodbunder Road, where Line 5's tracks run alongside; checked on satellite imagery by the owner (Google Maps) and on Esri imagery, 2026-10-09. The point is {round(k_off)} m from the line.",
+    'status': 'reported', 'source_url': KAP['station']['osm'],
+})
+along_of['kapurbawdi'] = k_at
+print(f'kapurbawdi         {k_at / 1000:7.3f} km  (OpenStreetMap; {moved} m from MMRDA\'s point)')
 
 
 # ---------- Past the Ulhas bridge: the key plan in the March 2026 tender documents ----------
@@ -287,7 +327,7 @@ feature = lambda props, coords: {'type': 'Feature', 'properties': props, 'geomet
 geo = {
     'type': 'FeatureCollection',
     'properties': {
-        'note': f'Kapurbawdi to the Ulhas river bridge at Durgadi: derived from MMRDA\'s alignment file for Line 5 ({KML_URL}), which gives the corridor as a polygon about 50 m wide; the centre line runs midway between its two sides, along the road medians of Agra Road, the Bhiwandi bypass and Kalyan-Bhiwandi Road (verified). Past the bridge, Phase 3 to Kalyan and the Line 5A spur to Ulhasnagar are traced from the tentative key plan in MMRDA\'s tender documents of March 2026 (reported, good to about 50 m; scripts/data/line5-extension-keyplan.json). Simplified to about 1 m by scripts/build-alignment-line5.py.',
+        'note': f'Kapurbawdi to the Ulhas river bridge at Durgadi: from the station north of the curve onto Ghodbunder Road, OpenStreetMap\'s Line 5 tracks (ODbL; scripts/data/line5-kapurbawdi-osm.json); then derived from MMRDA\'s alignment file for Line 5 ({KML_URL}), which gives the corridor as a polygon about 50 m wide; the centre line runs midway between its two sides, along the road medians of Agra Road, the Bhiwandi bypass and Kalyan-Bhiwandi Road (verified). Past the bridge, Phase 3 to Kalyan and the Line 5A spur to Ulhasnagar are traced from the tentative key plan in MMRDA\'s tender documents of March 2026 (reported, good to about 50 m; scripts/data/line5-extension-keyplan.json). Simplified to about 1 m by scripts/build-alignment-line5.py.',
         'source_url': PAGE_URL,
         'status': 'verified',
         'last_verified': CHECKED,
