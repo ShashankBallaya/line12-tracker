@@ -1,17 +1,22 @@
 # Builds Line 5's route line and station positions from MMRDA's alignment file.
 #
-# Source: MMRDA publishes "Line 5 : Thane-Bhiwandi-Kalyan" as a KML on its Metro Influence Zone for
+# Sources: MMRDA's alignment file to the Ulhas river bridge at Durgadi, and past it the tentative key plan in
+# MMRDA's tender documents of March 2026 (scripts/data/line5-extension-keyplan.json, traced from an image).
+#
+# MMRDA publishes "Line 5 : Thane-Bhiwandi-Kalyan" as a KML on its Metro Influence Zone for
 # NOC page (uploaded March 2025). Unlike Line 12's file it has no centre line: it holds the corridor
 # as one polygon about 50 m wide, and a point for each of 17 stations. This script:
 #   - derives the centre line as the midpoints between the polygon's two long sides (the two ends of
 #     the polygon are its tips at Kapurbawdi and past APMC Kalyan),
-#   - writes src/data/lines/line-5/alignment-mmrda-2025.geojson (simplified to ~1 m) in three parts:
-#     the centre line from Kapurbawdi to Durgadi Fort (Phases 1 and 2, still the plan), the stretch
-#     from Dhamankar Naka to Temghar that the revised plan of 2026 puts underground (its exact route
-#     is not published, so this is the 2025 route above it), and the 2017 route past Durgadi Fort,
-#     which the revised plan drops,
+#   - writes src/data/lines/line-5/alignment-mmrda-2025.geojson (simplified to ~1 m) in four parts:
+#     the centre line (MMRDA's file to the bridge, then Phase 3 to Kalyan from the key plan), the
+#     stretch from Dhamankar Naka to Temghar that the revised plan of 2026 puts underground (its
+#     route is not published, so this is the 2025 route above it), the Line 5A spur from the key
+#     plan, and the 2017 route past the bridge, which the revised plan drops,
 #   - moves every station in src/data/lines/line-5/stations.json to MMRDA's point, graded verified,
-#     and sets along_m: the distance from the start of the centre line at Kapurbawdi.
+#     and sets along_m: the distance from the start of the centre line at Kapurbawdi; then moves
+#     Phase 3 and spur stations to their key plan positions (reported), keeping the 2025 point
+#     under location.earlier, and adds the ones that are new.
 # Every station point lies within about 11 m of the derived line; the script stops if one is more
 # than 25 m away, which would mean the derivation went wrong.
 # Run from the repo root: python scripts/build-alignment-line5.py [path/to/metro_line-5.kml]
@@ -28,6 +33,8 @@ CHECKED = '2026-10-09'
 K = '{http://www.opengis.net/kml/2.2}'
 STATIONS = 'src/data/lines/line-5/stations.json'
 OUT = 'src/data/lines/line-5/alignment-mmrda-2025.geojson'
+KEYPLAN = 'scripts/data/line5-extension-keyplan.json'
+MMRDA_PR = 'https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf'
 
 # KML placemark name -> station id in stations.json.
 KML_NAMES = {
@@ -154,9 +161,11 @@ def along(lng, lat):
     return best
 
 
-# ---------- Stations ----------
+# ---------- Stations from MMRDA's file ----------
 doc = json.load(open(STATIONS, encoding='utf-8'))
-by_id = {s['id']: s for s in doc['stations']}
+for key in ('stations', 'spur_stations', 'dropped_stations'):
+    doc.setdefault(key, [])
+by_id = {s['id']: s for key in ('stations', 'spur_stations', 'dropped_stations') for s in doc[key]}
 last = -1.0
 along_of = {}
 for kml_name, sid in KML_NAMES.items():
@@ -169,6 +178,8 @@ for kml_name, sid in KML_NAMES.items():
     last = at
     along_of[sid] = at
     loc = by_id[sid]['location']
+    loc.pop('earlier', None)
+    loc.pop('keyplan_chainage_m', None)
     loc.update({
         'lng': round(lng, 6),
         'lat': round(lat, 6),
@@ -178,11 +189,6 @@ for kml_name, sid in KML_NAMES.items():
         'source_url': PAGE_URL,
     })
     print(f'{sid:18s} {at / 1000:7.3f} km  {off:5.1f} m off the line')
-
-with open(STATIONS, 'w', encoding='utf-8', newline='\n') as f:
-    json.dump(doc, f, indent=1, ensure_ascii=False)
-    f.write('\n')
-
 
 
 def cut(s0, s1):
@@ -198,25 +204,107 @@ def cut(s0, s1):
     return [[round(c, 6) for c in to_ll(*q)] for q in [point(s0), *inner, point(s1)]]
 
 
-durgadi = along_of['durgadi-fort']
+# ---------- Past the Ulhas bridge: the key plan in the March 2026 tender documents ----------
+KP = json.load(open(KEYPLAN, encoding='utf-8'))
+tf = KP['transform']
+kp_a, kp_b = complex(*tf['a']), complex(*tf['b'])
+kp_kx = 111_319.49 * math.cos(math.radians(tf['lat0']))
+
+
+def kp_ll(x, y):
+    """Image pixel -> (lng, lat), with the fit recorded in the key plan file."""
+    z = kp_a * complex(x, -y) + kp_b
+    return z.real / kp_kx, z.imag / KY
+
+
+def metres(coords):
+    return sum(math.dist(to_xy(*p), to_xy(*q)) for p, q in zip(coords, coords[1:]))
+
+
+ph3, spur = KP['phase_3'], KP['spur']
+fork_off, fork_m = along(*kp_ll(*ph3['line_px'][0]))
+if fork_off > 60:
+    sys.exit(f'The key plan route starts {fork_off:.0f} m from the derived centre line')
+ph3_line = cut(0, fork_m) + [[round(c, 6) for c in kp_ll(*p)] for p in ph3['line_px'][1:]]
+spur_line = [[round(c, 6) for c in kp_ll(*p)] for p in spur['line_px']]
+KP_METHOD = ('Tentative route in MMRDA\'s tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by '
+             'Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map '
+             'with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. ')
+
+
+def new_station(sid, name, phase):
+    return {
+        'id': sid, 'order': None, 'name': name, 'name_mr': None, 'phase': phase, 'type': 'Elevated',
+        'name_status': 'verified', 'name_source_url': MMRDA_PR,
+        'location': {}, 'interchanges': {'value': [], 'status': 'verified', 'source_url': MMRDA_PR},
+        'context': [],
+        'construction_status': {'value': 'Not started', 'status': 'reported', 'source_url': KP['_meta']['source_url']},
+        'revised_plan_2026': {'value': 'New station' if phase == 3 else 'New station on the Line 5A spur', 'name_in_plan': name,
+                              'status': 'verified', 'source_url': MMRDA_PR, 'last_verified': CHECKED},
+        'notes': None, 'last_verified': CHECKED,
+    }
+
+
+def place(st, px, chainage, along_m, list_key, phase):
+    rec = by_id.get(st['id'])
+    if rec is None:
+        rec = by_id[st['id']] = new_station(st['id'], st['name'], phase)
+        doc[list_key].append(rec)
+    loc = rec['location']
+    lng, lat = kp_ll(*px)
+    if st['id'] in along_of:  # its point came from MMRDA's file in this run
+        moved = round(math.dist(to_xy(lng, lat), to_xy(loc['lng'], loc['lat'])))
+        loc['earlier'] = [{'lat': loc['lat'], 'lng': loc['lng'], 'basis': "MMRDA's alignment file of March 2025 (the 2017 route)", 'distance_m': moved}]
+    loc.update({
+        'lng': round(lng, 6), 'lat': round(lat, 6), 'along_m': round(along_m), 'keyplan_chainage_m': chainage,
+        'method': KP_METHOD + f'Key plan chainage {chainage:,.0f} m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.' if list_key == 'stations'
+                  else KP_METHOD + f'along_m is the key plan chainage on the spur, from its start just past Bhoirwadi.',
+        'status': 'reported', 'source_url': KP['_meta']['source_url'],
+    })
+    print(f'{st["id"]:18s} {along_m / 1000:7.3f} km  (key plan)')
+
+
+for st in ph3['stations']:
+    place(st, st['px'], st['chainage_m'], fork_m + st['chainage_m'], 'stations', 3)
+for st in spur['stations']:
+    place(st, st['px'], st['chainage_m'], st['chainage_m'], 'spur_stations', '5A')
+# Keep the main list in order along the line; a station without a position stays after the one before it.
+keyed, prev = [], -1.0
+for st in doc['stations']:
+    at = st['location'].get('along_m')
+    prev = at if at is not None else prev + 0.5
+    keyed.append((prev, st))
+doc['stations'] = [st for _, st in sorted(keyed, key=lambda t: t[0])]
+for key in ('stations', 'spur_stations', 'dropped_stations'):
+    for k, st in enumerate(doc[key], 1):
+        st['order'] = k
+
+with open(STATIONS, 'w', encoding='utf-8', newline='\n') as f:
+    json.dump(doc, f, indent=1, ensure_ascii=False)
+    f.write('\n')
+
 feature = lambda props, coords: {'type': 'Feature', 'properties': props, 'geometry': {'type': 'LineString', 'coordinates': coords}}
 geo = {
     'type': 'FeatureCollection',
     'properties': {
-        'note': f'Derived from MMRDA\'s alignment file for Line 5 ({KML_URL}), which gives the corridor as a polygon about 50 m wide, not a centre line. The centre line runs midway between the polygon\'s two sides, {length / 1000:.3f} km from its tip at Kapurbawdi to its tip past APMC Kalyan. The file predates the revised plan of 2026: Phases 1 and 2 (Kapurbawdi to Durgadi Fort) still follow it, along the road medians of Agra Road, the Bhiwandi bypass, and Kalyan-Bhiwandi Road; past Durgadi Fort the revised plan takes a new route (Phase 5A), which is not published. Simplified to about 1 m by scripts/build-alignment-line5.py.',
+        'note': f'Kapurbawdi to the Ulhas river bridge at Durgadi: derived from MMRDA\'s alignment file for Line 5 ({KML_URL}), which gives the corridor as a polygon about 50 m wide; the centre line runs midway between its two sides, along the road medians of Agra Road, the Bhiwandi bypass and Kalyan-Bhiwandi Road (verified). Past the bridge, Phase 3 to Kalyan and the Line 5A spur to Ulhasnagar are traced from the tentative key plan in MMRDA\'s tender documents of March 2026 (reported, good to about 50 m; scripts/data/line5-extension-keyplan.json). Simplified to about 1 m by scripts/build-alignment-line5.py.',
         'source_url': PAGE_URL,
         'status': 'verified',
         'last_verified': CHECKED,
         'length_m': round(length),
-        'centre_line_m': round(durgadi),
+        'fork_m': round(fork_m),
+        'centre_line_m': round(metres(ph3_line)),
+        'spur_m': round(metres(spur_line)),
     },
     'features': [
-        feature({'name': 'Line 5 centre line', 'part': 'current', 'note': 'Kapurbawdi to Durgadi Fort: Phase 1 (built) and Phase 2 (approved). Phase 2 starts at Dhamankar Naka; see the stations for along_m.'}, cut(0, durgadi)),
+        feature({'name': 'Line 5 centre line', 'part': 'current', 'note': f'Phase 1 (built) and Phase 2 (approved) from Kapurbawdi to the Ulhas river bridge, from MMRDA\'s 2025 file (verified); then Phase 3 to Kalyan from the tender key plan (reported). Phase 3 starts {fork_m / 1000:.2f} km from Kapurbawdi.'}, ph3_line),
         feature({'name': 'Line 5 underground stretch', 'part': 'underground', 'status': 'conflicting', 'note': 'Dhamankar Naka to Temghar, which a news report (Metro Rail News, Apr 2026) says goes underground; MMRDA names only Bhiwandi station as underground. The route below ground is not published: this is the 2025 route along the road above it, which here runs on the Bhiwandi bypass flyover.'}, cut(along_of['dhamankar-naka'], along_of['temghar'])),
-        feature({'name': 'Line 5 route past Durgadi, 2017 plan', 'part': 'superseded', 'note': 'Durgadi Fort, Sahajanand Chowk, Kalyan and APMC Kalyan. The revised plan of 2026 replaces this with Phase 5A (Durgadi, Khadakpada, Bhoirwadi to Kalyan, with a spur to Ulhasnagar), whose route is not published.'}, cut(durgadi, length)),
+        feature({'name': 'Line 5A spur', 'part': 'spur', 'status': 'reported', 'note': 'Bhoirwadi to Ulhasnagar, 5.27 km by the key plan, traced from the tentative key plan in MMRDA\'s tender documents of March 2026. Its first stretch runs beside Phase 3.'}, spur_line),
+        feature({'name': 'Line 5 route past the Ulhas bridge, 2017 plan', 'part': 'superseded', 'note': 'Durgadi Fort, Sahajanand Chowk, Kalyan and APMC Kalyan on the 2017 route, which the revised plan of 2026 replaces with Phase 3 and the spur.'}, cut(fork_m, length)),
     ],
 }
 with open(OUT, 'w', encoding='utf-8', newline='\n') as f:
     json.dump(geo, f, indent=1)
     f.write('\n')
-print(f'Line {length / 1000:.3f} km ({len(centre)} points); current plan to Durgadi Fort {durgadi / 1000:.3f} km')
+print(f'MMRDA file {length / 1000:.3f} km; corridor start at the bridge {fork_m / 1000:.3f} km ({fork_off:.0f} m off the line); '
+      f'Line 5 to Kalyan {metres(ph3_line) / 1000:.3f} km; spur {metres(spur_line) / 1000:.3f} km (key plan: {ph3["length_m"] / 1000:.3f} and {spur["length_m"] / 1000:.3f})')

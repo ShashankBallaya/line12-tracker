@@ -1,12 +1,14 @@
 {
  "type": "FeatureCollection",
  "properties": {
-  "note": "Derived from MMRDA's alignment file for Line 5 (https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line-5.kml), which gives the corridor as a polygon about 50 m wide, not a centre line. The centre line runs midway between the polygon's two sides, 24.141 km from its tip at Kapurbawdi to its tip past APMC Kalyan. The file predates the revised plan of 2026: Phases 1 and 2 (Kapurbawdi to Durgadi Fort) still follow it, along the road medians of Agra Road, the Bhiwandi bypass, and Kalyan-Bhiwandi Road; past Durgadi Fort the revised plan takes a new route (Phase 5A), which is not published. Simplified to about 1 m by scripts/build-alignment-line5.py.",
+  "note": "Kapurbawdi to the Ulhas river bridge at Durgadi: derived from MMRDA's alignment file for Line 5 (https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line-5.kml), which gives the corridor as a polygon about 50 m wide; the centre line runs midway between its two sides, along the road medians of Agra Road, the Bhiwandi bypass and Kalyan-Bhiwandi Road (verified). Past the bridge, Phase 3 to Kalyan and the Line 5A spur to Ulhasnagar are traced from the tentative key plan in MMRDA's tender documents of March 2026 (reported, good to about 50 m; scripts/data/line5-extension-keyplan.json). Simplified to about 1 m by scripts/build-alignment-line5.py.",
   "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
   "status": "verified",
   "last_verified": "2026-10-09",
   "length_m": 24141,
-  "centre_line_m": 21906
+  "fork_m": 21445,
+  "centre_line_m": 28173,
+  "spur_m": 4882
  },
  "features": [
   {
@@ -14,7 +16,7 @@
    "properties": {
     "name": "Line 5 centre line",
     "part": "current",
-    "note": "Kapurbawdi to Durgadi Fort: Phase 1 (built) and Phase 2 (approved). Phase 2 starts at Dhamankar Naka; see the stations for along_m."
+    "note": "Phase 1 (built) and Phase 2 (approved) from Kapurbawdi to the Ulhas river bridge, from MMRDA's 2025 file (verified); then Phase 3 to Kalyan from the tender key plan (reported). Phase 3 starts 21.45 km from Kapurbawdi."
    },
    "geometry": {
     "type": "LineString",
@@ -756,40 +758,124 @@
       19.246218
      ],
      [
-      73.119609,
-      19.246587
+      73.11851,
+      19.246299
      ],
      [
-      73.120013,
-      19.246666
+      73.119244,
+      19.24699
      ],
      [
-      73.120329,
-      19.246702
+      73.119897,
+      19.247506
      ],
      [
-      73.12053,
-      19.246715
+      73.122542,
+      19.251107
      ],
      [
-      73.120959,
-      19.246708
+      73.123172,
+      19.251685
      ],
      [
-      73.121448,
-      19.246665
+      73.123955,
+      19.252049
      ],
      [
-      73.121474,
-      19.246636
+      73.131288,
+      19.252914
      ],
      [
-      73.121694,
-      19.246641
+      73.136174,
+      19.25327
      ],
      [
-      73.122817,
-      19.246553
+      73.137095,
+      19.252978
+     ],
+     [
+      73.138742,
+      19.252047
+     ],
+     [
+      73.146919,
+      19.246323
+     ],
+     [
+      73.149106,
+      19.244253
+     ],
+     [
+      73.149763,
+      19.243524
+     ],
+     [
+      73.150103,
+      19.242698
+     ],
+     [
+      73.150002,
+      19.242207
+     ],
+     [
+      73.149673,
+      19.241835
+     ],
+     [
+      73.148264,
+      19.241397
+     ],
+     [
+      73.145538,
+      19.240881
+     ],
+     [
+      73.141621,
+      19.239608
+     ],
+     [
+      73.139787,
+      19.239441
+     ],
+     [
+      73.137969,
+      19.239447
+     ],
+     [
+      73.137105,
+      19.239291
+     ],
+     [
+      73.134782,
+      19.238601
+     ],
+     [
+      73.133276,
+      19.238446
+     ],
+     [
+      73.131746,
+      19.238618
+     ],
+     [
+      73.13059,
+      19.238989
+     ],
+     [
+      73.129576,
+      19.239467
+     ],
+     [
+      73.128593,
+      19.23968
+     ],
+     [
+      73.127593,
+      19.239383
+     ],
+     [
+      73.126342,
+      19.238679
      ]
     ]
    }
@@ -983,16 +1069,142 @@
   {
    "type": "Feature",
    "properties": {
-    "name": "Line 5 route past Durgadi, 2017 plan",
-    "part": "superseded",
-    "note": "Durgadi Fort, Sahajanand Chowk, Kalyan and APMC Kalyan. The revised plan of 2026 replaces this with Phase 5A (Durgadi, Khadakpada, Bhoirwadi to Kalyan, with a spur to Ulhasnagar), whose route is not published."
+    "name": "Line 5A spur",
+    "part": "spur",
+    "status": "reported",
+    "note": "Bhoirwadi to Ulhasnagar, 5.27 km by the key plan, traced from the tentative key plan in MMRDA's tender documents of March 2026. Its first stretch runs beside Phase 3."
    },
    "geometry": {
     "type": "LineString",
     "coordinates": [
      [
-      73.122817,
-      19.246553
+      73.147894,
+      19.245416
+     ],
+     [
+      73.149568,
+      19.243786
+     ],
+     [
+      73.149933,
+      19.243234
+     ],
+     [
+      73.150716,
+      19.242756
+     ],
+     [
+      73.15102,
+      19.241627
+     ],
+     [
+      73.150579,
+      19.238821
+     ],
+     [
+      73.150205,
+      19.237991
+     ],
+     [
+      73.149612,
+      19.237492
+     ],
+     [
+      73.147912,
+      19.236733
+     ],
+     [
+      73.147539,
+      19.236316
+     ],
+     [
+      73.147671,
+      19.235643
+     ],
+     [
+      73.148369,
+      19.234546
+     ],
+     [
+      73.149453,
+      19.233666
+     ],
+     [
+      73.155267,
+      19.229706
+     ],
+     [
+      73.157049,
+      19.228876
+     ],
+     [
+      73.160797,
+      19.227826
+     ],
+     [
+      73.163901,
+      19.22559
+     ],
+     [
+      73.167982,
+      19.223387
+     ],
+     [
+      73.171844,
+      19.220873
+     ],
+     [
+      73.175346,
+      19.21879
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Line 5 route past the Ulhas bridge, 2017 plan",
+    "part": "superseded",
+    "note": "Durgadi Fort, Sahajanand Chowk, Kalyan and APMC Kalyan on the 2017 route, which the revised plan of 2026 replaces with Phase 3 and the spur."
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      73.11851,
+      19.246299
+     ],
+     [
+      73.119609,
+      19.246587
+     ],
+     [
+      73.120013,
+      19.246666
+     ],
+     [
+      73.120329,
+      19.246702
+     ],
+     [
+      73.12053,
+      19.246715
+     ],
+     [
+      73.120959,
+      19.246708
+     ],
+     [
+      73.121448,
+      19.246665
+     ],
+     [
+      73.121474,
+      19.246636
+     ],
+     [
+      73.121694,
+      19.246641
      ],
      [
       73.123972,

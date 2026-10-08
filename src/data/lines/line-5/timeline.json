@@ -93,6 +93,17 @@
       "last_verified": "2026-10-09"
     },
     {
+      "id": "line5a-gc-tender",
+      "date": "2026-03-05",
+      "date_precision": "day",
+      "kind": "tender",
+      "title": "Consultant tender for Phase 3 and the Ulhasnagar spur",
+      "summary": "MMRDA invites bids for a general consultant for 'Metro Line 5A Durgadi to Kalyan with spur to Ulhasnagar'. Its documents show a tentative route.",
+      "status": "reported",
+      "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677",
+      "last_verified": "2026-10-09"
+    },
+    {
       "id": "state-approval-revised",
       "date": "2026-04-22",
       "date_precision": "day",
@@ -113,6 +124,18 @@
       "status": "verified",
       "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
       "last_verified": "2026-10-09"
+    },
+    {
+      "id": "line5a-gc-tender-cancelled",
+      "date": "2026-08-19",
+      "date_precision": "day",
+      "kind": "tender",
+      "title": "That consultant tender is cancelled",
+      "summary": "Cancelled by a notice dated 19 Aug 2026, ten days before the Union approval.",
+      "status": "reported",
+      "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677",
+      "last_verified": "2026-10-09",
+      "notes": "From a reply by Arindam Mahapatra on X (31 Aug 2026) under his post on the tender."
     },
     {
       "id": "union-approval-revised",

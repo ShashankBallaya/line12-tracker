@@ -64,7 +64,7 @@
         "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
       }
     ],
-    "notes": "MMRDA does not give the spur's length on its own. A post on X (31 Aug 2026) gives 5.27 km for the spur and 11.82 km for Durgadi to Kalyan, which together exceed MMRDA's 11.83 km; MMRDA's figures are used. The centre line drawn from MMRDA's 2025 alignment file is 21.9 km from Kapurbawdi to Durgadi Fort."
+    "notes": "The spur is 5.27 km by the tentative key plan in MMRDA's tender documents of March 2026, and Durgadi to Kalyan 6.56 km; together MMRDA's 11.83 km. The route drawn on the site is 28.2 km from Kapurbawdi to Kalyan plus 4.9 km of spur: MMRDA's file to the Ulhas river bridge, then the traced key plan."
   },
   "phases": [
     {
@@ -117,19 +117,23 @@
     {
       "phase": 3,
       "value": "Durgadi to Kalyan",
-      "length_km": null,
+      "length_km": 6.557,
       "length_with_spur_km": 11.83,
       "stations_with_spur": 7,
-      "stations_note": "Durgadi, Khadakpada, Bhoirwadi, Chhatrapati Shivaji Maharaj Path, Shanti Nagar, Chhatrapati Shivaji Maharaj Chowk and Ulhasnagar, all elevated, including the spur. MMRDA does not say which are on the spur.",
+      "stations_note": "Durgadi, Khadakpada, Bhoirwadi, Shivaji Path and Kalyan (tentative key plan). With the spur's Shanti Nagar, Shivaji Chowk and Ulhasnagar, and without Kalyan, these are the 7 stations MMRDA lists for Phase 5A.",
       "cost_with_spur_crore": 4063,
       "status": "verified",
       "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
       "last_verified": "2026-10-09",
-      "notes": "MMRDA calls this section and the spur together 'Phase 5A: Durgadi - Khadakpada - Bhoirwadi - Kalyan with Spur to Ulhasnagar', 11.83 km. The line splits at Bhoirwadi: one arm to Kalyan and the Line 12 interchange, one to Ulhasnagar (Construction World, Mar 2026). A post on X (31 Aug 2026) gives 11.82 km for Durgadi to Kalyan alone. Not started; route not published.",
+      "notes": "MMRDA calls this section and the spur together 'Phase 5A: Durgadi - Khadakpada - Bhoirwadi - Kalyan with Spur to Ulhasnagar', 11.83 km. The tentative key plan in MMRDA's tender documents of March 2026 splits that into 6.557 km from the Ulhas river bridge to Kalyan, and the 5.273 km spur: 11.83 km together. It loops north from the bridge through Durgadi and Khadakpada, east to Bhoirwadi, then back west through Shivaji Path to Kalyan. Not started.",
       "also_see": [
+        "https://x.com/Maha7Arindam/status/2029366179580772677",
         "https://x.com/bodkeitis/status/2094307767142244544",
         "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/mmrda-advances-metro-line-five-a-from-kalyan-to-ulhasnagar/88025"
-      ]
+      ],
+      "length_status": "reported",
+      "length_source_url": "https://x.com/Maha7Arindam/status/2029366179580772677",
+      "stations": 5
     }
   ],
   "stations_count": {
@@ -364,14 +368,21 @@
   "related_projects": [
     {
       "name": "Metro Line 5A (Bhoirwadi to Ulhasnagar spur)",
-      "summary": "Spur from Bhoirwadi, on Line 5's Phase 3, to Ulhasnagar. MMRDA counts it in 'Phase 5A' with Durgadi to Kalyan: 11.83 km, 7 stations and Rs 4,063 crore together.",
+      "summary": "5.27 km spur from just past Bhoirwadi, on Line 5's Phase 3, south towards Vithalwadi, then south-east to Ulhasnagar, with stations at Shanti Nagar, Shivaji Chowk and Ulhasnagar (tentative key plan, March 2026). MMRDA counts it in 'Phase 5A' with Durgadi to Kalyan: 11.83 km, 7 stations and Rs 4,063 crore together.",
       "status": "verified",
       "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
       "last_verified": "2026-10-09",
       "also_see": [
+        "https://x.com/Maha7Arindam/status/2029366179580772677",
         "https://x.com/bodkeitis/status/2094307767142244544"
       ],
-      "notes": "MMRDA gives no length for the spur alone; a post on X (31 Aug 2026) gives 5.27 km. Unlike Line 12A, it is inside MMRDA's 34.21 km total for Line 5, so the length and cost totals include it."
+      "notes": "Inside MMRDA's 34.21 km total for Line 5, unlike Line 12A. The key plan comes from a consultant tender that was cancelled on 19 Aug 2026, so the route may still change.",
+      "length_km": 5.273,
+      "stations": [
+        "Shanti Nagar",
+        "Shivaji Chowk",
+        "Ulhasnagar"
+      ]
     }
   ]
 }

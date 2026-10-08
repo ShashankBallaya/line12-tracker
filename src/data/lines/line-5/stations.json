@@ -1,11 +1,12 @@
 {
  "_meta": {
-  "description": "Line 5's stations in order from Kapurbawdi: the 17 station points in MMRDA's alignment file (uploaded March 2025), plus Kongaon West, which the revised plan adds without a published position. Positions come from that file (scripts/build-alignment-line5.py). 'phase' follows the site's naming: 1 Kapurbawdi to Dhamankar Naka, 2 to Kongaon West, 3 Durgadi to Kalyan. 'revised_plan_2026' says what MMRDA's press release of 28 May 2026 does with each station; Phase 3's new stations (Khadakpada, Bhoirwadi and others) have no published positions and are not listed yet. 'eia_chainage_m' is the station's chainage in MMRDA's Phase 1 environmental report (Sep 2023); those chainages do not match the distances between the station points in the alignment file (for example Kalher to Purna: 0.83 km in the report, about 2 km apart on the map) and are kept as published. 'same_site_as' names a station of another line at the same place, with the distance between the two points.",
+  "description": "Line 5's stations in order from Kapurbawdi, as MMRDA's revised plan of 2026 has them. 'stations' is the line itself; 'spur_stations' is the Line 5A spur from Bhoirwadi to Ulhasnagar (along_m measured on the spur); 'dropped_stations' were on the 2017 route and are not in the revised plan. Positions to the Ulhas river bridge come from MMRDA's alignment file (March 2025, verified); past it, from the tentative key plan in MMRDA's tender documents of March 2026 (reported, good to about 50 m), with the 2025 point under location.earlier where a station moved. Both by scripts/build-alignment-line5.py. Kongaon West is new and has no published position. 'phase': 1 Kapurbawdi to Dhamankar Naka, 2 to Kongaon West, 3 Durgadi to Kalyan, '5A' the spur. 'eia_chainage_m' is the chainage in MMRDA's Phase 1 environmental report (Sep 2023), which does not match the distances between the station points (for example Kalher to Purna: 0.83 km in the report, about 2 km apart on the map); kept as published. 'keyplan_chainage_m' is the chainage on the key plan, from the corridor start at the bridge (Phase 3) or the spur start (5A). 'same_site_as' names a station of another line at the same place, with the distance between the two points.",
   "order_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
   "count_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
   "names_mr_source_url": "https://mmrda.maharashtra.gov.in/mr/projects/transport/metro-line-5/overview",
   "names_mr_status": "verified",
-  "last_reviewed": "2026-10-09"
+  "last_reviewed": "2026-10-09",
+  "keyplan_source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
  },
  "stations": [
   {
@@ -333,48 +334,8 @@
    "type_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
   },
   {
-   "id": "gopal-nagar",
-   "order": 9,
-   "name": "Gopal Nagar",
-   "name_mr": "गोपाळ नगर",
-   "phase": 2,
-   "type": "Elevated",
-   "name_status": "verified",
-   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
-   "location": {
-    "lng": 73.064573,
-    "lat": 19.294454,
-    "along_m": 13243,
-    "eia_chainage_m": null,
-    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Gopal Nagar (M) station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 11 m from that line.",
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
-   },
-   "interchanges": {
-    "value": [],
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
-   },
-   "context": [],
-   "construction_status": {
-    "value": "Not started",
-    "status": "reported",
-    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
-    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
-   },
-   "revised_plan_2026": {
-    "value": "Not in MMRDA's revised station list",
-    "name_in_plan": null,
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
-    "last_verified": "2026-10-09"
-   },
-   "notes": null,
-   "last_verified": "2026-10-09"
-  },
-  {
    "id": "temghar",
-   "order": 10,
+   "order": 9,
    "name": "Temghar",
    "name_mr": "टेमघर",
    "phase": 2,
@@ -414,7 +375,7 @@
   },
   {
    "id": "rajnouli",
-   "order": 11,
+   "order": 10,
    "name": "Rajnouli",
    "name_mr": "रजनोली",
    "phase": 2,
@@ -454,7 +415,7 @@
   },
   {
    "id": "gove-gaon",
-   "order": 12,
+   "order": 11,
    "name": "Gove Gaon",
    "name_mr": "गोव गाव",
    "phase": 2,
@@ -494,7 +455,7 @@
   },
   {
    "id": "kon-gaon",
-   "order": 13,
+   "order": 12,
    "name": "Kon Gaon",
    "name_mr": "कोन गाव",
    "phase": 2,
@@ -534,7 +495,7 @@
   },
   {
    "id": "kongaon-west",
-   "order": 14,
+   "order": 13,
    "name": "Kongaon West",
    "name_mr": null,
    "phase": 2,
@@ -573,21 +534,30 @@
   },
   {
    "id": "durgadi-fort",
-   "order": 15,
-   "name": "Durgadi Fort",
+   "order": 14,
+   "name": "Durgadi",
    "name_mr": null,
    "phase": 3,
    "type": "Elevated",
    "name_status": "verified",
-   "name_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
    "location": {
-    "lng": 73.122811,
-    "lat": 19.246482,
-    "along_m": 21906,
+    "lng": 73.121357,
+    "lat": 19.24949,
+    "along_m": 21995,
     "eia_chainage_m": null,
-    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Durgadi Fort (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 8 m from that line.",
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 550 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677",
+    "earlier": [
+     {
+      "lat": 19.246482,
+      "lng": 73.122811,
+      "basis": "MMRDA's alignment file of March 2025 (the 2017 route)",
+      "distance_m": 368
+     }
+    ],
+    "keyplan_chainage_m": 550
    },
    "interchanges": {
     "value": [],
@@ -608,12 +578,229 @@
     "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
-   "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file. MMRDA's Line 5 page lists \"Lal Chowki\" between Kon Gaon and Kalyan, instead of Durgadi Fort and Sahajanand Chowk.",
+   "notes": "Called Durgadi Fort in MMRDA's 2025 alignment file, at a different place on the 2017 route.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "khadakpada",
+   "order": 15,
+   "name": "Khadakpada",
+   "name_mr": null,
+   "phase": 3,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+   "location": {
+    "lng": 73.134705,
+    "lat": 19.253137,
+    "along_m": 23505,
+    "keyplan_chainage_m": 2060,
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 2,060 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "revised_plan_2026": {
+    "value": "New station",
+    "name_in_plan": "Khadakpada",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "Near Khadakpada Circle, on Khadakpada Road.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "bhoirwadi",
+   "order": 16,
+   "name": "Bhoirwadi",
+   "name_mr": null,
+   "phase": 3,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+   "location": {
+    "lng": 73.145196,
+    "lat": 19.247668,
+    "along_m": 24775,
+    "keyplan_chainage_m": 3330,
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 3,330 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "revised_plan_2026": {
+    "value": "New station",
+    "name_in_plan": "Bhoirwadi",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "shivaji-path",
+   "order": 17,
+   "name": "Shivaji Path",
+   "name_mr": null,
+   "phase": 3,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+   "location": {
+    "lng": 73.139449,
+    "lat": 19.239522,
+    "along_m": 26735,
+    "keyplan_chainage_m": 5290,
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 5,290 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "revised_plan_2026": {
+    "value": "New station",
+    "name_in_plan": "Chhatrapati Shivaji Maharaj Path",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "MMRDA's press release calls it Chhatrapati Shivaji Maharaj Path.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "kalyan",
+   "order": 18,
+   "name": "Kalyan",
+   "name_mr": "कल्याण स्टेशन",
+   "phase": 3,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.126342,
+    "lat": 19.238679,
+    "along_m": 28002,
+    "eia_chainage_m": null,
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. Key plan chainage 6,557 m; along_m adds it to the distance from Kapurbawdi to the corridor start at the bridge.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677",
+    "earlier": [
+     {
+      "lat": 19.238883,
+      "lng": 73.127673,
+      "basis": "MMRDA's alignment file of March 2025 (the 2017 route)",
+      "distance_m": 142
+     }
+    ],
+    "keyplan_chainage_m": 6557.185
+   },
+   "interchanges": {
+    "value": [
+     "Metro Line 12 (Kalyan-Taloja)",
+     "Central Railway (Kalyan Junction)"
+    ],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+    "notes": "MMRDA's Line 5 page says the line will connect with Line 12 and the Central Railway. In the revised plan Kalyan is reached by Phase 3, from Durgadi."
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Kept: the end of Phase 3, at the Line 12 interchange (MMRDA's press release lists Line 12 at Kalyan Junction; its station list names no 'Kalyan')",
+    "name_in_plan": "Kalyan",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "The end of Phase 3. In the key plan it sits 131 m from Line 12's Kalyan station, north of Kalyan railway station; in MMRDA's 2025 file it was 14 m from it.",
+   "last_verified": "2026-10-09",
+   "same_site_as": {
+    "line": "line-12",
+    "station": "kalyan",
+    "distance_m": 131
+   }
+  }
+ ],
+ "dropped_stations": [
+  {
+   "id": "gopal-nagar",
+   "order": 1,
+   "name": "Gopal Nagar",
+   "name_mr": "गोपाळ नगर",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.064573,
+    "lat": 19.294454,
+    "along_m": 13243,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Gopal Nagar (M) station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 11 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Not in MMRDA's revised station list",
+    "name_in_plan": null,
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
    "last_verified": "2026-10-09"
   },
   {
    "id": "sahajanand-chowk",
-   "order": 16,
+   "order": 2,
    "name": "Sahajanand Chowk",
    "name_mr": null,
    "phase": 3,
@@ -652,57 +839,8 @@
    "last_verified": "2026-10-09"
   },
   {
-   "id": "kalyan",
-   "order": 17,
-   "name": "Kalyan",
-   "name_mr": "कल्याण स्टेशन",
-   "phase": 3,
-   "type": "Elevated",
-   "name_status": "verified",
-   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
-   "location": {
-    "lng": 73.127673,
-    "lat": 19.238883,
-    "along_m": 23346,
-    "eia_chainage_m": null,
-    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kalyan (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
-   },
-   "interchanges": {
-    "value": [
-     "Metro Line 12 (Kalyan-Taloja)",
-     "Central Railway (Kalyan Junction)"
-    ],
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
-    "notes": "MMRDA's Line 5 page says the line will connect with Line 12 and the Central Railway. In the revised plan Kalyan is reached by Phase 3, from Durgadi."
-   },
-   "context": [],
-   "construction_status": {
-    "value": "Not started",
-    "status": "reported",
-    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
-    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
-   },
-   "revised_plan_2026": {
-    "value": "Reached by Phase 5A, which ends at Kalyan with the Line 12 interchange; MMRDA's list names no station 'Kalyan'",
-    "name_in_plan": null,
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
-    "last_verified": "2026-10-09"
-   },
-   "notes": "MMRDA's Line 5 page calls it \"Kalyan Station\".",
-   "last_verified": "2026-10-09",
-   "same_site_as": {
-    "line": "line-12",
-    "station": "kalyan",
-    "distance_m": 14
-   }
-  },
-  {
    "id": "apmc-kalyan",
-   "order": 18,
+   "order": 3,
    "name": "APMC Kalyan",
    "name_mr": "कल्याण एपीएमसी",
    "phase": 3,
@@ -744,6 +882,125 @@
     "station": "apmc-kalyan",
     "distance_m": 30
    }
+  }
+ ],
+ "spur_stations": [
+  {
+   "id": "shanti-nagar",
+   "order": 1,
+   "name": "Shanti Nagar",
+   "name_mr": null,
+   "phase": "5A",
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+   "location": {
+    "lng": 73.150521,
+    "lat": 19.232838,
+    "along_m": 2050,
+    "keyplan_chainage_m": 2050,
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. along_m is the key plan chainage on the spur, from its start just past Bhoirwadi.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "revised_plan_2026": {
+    "value": "New station on the Line 5A spur",
+    "name_in_plan": "Shanti Nagar",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "About 500 m from Vithalwadi railway station.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "shivaji-chowk",
+   "order": 2,
+   "name": "Shivaji Chowk",
+   "name_mr": null,
+   "phase": "5A",
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+   "location": {
+    "lng": 73.162215,
+    "lat": 19.226945,
+    "along_m": 3430,
+    "keyplan_chainage_m": 3430,
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. along_m is the key plan chainage on the spur, from its start just past Bhoirwadi.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "revised_plan_2026": {
+    "value": "New station on the Line 5A spur",
+    "name_in_plan": "Chhatrapati Shivaji Maharaj Chowk",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "MMRDA's press release calls it Chhatrapati Shivaji Maharaj Chowk.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "ulhasnagar",
+   "order": 3,
+   "name": "Ulhasnagar",
+   "name_mr": null,
+   "phase": "5A",
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+   "location": {
+    "lng": 73.173399,
+    "lat": 19.219858,
+    "along_m": 4680,
+    "keyplan_chainage_m": 4680,
+    "method": "Tentative route in MMRDA's tender documents of March 2026 for the general consultant of Line 5A (key plan posted on X by Arindam Mahapatra; that tender was cancelled on 19 Aug 2026). Position traced from the key plan and placed on the map with Kala Talao and the Ulhas river bridge as control points; good to about 50 m. along_m is the key plan chainage on the spur, from its start just past Bhoirwadi.",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+   },
+   "revised_plan_2026": {
+    "value": "New station on the Line 5A spur",
+    "name_in_plan": "Ulhasnagar",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "The end of the spur. In the key plan it lies about 1.1 km east of Ulhasnagar railway station; MMRDA's press release promises direct access to that station, which the key plan does not show.",
+   "last_verified": "2026-10-09"
   }
  ]
 }

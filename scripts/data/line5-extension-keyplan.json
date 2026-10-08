@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "description": "Line 5's route past the Ulhas river bridge (Phase 3, Durgadi to Kalyan) and the Line 5A spur (Bhoirwadi to Ulhasnagar), traced from a key plan in MMRDA's tender documents for the general consultant of 'Metro Line 5A Durgadi to Kalyan with spur to Ulhasnagar', as posted on X by Arindam Mahapatra on 5 Mar 2026, who calls it the tentative route. That tender was cancelled by a notice dated 19 Aug 2026 (his reply of 31 Aug 2026). The image itself is not kept in the repo; only what was measured from it. Read by scripts/build-alignment-line5.py.",
+    "source_url": "https://x.com/Maha7Arindam/status/2029366179580772677",
+    "status": "reported",
+    "last_verified": "2026-10-09",
+    "image": "1152 x 645 px, satellite background, north up within 2 degrees, labels with chainages",
+    "method": "The red (Phase 3) and green (spur) lines and the yellow station markers were separated by colour, ordered, smoothed and simplified to about 1.2 px. The image was placed on the map with a similarity transform from two control points (the centroid of Kala Talao, OSM way 31508318, and the east end of the Chhatrapati Shivaji Maharaj Bridge, OSM ways 31508459 and 1002552012, where the red line starts), then refined within 70 m, 1 degree and 3% scale so the route sits closest to the main roads in OpenStreetMap. After refining, the two control points are 37 m and 26 m off; 79% of Phase 3 and 78% of the spur lie within 20 m of a main road; the scale (6.37 m/px) agrees with the published chainages (about 6.25 m/px between stations); and Kalyan station falls 131 m from Line 12's Kalyan station. Treat positions as good to about 50 m."
+  },
+  "transform": {
+    "note": "metres = a * (x - i*y) + b, as complex numbers, where x, y are image pixels (y down) and metres are lng * KX + i * lat * KY with KX = 111319.49 * cos(19.24 deg) and KY = 111132.954.",
+    "lat0": 19.24,
+    "a": [6.366875986438872, -0.12616560835934748],
+    "b": [7683913.779713634, 2139876.7698868224]
+  },
+  "phase_3": {
+    "name": "Line 5 Phase 3, Durgadi to Kalyan",
+    "length_m": 6557.185,
+    "start": "The east end of the Ulhas river bridge (CH 0)",
+    "line_px": [[155.3,144.5],[169,138.3],[179.6,129.1],[222,65.4],[232.2,55.1],[245,48.5],[365.7,31],[446.2,23.2],[461.5,28],[489,43.7],[625.9,140.9],[662.7,176.3],[673.8,188.8],[679.7,203.1],[678.2,211.7],[672.9,218.3],[649.8,226.4],[605,236.3],[540.8,259.8],[510.6,263.3],[480.6,263.8],[466.4,266.8],[428.3,279.6],[403.5,282.8],[378.2,280.3],[359,274.2],[342.1,266.2],[325.8,262.8],[309.4,268.3],[289,281]],
+    "stations": [
+      { "id": "durgadi-fort", "name": "Durgadi", "chainage_m": 550, "px": [203, 94] },
+      { "id": "khadakpada", "name": "Khadakpada", "chainage_m": 2060, "px": [422, 26] },
+      { "id": "bhoirwadi", "name": "Bhoirwadi", "chainage_m": 3330, "px": [597, 118] },
+      { "id": "shivaji-path", "name": "Shivaji Path", "chainage_m": 5290, "px": [505, 262] },
+      { "id": "kalyan", "name": "Kalyan", "chainage_m": 6557.185, "px": [289, 281] }
+    ]
+  },
+  "spur": {
+    "name": "Line 5A, Bhoirwadi to Ulhasnagar spur",
+    "length_m": 5272.63,
+    "start": "On Phase 3 just past Bhoirwadi (CH 0); its first stretch runs beside Phase 3",
+    "line_px": [[642.3,156.4],[670.5,184.3],[676.7,193.8],[689.8,201.9],[695.2,221.5],[688.9,270.6],[683,285.2],[673.4,294.1],[645.6,307.9],[639.6,315.3],[642,327],[653.9,345.9],[672.1,360.9],[769.4,428.1],[799.1,442],[861.3,459.1],[913.3,497.1],[981.4,534.2],[1046,576.8],[1104.5,612]],
+    "stations": [
+      { "id": "shanti-nagar", "name": "Shanti Nagar", "chainage_m": 2050, "px": [690, 375] },
+      { "id": "shivaji-chowk", "name": "Shivaji Chowk", "chainage_m": 3430, "px": [885, 474] },
+      { "id": "ulhasnagar", "name": "Ulhasnagar", "chainage_m": 4680, "px": [1072, 594] }
+    ]
+  },
+  "other_markers": [
+    { "name": "Kongaon", "chainage_m": 3646.566, "px": [28, 150], "note": "Last Line 5 station before the bridge, on the Line 5 (magenta) chainage. Falls 480 m from the Kon Gaon point in MMRDA's 2025 file; whether it is Kon Gaon or Kongaon West is not stated." }
+  ]
+}
