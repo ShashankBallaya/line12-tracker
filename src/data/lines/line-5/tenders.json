@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "description": "Tenders and contract packages for Line 5. Values in crore INR. 'tender_status' is floated, bids_opened, awarded, cancelled or unknown. Only packages whose source was read are listed; Wikipedia names more (CA-166 track, CA-239 power, CA-242 fare collection, CA-246 finishing), which wait for a source.",
+    "last_reviewed": "2026-10-09"
+  },
+  "tenders": [
+    {
+      "id": "ca-28",
+      "package": "CA-28",
+      "scope": "Part design and construction of the viaduct and stations from Kapurbawdi to Dhamankar Naka, 12.811 km",
+      "floated": "2019-01",
+      "estimated_value_crore": null,
+      "awarded_value_crore": null,
+      "awarded_to": "afcons",
+      "award_date": "2020-01-07",
+      "duration_months": null,
+      "tender_status": "awarded",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2020/01/28/afcons-awarded-mumbai-metro-line-5s-thane-bhiwandi-section/",
+      "last_verified": "2026-10-09",
+      "notes": "Other bidders included Larsen & Toubro and NCC. The report gives no contract value."
+    },
+    {
+      "id": "ca-151",
+      "package": "CA-151",
+      "scope": "Kasheli depot: stabling yard, sheds, workshops, operation control centre, administrative building and staff quarters",
+      "floated": "2022-10",
+      "estimated_value_crore": 472.02,
+      "awarded_value_crore": 589.56,
+      "awarded_value_note": "Lowest bid Rs 597.56 crore (March 2023), 26.6% above the estimate; awarded at Rs 589.56 crore.",
+      "awarded_to": "rithwik",
+      "award_date": "2023-09-14",
+      "duration_months": 36,
+      "tender_status": "awarded",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/03/12/rithwik-wins-mumbai-metro-line-5-kasheli-depots-civil-contract/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "ca-241",
+      "package": "CA-241",
+      "scope": "Rolling stock (22 six-car trains), CBTC signalling and train control, telecom, platform screen doors, and depot machinery at Kasheli",
+      "floated": null,
+      "estimated_value_crore": null,
+      "awarded_value_crore": 2481,
+      "awarded_to": "titagarh",
+      "award_date": "2025",
+      "duration_months": null,
+      "tender_status": "awarded",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+      "last_verified": "2026-10-09",
+      "notes": "Award date not pinned down: reports range from mid to late 2025."
+    }
+  ]
+}

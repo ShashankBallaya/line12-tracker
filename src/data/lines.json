@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "The lines this site covers, in hub order. Each line's facts live in src/data/lines/<id>/. project.json and stations.json are required; every other file is optional, and a section without its file does not show. 'alignment' names the GeoJSON file the map and schematic draw from. 'about' feeds the line's schema.org node on every page of that line.",
-    "last_reviewed": "2026-10-08"
+    "last_reviewed": "2026-10-09"
   },
   "lines": [
     {
@@ -23,6 +23,26 @@
         "same_as": [
           "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
           "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+        ]
+      }
+    },
+    {
+      "id": "line-5",
+      "label": "Line 5",
+      "mark_mr": "मेट्रो ५",
+      "route_short": "Thane to Kalyan",
+      "alignment": "alignment-mmrda-2025.geojson",
+      "about": {
+        "name": "Mumbai Metro Line 5",
+        "alternate_names": [
+          "Metro Line 5",
+          "Metro 5",
+          "Thane-Bhiwandi-Kalyan Metro"
+        ],
+        "description": "A metro line from Thane to Kalyan via Bhiwandi in the Mumbai Metropolitan Region, built by MMRDA. Its first phase, Kapurbawdi to Dhamankar Naka, is built and awaiting trial runs.",
+        "same_as": [
+          "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
+          "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
         ]
       }
     }

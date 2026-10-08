@@ -1,0 +1,708 @@
+{
+ "_meta": {
+  "description": "The 17 Line 5 station points in MMRDA's alignment file (uploaded March 2025), in order from Kapurbawdi. Positions come from that file (scripts/build-alignment-line5.py). Phase 1 is Kapurbawdi to Dhamankar Naka. 'revised_plan_2026' says what the revised plan (State approval 22 Apr 2026, Union approval 29 Aug 2026) does with each station, from news reports of that approval; MMRDA has not published the revised station list. 'eia_chainage_m' is the station's chainage in MMRDA's Phase 1 environmental report (Sep 2023). The report's chainages do not match the distances between the station points in the alignment file (for example Kalher to Purna: 0.83 km in the report, about 2 km apart on the map); they are kept as published. 'same_site_as' names a station of another line at the same place, with the distance between the two points.",
+  "order_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+  "count_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+  "names_mr_source_url": "https://mmrda.maharashtra.gov.in/mr/projects/transport/metro-line-5/overview",
+  "names_mr_status": "verified",
+  "last_reviewed": "2026-10-09"
+ },
+ "stations": [
+  {
+   "id": "kapurbawdi",
+   "order": 1,
+   "name": "Kapurbawdi",
+   "name_mr": null,
+   "phase": 1,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+   "location": {
+    "lng": 72.980643,
+    "lat": 19.218042,
+    "along_m": 212,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kapurbawdi(M)station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [
+     "Metro Line 4 (Wadala-Kasarvadavali)"
+    ],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Built as part of Metro Line 4, not under Line 5's contracts",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf",
+    "notes": "MMRDA's Phase 1 environmental report (Sep 2023), Table 2.3: Kapurbawdi station is built as part of Metro Line 4 and is not one of Line 5's six Phase 1 stations."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Kapurbawdi",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "balkum-naka",
+   "order": 2,
+   "name": "Balkum Naka",
+   "name_mr": "बाळकुम नाका",
+   "phase": 1,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 72.988592,
+    "lat": 19.220853,
+    "along_m": 1115,
+    "eia_chainage_m": 1766.85,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Balkum Naka(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Built. Overhead wires energised from 7 Sep 2026, ahead of trial runs.",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Balkum",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "kasheli",
+   "order": 3,
+   "name": "Kasheli",
+   "name_mr": "कशेली",
+   "phase": 1,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.016358,
+    "lat": 19.239844,
+    "along_m": 4815,
+    "eia_chainage_m": 5551.704,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kasheli(M)Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 3 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Built. Overhead wires energised from 7 Sep 2026, ahead of trial runs.",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Kasheli",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "kalher",
+   "order": 4,
+   "name": "Kalher",
+   "name_mr": "काल्हेर",
+   "phase": 1,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.019526,
+    "lat": 19.251814,
+    "along_m": 6265,
+    "eia_chainage_m": 7416.328,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kalhar(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 7 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Built. Overhead wires energised from 7 Sep 2026, ahead of trial runs.",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Kalher",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "purna",
+   "order": 5,
+   "name": "Purna",
+   "name_mr": "पूर्णा",
+   "phase": 1,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.032815,
+    "lat": 19.264678,
+    "along_m": 8283,
+    "eia_chainage_m": 8250.753,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Purna(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 5 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Built. Overhead wires energised from 7 Sep 2026, ahead of trial runs.",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Purna",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "anjurphata",
+   "order": 6,
+   "name": "Anjurphata",
+   "name_mr": "अंजुरफाटा",
+   "phase": 1,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.042806,
+    "lat": 19.274433,
+    "along_m": 9795,
+    "eia_chainage_m": 10527.568,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Anjurphata(M)Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 4 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Built. Overhead wires energised from 7 Sep 2026, ahead of trial runs.",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Anjur Phata",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "dhamankar-naka",
+   "order": 7,
+   "name": "Dhamankar Naka",
+   "name_mr": "धामणकर नाका",
+   "phase": 1,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.054086,
+    "lat": 19.287582,
+    "along_m": 11680,
+    "eia_chainage_m": 12125.569,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Dhamankar Naka (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Built. Overhead wires energised from 7 Sep 2026, ahead of trial runs.",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Dhamankar Naka",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "bhiwandi",
+   "order": 8,
+   "name": "Bhiwandi",
+   "name_mr": "भिवंडी",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.059736,
+    "lat": 19.293304,
+    "along_m": 12552,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Bhiwandi(M) Statiion\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 6 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Bhiwandi",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "gopal-nagar",
+   "order": 9,
+   "name": "Gopal Nagar",
+   "name_mr": "गोपाळ नगर",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.064573,
+    "lat": 19.294454,
+    "along_m": 13243,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Gopal Nagar (M) station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 11 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Not in the revised station list",
+    "name_in_plan": null,
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "temghar",
+   "order": 10,
+   "name": "Temghar",
+   "name_mr": "टेमघर",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.074129,
+    "lat": 19.281687,
+    "along_m": 14993,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Temghar(M)station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 3 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Temghar",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "rajnouli",
+   "order": 11,
+   "name": "Rajnouli",
+   "name_mr": "रजनोली",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.084077,
+    "lat": 19.268677,
+    "along_m": 16780,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Rajnouli Village(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 4 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Rajnouli",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "gove-gaon",
+   "order": 12,
+   "name": "Gove Gaon",
+   "name_mr": "गोव गाव",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.090116,
+    "lat": 19.261601,
+    "along_m": 17799,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Gove Gaon MIDC(M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 0 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5",
+    "name_in_plan": "Govegaon",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "kon-gaon",
+   "order": 13,
+   "name": "Kon Gaon",
+   "name_mr": "कोन गाव",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.106445,
+    "lat": 19.248077,
+    "along_m": 20101,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kon Gaon (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 8 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Kept on Line 5, as two stations",
+    "name_in_plan": "Kongan West and Kongan East",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": null,
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "durgadi-fort",
+   "order": 14,
+   "name": "Durgadi Fort",
+   "name_mr": null,
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+   "location": {
+    "lng": 73.122811,
+    "lat": 19.246482,
+    "along_m": 21906,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Durgadi Fort (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 8 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Moved to Line 5A",
+    "name_in_plan": "Durgadi",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file. MMRDA's Line 5 page lists \"Lal Chowki\" between Kon Gaon and Kalyan, instead of Durgadi Fort and Sahajanand Chowk.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "sahajanand-chowk",
+   "order": 15,
+   "name": "Sahajanand Chowk",
+   "name_mr": null,
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
+   "location": {
+    "lng": 73.128399,
+    "lat": 19.244614,
+    "along_m": 22568,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Sahajanand Chowk (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 3 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Not in the revised station list",
+    "name_in_plan": null,
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file. MMRDA's Line 5 page lists \"Lal Chowki\" between Kon Gaon and Kalyan, instead of Durgadi Fort and Sahajanand Chowk.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "kalyan",
+   "order": 16,
+   "name": "Kalyan",
+   "name_mr": "कल्याण स्टेशन",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.127673,
+    "lat": 19.238883,
+    "along_m": 23346,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"Kalyan (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [
+     "Metro Line 12 (Kalyan-Taloja)",
+     "Central Railway (Kalyan Junction)"
+    ],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+    "notes": "MMRDA's Line 5 page says the line will connect with Line 12 and the Central Railway. In the revised plan of 2026, Kalyan is on Line 5A."
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Moved to Line 5A",
+    "name_in_plan": "Kalyan",
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "MMRDA's Line 5 page calls it \"Kalyan Station\".",
+   "last_verified": "2026-10-09",
+   "same_site_as": {
+    "line": "line-12",
+    "station": "kalyan",
+    "distance_m": 14
+   }
+  },
+  {
+   "id": "apmc-kalyan",
+   "order": 17,
+   "name": "APMC Kalyan",
+   "name_mr": "कल्याण एपीएमसी",
+   "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+   "location": {
+    "lng": 73.122788,
+    "lat": 19.235337,
+    "along_m": 24007,
+    "eia_chainage_m": null,
+    "method": "MMRDA alignment file for Line 5 (KML on the Metro Influence Zone page, uploaded March 2025): point \"APMC Kalyan (M) Station\". along_m is measured along a centre line derived from MMRDA's corridor polygon, from its start at Kapurbawdi; the point is 1 m from that line.",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+    "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
+   },
+   "revised_plan_2026": {
+    "value": "Dropped",
+    "name_in_plan": null,
+    "status": "reported",
+    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "MMRDA's Line 5 page calls it \"Kalyan APMC\".",
+   "last_verified": "2026-10-09",
+   "same_site_as": {
+    "line": "line-12",
+    "station": "apmc-kalyan",
+    "distance_m": 30
+   }
+  }
+ ]
+}

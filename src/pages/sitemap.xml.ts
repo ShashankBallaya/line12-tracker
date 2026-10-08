@@ -1,11 +1,12 @@
 // The sitemap, built from the data so every station page is listed. lastmod is the day the facts
 // were last checked, not the build date, so search engines only see a change when facts change.
 import type { APIRoute } from 'astro';
-import { getLine, lastReviewed } from '../lib/data';
+import { getLine } from '../lib/data';
 
 export const GET: APIRoute = ({ site }) => {
   const url = (path: string) => new URL(path, site).toString();
-  const { stations } = getLine('line-12');
+  // Line 12 only until each line has its own pages (MULTI-LINE-PLAN.md, step 4).
+  const { stations, lastReviewed } = getLine('line-12');
   const pages: { loc: string; lastmod: string; priority: string }[] = [
     { loc: url('/'), lastmod: lastReviewed, priority: '1.0' },
     { loc: url('/status/'), lastmod: lastReviewed, priority: '0.9' },

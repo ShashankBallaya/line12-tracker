@@ -1,0 +1,162 @@
+{
+  "_meta": {
+    "description": "Key milestones, oldest first. 'date_precision' is day, month or year. 'kind' is planning, approval, tender, award, construction, related or future. Only events whose source was read are listed; older approvals (2016 to 2018) wait for a source.",
+    "last_reviewed": "2026-10-09"
+  },
+  "events": [
+    {
+      "id": "original-approval",
+      "date": "2017",
+      "date_precision": "year",
+      "kind": "approval",
+      "title": "Line 5 approved: 24.9 km, 17 stations",
+      "summary": "The original plan for a fully elevated Thane-Bhiwandi-Kalyan line is approved at Rs 8,416.51 crore.",
+      "status": "reported",
+      "source_url": "https://metrorailnews.in/mumbai-metro-line-5-gets-state-approval/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "ca28-tender",
+      "date": "2019-01",
+      "date_precision": "month",
+      "kind": "tender",
+      "title": "Bids invited for the Thane-Bhiwandi civil works",
+      "summary": "MMRDA invites bids for package CA-28, the viaduct and stations from Kapurbawdi to Dhamankar Naka.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2020/01/28/afcons-awarded-mumbai-metro-line-5s-thane-bhiwandi-section/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "ca28-award",
+      "date": "2020-01-07",
+      "date_precision": "day",
+      "kind": "award",
+      "title": "Afcons wins the Thane-Bhiwandi civil contract",
+      "summary": "MMRDA awards package CA-28, 12.811 km from Kapurbawdi to Dhamankar Naka, to Afcons Infrastructure.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2020/01/28/afcons-awarded-mumbai-metro-line-5s-thane-bhiwandi-section/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "aiib-concept",
+      "date": "2020-04-21",
+      "date_precision": "day",
+      "kind": "planning",
+      "title": "AIIB approves a loan concept for Line 5's systems",
+      "summary": "A USD 236 million loan for trains, signalling and other systems, alongside the OPEC Fund and MMRDA.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2020/05/08/aiib-to-lend-236-million-for-mumbai-metro-line-5-thane-kalyan/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "phase1-eia",
+      "date": "2023-09-11",
+      "date_precision": "day",
+      "kind": "planning",
+      "title": "MMRDA publishes the Phase 1 environmental report",
+      "summary": "Prepared for AIIB: 11.88 km and six stations from Kapurbawdi to Dhamankar Naka, with the depot at Kasheli.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "depot-award",
+      "date": "2023-09-14",
+      "date_precision": "day",
+      "kind": "award",
+      "title": "Rithwik Projects wins the Kasheli depot contract",
+      "summary": "Package CA-151, Rs 589.56 crore, for the depot's yards, sheds, workshops and control centre on about 27 ha.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/03/12/rithwik-wins-mumbai-metro-line-5-kasheli-depots-civil-contract/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "ca241-award",
+      "date": "2025",
+      "date_precision": "year",
+      "kind": "award",
+      "title": "Titagarh wins the trains and signalling contract",
+      "summary": "Package CA-241, Rs 2,481 crore: 22 six-car trains, CBTC signalling, telecom, platform screen doors and depot machinery.",
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "phase1-95",
+      "date": "2026-02-09",
+      "date_precision": "day",
+      "kind": "construction",
+      "title": "Phase 1 civil work 95% complete",
+      "summary": "MMRDA says the Kapurbawdi to Dhamankar Naka stretch is 95% built and aims to open it in December 2026.",
+      "status": "reported",
+      "source_url": "https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "state-approval-revised",
+      "date": "2026-04-22",
+      "date_precision": "day",
+      "kind": "approval",
+      "title": "State approves the revised Line 5 and the new Line 5A",
+      "summary": "34.2 km and 19 stations in all: Line 5 from Thane to Durgadi, and Line 5A from Durgadi to Kalyan and towards Ulhasnagar.",
+      "status": "reported",
+      "source_url": "https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "union-approval-revised",
+      "date": "2026-08-29",
+      "date_precision": "day",
+      "kind": "approval",
+      "title": "Union Government approves the revised Lines 5 and 5A",
+      "summary": "The report gives Rs 18,131 crore for both lines together, Rs 4,063 crore of it for Line 5A.",
+      "status": "reported",
+      "source_url": "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "phase1-civil-complete",
+      "date": "2026-08-31",
+      "date_precision": "day",
+      "kind": "construction",
+      "title": "Every civil activity shown 100% complete",
+      "summary": "MMRDA's progress table lists piling, piers, girders, station spines, wings and deck slabs as complete.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "ohe-energised",
+      "date": "2026-09-07",
+      "date_precision": "day",
+      "kind": "construction",
+      "title": "Overhead wires energised, Kapurbawdi to Dhamankar Naka",
+      "summary": "MMRDA powers 12.6 km of 25,000-volt wires, and the Kasheli depot tracks, ahead of trial runs.",
+      "status": "reported",
+      "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "phase1-opening-target",
+      "date": "2026-12",
+      "date_precision": "month",
+      "kind": "future",
+      "title": "Target: Phase 1 opens",
+      "summary": "Reported target for passenger service from Kapurbawdi to Dhamankar Naka, after trial runs and safety approval.",
+      "status": "reported",
+      "source_url": "https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "rest-of-line-target",
+      "date": "2030",
+      "date_precision": "year",
+      "kind": "future",
+      "title": "Target: Bhiwandi to Kalyan, with Line 5A",
+      "summary": "Reported target of 2030-31 for the rest of Line 5 and for Line 5A towards Ulhasnagar.",
+      "status": "reported",
+      "source_url": "https://metrorailnews.in/center-approved-mumbai-metro-line-5-and-5a/",
+      "last_verified": "2026-10-09"
+    }
+  ]
+}

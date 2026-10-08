@@ -109,3 +109,66 @@ Nothing below is on the site yet.
 - Trial run or opening dates.
 - Rolling stock supplier (tender open since June 2026).
 - Official station architecture descriptions for the 3D models.
+
+---
+
+# Line 5 (Thane-Bhiwandi-Kalyan)
+
+Research started 2026-10-09. Data in `src/data/lines/line-5/`. Not shown on the site yet (see MULTI-LINE-PLAN.md, step 7). The status values above apply.
+
+## Primary sources
+
+1. **MMRDA, Metro Line 5 project page.** Length 24.9 km, 15 stations (Balkum Naka to Kalyan APMC), cost Rs 8,416.51 Cr, 2031 ridership 3.025 lakh, car size and capacity, interchanges with Lines 4 and 12 and the Central Railway, and a progress table (as of 31 Aug 2026, every activity 100%). Page last updated 7 Oct 2026, but it still shows the 2017 plan.
+   https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview
+   The Marathi page gives the Marathi station names. Its progress table is headed "Metro Line 7A" and is not used.
+   https://mmrda.maharashtra.gov.in/mr/projects/transport/metro-line-5/overview
+2. **MMRDA, Line 5 alignment file (KML), uploaded March 2025.** Published on the Metro Influence Zone for NOC page. Unlike Line 12's file, it has no centre line: it has the corridor as one polygon about 50 m wide, and 17 station points from Kapurbawdi to APMC Kalyan.
+   https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc (file: https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line-5.kml)
+3. **MMRDA, Phase 1 draft final Environmental Impact Assessment for AIIB, 11 Sep 2023.** Phase 1 is 11.88 km and 6 elevated stations from Kapurbawdi to Dhamankar Naka; Kapurbawdi station is built as part of Line 4. Station chainages, Kasheli depot (27.134 ha), design speeds, station length 145 m, platforms about 13.5 m above the road, and the cost breakdown from the March 2016 DPR.
+   https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf
+
+## Secondary sources
+
+| Outlet | Date | Used for | URL |
+|---|---|---|---|
+| The Metro Rail Guy | 28 Jan 2020 | CA-28 civil contract to Afcons, 7 Jan 2020, 12.811 km | https://themetrorailguy.com/2020/01/28/afcons-awarded-mumbai-metro-line-5s-thane-bhiwandi-section/ |
+| The Metro Rail Guy | 8 May 2020 | AIIB loan concept, USD 236 million, 21 Apr 2020 | https://themetrorailguy.com/2020/05/08/aiib-to-lend-236-million-for-mumbai-metro-line-5-thane-kalyan/ |
+| The Metro Rail Guy | 12 Mar 2023, updated 14 Sep 2023 | CA-151 Kasheli depot to Rithwik, Rs 589.56 Cr | https://themetrorailguy.com/2023/03/12/rithwik-wins-mumbai-metro-line-5-kasheli-depots-civil-contract/ |
+| The Metro Rail Guy | 30 Jun 2025 | CA-241 trains and signalling to Titagarh, Rs 2,481 Cr | https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/ |
+| Free Press Journal | 9 Feb 2026 | Phase 1 civil work 95%, December 2026 target | https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch |
+| Indian Infrastructure | 23 Apr 2026 | State approval of revised Lines 5 and 5A, 22 Apr 2026 | https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/ |
+| Metro Rail News | 27 Apr 2026 | Revised plan, underground sections, APMC Kalyan dropped | https://metrorailnews.in/mumbai-metro-line-5-gets-state-approval/ |
+| Metro Rail News | 2 Sep 2026 | Union approval, 2030-31 target for the rest | https://metrorailnews.in/center-approved-mumbai-metro-line-5-and-5a/ |
+| Indian Infrastructure | 3 Sep 2026 | Union approval, 29 Aug 2026; Line 5A Rs 4,063 Cr | https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/ |
+| Free Press Journal | 7 Sep 2026 | Overhead wires energised, 12.6 km; work beyond Bhiwandi not begun | https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation |
+| Construction World | 8 Sep 2026 | Station lists of the revised Lines 5 and 5A | https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055 |
+| Wikipedia, Orange Line | read 9 Oct 2026 | Line colour only (unverified) | https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro) |
+
+## Derived data
+
+`scripts/build-alignment-line5.py` derives the centre line from the corridor polygon in primary source 2: it takes the polygon's two tips (at Kapurbawdi, and 119 m past APMC Kalyan), and draws the line midway between the two long sides. The result is 24.14 km. Every one of the 17 station points lies within 11 m of it, and they fall in order, so the line is graded verified like the points. Each station's `along_m` is measured along it from Kapurbawdi.
+
+The station chainages in primary source 3 do not match the distances between the station points (Kalher to Purna: 0.83 km in the report, about 2 km apart on the map). They are kept under `eia_chainage_m` as published and not used for drawing.
+
+Line 5's Kalyan point is 14 m from Line 12's, and its APMC Kalyan point 30 m from Line 12's. In the 2025 files the two lines share both stations.
+
+## Items that need your review
+
+1. **Which plan to show.** MMRDA's page and alignment file show the 2017 plan (Thane to Kalyan APMC). The revised plan of 2026 (Line 5 to Durgadi, Line 5A from Durgadi to Kalyan and Ulhasnagar) is known only from news reports, which disagree on station names and counts. The data keeps the 17 stations of the alignment file and records for each what the revised plan does with it (`revised_plan_2026`). Do you agree?
+2. **Phase 1 opening date.** December 2026 is reported (MMRDA statement, Feb 2026). The September 2026 report also says trial runs take about six months, which does not fit. Countdown or not?
+3. **Line 5A.** Listed under `related_projects` and kept out of Line 5 totals, the same rule as Line 12A. Cover it, or not?
+4. **Kapurbawdi.** Built as part of Line 4, but every Line 5 train will start there. The data lists it as Line 5's station 1, with a note.
+
+## Leads to verify
+
+1. **Approval dates 2016 to 2018.** Wikipedia gives MMRDA approval on 19 Oct 2016, State Cabinet approval on 24 Oct 2017 and the foundation stone on 18 Dec 2018, citing The Hindu, Livemint and the Indian Express. Those articles were not read yet.
+2. **More packages.** Wikipedia lists CA-166 (track, Paras Railtech), CA-239 (power and E&M, IRCON), CA-242 (fare collection) and CA-246 (finishing, NACPL-MANSI-UCC JV) without sources.
+3. **AIIB and OPEC Fund final loan amounts.** The OPEC Fund lists approval on 29 Apr 2024 and signing on 13 Oct 2025; GTAI lists an AIIB loan of USD 186.5 million. Neither page was read.
+4. **The revised plan's Government Resolution (April 2026).** It would settle the station list, lengths and the underground section.
+5. **Train render with "LINE 5" livery** (owner's lead of 2026-09-28, see Line 12 lead 6). Now relevant for Line 5. Not used until sourced.
+
+## Not found
+
+- Marathi names for Kapurbawdi, Durgadi Fort and Sahajanand Chowk.
+- A trial-run start date or CMRS inspection date.
+- Any primary source for the revised plan of 2026.

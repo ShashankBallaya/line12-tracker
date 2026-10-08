@@ -27,6 +27,8 @@ src/
   styles/          Design tokens (tokens.css) and global styles.
 scripts/
   validate-data.mjs       Checks every data entry has source_url, last_verified and a valid status.
+  build-alignment.py      Line 12 route line and station positions from MMRDA's alignment KMZ.
+  build-alignment-line5.py  Line 5 route line (derived from MMRDA's corridor polygon) and station positions.
   draw-lead-picture.py    Generates the isometric lead picture (src/components/LeadPicture.astro).
   build-wayback.mjs       Picks before/after satellite imagery and capture dates (writes src/data/lines/line-12/beforeafter.json).
   capture.mjs             Dev-only screenshots for design review (needs local Chrome).

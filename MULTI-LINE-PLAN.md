@@ -95,7 +95,7 @@ Each step ships on its own and leaves the live site working.
    - Site name "Line 12 Tracker" (Base, Colophon, breadcrumbs, OG, llms.txt): changes at the domain move.
 4. **Routes under `/line-12/`** with `[line]` dynamic routes, the hub page, `_redirects`, sitemap and `llms.txt` per line. Ship this with the domain (step 5), not before.
 5. **Domain move.** Custom domain on Cloudflare Pages, `site` in `astro.config.mjs`, Search Console property for the new domain plus the Change of Address tool, 301 from `pages.dev`. Note: `_redirects` cannot match on host name, so the `pages.dev` to new-domain redirect needs Cloudflare Bulk Redirects (to check before this step).
-6. **Line 5 research.** Same rules as Line 12: every fact sourced and graded in `SOURCES.md`, alignment from MMRDA's KMZ if one exists. This is the long step and is separate from code.
+6. **Line 5 research.** First pass done 2026-10-09: `src/data/lines/line-5/` (project, stations, timeline, tenders, contractors, alignment), sources and open questions in `SOURCES.md` under "Line 5". Line 5 is in `lines.json`, but no page builds it until step 7. Same rules as Line 12: every fact sourced and graded.
 7. **Line 5 pages.** Data files only, plus a feed match block and any per-line assets. Cross-links at Kalyan.
 8. **Line 4, then Line 2B.** Data and research only, if steps 2 to 4 hold.
 

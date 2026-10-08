@@ -124,6 +124,14 @@ python scripts/build-alignment.py
 
 It downloads the file, rewrites `src/data/lines/line-12/alignment-mmrda-2025.geojson`, moves every station in `stations.json` to MMRDA's point, and keeps each earlier position under `location.earlier`. Then run `node scripts/build-wayback.mjs`, because the satellite spots sit on station positions. Check the printed list: any station that moved more than 50 m will say so on its page.
 
+For Line 5, MMRDA's file is a KML with the corridor as a polygon, not a centre line:
+
+```bash
+python scripts/build-alignment-line5.py
+```
+
+It derives the centre line between the polygon's two sides, rewrites `src/data/lines/line-5/alignment-mmrda-2025.geojson`, and moves every station in `src/data/lines/line-5/stations.json` to MMRDA's point. It stops if a station point is more than 25 m from the derived line, or if MMRDA renamed a station in the file.
+
 ## Station pages, status page and search files
 
 These are built from the data files. You never edit them by hand:

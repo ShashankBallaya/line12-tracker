@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "description": "Firms appointed on Line 5. 'tender_ids' link to tenders.json.",
+    "last_reviewed": "2026-10-09"
+  },
+  "contractors": [
+    {
+      "id": "afcons",
+      "name": "Afcons Infrastructure",
+      "role": "Civil contractor, Kapurbawdi to Dhamankar Naka (Phase 1)",
+      "tender_ids": ["ca-28"],
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2020/01/28/afcons-awarded-mumbai-metro-line-5s-thane-bhiwandi-section/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "rithwik",
+      "name": "Rithwik Projects",
+      "role": "Kasheli depot civil works",
+      "tender_ids": ["ca-151"],
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2023/03/12/rithwik-wins-mumbai-metro-line-5-kasheli-depots-civil-contract/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "titagarh",
+      "name": "Titagarh Rail Systems",
+      "role": "Trains, signalling, telecom and platform screen doors",
+      "tender_ids": ["ca-241"],
+      "status": "reported",
+      "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+      "last_verified": "2026-10-09"
+    }
+  ],
+  "excluded_claims": []
+}
