@@ -1,16 +1,19 @@
 ---
-/** All Line 12 stations in order, each linking to its own page. */
+/** All of a line's stations in order, each linking to its own page. */
 import Base from '../../layouts/Base.astro';
 import Masthead from '../../components/Masthead.astro';
 import Colophon from '../../components/Colophon.astro';
 import Grade from '../../components/Grade.astro';
-import { stations, stationsMeta, project } from '../../lib/data';
+import { getLine } from '../../lib/data';
 import '../../styles/inner.css';
 
+const line = getLine('line-12');
+const { stations, stationsMeta, project } = line;
+const { label, route_short, about } = line.info;
 const total = stations.length;
 const site = Astro.site!.toString();
-const title = `Mumbai Metro Line 12 Stations: all ${total}, Kalyan to Taloja`;
-const description = `The ${total} stations of Mumbai Metro Line 12 in order, from Kalyan through Dombivli MIDC and Nilje to Amandoot in Taloja, with interchanges and a page for each station.`;
+const title = `${about.name} Stations: all ${total}, ${route_short}`;
+const description = `The ${total} stations of ${about.name} in order, from Kalyan through Dombivli MIDC and Nilje to Amandoot in Taloja, with interchanges and a page for each station.`;
 
 const schema = [
   {
@@ -22,26 +25,26 @@ const schema = [
   },
   {
     '@type': 'ItemList',
-    name: 'Mumbai Metro Line 12 stations, in order from Kalyan',
+    name: `${about.name} stations, in order from ${stations[0].name}`,
     numberOfItems: total,
     itemListElement: stations.map((s) => ({ '@type': 'ListItem', position: s.order, name: `${s.name} (${s.name_mr})`, url: `${site}stations/${s.id}/` })),
   },
 ];
 ---
 
-<Base title={title} description={description} schema={schema}>
-  <Masthead home={false} />
+<Base title={title} description={description} schema={schema} line={line}>
+  <Masthead line={line} home={false} />
   <main id="main" class="page inner">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
-        <li><a href="/">Line 12</a></li>
+        <li><a href="/">{label}</a></li>
         <li aria-current="page">Stations</li>
       </ol>
     </nav>
 
     <header class="inner__head">
-      <h1 class="inner__title">Mumbai Metro Line 12 stations</h1>
-      <p class="inner__mr mr" lang="mr">मेट्रो १२: सर्व स्थानके</p>
+      <h1 class="inner__title">{about.name} stations</h1>
+      <p class="inner__mr mr" lang="mr">{line.info.mark_mr}: सर्व स्थानके</p>
       <p class="inner__standfirst">
         All {total}, in order from Kalyan to Amandoot in Taloja. Every station is elevated. The line is{' '}
         {project.length_km.value} km long.
@@ -68,7 +71,7 @@ const schema = [
       <span aria-hidden="true">,</span> station count <Grade status="verified" source={stationsMeta.count_source_url} />
     </p>
   </main>
-  <Colophon />
+  <Colophon line={line} />
 </Base>
 
 <style>

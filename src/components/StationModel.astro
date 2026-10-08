@@ -5,7 +5,15 @@
  * motion.ts pins the stage and turns scroll into camera progress and the current caption.
  */
 import Grade from './Grade.astro';
-import { stationModel as model } from '../lib/data';
+import type { Line } from '../lib/data';
+
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+// The page shows this section only for a line with station-model.json.
+const model = line.stationModel!;
+
 ---
 
 <section id="station" class="section stm" aria-labelledby="stm-title" data-stm>

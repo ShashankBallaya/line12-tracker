@@ -7,9 +7,12 @@ import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
 import Colophon from '../components/Colophon.astro';
 import Grade from '../components/Grade.astro';
-import { project, stations, contractors, rollingstock, formatDate, inr, lastReviewed } from '../lib/data';
+import { getLine, formatDate, inr } from '../lib/data';
 import '../styles/inner.css';
 
+const line = getLine('line-12');
+const { project, stations, contractors, lastReviewed } = line;
+const rollingstock = line.rollingstock!;
 const p = project;
 const t = p.target_completion;
 const prog = p.progress;
@@ -140,8 +143,8 @@ const schema = [
 ];
 ---
 
-<Base title={title} description={description} schema={schema}>
-  <Masthead home={false} />
+<Base title={title} description={description} schema={schema} line={line}>
+  <Masthead line={line} home={false} />
   <main id="main" class="page inner">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
@@ -176,5 +179,5 @@ const schema = [
       <a href="/">The full Line 12 tracker</a>, with the route, map, tenders and timeline.
     </p>
   </main>
-  <Colophon />
+  <Colophon line={line} />
 </Base>

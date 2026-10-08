@@ -1,6 +1,13 @@
 ---
 import Grade from './Grade.astro';
-import { socialPosts, timeline, feed, formatDate, outletName } from '../lib/data';
+import { feed, formatDate, outletName, type Line } from '../lib/data';
+
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+const { socialPosts, timeline } = line;
+
 
 // Latest reports: dated, sourced milestones from the timeline, newest first.
 const latest = timeline
@@ -88,7 +95,7 @@ const feedUpdated = feed._meta.updated_at.slice(0, 10);
       {news.length === 0 ? (
         <div class="empty">
           <p class="empty__head">Nothing found yet.</p>
-          <p>Headlines about Line 12 appear here when an outlet publishes one.</p>
+          <p>Headlines about {line.info.label} appear here when an outlet publishes one.</p>
         </div>
       ) : (
         <ol class="reports">

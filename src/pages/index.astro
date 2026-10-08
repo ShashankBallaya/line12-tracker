@@ -14,26 +14,30 @@ import Stations from '../components/Stations.astro';
 import StationModel from '../components/StationModel.astro';
 import Updates from '../components/Updates.astro';
 import SourcesFooter from '../components/SourcesFooter.astro';
+import { getLine } from '../lib/data';
+
+const line = getLine('line-12');
 ---
 
 <Base
   title="Mumbai Metro Line 12 Tracker: Kalyan to Taloja status, stations, map"
+  line={line}
   description="Unofficial, sourced tracker for Mumbai Metro Line 12, the Kalyan-Dombivli-Taloja metro: opening date, construction progress, all 19 stations, map, tenders and trains. Every figure links to its source."
 >
-  <Masthead />
+  <Masthead line={line} />
   <main id="main">
-    <FrontPage />
-    <RouteRide />
-    <MapSection />
-    <BeforeAfter />
-    <StationModel />
-    <Numbers />
-    <Progress />
-    <Tenders />
-    <Trains />
-    <Stations />
-    <Updates />
-    <Timeline />
-    <SourcesFooter />
+    <FrontPage line={line} />
+    <RouteRide line={line} />
+    {line.alignmentRaw && <MapSection line={line} />}
+    {line.beforeAfter && <BeforeAfter line={line} />}
+    {line.stationModel && <StationModel line={line} />}
+    <Numbers line={line} />
+    <Progress line={line} />
+    {line.tenders.length > 0 && <Tenders line={line} />}
+    {line.rollingstock && <Trains line={line} />}
+    <Stations line={line} />
+    <Updates line={line} />
+    {line.timeline.length > 0 && <Timeline line={line} />}
+    <SourcesFooter line={line} />
   </main>
 </Base>

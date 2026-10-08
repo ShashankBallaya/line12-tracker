@@ -1,6 +1,13 @@
 ---
 import Grade from './Grade.astro';
-import { stations, stationsMeta } from '../lib/data';
+import type { Line } from '../lib/data';
+
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+const { stations, stationsMeta } = line;
+
 ---
 
 <section id="stations" class="section page" aria-labelledby="stations-title">

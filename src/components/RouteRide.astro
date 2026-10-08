@@ -6,15 +6,22 @@
  * pins the stage and moves the train along a horizontal strip as the reader scrolls.
  */
 import Grade from './Grade.astro';
-import { stations } from '../lib/data';
+import type { Line } from '../lib/data';
 import { schematic } from '../lib/route';
 
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+const { stations } = line;
+
+
 // Same bent schematic as the front page, drawn at poster weight.
-const line = schematic({ width: 1000, top: 30, drop: 70, pad: 10, bottom: 30 });
-const px = (i: number) => (line.points[i][0] / line.width) * 100;
-const py = (i: number) => (line.points[i][1] / line.height) * 100;
+const strip = schematic(line, { width: 1000, top: 30, drop: 70, pad: 10, bottom: 30 });
+const px = (i: number) => (strip.points[i][0] / strip.width) * 100;
+const py = (i: number) => (strip.points[i][1] / strip.height) * 100;
 // Stations on the 45-degree bend get their label to the right, clear of the line.
-const onBend = (i: number) => line.points[i][1] > line.points[0][1] + 1 && line.points[i][1] < line.points[stations.length - 1][1] - 1;
+const onBend = (i: number) => strip.points[i][1] > strip.points[0][1] + 1 && strip.points[i][1] < strip.points[stations.length - 1][1] - 1;
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---
@@ -33,9 +40,9 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
   <div class="ride__stage" data-ride-stage>
     <div class="page ride__frame">
       <div class="ride__track" aria-hidden="true">
-        <svg class="ride__line" viewBox={`0 0 ${line.width} ${line.height}`} preserveAspectRatio="none" focusable="false">
-          <path d={line.path} class="casing" vector-effect="non-scaling-stroke" />
-          <path d={line.path} class="core" vector-effect="non-scaling-stroke" />
+        <svg class="ride__line" viewBox={`0 0 ${strip.width} ${strip.height}`} preserveAspectRatio="none" focusable="false">
+          <path d={strip.path} class="casing" vector-effect="non-scaling-stroke" />
+          <path d={strip.path} class="core" vector-effect="non-scaling-stroke" />
         </svg>
         {stations.map((s, i) => (
           <span class:list={['ride__tick', onBend(i) ? 'ride__tick--side' : i % 2 ? 'ride__tick--below' : 'ride__tick--above']} style={`--x:${px(i)}%;--y:${py(i)}%`} data-ride-tick={i}>

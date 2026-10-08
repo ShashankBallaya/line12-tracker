@@ -2,9 +2,12 @@
 /* Open Graph card source. scripts/og.mjs captures this page at 1200x630 into public/og.png.
    Not linked from the site and marked noindex. */
 import '../../styles/global.css';
-import { project, formatDate, lastReviewed } from '../../lib/data';
+import { getLine, formatDate } from '../../lib/data';
 import { schematic } from '../../lib/route';
-const line = schematic({ width: 1000, top: 20, drop: 60, pad: 10, bottom: 20 });
+// The card shows Line 12 until the hub gets its own card (MULTI-LINE-PLAN.md, step 4).
+const line12 = getLine('line-12');
+const { project, lastReviewed } = line12;
+const line = schematic(line12, { width: 1000, top: 20, drop: 60, pad: 10, bottom: 20 });
 ---
 <!doctype html>
 <html lang="en" data-theme="dark">

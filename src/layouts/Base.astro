@@ -3,18 +3,20 @@ import '../styles/global.css';
 import anekUrl from '@fontsource-variable/anek-latin/files/anek-latin-latin-standard-normal.woff2?url';
 import muktaUrl from '@fontsource/mukta/files/mukta-latin-400-normal.woff2?url';
 import { schematic } from '../lib/route';
-import { lastReviewed } from '../lib/data';
-
-const pre = schematic({ width: 1000, top: 30, drop: 70, pad: 10, bottom: 30 });
+import { lastReviewed as siteReviewed, lineNodeId, type Line } from '../lib/data';
 
 interface Props {
   title: string;
   description: string;
   /** Page-specific schema.org nodes, added to the site graph (breadcrumbs, stations, FAQ). */
   schema?: Record<string, unknown>[];
+  /** The line this page is about. Off a line page (the hub), the graph has no line node. */
+  line?: Line;
 }
 
-const { title, description, schema = [] } = Astro.props;
+const { title, description, schema = [], line } = Astro.props;
+const lastReviewed = line?.lastReviewed ?? siteReviewed;
+const pre = line ? schematic(line, { width: 1000, top: 30, drop: 70, pad: 10, bottom: 30 }) : undefined;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // The route-drawing preloader belongs to the front page; inside pages open straight on their answer.
 const front = Astro.url.pathname === '/';
@@ -34,14 +36,18 @@ const graph = {
       publisher: { '@id': `${siteUrl}#maintainer` },
     },
     { '@type': 'Person', '@id': `${siteUrl}#maintainer`, name: 'Shashank Ballaya', url: 'https://x.com/SBallaya' },
-    {
-      '@type': 'Thing',
-      '@id': `${siteUrl}#line12`,
-      name: 'Mumbai Metro Line 12',
-      alternateName: ['Metro Line 12', 'Metro 12', 'Kalyan-Taloja Metro', 'Kalyan-Dombivli-Taloja Metro', 'Orange Line extension'],
-      description: 'An elevated metro line under construction from Kalyan to Taloja in the Mumbai Metropolitan Region, built by MMRDA.',
-      sameAs: ['https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)', 'https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview'],
-    },
+    ...(line
+      ? [
+          {
+            '@type': 'Thing',
+            '@id': lineNodeId(siteUrl, line),
+            name: line.info.about.name,
+            alternateName: line.info.about.alternate_names,
+            description: line.info.about.description,
+            sameAs: line.info.about.same_as,
+          },
+        ]
+      : []),
     {
       '@type': 'WebPage',
       '@id': `${canonical}#page`,
@@ -50,7 +56,7 @@ const graph = {
       description,
       inLanguage: 'en-IN',
       isPartOf: { '@id': `${siteUrl}#site` },
-      about: { '@id': `${siteUrl}#line12` },
+      ...(line ? { about: { '@id': lineNodeId(siteUrl, line) } } : {}),
       dateModified: lastReviewed,
     },
     ...schema,
@@ -105,7 +111,7 @@ const graph = {
     </script>
   </head>
   <body>
-    {front && (
+    {front && pre && (
       <div class="preloader" aria-hidden="true">
         <svg viewBox={`0 0 ${pre.width} ${pre.height}`} preserveAspectRatio="xMidYMid meet">
           <path d={pre.path} pathLength="1" class="preloader__casing" />

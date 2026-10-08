@@ -1,14 +1,17 @@
 ---
 /** The back of the paper on every page: disclaimer, dates, source code, maintainer, and on a station page the photo credits. */
-import { formatDate, lastReviewed, REPO_URL, photoContributorsFor, stations } from '../lib/data';
+import { formatDate, lastReviewed as siteReviewed, REPO_URL, photoContributorsFor, type Line } from '../lib/data';
 
 interface Props {
+  /** The line this page is about. Off a line page, dates are site-wide. */
+  line?: Line;
   /** The station page this footer closes. Photo credits show only on the page whose photos they are. */
   stationId?: string;
 }
-const { stationId } = Astro.props;
-const credits = stationId ? photoContributorsFor(stationId) : [];
-const stationName = stations.find((s) => s.id === stationId)?.name;
+const { line, stationId } = Astro.props;
+const lastReviewed = line?.lastReviewed ?? siteReviewed;
+const credits = line && stationId ? photoContributorsFor(line, stationId) : [];
+const stationName = line?.stations.find((s) => s.id === stationId)?.name;
 
 // Build date in India time, so it matches the edition date readers see.
 const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });

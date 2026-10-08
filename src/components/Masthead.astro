@@ -1,11 +1,14 @@
 ---
-import { formatDate, lastReviewed } from '../lib/data';
+import { formatDate, lastReviewed as siteReviewed, type Line } from '../lib/data';
 
 interface Props {
+  /** The line this page is about. Off a line page, dates are site-wide. */
+  line?: Line;
   /** Off the front page, the index links go back to its sections. */
   home?: boolean;
 }
-const { home = true } = Astro.props;
+const { line, home = true } = Astro.props;
+const lastReviewed = line?.lastReviewed ?? siteReviewed;
 const to = (id: string) => (home ? `#${id}` : `/#${id}`);
 
 // Edition = the day this page was built (India time). Facts checked = the latest data review.
@@ -31,10 +34,16 @@ const inside = [
   <div class="masthead__band">
     <div class="page masthead__inner">
       <a class="masthead__title" href="/">
-        <span class="masthead__name">Line 12</span>
-        <span class="masthead__mr" lang="mr" aria-hidden="true">मेट्रो १२</span>
+        {line ? (
+          <>
+            <span class="masthead__name">{line.info.label}</span>
+            <span class="masthead__mr" lang="mr" aria-hidden="true">{line.info.mark_mr}</span>
+          </>
+        ) : (
+          <span class="masthead__name">Mumbai Metro</span>
+        )}
       </a>
-      <p class="masthead__tag">Mumbai Metro, Kalyan to Taloja. The unofficial tracker.</p>
+      <p class="masthead__tag">{line ? `Mumbai Metro, ${line.info.route_short}. The unofficial tracker.` : 'The unofficial tracker.'}</p>
     </div>
   </div>
   <div class="page masthead__edition">

@@ -5,7 +5,16 @@
  * viewport) adds the route and stations; choosing a station fills the panel, including street level.
  */
 import Grade from './Grade.astro';
-import { stations, stationsMeta, formatDate, alignmentRaw as alignment } from '../lib/data';
+import { formatDate, type Line } from '../lib/data';
+
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+// The page shows this section only for a line with an alignment file.
+const alignment = line.alignmentRaw!;
+const { stations, stationsMeta } = line;
+
 import { STREET_LEVEL_PROVIDER, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../config';
 
 const mapped = stations.filter((s) => s.location.lat !== null);
@@ -53,7 +62,7 @@ const streetConfig = {
 
   <div class="mapsec__layout">
     <div class="mapsec__map-wrap">
-      <div class="mapsec__map" data-map aria-label="Map of the Mumbai Metro Line 12 route" role="region"></div>
+      <div class="mapsec__map" data-map aria-label={`Map of the Mumbai Metro ${line.info.label} route`} role="region"></div>
       <p class="mapsec__map-note">
         <span class="mapsec__key" aria-hidden="true"></span> Route under construction, MMRDA's approved alignment
         <Grade status={alignMeta.status} source={alignMeta.source_url} compact />

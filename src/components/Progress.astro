@@ -1,6 +1,13 @@
 ---
 import Grade from './Grade.astro';
-import { project, timeline, formatDate } from '../lib/data';
+import { formatDate, type Line } from '../lib/data';
+
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+const { project, timeline } = line;
+
 
 const progress = project.progress;
 const overall = progress.overall_reported;

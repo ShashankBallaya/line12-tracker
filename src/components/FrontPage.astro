@@ -1,8 +1,15 @@
 ---
 import Grade from './Grade.astro';
 import LeadPicture from './LeadPicture.astro';
-import { project, stations, formatDate } from '../lib/data';
+import { formatDate, type Line } from '../lib/data';
 import { schematic } from '../lib/route';
+
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+const { project, stations } = line;
+
 
 const target = project.target_completion;
 const progress = project.progress;
@@ -16,7 +23,7 @@ const first = stations[0].name;
 const last = stations[stations.length - 1].name;
 
 // Schematic strip (shared geometry with the route ride).
-const { width: W, height: H, path, points: dots } = schematic();
+const { width: W, height: H, path, points: dots } = schematic(line);
 ---
 
 <section class="front page" aria-labelledby="front-headline">

@@ -1,6 +1,13 @@
 ---
 import Grade from './Grade.astro';
-import { project, inr } from '../lib/data';
+import { inr, type Line } from '../lib/data';
+
+interface Props {
+  line: Line;
+}
+const { line } = Astro.props;
+const { project } = line;
+
 
 const p = project;
 const hist = (h: { value: number | string; context: string }[]) => h;

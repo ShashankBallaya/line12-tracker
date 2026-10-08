@@ -6,15 +6,19 @@
  * It follows the route-line grammar: a hollow line (orange casing, paper core), ink dots with a paper
  * ring, the current station in orange, and the stacked-bar interchange mark.
  */
-import { stations, alignmentRaw, type Station } from '../lib/data';
+import type { Line, Station } from '../lib/data';
 
 interface Props {
+  /** A line with an alignment file. */
+  line: Line;
   station: Station;
 }
-const { station } = Astro.props;
+const { line: lineData, station } = Astro.props;
+const { stations } = lineData;
+const alignmentRaw = lineData.alignmentRaw!;
 
 const alignment = JSON.parse(alignmentRaw) as GeoJSON.FeatureCollection<GeoJSON.LineString> & { properties: { source_url: string } };
-const line = alignment.features.find((f) => f.properties?.name === 'Line 12 centre line')!.geometry.coordinates;
+const line = alignment.features.find((f) => f.properties?.name === `${lineData.info.label} centre line`)!.geometry.coordinates;
 
 // Flatten longitude to ground distance at this latitude, then turn the line so its two ends sit level.
 const k = Math.cos((19.15 * Math.PI) / 180);
@@ -74,7 +78,7 @@ const northDeg = +((Math.atan2(nx, -ny) * 180) / Math.PI).toFixed(1);
 // Bottom left is always empty: the line leaves Kalyan near the top of the drawing.
 const NORTH = [52, H - 34] as const;
 
-const label = `Drawing of Line 12 from Kalyan to Amandoot with ${station.name} marked, station ${station.order} of ${stations.length}.`;
+const label = `Drawing of ${lineData.info.label} from ${stations[0].name} to ${stations.at(-1)!.name} with ${station.name} marked, station ${station.order} of ${stations.length}.`;
 ---
 
 <figure class="locator">

@@ -1,10 +1,12 @@
 // llms.txt: a plain summary of the site for AI assistants and answer engines (llmstxt.org).
 // Built from the same data as the pages, so it never drifts from them.
 import type { APIRoute } from 'astro';
-import { project, stations, formatDate, inr, lastReviewed } from '../lib/data';
+import { getLine, formatDate, inr } from '../lib/data';
 
 export const GET: APIRoute = ({ site }) => {
   const url = (path: string) => new URL(path, site).toString();
+  // Line 12 only until each line gets its own section (MULTI-LINE-PLAN.md, step 4).
+  const { project, stations, lastReviewed } = getLine('line-12');
   const p = project;
   const t = p.target_completion;
   const prog = p.progress;

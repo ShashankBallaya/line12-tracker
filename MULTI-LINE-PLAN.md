@@ -81,7 +81,18 @@ Each step ships on its own and leaves the live site working.
 
 1. **Decisions.** Done, see above.
 2. **Data move, no visible change.** Done 2026-10-08: build output matched the old one, apart from the order of two style blocks that target different elements. Move per-line files into `src/data/lines/line-12/`. Add `lines.json`. `getLine()` in `data.ts`. Old exports stay as thin wrappers for now. Update `validate-data.mjs` to walk folders and check `lines.json`. Build output must be byte-identical apart from asset hashes.
-3. **Components take `line`.** One commit per group (front page, stations, status, layout and SEO). Remove the old exports at the end. Still no visible change.
+3. **Components take `line`.** Done 2026-10-09: every component and page takes a `Line` from `getLine()`, the old Line 12 exports are gone, and sections whose data file is missing do not show. Build output matched the old one byte for byte. Line 12 facts still written in shared code, to sort out in step 7 (move into Line 12's data, or show only for Line 12):
+   - `FrontPage`: the route sentence (Kalyan through Dombivli MIDC to Amandoot).
+   - `Numbers`: loan sentence, depot history, travel-time unit text.
+   - `Progress`: the six phases and their notes, the `systems-tender` event id.
+   - `RouteRide`, `Stations`: "Nineteen stations, Kalyan to Amandoot", "No part of Line 12 has opened".
+   - `Trains`: the Line 5 contract note and the DPR spec table.
+   - `MapSection`, `[id].astro`, `LocatorMap`: "MMRDA's approved alignment, 20 Mar 2025", first station `dombivli-midc`, north arrow placement.
+   - `SourcesFooter`: the primary sources list.
+   - `status.astro`: every answer.
+   - `stations/index.astro`: the standfirst.
+   - `Masthead`: the section index lists every section, even one a line does not have.
+   - Site name "Line 12 Tracker" (Base, Colophon, breadcrumbs, OG, llms.txt): changes at the domain move.
 4. **Routes under `/line-12/`** with `[line]` dynamic routes, the hub page, `_redirects`, sitemap and `llms.txt` per line. Ship this with the domain (step 5), not before.
 5. **Domain move.** Custom domain on Cloudflare Pages, `site` in `astro.config.mjs`, Search Console property for the new domain plus the Change of Address tool, 301 from `pages.dev`. Note: `_redirects` cannot match on host name, so the `pages.dev` to new-domain redirect needs Cloudflare Bulk Redirects (to check before this step).
 6. **Line 5 research.** Same rules as Line 12: every fact sourced and graded in `SOURCES.md`, alignment from MMRDA's KMZ if one exists. This is the long step and is separate from code.

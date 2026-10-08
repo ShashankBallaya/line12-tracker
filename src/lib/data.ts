@@ -30,63 +30,6 @@ export type LineId = LineInfo['id'];
 /** Every line on the site, in hub order. */
 export const lines: LineInfo[] = linesJson.lines;
 
-/** Everything the data holds about one line. Only project and stations are required. */
-export interface LineData {
-  info: LineInfo;
-  project: ProjectFile;
-  stations: StationsFile;
-  timeline?: TimelineFile;
-  tenders?: TendersFile;
-  contractors?: ContractorsFile;
-  rollingstock?: RollingstockFile;
-  social?: SocialFile;
-  photos?: PhotosFile;
-  beforeAfter?: BeforeAfterFile;
-  stationModel?: StationModelFile;
-  /** The GeoJSON named by `alignment` in lines.json, as text. */
-  alignmentRaw?: string;
-}
-
-export function getLine(id: LineId): LineData {
-  const info = lines.find((l) => l.id === id);
-  if (!info) throw new Error(`No line "${id}" in src/data/lines.json`);
-  const dir = `../data/lines/${id}/`;
-  const file = <T>(name: string) => jsonFiles[dir + name] as T | undefined;
-  const project = file<ProjectFile>('project.json');
-  const stations = file<StationsFile>('stations.json');
-  if (!project || !stations) throw new Error(`Line "${id}" needs project.json and stations.json`);
-  return {
-    info,
-    project,
-    stations,
-    timeline: file('timeline.json'),
-    tenders: file('tenders.json'),
-    contractors: file('contractors.json'),
-    rollingstock: file('rollingstock.json'),
-    social: file('social.json'),
-    photos: file('photos.json'),
-    beforeAfter: file('beforeafter.json'),
-    stationModel: file('station-model.json'),
-    alignmentRaw: info.alignment ? rawFiles[dir + info.alignment] : undefined,
-  };
-}
-
-// Line 12 values under their old names, so components keep working while they move to getLine().
-// Step 3 of MULTI-LINE-PLAN.md removes these.
-const line12 = getLine('line-12');
-const projectJson = line12.project;
-const stationsJson = line12.stations;
-const timelineJson = line12.timeline!;
-const tendersJson = line12.tenders!;
-const contractorsJson = line12.contractors!;
-const rollingstockJson = line12.rollingstock!;
-const socialJson = line12.social!;
-const photosJson = line12.photos!;
-export const beforeAfter = line12.beforeAfter!;
-export const stationModel = line12.stationModel!;
-export const photoPairs = photosJson.pairs;
-export const alignmentRaw = line12.alignmentRaw!;
-
 /** How sure we are about a fact. See SOURCES.md. */
 export type Grade = 'verified' | 'reported' | 'unverified' | 'conflicting';
 
@@ -96,15 +39,11 @@ export interface Sourced {
   last_verified: string;
 }
 
-export const project = projectJson;
-export const stations = stationsJson.stations;
-export const stationsMeta = stationsJson._meta;
-export const timeline = timelineJson.events;
-export const tenders = tendersJson.tenders;
-export const contractors = contractorsJson.contractors;
-export const excludedClaims = contractorsJson.excluded_claims;
-export const rollingstock = rollingstockJson;
-export const socialPosts = socialJson.posts as {
+export type Station = StationsFile['stations'][number];
+export type TimelineEvent = TimelineFile['events'][number];
+export type Tender = TendersFile['tenders'][number];
+
+export interface SocialPost {
   url: string;
   author: string;
   handle: string;
@@ -113,14 +52,7 @@ export const socialPosts = socialJson.posts as {
   status: Grade;
   source_url: string;
   last_verified: string;
-}[];
-
-/** Automatic feed (scripts/fetch-feed.mjs). Found by a script, not checked by a person. */
-export const feed = feedJson as {
-  _meta: { updated_at: string };
-  news: { title: string; outlet: string; date: string; url: string }[];
-  videos: { id: string; title: string; channel: string; date: string; url: string }[];
-};
+}
 
 /** Dated ground photos for one station page, by the owner or by people who gave permission. Never stock or official images. */
 export interface StationPhoto {
@@ -136,20 +68,100 @@ export interface StationPhoto {
   height: number;
   caption?: string;
 }
-export const stationPhotos = photosJson.stations as Record<string, StationPhoto[]>;
+
+/**
+ * Everything the data holds about one line. Only project and stations are required:
+ * lists are empty and other parts undefined when the line has no file for them,
+ * and the section that needs them does not show.
+ */
+export interface Line {
+  id: LineId;
+  info: LineInfo;
+  project: ProjectFile;
+  stations: Station[];
+  stationsMeta: StationsFile['_meta'];
+  timeline: TimelineEvent[];
+  tenders: Tender[];
+  contractors: ContractorsFile['contractors'];
+  excludedClaims: ContractorsFile['excluded_claims'];
+  rollingstock?: RollingstockFile;
+  socialPosts: SocialPost[];
+  stationPhotos: Record<string, StationPhoto[]>;
+  photoPairs: PhotosFile['pairs'];
+  beforeAfter?: BeforeAfterFile;
+  stationModel?: StationModelFile;
+  /** The GeoJSON named by `alignment` in lines.json, as text. */
+  alignmentRaw?: string;
+  /** The latest review date across this line's fact files. */
+  lastReviewed: string;
+}
+
+const byId = new Map<string, Line>();
+
+export function getLine(id: LineId): Line {
+  const cached = byId.get(id);
+  if (cached) return cached;
+  const info = lines.find((l) => l.id === id);
+  if (!info) throw new Error(`No line "${id}" in src/data/lines.json`);
+  const dir = `../data/lines/${id}/`;
+  const file = <T>(name: string) => jsonFiles[dir + name] as T | undefined;
+  const project = file<ProjectFile>('project.json');
+  const stations = file<StationsFile>('stations.json');
+  if (!project || !stations) throw new Error(`Line "${id}" needs project.json and stations.json`);
+  const timeline = file<TimelineFile>('timeline.json');
+  const tenders = file<TendersFile>('tenders.json');
+  const contractors = file<ContractorsFile>('contractors.json');
+  const rollingstock = file<RollingstockFile>('rollingstock.json');
+  const social = file<SocialFile>('social.json');
+  const photos = file<PhotosFile>('photos.json');
+  const line: Line = {
+    id,
+    info,
+    project,
+    stations: stations.stations,
+    stationsMeta: stations._meta,
+    timeline: timeline?.events ?? [],
+    tenders: tenders?.tenders ?? [],
+    contractors: contractors?.contractors ?? [],
+    excludedClaims: contractors?.excluded_claims ?? [],
+    rollingstock,
+    socialPosts: (social?.posts ?? []) as SocialPost[],
+    stationPhotos: (photos?.stations ?? {}) as Record<string, StationPhoto[]>,
+    photoPairs: photos?.pairs ?? [],
+    beforeAfter: file('beforeafter.json'),
+    stationModel: file('station-model.json'),
+    alignmentRaw: info.alignment ? rawFiles[dir + info.alignment] : undefined,
+    lastReviewed: [project, stations, timeline, tenders, contractors, rollingstock, social]
+      .map((f) => f?._meta.last_reviewed)
+      .filter((d): d is string => !!d)
+      .sort()
+      .at(-1)!,
+  };
+  byId.set(id, line);
+  return line;
+}
+
+/** The latest review date across every line, for site-wide pages such as the sitemap. */
+export const lastReviewed: string = lines.map((l) => getLine(l.id).lastReviewed).sort().at(-1)!;
+
+/** The schema.org @id of a line's node, e.g. "https://example.org/#line12". Station pages point at it. */
+export const lineNodeId = (siteUrl: string, line: Line) => `${siteUrl}#${line.id.replace('-', '')}`;
+
+/** Automatic feed (scripts/fetch-feed.mjs). Found by a script, not checked by a person. */
+export const feed = feedJson as {
+  _meta: { updated_at: string };
+  news: { title: string; outlet: string; date: string; url: string }[];
+  videos: { id: string; title: string; channel: string; date: string; url: string }[];
+};
 
 /** People who shared their photos with permission (those with an X handle) on one station page. */
-export const photoContributorsFor = (stationId: string) => {
+export const photoContributorsFor = (line: Line, stationId: string) => {
   const byHandle = new Map<string, { credit: string; handle: string }>();
-  for (const ph of stationPhotos[stationId] ?? []) {
+  for (const ph of line.stationPhotos[stationId] ?? []) {
     if (ph.handle && !byHandle.has(ph.handle)) byHandle.set(ph.handle, { credit: ph.credit, handle: ph.handle });
   }
   return [...byHandle.values()];
 };
-
-export type Station = (typeof stations)[number];
-export type TimelineEvent = (typeof timeline)[number];
-export type Tender = (typeof tenders)[number];
 
 /** Plain-language labels for each grade, used in text next to every mark. */
 export const gradeLabel: Record<Grade, string> = {
@@ -206,17 +218,6 @@ export function formatDate(value: string | null | undefined): string {
 export function inr(n: number, digits = 2): string {
   return n.toLocaleString('en-IN', { maximumFractionDigits: digits });
 }
-
-/** The latest review date across all data files, for the "last updated" line. */
-export const lastReviewed: string = [
-  projectJson._meta.last_reviewed,
-  stationsJson._meta.last_reviewed,
-  timelineJson._meta.last_reviewed,
-  tendersJson._meta.last_reviewed,
-  contractorsJson._meta.last_reviewed,
-  rollingstockJson._meta.last_reviewed,
-  socialJson._meta.last_reviewed,
-].sort().at(-1)!;
 
 export const REPO_URL = 'https://github.com/ShashankBallaya/mumbai-metro-tracker';
 export const CORRECTION_URL = `${REPO_URL}/issues/new?labels=correction&title=Correction%3A%20`;
