@@ -19,6 +19,8 @@ Live site: https://line12-tracker.pages.dev (after the Cloudflare Pages setup be
 ```
 src/
   data/            Hand-edited JSON. The only source of facts on the site.
+    lines.json     The lines the site covers, in hub order.
+    lines/<id>/    One folder for each line: project, stations, timeline and the rest.
   lib/data.ts      Typed access to the data, date and number formatting.
   components/      One Astro component per section of the page.
   scripts/         Client scripts: motion, theme switch, countdown.
@@ -26,7 +28,7 @@ src/
 scripts/
   validate-data.mjs       Checks every data entry has source_url, last_verified and a valid status.
   draw-lead-picture.py    Generates the isometric lead picture (src/components/LeadPicture.astro).
-  build-wayback.mjs       Picks before/after satellite imagery and capture dates (writes src/data/beforeafter.json).
+  build-wayback.mjs       Picks before/after satellite imagery and capture dates (writes src/data/lines/line-12/beforeafter.json).
   capture.mjs             Dev-only screenshots for design review (needs local Chrome).
 SOURCES.md         Every source used, with open questions.
 PRODUCT.md         Product context for design work.
@@ -81,7 +83,7 @@ The site itself is fully static. The news feed job has one optional GitHub Actio
 
 ## How to update the facts
 
-All facts live in `src/data/*.json`. See [UPDATING.md](UPDATING.md) for a step-by-step guide.
+All facts live in `src/data/`, one folder for each line under `src/data/lines/`. See [UPDATING.md](UPDATING.md) for a step-by-step guide.
 
 ## Corrections
 

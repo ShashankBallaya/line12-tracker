@@ -4,8 +4,7 @@
  * x is proportional to distance along MMRDA's approved centre line (20 Mar 2025), so stations
  * keep their true relative spacing. Used by the front-page strip and the route ride.
  */
-import { stations } from './data';
-import alignmentRaw from '../data/alignment-mmrda-2025.geojson?raw';
+import { stations, alignmentRaw } from './data';
 
 /** Where the line leaves Kalyan-Shilphata Road: the DPR's bend (ch. 7,182 m) found on the 2025 line. */
 const BEND_M: number = JSON.parse(alignmentRaw).properties.bend_along_m;

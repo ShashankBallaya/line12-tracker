@@ -2,16 +2,90 @@
  * Typed access to the hand-maintained data files in src/data.
  * Components import from here, never from the JSON files directly,
  * so a schema change only needs fixing in one place.
+ *
+ * Each line's files live in src/data/lines/<id>/ and are listed in src/data/lines.json.
+ * Line 12's files are the schema every line follows. Data is read at build time only:
+ * no browser script imports this module.
  */
-import projectJson from '../data/project.json';
-import stationsJson from '../data/stations.json';
-import timelineJson from '../data/timeline.json';
-import tendersJson from '../data/tenders.json';
-import contractorsJson from '../data/contractors.json';
-import rollingstockJson from '../data/rollingstock.json';
-import socialJson from '../data/social.json';
+import linesJson from '../data/lines.json';
 import feedJson from '../data/feed.json';
-import photosJson from '../data/photos.json';
+
+type ProjectFile = typeof import('../data/lines/line-12/project.json');
+type StationsFile = typeof import('../data/lines/line-12/stations.json');
+type TimelineFile = typeof import('../data/lines/line-12/timeline.json');
+type TendersFile = typeof import('../data/lines/line-12/tenders.json');
+type ContractorsFile = typeof import('../data/lines/line-12/contractors.json');
+type RollingstockFile = typeof import('../data/lines/line-12/rollingstock.json');
+type SocialFile = typeof import('../data/lines/line-12/social.json');
+type PhotosFile = typeof import('../data/lines/line-12/photos.json');
+type BeforeAfterFile = typeof import('../data/lines/line-12/beforeafter.json');
+type StationModelFile = typeof import('../data/lines/line-12/station-model.json');
+
+const jsonFiles = import.meta.glob('../data/lines/*/*.json', { eager: true, import: 'default' });
+const rawFiles = import.meta.glob('../data/lines/*/*.geojson', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>;
+
+export type LineInfo = (typeof linesJson.lines)[number];
+export type LineId = LineInfo['id'];
+
+/** Every line on the site, in hub order. */
+export const lines: LineInfo[] = linesJson.lines;
+
+/** Everything the data holds about one line. Only project and stations are required. */
+export interface LineData {
+  info: LineInfo;
+  project: ProjectFile;
+  stations: StationsFile;
+  timeline?: TimelineFile;
+  tenders?: TendersFile;
+  contractors?: ContractorsFile;
+  rollingstock?: RollingstockFile;
+  social?: SocialFile;
+  photos?: PhotosFile;
+  beforeAfter?: BeforeAfterFile;
+  stationModel?: StationModelFile;
+  /** The GeoJSON named by `alignment` in lines.json, as text. */
+  alignmentRaw?: string;
+}
+
+export function getLine(id: LineId): LineData {
+  const info = lines.find((l) => l.id === id);
+  if (!info) throw new Error(`No line "${id}" in src/data/lines.json`);
+  const dir = `../data/lines/${id}/`;
+  const file = <T>(name: string) => jsonFiles[dir + name] as T | undefined;
+  const project = file<ProjectFile>('project.json');
+  const stations = file<StationsFile>('stations.json');
+  if (!project || !stations) throw new Error(`Line "${id}" needs project.json and stations.json`);
+  return {
+    info,
+    project,
+    stations,
+    timeline: file('timeline.json'),
+    tenders: file('tenders.json'),
+    contractors: file('contractors.json'),
+    rollingstock: file('rollingstock.json'),
+    social: file('social.json'),
+    photos: file('photos.json'),
+    beforeAfter: file('beforeafter.json'),
+    stationModel: file('station-model.json'),
+    alignmentRaw: info.alignment ? rawFiles[dir + info.alignment] : undefined,
+  };
+}
+
+// Line 12 values under their old names, so components keep working while they move to getLine().
+// Step 3 of MULTI-LINE-PLAN.md removes these.
+const line12 = getLine('line-12');
+const projectJson = line12.project;
+const stationsJson = line12.stations;
+const timelineJson = line12.timeline!;
+const tendersJson = line12.tenders!;
+const contractorsJson = line12.contractors!;
+const rollingstockJson = line12.rollingstock!;
+const socialJson = line12.social!;
+const photosJson = line12.photos!;
+export const beforeAfter = line12.beforeAfter!;
+export const stationModel = line12.stationModel!;
+export const photoPairs = photosJson.pairs;
+export const alignmentRaw = line12.alignmentRaw!;
 
 /** How sure we are about a fact. See SOURCES.md. */
 export type Grade = 'verified' | 'reported' | 'unverified' | 'conflicting';

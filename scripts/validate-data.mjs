@@ -3,11 +3,14 @@
 //   - status is one of the four grades (tender_status etc. are separate fields)
 //   - last_verified is a YYYY-MM-DD date
 //   - no em dashes anywhere (house style)
+//   - every line in lines.json has a folder with project.json, stations.json and its alignment file,
+//     and every line folder is listed in lines.json
 // Run: npm run validate
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const DIR = new URL('../src/data/', import.meta.url);
+const DIR = fileURLToPath(new URL('../src/data/', import.meta.url));
 const GRADES = new Set(['verified', 'reported', 'unverified', 'conflicting']);
 const errors = [];
 
@@ -28,9 +31,10 @@ function walk(node, path, file) {
   }
 }
 
-for (const name of readdirSync(DIR)) {
+for (const entry of readdirSync(DIR, { recursive: true })) {
+  const name = String(entry).replaceAll('\\', '/');
   if (!/\.(json|geojson)$/.test(name)) continue;
-  const text = readFileSync(join(DIR.pathname.replace(/^\/(\w:)/, '$1'), name), 'utf8');
+  const text = readFileSync(join(DIR, name), 'utf8');
   if (text.includes('—')) errors.push(`${name}: contains an em dash`);
   let data;
   try {
@@ -40,6 +44,17 @@ for (const name of readdirSync(DIR)) {
     continue;
   }
   if (name.endsWith('.json')) walk(data, '$', name);
+}
+
+const lines = JSON.parse(readFileSync(join(DIR, 'lines.json'), 'utf8')).lines;
+const ids = new Set(lines.map((l) => l.id));
+for (const line of lines) {
+  for (const need of ['project.json', 'stations.json', line.alignment].filter(Boolean)) {
+    if (!existsSync(join(DIR, 'lines', line.id, need))) errors.push(`lines.json: ${line.id} has no lines/${line.id}/${need}`);
+  }
+}
+for (const dir of readdirSync(join(DIR, 'lines'))) {
+  if (!ids.has(dir)) errors.push(`lines/${dir}: folder not listed in lines.json`);
 }
 
 if (errors.length) {

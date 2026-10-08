@@ -3,8 +3,8 @@
 # Source: MMRDA publishes "ML-12 APPROVED ALIGNMENT (INFLUENCE ZONE OF 20M) final 20-03-2025" as a
 # KMZ on its Metro Influence Zone for NOC page. It holds the centre line, the depot connection and a
 # point for each of the 19 stations. This script:
-#   - writes src/data/alignment-mmrda-2025.geojson (centre line and depot line, simplified to ~1 m),
-#   - moves every station in src/data/stations.json to MMRDA's point, graded verified, and adds
+#   - writes src/data/lines/line-12/alignment-mmrda-2025.geojson (centre line and depot line, simplified to ~1 m),
+#   - moves every station in src/data/lines/line-12/stations.json to MMRDA's point, graded verified, and adds
 #     along_m: the distance from the start point at Kalyan, measured along the centre line,
 #   - keeps each station's earlier position (the 2019 DPR, or a reading by the site owner) in
 #     location.earlier, with its distance from the new point.
@@ -126,7 +126,7 @@ for name, (lat, lng) in points.items():
     if m:
         official[int(m.group(1))] = (name, lat, lng)
 
-path = 'src/data/stations.json'
+path = 'src/data/lines/line-12/stations.json'
 doc = json.load(open(path, encoding='utf-8'))
 stations = doc['stations']
 if sorted(official) != [s['order'] for s in stations]:
@@ -174,7 +174,7 @@ with open(path, 'w', encoding='utf-8', newline='\n') as f:
 
 # ---------- The line ----------
 # The DPR's bend, where the line leaves Kalyan-Shilphata Road (DPR ch. 7,182 m), located on the 2025 line.
-dpr = json.load(open('src/data/alignment-dpr-2019.geojson', encoding='utf-8'))
+dpr = json.load(open('src/data/lines/line-12/alignment-dpr-2019.geojson', encoding='utf-8'))
 dpr_line = dpr['features'][0]['geometry']['coordinates']
 bend_lat, bend_lng = point_at(dpr_line, 7182 - (-403.688))  # the DPR line starts at ch. -403.688 m
 bend_m, _ = along(main, bend_lat, bend_lng)
@@ -195,7 +195,7 @@ geo = {
         {'type': 'Feature', 'properties': {'name': 'Nilje depot connection'}, 'geometry': {'type': 'LineString', 'coordinates': [[round(x, 6), round(y, 6)] for x, y in simplify(depot, 1.0)]}},
     ],
 }
-with open('src/data/alignment-mmrda-2025.geojson', 'w', encoding='utf-8', newline='\n') as f:
+with open('src/data/lines/line-12/alignment-mmrda-2025.geojson', 'w', encoding='utf-8', newline='\n') as f:
     json.dump(geo, f, indent=1)
     f.write('\n')
 print(f'Line {length / 1000:.3f} km ({len(main)} -> {len(geo["features"][0]["geometry"]["coordinates"])} points), depot {depot_len / 1000:.3f} km, bend at {bend_m / 1000:.2f} km')

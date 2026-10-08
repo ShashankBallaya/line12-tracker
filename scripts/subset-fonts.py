@@ -1,7 +1,7 @@
 # Small font cuts that keep large font files off the first load.
 #   1. The masthead's Marathi mark: Anek Devanagari at weight 700, only the mark's glyphs
 #      (710 KB -> about 2.6 KB).
-#   2. Marathi text on the pages: every Marathi station name in src/data/stations.json plus the
+#   2. Marathi text on the pages: every Marathi station name in src/data/lines/line-12/stations.json plus the
 #      fixed phrases below, at weight 700 like the mark (a variable cut would be about 450 KB).
 #   3. The rupee sign: U+20B9 sits in the Latin Extended range, so one ₹ would otherwise
 #      pull in each family's whole latin-ext file (Anek 81 KB, Mukta 15 KB per weight).
@@ -19,7 +19,7 @@ MARK = 'मेट्रो १२'  # must match .masthead__mr in src/components
 RUPEE = '₹'
 # Fixed Marathi phrases used in the pages (keep in step with the .astro files that print them).
 PHRASES = 'मेट्रो स्थानक कल्याण-तळोजा मेट्रो १२ सर्व स्थानके'
-with open('src/data/stations.json', encoding='utf-8') as f:
+with open('src/data/lines/line-12/stations.json', encoding='utf-8') as f:
     NAMES = ' '.join(s['name_mr'] for s in json.load(f)['stations'])
 OUT = 'src/assets/fonts/'
 ANEK_DEV = 'node_modules/@fontsource-variable/anek-devanagari/files/anek-devanagari-devanagari-standard-normal.woff2'

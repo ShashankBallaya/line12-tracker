@@ -5,9 +5,8 @@
  * viewport) adds the route and stations; choosing a station fills the panel, including street level.
  */
 import Grade from './Grade.astro';
-import { stations, stationsMeta, formatDate } from '../lib/data';
+import { stations, stationsMeta, formatDate, alignmentRaw as alignment } from '../lib/data';
 import { STREET_LEVEL_PROVIDER, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../config';
-import alignment from '../data/alignment-mmrda-2025.geojson?raw';
 
 const mapped = stations.filter((s) => s.location.lat !== null);
 // Same first choice as the map script.

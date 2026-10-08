@@ -1,4 +1,4 @@
-// Builds src/data/beforeafter.json: for each spot along the line, the Esri World Imagery Wayback
+// Builds src/data/lines/line-12/beforeafter.json: for each spot along the line, the Esri World Imagery Wayback
 // release that shows the last imagery captured before construction began, and the latest release,
 // each with its real capture date and provider from Esri's imagery metadata.
 // Run: node scripts/build-wayback.mjs   (needs network; re-run to pick up newer imagery)
@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 const CONFIG = 'https://s3-us-west-2.amazonaws.com/config.maptiles.arcgis.com/waybackconfig.json';
 const BEFORE_LIMIT = 20240303; // foundation stone, 3 Mar 2024 (see timeline.json)
 const ZOOM = 18;
-const stations = JSON.parse(readFileSync(new URL('../src/data/stations.json', import.meta.url), 'utf8')).stations;
+const stations = JSON.parse(readFileSync(new URL('../src/data/lines/line-12/stations.json', import.meta.url), 'utf8')).stations;
 
 // Spots: stations where the viaduct runs along the road, plus the bend near Manpada.
 const SPOTS = [
@@ -88,5 +88,5 @@ for (const spot of SPOTS) {
   console.log(spot.id, iso(beforeCap.date), '->', iso(afterCap.date));
 }
 
-writeFileSync(new URL('../src/data/beforeafter.json', import.meta.url), JSON.stringify(out, null, 2) + '\n');
-console.log('Wrote src/data/beforeafter.json');
+writeFileSync(new URL('../src/data/lines/line-12/beforeafter.json', import.meta.url), JSON.stringify(out, null, 2) + '\n');
+console.log('Wrote src/data/lines/line-12/beforeafter.json');

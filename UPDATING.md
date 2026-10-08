@@ -1,6 +1,6 @@
 # Updating the data
 
-Every fact on the site comes from the JSON files in `src/data/`. You edit them by hand, commit, and push. Cloudflare Pages rebuilds the site in about a minute.
+Every fact on the site comes from the JSON files in `src/data/`. Each line has its own folder, `src/data/lines/<id>/` (for example `src/data/lines/line-12/`), listed in `src/data/lines.json`. The news feed files stay in `src/data/`. You edit them by hand, commit, and push. Cloudflare Pages rebuilds the site in about a minute.
 
 ## The rules
 
@@ -22,7 +22,7 @@ Run `npm run validate` before you commit. It fails if an entry is missing a sour
 
 MMRDA updates the progress table on its [Line 12 page](https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview) about once a month.
 
-In `src/data/project.json`, edit `progress`:
+In `src/data/lines/line-12/project.json`, edit `progress`:
 
 ```json
 "progress": {
@@ -41,7 +41,7 @@ Also add a timeline event if something notable happened (next section).
 
 ### A new milestone
 
-Add an object to `events` in `src/data/timeline.json`, in date order:
+Add an object to `events` in `src/data/lines/line-12/timeline.json`, in date order:
 
 ```json
 {
@@ -62,11 +62,11 @@ Add an object to `events` in `src/data/timeline.json`, in date order:
 
 ### A tender is awarded
 
-In `src/data/tenders.json`, find the tender and set `awarded_value_crore`, `awarded_to`, `award_date` and `tender_status: "awarded"`. If the firm is new, add it to `src/data/contractors.json` and use its `id` in `awarded_to`.
+In `src/data/lines/line-12/tenders.json`, find the tender and set `awarded_value_crore`, `awarded_to`, `award_date` and `tender_status: "awarded"`. If the firm is new, add it to `src/data/lines/line-12/contractors.json` and use its `id` in `awarded_to`.
 
 ### The target date changes
 
-In `src/data/project.json`, edit `target_completion`:
+In `src/data/lines/line-12/project.json`, edit `target_completion`:
 
 - Put the new target in `value` (`YYYY-MM` or `YYYY-MM-DD`) and the day the countdown should count to in `countdown_date`.
 - Move the old target into `alternatives` with its source.
@@ -77,7 +77,7 @@ In `src/data/project.json`, edit `target_completion`:
 Posts are never scraped. You choose them.
 
 1. Open the post on X and copy its URL.
-2. Add it to `posts` in `src/data/social.json`, newest first:
+2. Add it to `posts` in `src/data/lines/line-12/social.json`, newest first:
 
 ```json
 {
@@ -122,13 +122,13 @@ They come from MMRDA's approved alignment KMZ, published on its [Metro Influence
 python scripts/build-alignment.py
 ```
 
-It downloads the file, rewrites `src/data/alignment-mmrda-2025.geojson`, moves every station in `stations.json` to MMRDA's point, and keeps each earlier position under `location.earlier`. Then run `node scripts/build-wayback.mjs`, because the satellite spots sit on station positions. Check the printed list: any station that moved more than 50 m will say so on its page.
+It downloads the file, rewrites `src/data/lines/line-12/alignment-mmrda-2025.geojson`, moves every station in `stations.json` to MMRDA's point, and keeps each earlier position under `location.earlier`. Then run `node scripts/build-wayback.mjs`, because the satellite spots sit on station positions. Check the printed list: any station that moved more than 50 m will say so on its page.
 
 ## Station pages, status page and search files
 
 These are built from the data files. You never edit them by hand:
 
-- `/stations/` and one page per station come from `src/data/stations.json`. A new station there gets its own page and a sitemap entry.
+- `/stations/` and one page per station come from `src/data/lines/line-12/stations.json`. A new station there gets its own page and a sitemap entry.
 - `/status/` answers common questions from `project.json`, `contractors.json` and `rollingstock.json`. When a fact changes there, the answer changes too.
 - `sitemap.xml` and `llms.txt` (a plain summary for AI assistants) are rebuilt on every deploy.
 
@@ -140,12 +140,12 @@ Esri adds new imagery releases every few weeks. To refresh the before/after date
 node scripts/build-wayback.mjs
 ```
 
-It rewrites `src/data/beforeafter.json` with the latest release and its real capture date. Commit and push. A GitHub Actions job (`.github/workflows/imagery.yml`) also runs it on the 3rd of every month and deploys, so the site picks up new imagery, and shows when it last checked, without you.
+It rewrites `src/data/lines/line-12/beforeafter.json` with the latest release and its real capture date. Commit and push. A GitHub Actions job (`.github/workflows/imagery.yml`) also runs it on the 3rd of every month and deploys, so the site picks up new imagery, and shows when it last checked, without you.
 
 ## Your own ground photos
 
 1. Put two photos of the same spot in `public/photos/` (for example `manpada-2024-06.jpg` and `manpada-2026-09.jpg`). Keep each under 400 KB.
-2. Add a pair to `pairs` in `src/data/photos.json`:
+2. Add a pair to `pairs` in `src/data/lines/line-12/photos.json`:
 
 ```json
 {
@@ -164,7 +164,7 @@ Every station page has a photo slot beside its headline. Until you add a photo, 
 
 1. Remove the location data from the photo first. Phone photos carry the exact GPS point where you took them. The site shows only the station and the date.
 2. Put the file in `public/photos/`, for example `sagaon-2026-10.jpg`. Keep it under 400 KB and at least 1200 px wide.
-3. Add it under `stations` in `src/data/photos.json`, keyed by the station id (the last part of the page address, for example `sagaon`):
+3. Add it under `stations` in `src/data/lines/line-12/photos.json`, keyed by the station id (the last part of the page address, for example `sagaon`):
 
 ```json
 "stations": {

@@ -3,12 +3,10 @@
  * Before / after: the same spot from above, before construction and now, from Esri World Imagery
  * Wayback (dates are the real capture dates from Esri's metadata, see scripts/build-wayback.mjs).
  * Plain <img> tile mosaics, no map library. The slider is a native range input (keyboard friendly).
- * Optional dated ground photos from src/data/photos.json appear below when the owner adds them.
+ * Optional dated ground photos from the line's photos.json appear below when the owner adds them.
  */
 import Grade from './Grade.astro';
-import data from '../data/beforeafter.json';
-import photos from '../data/photos.json';
-import { formatDate } from '../lib/data';
+import { formatDate, beforeAfter as data, photoPairs } from '../lib/data';
 
 const Z = data._meta.zoom;
 const TILE = 256;
@@ -40,7 +38,7 @@ function mosaic(lat: number, lng: number, url: string) {
 }
 const month = (d: string) => formatDate(d.slice(0, 7));
 interface Shot { src: string; alt: string; date: string }
-const pairs = photos.pairs as { place: string; credit: string; before: Shot; after: Shot }[];
+const pairs = photoPairs as { place: string; credit: string; before: Shot; after: Shot }[];
 // The newest "after" capture across the spots, and when the site last asked Esri for newer imagery.
 const latestCapture = data.spots.map((s) => s.after.captured).sort().at(-1)!;
 const checked = data._meta.last_reviewed;
