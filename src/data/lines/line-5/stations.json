@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "description": "The 17 Line 5 station points in MMRDA's alignment file (uploaded March 2025), in order from Kapurbawdi. Positions come from that file (scripts/build-alignment-line5.py). 'phase' follows the revised split (post on X, 31 Aug 2026): 1 Kapurbawdi to Dhamankar Naka, 2 Dhamankar Naka to Durgadi, 3 Durgadi to Kalyan. 'revised_plan_2026' says what the revised plan (State approval 22 Apr 2026, Union approval 29 Aug 2026) does with each station, from news reports of that approval; MMRDA has not published the revised station list. 'eia_chainage_m' is the station's chainage in MMRDA's Phase 1 environmental report (Sep 2023). The report's chainages do not match the distances between the station points in the alignment file (for example Kalher to Purna: 0.83 km in the report, about 2 km apart on the map); they are kept as published. 'same_site_as' names a station of another line at the same place, with the distance between the two points.",
+  "description": "Line 5's stations in order from Kapurbawdi: the 17 station points in MMRDA's alignment file (uploaded March 2025), plus Kongaon West, which the revised plan adds without a published position. Positions come from that file (scripts/build-alignment-line5.py). 'phase' follows the site's naming: 1 Kapurbawdi to Dhamankar Naka, 2 to Kongaon West, 3 Durgadi to Kalyan. 'revised_plan_2026' says what MMRDA's press release of 28 May 2026 does with each station; Phase 3's new stations (Khadakpada, Bhoirwadi and others) have no published positions and are not listed yet. 'eia_chainage_m' is the station's chainage in MMRDA's Phase 1 environmental report (Sep 2023); those chainages do not match the distances between the station points in the alignment file (for example Kalher to Purna: 0.83 km in the report, about 2 km apart on the map) and are kept as published. 'same_site_as' names a station of another line at the same place, with the distance between the two points.",
   "order_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
   "count_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
   "names_mr_source_url": "https://mmrda.maharashtra.gov.in/mr/projects/transport/metro-line-5/overview",
@@ -41,10 +41,10 @@
     "notes": "MMRDA's Phase 1 environmental report (Sep 2023), Table 2.3: Kapurbawdi station is built as part of Metro Line 4 and is not one of Line 5's six Phase 1 stations."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
+    "value": "Kept: the Line 4 interchange (built under Line 4)",
     "name_in_plan": "Kapurbawdi",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file.",
@@ -81,10 +81,10 @@
     "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
-    "name_in_plan": "Balkum",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "value": "Kept on Phase 1",
+    "name_in_plan": "Balkhum",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -121,10 +121,10 @@
     "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
+    "value": "Kept on Phase 1",
     "name_in_plan": "Kasheli",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -161,10 +161,10 @@
     "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
+    "value": "Kept on Phase 1",
     "name_in_plan": "Kalher",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -201,10 +201,10 @@
     "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
+    "value": "Kept on Phase 1",
     "name_in_plan": "Purna",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -241,10 +241,10 @@
     "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
-    "name_in_plan": "Anjur Phata",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "value": "Kept on Phase 1",
+    "name_in_plan": "Anjurphata",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -281,10 +281,10 @@
     "notes": "MMRDA's Line 5 page shows every civil activity 100% complete as of 31 Aug 2026 (verified) but does not name stations. The energisation covers Kapurbawdi to Dhamankar Naka."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
+    "value": "Kept on Phase 1, its last station",
     "name_in_plan": "Dhamankar Naka",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -296,7 +296,7 @@
    "name": "Bhiwandi",
    "name_mr": "भिवंडी",
    "phase": 2,
-   "type": "Elevated",
+   "type": "Underground",
    "name_status": "verified",
    "name_source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
    "location": {
@@ -321,14 +321,16 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
+    "value": "Kept on Phase 2, now underground",
     "name_in_plan": "Bhiwandi",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
-   "notes": null,
-   "last_verified": "2026-10-09"
+   "notes": "Underground in the revised plan (MMRDA, May 2026); MMRDA's 2025 alignment file still places it on the 2017 route.",
+   "last_verified": "2026-10-09",
+   "type_status": "verified",
+   "type_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
   },
   {
    "id": "gopal-nagar",
@@ -361,10 +363,10 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Not in the revised station list",
+    "value": "Not in MMRDA's revised station list",
     "name_in_plan": null,
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -401,10 +403,10 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
+    "value": "Kept on Phase 2",
     "name_in_plan": "Temghar",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -441,10 +443,10 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
-    "name_in_plan": "Rajnouli",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "value": "Kept on Phase 2, as Rajnoli",
+    "name_in_plan": "Rajnoli",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -481,10 +483,10 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5",
-    "name_in_plan": "Govegaon",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "value": "Kept on Phase 2",
+    "name_in_plan": "Gove Gaon",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
@@ -521,21 +523,60 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5, as two stations",
-    "name_in_plan": "Kongan West and Kongan East",
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "value": "Kept on Phase 2",
+    "name_in_plan": "Kon Gaon",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": null,
    "last_verified": "2026-10-09"
   },
   {
-   "id": "durgadi-fort",
+   "id": "kongaon-west",
    "order": 14,
-   "name": "Durgadi Fort",
+   "name": "Kongaon West",
    "name_mr": null,
    "phase": 2,
+   "type": "Elevated",
+   "name_status": "verified",
+   "name_source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+   "location": {
+    "lng": null,
+    "lat": null,
+    "along_m": null,
+    "eia_chainage_m": null,
+    "method": "Not published. MMRDA lists it after Kon Gaon in Phase 2 but gives no position; the 2025 alignment file has only one Kon Gaon point.",
+    "status": "unverified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "interchanges": {
+    "value": [],
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+   },
+   "context": [],
+   "construction_status": {
+    "value": "Not started",
+    "status": "reported",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation"
+   },
+   "revised_plan_2026": {
+    "value": "New station on Phase 2",
+    "name_in_plan": "Kongaon West",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
+   },
+   "notes": "New in the revised plan. Its order is MMRDA's list order; whether it lies before or after Kon Gaon on the ground is not published. Other reports call the two stations Kongan West and Kongan East.",
+   "last_verified": "2026-10-09"
+  },
+  {
+   "id": "durgadi-fort",
+   "order": 15,
+   "name": "Durgadi Fort",
+   "name_mr": null,
+   "phase": 3,
    "type": "Elevated",
    "name_status": "verified",
    "name_source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
@@ -561,19 +602,18 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5, at the end of Phase 2 and the start of Phase 3",
+    "value": "Kept, as Durgadi: the first station of Phase 5A (Phase 3)",
     "name_in_plan": "Durgadi",
-    "status": "reported",
-    "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
-    "last_verified": "2026-10-09",
-    "notes": "Indian Infrastructure and Construction World (Sep 2026) put the stations beyond Durgadi on Line 5A instead."
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
    },
    "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file. MMRDA's Line 5 page lists \"Lal Chowki\" between Kon Gaon and Kalyan, instead of Durgadi Fort and Sahajanand Chowk.",
    "last_verified": "2026-10-09"
   },
   {
    "id": "sahajanand-chowk",
-   "order": 15,
+   "order": 16,
    "name": "Sahajanand Chowk",
    "name_mr": null,
    "phase": 3,
@@ -602,10 +642,10 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Not in the revised station list",
+    "value": "Not in MMRDA's revised station list",
     "name_in_plan": null,
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file. MMRDA's Line 5 page lists \"Lal Chowki\" between Kon Gaon and Kalyan, instead of Durgadi Fort and Sahajanand Chowk.",
@@ -613,7 +653,7 @@
   },
   {
    "id": "kalyan",
-   "order": 16,
+   "order": 17,
    "name": "Kalyan",
    "name_mr": "कल्याण स्टेशन",
    "phase": 3,
@@ -646,12 +686,11 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Kept on Line 5, on Phase 3",
-    "name_in_plan": "Kalyan",
-    "status": "reported",
-    "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
-    "last_verified": "2026-10-09",
-    "notes": "Indian Infrastructure and Construction World (Sep 2026) put Kalyan on Line 5A instead."
+    "value": "Reached by Phase 5A, which ends at Kalyan with the Line 12 interchange; MMRDA's list names no station 'Kalyan'",
+    "name_in_plan": null,
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09"
    },
    "notes": "MMRDA's Line 5 page calls it \"Kalyan Station\".",
    "last_verified": "2026-10-09",
@@ -663,7 +702,7 @@
   },
   {
    "id": "apmc-kalyan",
-   "order": 17,
+   "order": 18,
    "name": "APMC Kalyan",
    "name_mr": "कल्याण एपीएमसी",
    "phase": 3,
@@ -692,10 +731,10 @@
     "notes": "Free Press Journal (7 Sep 2026), reporting MMRDA: work beyond Bhiwandi, towards Kalyan, has not begun."
    },
    "revised_plan_2026": {
-    "value": "Dropped",
+    "value": "Not in MMRDA's revised station list",
     "name_in_plan": null,
-    "status": "reported",
-    "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
    "notes": "MMRDA's Line 5 page calls it \"Kalyan APMC\".",

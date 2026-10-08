@@ -1,17 +1,20 @@
 {
  "type": "FeatureCollection",
  "properties": {
-  "note": "Derived from MMRDA's alignment file for Line 5 (https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line-5.kml), which gives the corridor as a polygon about 50 m wide, not a centre line. The centre line runs midway between the polygon's two sides, 24.141 km from its tip at Kapurbawdi to its tip past APMC Kalyan. This is the alignment before the 2026 revision, which moves the stations past Kon Gaon to Line 5A. Simplified to about 1 m by scripts/build-alignment-line5.py.",
+  "note": "Derived from MMRDA's alignment file for Line 5 (https://mmrda.maharashtra.gov.in/sites/default/files/2025-03/metro_line-5.kml), which gives the corridor as a polygon about 50 m wide, not a centre line. The centre line runs midway between the polygon's two sides, 24.141 km from its tip at Kapurbawdi to its tip past APMC Kalyan. The file predates the revised plan of 2026: Phases 1 and 2 (Kapurbawdi to Durgadi Fort) still follow it, along the road medians of Agra Road, the Bhiwandi bypass, and Kalyan-Bhiwandi Road; past Durgadi Fort the revised plan takes a new route (Phase 5A), which is not published. Simplified to about 1 m by scripts/build-alignment-line5.py.",
   "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc",
   "status": "verified",
   "last_verified": "2026-10-09",
-  "length_m": 24141
+  "length_m": 24141,
+  "centre_line_m": 21906
  },
  "features": [
   {
    "type": "Feature",
    "properties": {
-    "name": "Line 5 centre line"
+    "name": "Line 5 centre line",
+    "part": "current",
+    "note": "Kapurbawdi to Durgadi Fort: Phase 1 (built) and Phase 2 (approved). Phase 2 starts at Dhamankar Naka; see the stations for along_m."
    },
    "geometry": {
     "type": "LineString",
@@ -783,6 +786,213 @@
      [
       73.121694,
       19.246641
+     ],
+     [
+      73.122817,
+      19.246553
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Line 5 underground stretch",
+    "part": "underground",
+    "status": "conflicting",
+    "note": "Dhamankar Naka to Temghar, which a news report (Metro Rail News, Apr 2026) says goes underground; MMRDA names only Bhiwandi station as underground. The route below ground is not published: this is the 2025 route along the road above it, which here runs on the Bhiwandi bypass flyover."
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      73.054093,
+      19.287576
+     ],
+     [
+      73.054806,
+      19.288298
+     ],
+     [
+      73.05498,
+      19.288442
+     ],
+     [
+      73.055038,
+      19.288539
+     ],
+     [
+      73.058826,
+      19.292372
+     ],
+     [
+      73.058882,
+      19.292395
+     ],
+     [
+      73.059966,
+      19.293456
+     ],
+     [
+      73.061,
+      19.29443
+     ],
+     [
+      73.061023,
+      19.294487
+     ],
+     [
+      73.062079,
+      19.295459
+     ],
+     [
+      73.062245,
+      19.2956
+     ],
+     [
+      73.06246,
+      19.295735
+     ],
+     [
+      73.062695,
+      19.295824
+     ],
+     [
+      73.062843,
+      19.295852
+     ],
+     [
+      73.062994,
+      19.29586
+     ],
+     [
+      73.06315,
+      19.295848
+     ],
+     [
+      73.063284,
+      19.295824
+     ],
+     [
+      73.063418,
+      19.29578
+     ],
+     [
+      73.063665,
+      19.295618
+     ],
+     [
+      73.063884,
+      19.295452
+     ],
+     [
+      73.064789,
+      19.294351
+     ],
+     [
+      73.065411,
+      19.293664
+     ],
+     [
+      73.065508,
+      19.293522
+     ],
+     [
+      73.06554,
+      19.293488
+     ],
+     [
+      73.065577,
+      19.293482
+     ],
+     [
+      73.065886,
+      19.293134
+     ],
+     [
+      73.06648,
+      19.292412
+     ],
+     [
+      73.067551,
+      19.291008
+     ],
+     [
+      73.069204,
+      19.289077
+     ],
+     [
+      73.069509,
+      19.288689
+     ],
+     [
+      73.070413,
+      19.287377
+     ],
+     [
+      73.070747,
+      19.286922
+     ],
+     [
+      73.072,
+      19.285392
+     ],
+     [
+      73.072252,
+      19.285067
+     ],
+     [
+      73.072371,
+      19.284884
+     ],
+     [
+      73.072569,
+      19.284505
+     ],
+     [
+      73.07309,
+      19.28317
+     ],
+     [
+      73.073203,
+      19.28292
+     ],
+     [
+      73.073337,
+      19.282676
+     ],
+     [
+      73.073359,
+      19.282618
+     ],
+     [
+      73.073357,
+      19.282582
+     ],
+     [
+      73.073497,
+      19.282425
+     ],
+     [
+      73.074104,
+      19.281669
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Line 5 route past Durgadi, 2017 plan",
+    "part": "superseded",
+    "note": "Durgadi Fort, Sahajanand Chowk, Kalyan and APMC Kalyan. The revised plan of 2026 replaces this with Phase 5A (Durgadi, Khadakpada, Bhoirwadi to Kalyan, with a spur to Ulhasnagar), whose route is not published."
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      73.122817,
+      19.246553
      ],
      [
       73.123972,

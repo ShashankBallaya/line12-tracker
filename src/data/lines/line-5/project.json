@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Headline facts about Mumbai Metro Line 5 (Thane-Bhiwandi-Kalyan). Each fact carries its own source and status. The site follows the revised plan approved in 2026, split as in Swarup Bodke's post on X (31 Aug 2026): Line 5 in three phases, Kapurbawdi to Dhamankar Naka, Dhamankar Naka to Durgadi, and Durgadi to Kalyan; Line 5A is only the Bhoirwadi to Ulhasnagar spur (owner's decision, 2026-10-09). MMRDA's own Line 5 page still shows the 2017 plan, kept as alternatives.",
+    "description": "Headline facts about Mumbai Metro Line 5 (Thane-Bhiwandi-Kalyan). Each fact carries its own source and status. Figures follow MMRDA's press release of 28 May 2026 (PRC/PR/31/2026) on the expanded corridor. Names follow the owner's decision (2026-10-09): Phase 1 Kapurbawdi to Dhamankar Naka, Phase 2 Dhamankar Naka to Durgadi, Phase 3 Durgadi to Kalyan, and Line 5A the spur from Bhoirwadi to Ulhasnagar. MMRDA calls Phase 3 and the spur together 'Phase 5A'. MMRDA's Line 5 page still shows the 2017 plan, kept as history.",
     "status_values": {
       "verified": "Confirmed by a primary source (MMRDA website or an MMRDA-published document).",
       "reported": "From a reputable secondary source (news or trade press). Not confirmed by a primary source.",
@@ -33,48 +33,56 @@
     "notes": "MMRDA's Line 5 page names no colour. MMRDA's Line 12 page calls Line 12 the Orange Line, and Wikipedia treats Lines 5 and 12 as one Orange Line."
   },
   "route": {
-    "value": "Thane (Kapurbawdi) to Kalyan, via Bhiwandi and Durgadi",
-    "status": "reported",
-    "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
+    "value": "Thane (Kapurbawdi) to Kalyan, via Bhiwandi and Durgadi, with a spur from Bhoirwadi to Ulhasnagar",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
-    "notes": "MMRDA's Line 5 page (2017 plan) gives Thane to Kalyan via Bhiwandi, ending at Kalyan APMC. In the revised plan the line reaches Kalyan from Durgadi in Phase 3, and APMC Kalyan is dropped (Metro Rail News, Apr 2026)."
+    "history": [
+      {
+        "value": "Thane to Kalyan APMC, via Bhiwandi",
+        "context": "2017 plan, still on MMRDA's Line 5 page",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+      }
+    ]
   },
   "length_km": {
-    "value": 34.2,
-    "structure": "Mostly elevated",
-    "status": "conflicting",
-    "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
+    "value": 34.21,
+    "structure": "Elevated, except Bhiwandi station (underground)",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
-    "context": "Phases 1 to 3: 11.9 km + 10.48 km + 11.82 km. Line 5A, the 5.27 km spur to Ulhasnagar, is not included.",
-    "also_see": [
-      "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/"
-    ],
-    "alternatives": [
+    "context": "Phase 1 11.9 km + Phase 2 10.48 km + Phase 5A 11.83 km. Phase 5A covers Durgadi to Kalyan and the spur to Ulhasnagar, so this total includes the spur.",
+    "history": [
       {
-        "value": 24.9,
-        "context": "MMRDA's Line 5 page: the 2017 plan, Thane to Kalyan APMC, fully elevated",
-        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+        "value": 22.38,
+        "context": "Line 5 before Phase 5A was added, Kapurbawdi to Durgadi (MMRDA press release, May 2026)",
+        "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
       },
       {
-        "value": 34.2,
-        "context": "Indian Infrastructure (Sep 2026): the same total, but it calls the 11.83 km beyond Durgadi Line 5A",
-        "source_url": "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/"
+        "value": 24.9,
+        "context": "2017 plan, Thane to Kalyan APMC, fully elevated (still on MMRDA's Line 5 page)",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
       }
     ],
-    "notes": "Phase 1's 11.9 km is from Indian Infrastructure (MMRDA's Phase 1 environmental report gives 11.88 km). The centre line drawn from MMRDA's 2025 alignment file is 24.14 km; that file has the 2017 route. Part of the revised line is underground near Bhiwandi (see underground_section)."
+    "notes": "MMRDA does not give the spur's length on its own. A post on X (31 Aug 2026) gives 5.27 km for the spur and 11.82 km for Durgadi to Kalyan, which together exceed MMRDA's 11.83 km; MMRDA's figures are used. The centre line drawn from MMRDA's 2025 alignment file is 21.9 km from Kapurbawdi to Durgadi Fort."
   },
   "phases": [
     {
       "phase": 1,
       "value": "Kapurbawdi (Thane) to Dhamankar Naka (Bhiwandi)",
-      "length_km": 11.88,
+      "length_km": 11.9,
       "stations": 6,
-      "stations_note": "Balkum Naka, Kasheli, Kalher, Purna, Anjurphata and Dhamankar Naka. Kapurbawdi is built as part of Metro Line 4.",
+      "stations_note": "Balkum, Kasheli, Kalher, Purna, Anjurphata and Dhamankar Naka. Kapurbawdi is built as part of Metro Line 4, and is the interchange with it.",
       "structure": "Elevated",
-      "status": "conflicting",
-      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
       "last_verified": "2026-10-09",
       "alternatives": [
+        {
+          "value": 11.88,
+          "context": "Viaduct length in MMRDA's Phase 1 environmental report (Sep 2023)",
+          "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf"
+        },
         {
           "value": 12.811,
           "context": "Length of civil contract CA-28, Kapurbawdi to Dhamankar Naka",
@@ -91,76 +99,77 @@
           "source_url": "https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch"
         }
       ],
-      "notes": "11.88 km is the viaduct length in MMRDA's Phase 1 environmental report (Sep 2023). The other figures probably measure different ends (the contract and the wires run past the last station), but no source says so."
+      "notes": "11.9 km in MMRDA's press release (May 2026); 11.88 km in its environmental report. The other figures probably measure different ends (the contract and the wires run past the last station), but no source says so.",
+      "cost_crore": 6741
     },
     {
       "phase": 2,
       "value": "Dhamankar Naka to Durgadi",
       "length_km": 10.48,
-      "status": "reported",
-      "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
+      "stations": 6,
+      "stations_note": "Bhiwandi (underground), Temghar, Rajnoli, Gove Gaon, Kon Gaon and Kongaon West: 1 underground and 5 elevated.",
+      "cost_crore": 7326,
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
       "last_verified": "2026-10-09",
-      "alternatives": [
-        {
-          "value": 10.47,
-          "context": "Bhiwandi to Kalyan stretch, 6 stations, State approval of 22 Apr 2026",
-          "source_url": "https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/"
-        }
-      ],
-      "notes": "Approved by the Union Government on 29 Aug 2026 (reported). Not started; MMRDA will call tenders (post on X, 31 Aug 2026). Includes the underground stretch near Bhiwandi."
+      "notes": "Approved by the Union Government on 29 Aug 2026 (reported). Not started. Its route follows MMRDA's 2025 alignment file, which runs along the road medians of Agra Road through Bhiwandi, the Bhiwandi bypass and Kalyan-Bhiwandi Road to the Ulhas river bridge at Durgadi, except where it goes underground at Bhiwandi."
     },
     {
       "phase": 3,
       "value": "Durgadi to Kalyan",
-      "length_km": 11.82,
-      "status": "reported",
-      "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
+      "length_km": null,
+      "length_with_spur_km": 11.83,
+      "stations_with_spur": 7,
+      "stations_note": "Durgadi, Khadakpada, Bhoirwadi, Chhatrapati Shivaji Maharaj Path, Shanti Nagar, Chhatrapati Shivaji Maharaj Chowk and Ulhasnagar, all elevated, including the spur. MMRDA does not say which are on the spur.",
+      "cost_with_spur_crore": 4063,
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
       "last_verified": "2026-10-09",
-      "alternatives": [
-        {
-          "value": 11.83,
-          "context": "Called Line 5A in Indian Infrastructure's report: 7 stations, Durgadi through Khadakpada to Kalyan, extending towards Ulhasnagar",
-          "source_url": "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/"
-        }
-      ],
-      "notes": "Not started. Station names reported beyond Durgadi: Khadakpada, Bhoirwadi, Chhatrapati Shivaji Path, Kalyan, Shanti Nagar, Chhatrapati Shivaji Chowk and Ulhasnagar (Construction World, Sep 2026). Which of them are on Phase 3 and which on the Line 5A spur is not stated."
+      "notes": "MMRDA calls this section and the spur together 'Phase 5A: Durgadi - Khadakpada - Bhoirwadi - Kalyan with Spur to Ulhasnagar', 11.83 km. The line splits at Bhoirwadi: one arm to Kalyan and the Line 12 interchange, one to Ulhasnagar (Construction World, Mar 2026). A post on X (31 Aug 2026) gives 11.82 km for Durgadi to Kalyan alone. Not started; route not published.",
+      "also_see": [
+        "https://x.com/bodkeitis/status/2094307767142244544",
+        "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/mmrda-advances-metro-line-five-a-from-kalyan-to-ulhasnagar/88025"
+      ]
     }
   ],
   "stations_count": {
-    "value": 15,
-    "structure": "All elevated",
-    "status": "conflicting",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+    "value": 19,
+    "structure": "Bhiwandi underground, all others elevated",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
-    "alternatives": [
+    "context": "Phase 1: 6, Phase 2: 6, Phase 5A (Phase 3 and the spur): 7. Kapurbawdi, the Line 4 interchange, is not counted.",
+    "history": [
+      {
+        "value": 15,
+        "context": "2017 plan, Balkum Naka to Kalyan APMC (still on MMRDA's Line 5 page)",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+      },
       {
         "value": 17,
-        "context": "Station points in MMRDA's alignment file (March 2025), counting Kapurbawdi, Durgadi Fort and Sahajanand Chowk",
+        "context": "Station points in MMRDA's 2025 alignment file, counting Kapurbawdi",
         "source_url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
-      },
-      {
-        "value": 12,
-        "context": "Revised plan, State approval of 22 Apr 2026: 6 stations from Thane to Bhiwandi and 6 from Bhiwandi to Durgadi. Line 5A adds 7 more.",
-        "source_url": "https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/"
-      },
-      {
-        "value": 13,
-        "context": "Line 5 station list in the report of the Union approval (Sep 2026), counting Kapurbawdi and two Kongaon stations",
-        "source_url": "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055"
       }
-    ],
-    "notes": "MMRDA's page lists 15 stations from Balkum Naka to Kalyan APMC, leaving out Kapurbawdi (built under Line 4). The stations file follows the 17 points of the alignment file and says what the revised plan does with each. Under the revised plan the count is not settled: reports list 13 stations from Kapurbawdi to Kongaon East, then 7 or 8 more from Durgadi to Kalyan and Ulhasnagar, without saying which are on Phase 3 and which on the Line 5A spur."
+    ]
   },
   "completion_cost_crore_inr": {
-    "value": 8416.51,
-    "label": "Project cost, including land and taxes",
+    "value": 18130,
+    "label": "Estimated cost of the expanded corridor, Phases 1, 2 and 5A",
     "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
+    "context": "Phase 1 Rs 6,741 crore, Phase 2 Rs 7,326 crore, Phase 5A (Phase 3 and the spur) Rs 4,063 crore.",
+    "history": [
+      {
+        "value": 8416.51,
+        "context": "2017 plan, 24.9 km, including land and taxes (MMRDA's Line 5 page; the March 2016 project report)",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+      }
+    ],
     "also_see": [
       "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf"
     ],
-    "notes": "MMRDA's Phase 1 environmental report (Sep 2023) gives the same total from the March 2016 project report: civil Rs 3,212.34 crore, systems Rs 2,946.56 crore, taxes, design charges, Rs 146.93 crore of land and Rs 20 crore of interest during construction. The revised plan of 2026 puts Lines 5 and 5A together at Rs 18,130.55 crore, of which Line 5A is Rs 4,063 crore (reported). Metro Rail News (Apr 2026) also gives Rs 7,326.13 crore for a revised Line 5 phase without saying which."
+    "notes": "The 2017 figure broke down as civil Rs 3,212.34 crore, systems Rs 2,946.56 crore, taxes, design charges, Rs 146.93 crore of land and Rs 20 crore of interest during construction (MMRDA environmental report, Sep 2023)."
   },
   "funding": {
     "value": "AIIB and OPEC Fund loans for the systems; MMRDA funds the rest",
@@ -196,13 +205,13 @@
       },
       {
         "station": "Kalyan",
-        "connects_to": "Metro Line 12 (Kalyan-Taloja) and Central Railway"
+        "connects_to": "Metro Line 12 (Kalyan-Taloja) and the Central Railway at Kalyan Junction"
       }
     ],
     "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
-    "notes": "MMRDA's page names Line 4, Line 12 and the Central Railway without naming stations. Kapurbawdi comes from MMRDA's Phase 1 environmental report; Kalyan from the station points of the Line 5 and Line 12 alignment files, 14 m apart."
+    "notes": "MMRDA's press release (May 2026) names Line 4 at Balkhum (Kapurbawadi) and Line 12 at Kalyan Junction, and direct access to the suburban stations at Thane, Kalyan, Vitthalwadi and Ulhasnagar."
   },
   "daily_ridership_2031": {
     "value": 302500,
@@ -213,17 +222,24 @@
     "notes": "Peak-hour peak-direction traffic 26,143. MMRDA's Marathi page says 3.023 lakh and the Phase 1 environmental report 3.03 lakh."
   },
   "travel_time_benefit": {
-    "value": "Reduces current travel time by 50% to 75%",
-    "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
-    "last_verified": "2026-10-09"
+    "value": "Reduces travel time by 40% to 50% compared with the road",
+    "status": "conflicting",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "last_verified": "2026-10-09",
+    "alternatives": [
+      {
+        "value": "Reduces current travel time by 50% to 75%",
+        "context": "MMRDA's Line 5 page (2017 plan)",
+        "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+      }
+    ]
   },
   "current_phase": {
-    "value": "Phase 1 built. Overhead wires energised from 7 Sep 2026, ahead of trial runs. Phases 2 and 3 approved in August 2026, not started.",
+    "value": "Phase 1 built and preparing for the CMRS safety inspection; overhead wires energised from 7 Sep 2026. Phase 2 and Phase 5A approved, not started.",
     "status": "reported",
     "source_url": "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
     "last_verified": "2026-10-09",
-    "notes": "The report quotes MMRDA: inspection for 15 to 20 days after energisation, then about six months of trial runs. Work beyond Bhiwandi, towards Kalyan, has not begun."
+    "notes": "MMRDA's press release (28 May 2026) says Phase 1 is preparing for the CMRS inspection. The report quotes MMRDA: inspection for 15 to 20 days after energisation, then about six months of trial runs. Work beyond Bhiwandi, towards Kalyan, has not begun."
   },
   "progress": {
     "as_of": "2026-08-31",
@@ -275,14 +291,15 @@
     "countdown_date": "2026-12-31",
     "precision": "month",
     "scope": "Phase 1, Kapurbawdi to Dhamankar Naka",
-    "status": "reported",
-    "source_url": "https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch",
+    "status": "verified",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
     "also_see": [
+      "https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch",
       "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
       "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055"
     ],
-    "notes": "MMRDA statement reported in February 2026; later reports (September 2026) say the end of 2026. The September report also says trial runs take about six months, which does not fit a December opening. MMRDA's own site gives no date.",
+    "notes": "MMRDA's press release (28 May 2026) quotes the Chief Minister: Phase 1 will open by the end of 2026. A news report of September 2026 says trial runs take about six months, which does not fit. No exact date.",
     "rest_of_line": {
       "value": "2030-31",
       "context": "Phases 2 and 3 towards Kalyan, and the Line 5A spur to Ulhasnagar",
@@ -292,18 +309,23 @@
     }
   },
   "underground_section": {
-    "value": "A short stretch near Bhiwandi, to avoid the Bhiwandi bypass flyover",
+    "value": "Bhiwandi station, the only underground station",
     "status": "conflicting",
-    "source_url": "https://metrorailnews.in/center-approved-mumbai-metro-line-5-and-5a/",
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
     "alternatives": [
       {
-        "value": "Dhamankar Naka to Temghar, added in a 2025 review; and Durgadi to Kalyan, decided in 2023 at Rs 1,427 crore extra",
+        "value": "Dhamankar Naka to Temghar, added in a 2025 review",
         "context": "Metro Rail News, April 2026",
         "source_url": "https://metrorailnews.in/mumbai-metro-line-5-gets-state-approval/"
+      },
+      {
+        "value": "A short stretch near Bhiwandi, to avoid the Bhiwandi bypass flyover",
+        "context": "Metro Rail News, September 2026",
+        "source_url": "https://metrorailnews.in/center-approved-mumbai-metro-line-5-and-5a/"
       }
     ],
-    "notes": "Neither report gives the length or names an underground station. MMRDA's page still says fully elevated."
+    "notes": "MMRDA names the station but not the length of the tunnel. MMRDA's 2025 alignment file runs on the Bhiwandi bypass flyover for about 2.6 km between Bhiwandi and Temghar, the clash the underground stretch avoids."
   },
   "technical": {
     "gauge_mm": 1435,
@@ -342,14 +364,14 @@
   "related_projects": [
     {
       "name": "Metro Line 5A (Bhoirwadi to Ulhasnagar spur)",
-      "summary": "5.27 km spur from Bhoirwadi, on Line 5's Phase 3, to Ulhasnagar. Approved by the Union Government with Line 5's Phases 2 and 3 in August 2026; MMRDA will call tenders.",
-      "status": "reported",
-      "source_url": "https://x.com/bodkeitis/status/2094307767142244544",
+      "summary": "Spur from Bhoirwadi, on Line 5's Phase 3, to Ulhasnagar. MMRDA counts it in 'Phase 5A' with Durgadi to Kalyan: 11.83 km, 7 stations and Rs 4,063 crore together.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
       "last_verified": "2026-10-09",
       "also_see": [
-        "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/"
+        "https://x.com/bodkeitis/status/2094307767142244544"
       ],
-      "notes": "Separate project. Keep it out of Line 5 totals. Other reports use 'Line 5A' for the whole 11.83 km beyond Durgadi, with a cost of Rs 4,063 crore (Indian Infrastructure, Sep 2026); the site follows the split in the post on X. Lines 5 and 5A together: about Rs 18,131 crore."
+      "notes": "MMRDA gives no length for the spur alone; a post on X (31 Aug 2026) gives 5.27 km. Unlike Line 12A, it is inside MMRDA's 34.21 km total for Line 5, so the length and cost totals include it."
     }
   ]
 }

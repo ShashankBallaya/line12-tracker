@@ -104,6 +104,17 @@
       "last_verified": "2026-10-09"
     },
     {
+      "id": "mmrda-expanded-corridor",
+      "date": "2026-05-28",
+      "date_precision": "day",
+      "kind": "planning",
+      "title": "MMRDA sets out the expanded 34.21 km corridor",
+      "summary": "Phase 1 to Dhamankar Naka, Phase 2 to Durgadi with Bhiwandi underground, and Phase 5A to Kalyan with a spur to Ulhasnagar; Phase 1 prepares for the CMRS inspection.",
+      "status": "verified",
+      "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+      "last_verified": "2026-10-09"
+    },
+    {
       "id": "union-approval-revised",
       "date": "2026-08-29",
       "date_precision": "day",

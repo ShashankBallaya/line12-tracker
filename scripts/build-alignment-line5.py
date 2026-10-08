@@ -5,7 +5,11 @@
 # as one polygon about 50 m wide, and a point for each of 17 stations. This script:
 #   - derives the centre line as the midpoints between the polygon's two long sides (the two ends of
 #     the polygon are its tips at Kapurbawdi and past APMC Kalyan),
-#   - writes src/data/lines/line-5/alignment-mmrda-2025.geojson (centre line, simplified to ~1 m),
+#   - writes src/data/lines/line-5/alignment-mmrda-2025.geojson (simplified to ~1 m) in three parts:
+#     the centre line from Kapurbawdi to Durgadi Fort (Phases 1 and 2, still the plan), the stretch
+#     from Dhamankar Naka to Temghar that the revised plan of 2026 puts underground (its exact route
+#     is not published, so this is the 2025 route above it), and the 2017 route past Durgadi Fort,
+#     which the revised plan drops,
 #   - moves every station in src/data/lines/line-5/stations.json to MMRDA's point, graded verified,
 #     and sets along_m: the distance from the start of the centre line at Kapurbawdi.
 # Every station point lies within about 11 m of the derived line; the script stops if one is more
@@ -154,6 +158,7 @@ def along(lng, lat):
 doc = json.load(open(STATIONS, encoding='utf-8'))
 by_id = {s['id']: s for s in doc['stations']}
 last = -1.0
+along_of = {}
 for kml_name, sid in KML_NAMES.items():
     lng, lat = points[kml_name]
     off, at = along(lng, lat)
@@ -162,6 +167,7 @@ for kml_name, sid in KML_NAMES.items():
     if at < last:
         sys.exit(f'{kml_name} is out of order along the line')
     last = at
+    along_of[sid] = at
     loc = by_id[sid]['location']
     loc.update({
         'lng': round(lng, 6),
@@ -177,20 +183,40 @@ with open(STATIONS, 'w', encoding='utf-8', newline='\n') as f:
     json.dump(doc, f, indent=1, ensure_ascii=False)
     f.write('\n')
 
+
+
+def cut(s0, s1):
+    """The part of the centre line between s0 and s1 metres from its start."""
+    def point(s):
+        for i in range(len(centre) - 1):
+            if cum_c[i + 1] >= s:
+                t = (s - cum_c[i]) / ((cum_c[i + 1] - cum_c[i]) or 1e-9)
+                a, b = centre[i], centre[i + 1]
+                return (a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1]))
+        return centre[-1]
+    inner = [q for q, c in zip(centre, cum_c) if s0 < c < s1]
+    return [[round(c, 6) for c in to_ll(*q)] for q in [point(s0), *inner, point(s1)]]
+
+
+durgadi = along_of['durgadi-fort']
+feature = lambda props, coords: {'type': 'Feature', 'properties': props, 'geometry': {'type': 'LineString', 'coordinates': coords}}
 geo = {
     'type': 'FeatureCollection',
     'properties': {
-        'note': f'Derived from MMRDA\'s alignment file for Line 5 ({KML_URL}), which gives the corridor as a polygon about 50 m wide, not a centre line. The centre line runs midway between the polygon\'s two sides, {length / 1000:.3f} km from its tip at Kapurbawdi to its tip past APMC Kalyan. This is the alignment before the 2026 revision, which moves the stations past Kon Gaon to Line 5A. Simplified to about 1 m by scripts/build-alignment-line5.py.',
+        'note': f'Derived from MMRDA\'s alignment file for Line 5 ({KML_URL}), which gives the corridor as a polygon about 50 m wide, not a centre line. The centre line runs midway between the polygon\'s two sides, {length / 1000:.3f} km from its tip at Kapurbawdi to its tip past APMC Kalyan. The file predates the revised plan of 2026: Phases 1 and 2 (Kapurbawdi to Durgadi Fort) still follow it, along the road medians of Agra Road, the Bhiwandi bypass, and Kalyan-Bhiwandi Road; past Durgadi Fort the revised plan takes a new route (Phase 5A), which is not published. Simplified to about 1 m by scripts/build-alignment-line5.py.',
         'source_url': PAGE_URL,
         'status': 'verified',
         'last_verified': CHECKED,
         'length_m': round(length),
+        'centre_line_m': round(durgadi),
     },
     'features': [
-        {'type': 'Feature', 'properties': {'name': 'Line 5 centre line'}, 'geometry': {'type': 'LineString', 'coordinates': [[round(c, 6) for c in to_ll(*q)] for q in centre]}},
+        feature({'name': 'Line 5 centre line', 'part': 'current', 'note': 'Kapurbawdi to Durgadi Fort: Phase 1 (built) and Phase 2 (approved). Phase 2 starts at Dhamankar Naka; see the stations for along_m.'}, cut(0, durgadi)),
+        feature({'name': 'Line 5 underground stretch', 'part': 'underground', 'status': 'conflicting', 'note': 'Dhamankar Naka to Temghar, which a news report (Metro Rail News, Apr 2026) says goes underground; MMRDA names only Bhiwandi station as underground. The route below ground is not published: this is the 2025 route along the road above it, which here runs on the Bhiwandi bypass flyover.'}, cut(along_of['dhamankar-naka'], along_of['temghar'])),
+        feature({'name': 'Line 5 route past Durgadi, 2017 plan', 'part': 'superseded', 'note': 'Durgadi Fort, Sahajanand Chowk, Kalyan and APMC Kalyan. The revised plan of 2026 replaces this with Phase 5A (Durgadi, Khadakpada, Bhoirwadi to Kalyan, with a spur to Ulhasnagar), whose route is not published.'}, cut(durgadi, length)),
     ],
 }
 with open(OUT, 'w', encoding='utf-8', newline='\n') as f:
     json.dump(geo, f, indent=1)
     f.write('\n')
-print(f'Line {length / 1000:.3f} km ({len(centre)} points)')
+print(f'Line {length / 1000:.3f} km ({len(centre)} points); current plan to Durgadi Fort {durgadi / 1000:.3f} km')

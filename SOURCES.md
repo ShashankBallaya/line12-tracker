@@ -114,7 +114,7 @@ Nothing below is on the site yet.
 
 # Line 5 (Thane-Bhiwandi-Kalyan)
 
-Research started 2026-10-09. Data in `src/data/lines/line-5/`. Line 5 follows the phase split in the post on X by @bodkeitis (31 Aug 2026), by the owner's decision. Not shown on the site yet (see MULTI-LINE-PLAN.md, step 7). The status values above apply.
+Research started 2026-10-09. Data in `src/data/lines/line-5/`. Figures follow MMRDA's press release of 28 May 2026 (primary source 4); phase names follow the post on X by @bodkeitis (31 Aug 2026). Both by the owner's decision of 2026-10-09. Not shown on the site yet (see MULTI-LINE-PLAN.md, step 7). The status values above apply.
 
 ## Primary sources
 
@@ -127,6 +127,9 @@ Research started 2026-10-09. Data in `src/data/lines/line-5/`. Line 5 follows th
 3. **MMRDA, Phase 1 draft final Environmental Impact Assessment for AIIB, 11 Sep 2023.** Phase 1 is 11.88 km and 6 elevated stations from Kapurbawdi to Dhamankar Naka; Kapurbawdi station is built as part of Line 4. Station chainages, Kasheli depot (27.134 ha), design speeds, station length 145 m, platforms about 13.5 m above the road, and the cost breakdown from the March 2016 DPR.
    https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf
 
+4. **MMRDA press release PRC/PR/31/2026, "Extended Metro Line 5 to Strengthen Connectivity Across Thane, Bhiwandi, Kalyan and Ulhasnagar", 28 May 2026.** Corridor 34.21 km and Rs 18,130 Cr. Phase 1, Thane to Dhamankar Naka: 11.9 km, 6 stations, Rs 6,741 Cr. Phase 2, Dhamankar Naka to Durgadi: 10.48 km, 6 stations (Bhiwandi underground; Temghar, Rajnoli, Gove Gaon, Kon Gaon, Kongaon West elevated), Rs 7,326 Cr. Phase 5A, Durgadi - Khadakpada - Bhoirwadi - Kalyan with a spur to Ulhasnagar from Bhoirwadi: 11.83 km, 7 elevated stations, Rs 4,063 Cr. Interchanges with Line 4 at Balkhum (Kapurbawadi) and Line 12 at Kalyan Junction; Phase 1 preparing for the CMRS inspection. No map: its images are construction photos.
+   https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf
+
 ## Secondary sources
 
 | Outlet | Date | Used for | URL |
@@ -135,6 +138,7 @@ Research started 2026-10-09. Data in `src/data/lines/line-5/`. Line 5 follows th
 | The Metro Rail Guy | 8 May 2020 | AIIB loan concept, USD 236 million, 21 Apr 2020 | https://themetrorailguy.com/2020/05/08/aiib-to-lend-236-million-for-mumbai-metro-line-5-thane-kalyan/ |
 | The Metro Rail Guy | 12 Mar 2023, updated 14 Sep 2023 | CA-151 Kasheli depot to Rithwik, Rs 589.56 Cr | https://themetrorailguy.com/2023/03/12/rithwik-wins-mumbai-metro-line-5-kasheli-depots-civil-contract/ |
 | The Metro Rail Guy | 30 Jun 2025 | CA-241 trains and signalling to Titagarh, Rs 2,481 Cr | https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/ |
+| Construction World | 13 Mar 2026 | Route shape past Durgadi: from Kon Gaon through Durgadi, Khadakpada and Bhoirwadi, then two arms, to Kalyan (Line 12 interchange) and to Ulhasnagar; DPR ready, not published | https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/mmrda-advances-metro-line-five-a-from-kalyan-to-ulhasnagar/88025 |
 | Free Press Journal | 9 Feb 2026 | Phase 1 civil work 95%, December 2026 target | https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch |
 | Indian Infrastructure | 23 Apr 2026 | State approval of revised Lines 5 and 5A, 22 Apr 2026 | https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/ |
 | Metro Rail News | 27 Apr 2026 | Revised plan, underground sections, APMC Kalyan dropped | https://metrorailnews.in/mumbai-metro-line-5-gets-state-approval/ |
@@ -151,25 +155,31 @@ Research started 2026-10-09. Data in `src/data/lines/line-5/`. Line 5 follows th
 
 The station chainages in primary source 3 do not match the distances between the station points (Kalher to Purna: 0.83 km in the report, about 2 km apart on the map). They are kept under `eia_chainage_m` as published and not used for drawing.
 
+Since 2026-10-09 the GeoJSON has three parts. "Line 5 centre line" runs from Kapurbawdi to Durgadi Fort (21.9 km): Phase 1 (built) and Phase 2, which MMRDA's revised plan keeps on the same stations except Gopal Nagar (dropped) and Kongaon West (new, no published position). "Line 5 underground stretch" marks Dhamankar Naka to Temghar, drawn on the 2025 route above ground because the tunnel's route is not published. "Line 5 route past Durgadi, 2017 plan" keeps the dropped route to APMC Kalyan for history.
+
+Check (2026-10-09): between Dhamankar Naka and Durgadi Fort, 10,150 of 10,251 m of the derived line lies within 20 m of a main road in OpenStreetMap: Agra Road (NH848) through Bhiwandi, the Bhiwandi bypass flyover (about 13.4 to 16.0 km from Kapurbawdi), Kalyan-Bhiwandi Road (NH61), and the Chhatrapati Shivaji Maharaj Bridge over the Ulhas into Durgadi. So Phase 2 runs on the road medians, as Phase 1 does. The flyover stretch is the clash that the underground section avoids (Metro Rail News, Sep 2026). The station-to-station distance from Dhamankar Naka to Durgadi Fort on this line is 10.23 km; MMRDA gives 10.48 km for Phase 2.
+
 Line 5's Kalyan point is 14 m from Line 12's, and its APMC Kalyan point 30 m from Line 12's. In the 2025 files the two lines share both stations.
 
 ## Items that need your review
 
-1. **Which plan to show.** Decided 2026-10-09 by the owner: follow the split in the post on X by @bodkeitis (31 Aug 2026). Line 5 is Phase 1 (Kapurbawdi to Dhamankar Naka), Phase 2 (Dhamankar Naka to Durgadi, 10.48 km) and Phase 3 (Durgadi to Kalyan, 11.82 km); Line 5A is only the 5.27 km Bhoirwadi to Ulhasnagar spur. MMRDA's page (2017 plan) and Indian Infrastructure's naming stay as alternatives. Station positions still come from MMRDA's 2025 file, which has the old route past Durgadi; each station records what the revised plan does with it (`revised_plan_2026`). Phase 3's own stations (Khadakpada, Bhoirwadi and others) have no positions yet.
-2. **Phase 1 opening date.** December 2026 is reported (MMRDA statement, Feb 2026). The September 2026 report also says trial runs take about six months, which does not fit. Countdown or not?
-3. **Line 5A.** Now means the 5.27 km Bhoirwadi to Ulhasnagar spur (see item 1). Listed under `related_projects` and kept out of Line 5 totals, the same rule as Line 12A. Cover it on its own page, or not?
-4. **Kapurbawdi.** Built as part of Line 4, but every Line 5 train will start there. The data lists it as Line 5's station 1, with a note.
+1. **Which plan to show.** Decided 2026-10-09 by the owner. Figures: MMRDA's press release of 28 May 2026 (34.21 km, 19 stations, Rs 18,130 Cr, the spur included). Names: Phase 1 Kapurbawdi to Dhamankar Naka, Phase 2 Dhamankar Naka to Durgadi, Phase 3 Durgadi to Kalyan, Line 5A the Bhoirwadi to Ulhasnagar spur. MMRDA calls Phase 3 and the spur together 'Phase 5A'. Phase 3's own stations (Khadakpada, Bhoirwadi and others) and the spur have no published route or positions.
+2. **Phase 1 opening date.** MMRDA's press release (28 May 2026) quotes the Chief Minister: open by the end of 2026. No exact date. The September 2026 report also says trial runs take about six months, which does not fit. Countdown or not?
+3. **Line 5A.** The Bhoirwadi to Ulhasnagar spur. Unlike Line 12A it is inside MMRDA's Line 5 totals, so the totals include it. Its own page, or part of the Line 5 page?
+4. **Kongaon West.** New in the revised plan, with no published position. It is listed after Kon Gaon in MMRDA's order, without a map point.
+5. **Kapurbawdi.** Built as part of Line 4, but every Line 5 train will start there. The data lists it as Line 5's station 1, with a note.
 
 ## Leads to verify
 
 1. **Approval dates 2016 to 2018.** Wikipedia gives MMRDA approval on 19 Oct 2016, State Cabinet approval on 24 Oct 2017 and the foundation stone on 18 Dec 2018, citing The Hindu, Livemint and the Indian Express. Those articles were not read yet.
 2. **More packages.** Wikipedia lists CA-166 (track, Paras Railtech), CA-239 (power and E&M, IRCON), CA-242 (fare collection) and CA-246 (finishing, NACPL-MANSI-UCC JV) without sources.
 3. **AIIB and OPEC Fund final loan amounts.** The OPEC Fund lists approval on 29 Apr 2024 and signing on 13 Oct 2025; GTAI lists an AIIB loan of USD 186.5 million. Neither page was read.
-4. **The revised plan's Government Resolution (April 2026).** It would settle the station list, lengths and the underground section.
-5. **Train render with "LINE 5" livery** (owner's lead of 2026-09-28, see Line 12 lead 6). Now relevant for Line 5. Not used until sourced.
+4. **The revised plan's Government Resolution (April 2026) and the Union notification of 28 August 2026.** Either may describe the route.
+5. **Phase 3 and spur route.** MMRDA's general consultant tender for it (ID 2026_MMRDA_1283742_1, ref MMRDA/MMRP/L-5A/GC/CA293) is on mahatenders.gov.in, behind a CAPTCHA; its documents usually include a key plan. The owner can download them. MMRDA may also add a new file to the Metro Influence Zone page, as it did for Line 12.
+6. **Train render with "LINE 5" livery** (owner's lead of 2026-09-28, see Line 12 lead 6). Now relevant for Line 5. Not used until sourced.
 
 ## Not found
 
 - Marathi names for Kapurbawdi, Durgadi Fort and Sahajanand Chowk.
 - A trial-run start date or CMRS inspection date.
-- Any primary source for the revised plan of 2026.
+- A published route for the revised plan past Durgadi, or for the underground stretch at Bhiwandi. Not in OpenStreetMap, Wikipedia (a schematic only) or the news (checked 2026-10-09).
