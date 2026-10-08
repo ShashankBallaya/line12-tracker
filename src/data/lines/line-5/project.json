@@ -11,7 +11,10 @@
   },
   "name": {
     "value": "Mumbai Metro Line 5",
-    "also_known_as": ["Metro 5", "Thane-Bhiwandi-Kalyan Metro"],
+    "also_known_as": [
+      "Metro 5",
+      "Thane-Bhiwandi-Kalyan Metro"
+    ],
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
     "last_verified": "2026-10-09"
@@ -45,8 +48,11 @@
     "alternatives": [
       {
         "value": 22.37,
-        "context": "Revised plan approved by the State on 22 Apr 2026: Thane to Bhiwandi 11.9 km plus Bhiwandi to Durgadi 10.47 km (the sum of the two figures in the report)",
-        "source_url": "https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/"
+        "context": "Revised plan approved by the State on 22 Apr 2026: Thane to Bhiwandi 11.9 km plus Bhiwandi to Durgadi 10.47 km (the sum of the two figures in the report). A post on X (31 Aug 2026) gives 10.48 km for Dhamankar Naka to Durgadi, and 11.82 km more to Kalyan as Phase 3",
+        "source_url": "https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/",
+        "also_see": [
+          "https://x.com/bodkeitis/status/2094307767142244544"
+        ]
       }
     ],
     "notes": "MMRDA's page still gives the 2017 length. The centre line drawn from MMRDA's alignment file (March 2025) is 24.14 km from Kapurbawdi to the end past APMC Kalyan. The revised plan puts part of the line underground near Bhiwandi (see underground_section), so 'fully elevated' may no longer hold."
@@ -110,7 +116,9 @@
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
     "last_verified": "2026-10-09",
-    "also_see": ["https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf"],
+    "also_see": [
+      "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf"
+    ],
     "notes": "MMRDA's Phase 1 environmental report (Sep 2023) gives the same total from the March 2016 project report: civil Rs 3,212.34 crore, systems Rs 2,946.56 crore, taxes, design charges, Rs 146.93 crore of land and Rs 20 crore of interest during construction. The revised plan of 2026 puts Lines 5 and 5A together at Rs 18,130.55 crore, of which Line 5A is Rs 4,063 crore (reported). Metro Rail News (Apr 2026) also gives Rs 7,326.13 crore for a revised Line 5 phase without saying which."
   },
   "funding": {
@@ -141,8 +149,14 @@
   },
   "interchanges": {
     "value": [
-      { "station": "Kapurbawdi", "connects_to": "Metro Line 4 (Wadala-Kasarvadavali)" },
-      { "station": "Kalyan", "connects_to": "Metro Line 12 (Kalyan-Taloja) and Central Railway" }
+      {
+        "station": "Kapurbawdi",
+        "connects_to": "Metro Line 4 (Wadala-Kasarvadavali)"
+      },
+      {
+        "station": "Kalyan",
+        "connects_to": "Metro Line 12 (Kalyan-Taloja) and Central Railway"
+      }
     ],
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
@@ -173,15 +187,42 @@
   "progress": {
     "as_of": "2026-08-31",
     "items": [
-      { "activity": "Piling works (viaduct and station)", "percent_complete": 100 },
-      { "activity": "Pile cap works", "percent_complete": 100 },
-      { "activity": "Pier works", "percent_complete": 100 },
-      { "activity": "Cast-in-situ pier caps", "percent_complete": 100 },
-      { "activity": "Pier cap erection (viaduct)", "percent_complete": 100 },
-      { "activity": "U-girder erection (viaduct)", "percent_complete": 100 },
-      { "activity": "Station spine erection", "percent_complete": 100 },
-      { "activity": "Station wings erection", "percent_complete": 100 },
-      { "activity": "Deck slab", "percent_complete": 100 }
+      {
+        "activity": "Piling works (viaduct and station)",
+        "percent_complete": 100
+      },
+      {
+        "activity": "Pile cap works",
+        "percent_complete": 100
+      },
+      {
+        "activity": "Pier works",
+        "percent_complete": 100
+      },
+      {
+        "activity": "Cast-in-situ pier caps",
+        "percent_complete": 100
+      },
+      {
+        "activity": "Pier cap erection (viaduct)",
+        "percent_complete": 100
+      },
+      {
+        "activity": "U-girder erection (viaduct)",
+        "percent_complete": 100
+      },
+      {
+        "activity": "Station spine erection",
+        "percent_complete": 100
+      },
+      {
+        "activity": "Station wings erection",
+        "percent_complete": 100
+      },
+      {
+        "activity": "Deck slab",
+        "percent_complete": 100
+      }
     ],
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
@@ -264,7 +305,10 @@
       "status": "reported",
       "source_url": "https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/",
       "last_verified": "2026-10-09",
-      "notes": "Separate project. Keep it out of Line 5 totals. Station names differ between reports."
+      "notes": "Separate project. Keep it out of Line 5 totals. Sources use the name differently: Indian Infrastructure (Sep 2026) calls the 11.83 km Durgadi-Kalyan-Ulhasnagar section Line 5A, while a post by Swarup Bodke on X (31 Aug 2026) calls Durgadi to Kalyan (11.82 km) Line 5 Phase 3, and only the Bhoirwadi to Ulhasnagar spur (5.27 km) Line 5A. Station names also differ between reports.",
+      "also_see": [
+        "https://x.com/bodkeitis/status/2094307767142244544"
+      ]
     }
   ]
 }

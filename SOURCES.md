@@ -142,6 +142,7 @@ Research started 2026-10-09. Data in `src/data/lines/line-5/`. Not shown on the 
 | Indian Infrastructure | 3 Sep 2026 | Union approval, 29 Aug 2026; Line 5A Rs 4,063 Cr | https://indianinfrastructure.com/2026/09/03/union-government-approves-mumbai-metro-line-5-5a-project/ |
 | Free Press Journal | 7 Sep 2026 | Overhead wires energised, 12.6 km; work beyond Bhiwandi not begun | https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation |
 | Construction World | 8 Sep 2026 | Station lists of the revised Lines 5 and 5A | https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055 |
+| Swarup Bodke (@bodkeitis) on X | 31 Aug 2026 | Union approval split into Phase 2 (Dhamankar Naka to Durgadi, 10.48 km), Phase 3 (Durgadi to Kalyan, 11.82 km) and Line 5A (Bhoirwadi to Ulhasnagar spur, 5.27 km); tenders to follow. Lead, graded reported. Its two map images are a Google Earth view of MMRDA's 2025 file and an unlabelled sketch, not used. | https://x.com/bodkeitis/status/2094307767142244544 |
 | Wikipedia, Orange Line | read 9 Oct 2026 | Line colour only (unverified) | https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro) |
 
 ## Derived data
@@ -156,7 +157,7 @@ Line 5's Kalyan point is 14 m from Line 12's, and its APMC Kalyan point 30 m fro
 
 1. **Which plan to show.** MMRDA's page and alignment file show the 2017 plan (Thane to Kalyan APMC). The revised plan of 2026 (Line 5 to Durgadi, Line 5A from Durgadi to Kalyan and Ulhasnagar) is known only from news reports, which disagree on station names and counts. The data keeps the 17 stations of the alignment file and records for each what the revised plan does with it (`revised_plan_2026`). Do you agree?
 2. **Phase 1 opening date.** December 2026 is reported (MMRDA statement, Feb 2026). The September 2026 report also says trial runs take about six months, which does not fit. Countdown or not?
-3. **Line 5A.** Listed under `related_projects` and kept out of Line 5 totals, the same rule as Line 12A. Cover it, or not?
+3. **Line 5A.** Listed under `related_projects` and kept out of Line 5 totals, the same rule as Line 12A. Cover it, or not? Note that sources disagree on what "Line 5A" means: the whole 11.83 km Durgadi-Kalyan-Ulhasnagar section (Indian Infrastructure), or only the 5.27 km Bhoirwadi-Ulhasnagar spur, with Durgadi to Kalyan as Line 5 Phase 3 (@bodkeitis on X).
 4. **Kapurbawdi.** Built as part of Line 4, but every Line 5 train will start there. The data lists it as Line 5's station 1, with a note.
 
 ## Leads to verify
