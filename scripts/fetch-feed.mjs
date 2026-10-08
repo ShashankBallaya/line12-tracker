@@ -11,7 +11,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 const DATA = new URL('../src/data/', import.meta.url);
 const SOURCES = new URL('feed-sources.json', DATA);
 const OUT = new URL('feed.json', DATA);
-const UA = 'Line12Tracker/1.0 (+https://github.com/ShashankBallaya/line12-tracker)';
+const UA = 'Line12Tracker/1.0 (+https://github.com/ShashankBallaya/mumbai-metro-tracker)';
 
 const cfg = JSON.parse(readFileSync(SOURCES, 'utf8'));
 const prev = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : { news: [], videos: [] };

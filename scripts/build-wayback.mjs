@@ -18,7 +18,7 @@ const SPOTS = [
 ];
 
 const get = async (url) => {
-  const r = await fetch(url, { headers: { 'User-Agent': 'line12-tracker build script' } });
+  const r = await fetch(url, { headers: { 'User-Agent': 'mumbai-metro-tracker build script' } });
   if (!r.ok) throw new Error(`${r.status} ${url}`);
   return r.json();
 };

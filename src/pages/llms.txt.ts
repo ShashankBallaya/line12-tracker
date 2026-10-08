@@ -39,7 +39,7 @@ ${stations.map((s) => `- [${s.name} metro station](${url(`/stations/${s.id}/`)})
 
 - [MMRDA Metro Line 12 project page](https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview)
 - [Detailed Project Report, April 2019](https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf)
-- [Full source list](https://github.com/ShashankBallaya/line12-tracker/blob/main/SOURCES.md)
+- [Full source list](https://github.com/ShashankBallaya/mumbai-metro-tracker/blob/main/SOURCES.md)
 `;
   return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };

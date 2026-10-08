@@ -7,7 +7,7 @@ Status: decided 2026-10-08. Step 2 done.
 - Domain: mumbaimetrotracker.com. Site name: Mumbai Metro Tracker (assumed from the domain, owner to confirm).
 - `/` is a hub of all lines.
 - Line 5: cover the whole line. Phase 1 is built and gets the full Line 12 treatment (same orange line colour). Later phases get the lighter treatment until they are built.
-- Repo: rename `line12-tracker` to `mumbai-metro-tracker`.
+- Repo: renamed from `line12-tracker` to `mumbai-metro-tracker` (done 2026-10-08). The Cloudflare Pages project keeps the name `line12-tracker` until the domain move.
 - Line 12A: not decided yet.
 
 Order from the owner's post of 7 Oct 2026: buy a domain, then Line 5, then Line 4 and Line 2B. Line 12 stays the first and fullest line.

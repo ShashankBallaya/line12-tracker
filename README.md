@@ -59,7 +59,7 @@ Other commands:
 Do this once, in the Cloudflare dashboard:
 
 1. Go to **Workers & Pages** > **Create** > **Pages** > **Connect to Git**.
-2. Pick the GitHub repo `ShashankBallaya/line12-tracker`.
+2. Pick the GitHub repo `ShashankBallaya/mumbai-metro-tracker`.
 3. Set the build settings:
    - Framework preset: **Astro**
    - Build command: `npm run build`
@@ -87,7 +87,7 @@ All facts live in `src/data/`, one folder for each line under `src/data/lines/`.
 
 ## Corrections
 
-Found a mistake? [Open a correction issue](https://github.com/ShashankBallaya/line12-tracker/issues/new?labels=correction&title=Correction%3A%20) with the right figure and where you saw it.
+Found a mistake? [Open a correction issue](https://github.com/ShashankBallaya/mumbai-metro-tracker/issues/new?labels=correction&title=Correction%3A%20) with the right figure and where you saw it.
 
 ## Licence and credits
 

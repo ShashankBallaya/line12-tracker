@@ -218,5 +218,5 @@ export const lastReviewed: string = [
   socialJson._meta.last_reviewed,
 ].sort().at(-1)!;
 
-export const REPO_URL = 'https://github.com/ShashankBallaya/line12-tracker';
+export const REPO_URL = 'https://github.com/ShashankBallaya/mumbai-metro-tracker';
 export const CORRECTION_URL = `${REPO_URL}/issues/new?labels=correction&title=Correction%3A%20`;

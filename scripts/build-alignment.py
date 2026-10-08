@@ -97,7 +97,7 @@ def point_at(line, metres):
 if len(sys.argv) > 1:
     data = open(sys.argv[1], 'rb').read()
 else:
-    data = urllib.request.urlopen(urllib.request.Request(KMZ_URL, headers={'User-Agent': 'line12-tracker build script'}), timeout=120).read()
+    data = urllib.request.urlopen(urllib.request.Request(KMZ_URL, headers={'User-Agent': 'mumbai-metro-tracker build script'}), timeout=120).read()
 root = ET.fromstring(zipfile.ZipFile(io.BytesIO(data)).read('doc.kml'))
 
 points, lines = {}, []

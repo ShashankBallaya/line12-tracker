@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro (static-first, islands), TypeScript. GSAP + ScrollTrigger + SplitText, Lenis, Three.js (lazy), MapLibre GL. Cloudflare Pages for the site (GitHub repo `ShashankBallaya/line12-tracker`, public). Set by the user's brief. News and video feed (Phase 5, deferred until the owner says to resume): a scheduled GitHub Actions job fetches Google News RSS and the YouTube Data API, commits a JSON file to `src/data/`, and Cloudflare Pages rebuilds. No Worker and no D1, so the feed stays on free tiers (decided 2026-09-28).
+Astro (static-first, islands), TypeScript. GSAP + ScrollTrigger + SplitText, Lenis, Three.js (lazy), MapLibre GL. Cloudflare Pages for the site (GitHub repo `ShashankBallaya/mumbai-metro-tracker`, public). Set by the user's brief. News and video feed (Phase 5, deferred until the owner says to resume): a scheduled GitHub Actions job fetches Google News RSS and the YouTube Data API, commits a JSON file to `src/data/`, and Cloudflare Pages rebuilds. No Worker and no D1, so the feed stays on free tiers (decided 2026-09-28).
 
 ## Users
 
