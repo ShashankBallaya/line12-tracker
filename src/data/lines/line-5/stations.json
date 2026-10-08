@@ -32,23 +32,24 @@
      "Metro Line 4 (Wadala-Kasarvadavali)"
     ],
     "status": "verified",
-    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf"
+    "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
+    "notes": "MMRDA's press release (May 2026) puts the Line 4 interchange 'at Balkhum (Kapurbawadi)'; its Phase 1 environmental report (Sep 2023) says Kapurbawdi station is built as part of Line 4."
    },
    "context": [],
    "construction_status": {
-    "value": "Built as part of Metro Line 4, not under Line 5's contracts",
+    "value": "Built as part of Metro Line 4; shared by Lines 4 and 5",
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf",
     "notes": "MMRDA's Phase 1 environmental report (Sep 2023), Table 2.3: Kapurbawdi station is built as part of Metro Line 4 and is not one of Line 5's six Phase 1 stations."
    },
    "revised_plan_2026": {
-    "value": "Kept: the Line 4 interchange (built under Line 4)",
+    "value": "Kept: the interchange station shared with Line 4",
     "name_in_plan": "Kapurbawdi",
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09"
    },
-   "notes": "Not in the 15-station list on MMRDA's Line 5 page; it is a station point in MMRDA's alignment file.",
+   "notes": "Line 5's first station and its interchange with Line 4. It is built under Line 4's contracts, so MMRDA does not count it among Line 5's stations; the site lists it as Line 5's station 1 (owner's decision, 2026-10-09). Not in the 15-station list on MMRDA's Line 5 page.",
    "last_verified": "2026-10-09"
   },
   {

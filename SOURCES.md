@@ -167,10 +167,10 @@ Line 5's Kalyan point (2025 file) is 14 m from Line 12's, and its APMC Kalyan po
 ## Items that need your review
 
 1. **Which plan to show.** Decided 2026-10-09 by the owner. Figures: MMRDA's press release of 28 May 2026 (34.21 km, 19 stations, Rs 18,130 Cr, the spur included). Names: Phase 1 Kapurbawdi to Dhamankar Naka, Phase 2 Dhamankar Naka to Durgadi, Phase 3 Durgadi to Kalyan, Line 5A the Bhoirwadi to Ulhasnagar spur. MMRDA calls Phase 3 and the spur together 'Phase 5A'. Phase 3 and the spur follow the tentative key plan of March 2026 (see Derived data); its tender was cancelled on 19 Aug 2026, so watch for a newer plan.
-2. **Phase 1 opening date.** MMRDA's press release (28 May 2026) quotes the Chief Minister: open by the end of 2026. No exact date. The September 2026 report also says trial runs take about six months, which does not fit. Countdown or not?
-3. **Line 5A.** The Bhoirwadi to Ulhasnagar spur. Unlike Line 12A it is inside MMRDA's Line 5 totals, so the totals include it. Its own page, or part of the Line 5 page?
+2. **Phase 1 opening date.** Decided 2026-10-09: show a countdown to 31 Dec 2026, labelled as a target. MMRDA's press release (28 May 2026) quotes the Chief Minister: open by the end of 2026; no exact date.
+3. **Line 5A.** Decided 2026-10-09: the Bhoirwadi to Ulhasnagar spur is shown on the Line 5 page, not on its own page. It is inside MMRDA's Line 5 totals.
 4. **Kongaon West.** New in the revised plan, with no published position. It is listed after Kon Gaon in MMRDA's order, without a map point.
-5. **Kapurbawdi.** Built as part of Line 4, but every Line 5 train will start there. The data lists it as Line 5's station 1, with a note.
+5. **Kapurbawdi.** Decided 2026-10-09: Line 5's station 1 and its interchange with Line 4. It is built under Line 4, so MMRDA does not count it in Line 5's 19 stations.
 
 ## Leads to verify
 

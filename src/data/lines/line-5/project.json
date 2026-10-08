@@ -303,14 +303,16 @@
       "https://www.freepressjournal.in/mumbai/mumbai-metro-line-5-trial-run-preparations-gain-momentum-as-mmrda-begins-25000-volt-overhead-wire-energisation",
       "https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/centre-approves-mumbai-metro-line-five-and-five-a/97055"
     ],
-    "notes": "MMRDA's press release (28 May 2026) quotes the Chief Minister: Phase 1 will open by the end of 2026. A news report of September 2026 says trial runs take about six months, which does not fit. No exact date.",
+    "notes": "MMRDA's press release (28 May 2026) quotes the Chief Minister: Phase 1 will open by the end of 2026. A news report of September 2026 says trial runs take about six months, which does not fit. No exact date. The site counts down to 31 Dec 2026 for Phase 1, labelled as a target (owner's decision, 2026-10-09).",
     "rest_of_line": {
       "value": "2030-31",
       "context": "Phases 2 and 3 towards Kalyan, and the Line 5A spur to Ulhasnagar",
       "status": "reported",
       "source_url": "https://metrorailnews.in/center-approved-mumbai-metro-line-5-and-5a/",
       "last_verified": "2026-10-09"
-    }
+    },
+    "countdown": true,
+    "countdown_label": "Phase 1 target: end of 2026"
   },
   "underground_section": {
     "value": "Bhiwandi station, the only underground station",
@@ -376,7 +378,7 @@
         "https://x.com/Maha7Arindam/status/2029366179580772677",
         "https://x.com/bodkeitis/status/2094307767142244544"
       ],
-      "notes": "Inside MMRDA's 34.21 km total for Line 5, unlike Line 12A. The key plan comes from a consultant tender that was cancelled on 19 Aug 2026, so the route may still change.",
+      "notes": "Inside MMRDA's 34.21 km total for Line 5, unlike Line 12A. The key plan comes from a consultant tender that was cancelled on 19 Aug 2026, so the route may still change. Shown on the Line 5 page, not on a page of its own (owner's decision, 2026-10-09).",
       "length_km": 5.273,
       "stations": [
         "Shanti Nagar",
