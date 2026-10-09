@@ -9,8 +9,9 @@ import Colophon from '../../components/Colophon.astro';
 import Grade from '../../components/Grade.astro';
 import LocatorMap from '../../components/LocatorMap.astro';
 import LineMark from '../../components/LineMark.astro';
-import { getLine, lines, lineNodeId, lineBase, hasStatusPage, stationHref, positionBasis, formatDate, type LineId, type Station } from '../../lib/data';
+import { getLine, lines, lineNodeId, lineBase, stationHref, positionBasis, formatDate, type LineId, type Station } from '../../lib/data';
 import type { GetStaticPathsOptions } from 'astro';
+import { hasStatusPage } from '../../lib/answers';
 import '../../styles/inner.css';
 
 interface PageProps {

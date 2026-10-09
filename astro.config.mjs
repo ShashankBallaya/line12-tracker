@@ -12,6 +12,7 @@ const linePreview = {
       // The live station pages, serving the previewed line (they tell the routes apart by routePattern).
       injectRoute({ pattern: '/preview/[line]/stations/[id]', entrypoint: './src/pages/stations/[id].astro' });
       injectRoute({ pattern: '/preview/[line]/stations', entrypoint: './src/preview/stations.astro' });
+      injectRoute({ pattern: '/preview/[line]/status', entrypoint: './src/preview/status.astro' });
     },
   },
 };

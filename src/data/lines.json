@@ -93,7 +93,12 @@
             "url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-03/tender_document.pdf"
           }
         ],
-        "page_description": "Unofficial, sourced tracker for Mumbai Metro Line 12, the Kalyan-Dombivli-Taloja metro: opening date, construction progress, all 19 stations, map, tenders and trains. Every figure links to its source."
+        "page_description": "Unofficial, sourced tracker for Mumbai Metro Line 12, the Kalyan-Dombivli-Taloja metro: opening date, construction progress, all 19 stations, map, tenders and trains. Every figure links to its source.",
+        "status_title": "Mumbai Metro Line 12 Status: opening date, progress, route",
+        "status_description": "When will Metro Line 12 (Kalyan to Taloja) open, how much is built, which stations and interchanges, cost and depot. Answers from MMRDA and news sources, checked {checked}.",
+        "status_h1": "Metro Line 12 status, answered",
+        "status_mr": "कल्याण-तळोजा मेट्रो १२",
+        "status_lead": "The questions people ask about Mumbai Metro Line 12, Kalyan to Taloja."
       }
     },
     {
@@ -191,7 +196,12 @@
             "url": "https://x.com/Maha7Arindam/status/2029366179580772677"
           }
         ],
-        "page_description": "Unofficial, sourced tracker for Mumbai Metro Line 5, the Thane-Bhiwandi-Kalyan metro: Phase 1 opening target, progress by phase, every station, the Line 5A spur to Ulhasnagar, map and tenders. Every figure links to its source."
+        "page_description": "Unofficial, sourced tracker for Mumbai Metro Line 5, the Thane-Bhiwandi-Kalyan metro: Phase 1 opening target, progress by phase, every station, the Line 5A spur to Ulhasnagar, map and tenders. Every figure links to its source.",
+        "status_title": "Mumbai Metro Line 5 Status: opening date, progress, route",
+        "status_description": "When will Metro Line 5 (Thane to Kalyan) open, which stations open first, what happens past Bhiwandi, where the Line 5A spur goes, cost and trains. Answers from MMRDA and news sources, checked {checked}.",
+        "status_h1": "Metro Line 5 status, answered",
+        "status_mr": "ठाणे-भिवंडी-कल्याण मेट्रो ५",
+        "status_lead": "The questions people ask about Mumbai Metro Line 5, Thane to Kalyan."
       }
     }
   ]

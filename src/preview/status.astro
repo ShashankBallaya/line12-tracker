@@ -1,0 +1,11 @@
+---
+/* Dev-only: the live status page, for a line that has no pages yet. Routed only by `astro dev` (astro.config.mjs). */
+import StatusPage from '../pages/status.astro';
+import { lines, type LineId } from '../lib/data';
+
+export function getStaticPaths() {
+  return lines.map((l) => ({ params: { line: l.id } }));
+}
+---
+
+<StatusPage lineId={Astro.params.line as LineId} />

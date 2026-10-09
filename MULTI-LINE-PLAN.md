@@ -88,7 +88,7 @@ Each step ships on its own and leaves the live site working.
    - `Trains`: done in step 7 (an ordered line shows its maker and contract).
    - `MapSection`, `[id].astro`, `LocatorMap`: done in step 7.
    - `SourcesFooter`: done in step 7 (`copy.primary_sources`).
-   - `status.astro`: every answer. Line 12 only (`hasStatusPage`) until Line 5's answers are written.
+   - `status.astro`: done in step 7 (`src/lib/answers.ts`).
    - `stations/index.astro`: done in step 7.
    - `Masthead`: done in step 7 (lists only the sections a line shows).
    - Site name "Line 12 Tracker" (Base, Colophon, breadcrumbs, OG, llms.txt): changes at the domain move.
@@ -127,7 +127,7 @@ Status 2026-10-09. The page reuses Line 12's components and layout; this list is
 | Trains | `rollingstock.json` | Done 2026-10-09: Line 5's file (Titagarh, CA-241, letter of acceptance announced 31 Oct 2025, 22 six-car trains built at Uttarpara near Kolkata, ABB traction; MMRDA's car figures). `Trains` shows an ordered line's maker, contract and figures. Maintenance term conflicts (5 years in the award reports, 15 after a 2-year defect period in the tender). Still wanted: a sourced image of the train. |
 | Ground photos | `photos.json` (owner, and Arindam with permission) | Phase 1 is built and near the owner: dated photos of Kapurbawdi, Kasheli, Dhamankar Naka. Same rules: EXIF stripped, plates blurred. |
 | Updates | `social.json`, feed match block | A `line_5` block in `feed-sources.json`. Patterns must keep "Line 5" and "Metro 5" but not other cities' Line 5 (Pune, Chennai, Bengaluru all have one). Posts by @bodkeitis and @Maha7Arindam as reported. |
-| Status page | `status.astro`, Line 12 answers | Line 5 answers: when Phase 1 opens, which stations open first, where it meets Line 4, what happens past Bhiwandi, where the spur goes. |
+| Status page | `status.astro`, Line 12 answers | Done 2026-10-09: 14 answers in `src/lib/answers.ts` (with Line 12's, moved there unchanged), from the data with their grades; the page and its wording are per line (lines.json `copy.status_*`). Preview at `/preview/line-5/status/`. |
 | Station pages | 19 pages, Marathi names, street level | 18 + 3 spur pages. Marathi names missing for Kapurbawdi, Durgadi, Khadakpada, Bhoirwadi, Shivaji Path, Kongaon West and the spur stations (Wikipedia has some, unverified). |
 | OG card, llms.txt, sitemap | Line 12 | Per line, in step 4. |
 

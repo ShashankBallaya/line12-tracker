@@ -1,139 +1,36 @@
 ---
 /**
- * Line 12 status, answered: the questions people search for, each answered from the data files
- * with its grade and source. The same answers feed the FAQPage structured data.
+ * A line's status, answered: the questions people search for, each answered from the data files
+ * with its grade and source (src/lib/answers.ts). The same answers feed the FAQPage structured data.
  */
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
 import Colophon from '../components/Colophon.astro';
 import Grade from '../components/Grade.astro';
-import { getLine, formatDate, inr } from '../lib/data';
+import { getLine, formatDate, lineBase, type LineId } from '../lib/data';
+import { answersFor } from '../lib/answers';
 import '../styles/inner.css';
 
-const line = getLine('line-12');
-const { project, stations, contractors, lastReviewed } = line;
-const rollingstock = line.rollingstock!;
-const p = project;
-const t = p.target_completion;
-const prog = p.progress;
-const overall = prog.overall_reported;
-const civil = contractors.find((c) => c.id === 'gawar-constructions')!;
-const line12a = p.related_projects[0];
-const pct = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-// "Pile works" -> "pile works" mid-sentence, but "U-girder works" keeps its capital.
-const lower = (t: string) => (/^[A-Z][a-z]/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t);
-const aliases = p.name.also_known_as.filter((n) => !n.startsWith('Orange Line'));
+interface Props {
+  /** Set by the `astro dev` preview (src/preview/status.astro); the live page is Line 12's. */
+  lineId?: LineId;
+}
+const line = getLine(Astro.props.lineId ?? 'line-12');
+const { lastReviewed } = line;
+const { copy, label } = line.info;
+const base = lineBase(line.id)!;
+const answers = answersFor(line)!;
 const site = Astro.site!.toString();
 
-interface Answer {
-  id: string;
-  q: string;
-  a: string;
-  grades: { status: string; source: string | null }[];
-  more?: { href: string; label: string };
-}
-
-const answers: Answer[] = [
-  {
-    id: 'opening',
-    q: 'When will Mumbai Metro Line 12 open?',
-    a: `No official opening date has been published. The latest reported target is ${formatDate(t.value)} (reported in December 2025). An earlier reported target was ${formatDate(t.alternatives[0].value)}, and the 2019 project report had assumed ${formatDate(t.alternatives[1].value)}. MMRDA's project page gives no date.`,
-    grades: [{ status: t.status, source: t.source_url }],
-  },
-  {
-    id: 'progress',
-    q: 'How much of Line 12 is built?',
-    a: `MMRDA's progress table for ${formatDate(prog.as_of)} puts ${prog.items.map((i) => `${lower(i.activity)} at ${pct(i.percent_complete)}%`).join(', ')}. Loksatta reported on ${formatDate(overall.as_of)}, quoting unnamed MMRDA sources, that ${pct(overall.percent_complete)}% of the whole line is complete; MMRDA itself publishes no overall figure.`,
-    grades: [
-      { status: prog.status, source: prog.source_url },
-      { status: overall.status, source: overall.source_url },
-    ],
-  },
-  {
-    id: 'route',
-    q: 'What is the route of Metro Line 12?',
-    a: `${p.route.value}. The line is ${p.length_km.value} km long, fully elevated, with ${p.stations_count.value} stations. It runs above Kalyan-Shilphata Road from Kalyan to Sonarpada.`,
-    grades: [{ status: p.route.status, source: p.route.source_url }],
-    more: { href: '/#map', label: 'See the route on the map' },
-  },
-  {
-    id: 'stations',
-    q: 'Which stations are on Line 12?',
-    a: `${stations.length} stations, in order: ${stations.map((s) => s.name).join(', ')}.`,
-    grades: [{ status: p.stations_count.status, source: p.stations_count.source_url }],
-    more: { href: '/stations/', label: 'A page for every station' },
-  },
-  {
-    id: 'interchanges',
-    q: 'Where does Line 12 connect with other lines?',
-    a: `${p.interchanges.value.map((x) => `At ${x.station}, with ${x.connects_to}`).join('. ')}. Line 12 continues Metro Line 5 (Thane-Bhiwandi-Kalyan) south from Kalyan.`,
-    grades: [{ status: p.interchanges.status, source: p.interchanges.source_url }],
-  },
-  {
-    id: 'cost',
-    q: 'How much does Metro Line 12 cost?',
-    a: `MMRDA's loan invitation of March 2026 gives an estimated cost of Rs ${inr(p.completion_cost_crore_inr.value)} crore, plus interest during construction. MMRDA's project page still gives Rs ${inr(p.completion_cost_crore_inr.alternatives[0].value)} crore, the 2019 report's completion cost. To pay for it, MMRDA invited banks in March 2026 to lend Rs 7,800 crore; no lender has been named yet.`,
-    grades: [
-      { status: p.completion_cost_crore_inr.status, source: p.completion_cost_crore_inr.source_url },
-      { status: p.funding.status, source: p.funding.source_url },
-    ],
-  },
-  {
-    id: 'builder',
-    q: 'Who is building Line 12?',
-    a: `MMRDA (Mumbai Metropolitan Region Development Authority) is building the line. ${civil.name} holds the civil contract for the viaduct and all ${p.stations_count.value} stations (package CA-240, awarded in March 2024).`,
-    grades: [
-      { status: p.implementing_agency.status, source: p.implementing_agency.source_url },
-      { status: civil.status, source: civil.source_url },
-    ],
-  },
-  {
-    id: 'depot',
-    q: 'Where is the Line 12 depot?',
-    a: `At ${p.depot.value}, on about ${p.depot.area_ha} hectares.`,
-    grades: [{ status: p.depot.status, source: p.depot.source_url }],
-  },
-  {
-    id: 'trains',
-    q: 'Which trains will run on Line 12?',
-    a: `No train maker has been chosen yet. The trains are part of the systems tender MMRDA floated in June 2026. The 2019 project report plans ${rollingstock.dpr_design_assumptions.initial_formation_cars}-car air-conditioned trains, growing to ${rollingstock.dpr_design_assumptions.future_formation_cars} cars, with a top operating speed of ${rollingstock.dpr_design_assumptions.max_operating_speed_kmph} km/h.`,
-    grades: [
-      { status: rollingstock.procurement.status, source: rollingstock.procurement.source_url },
-      { status: rollingstock.dpr_design_assumptions.status, source: rollingstock.dpr_design_assumptions.source_url },
-    ],
-  },
-  {
-    id: 'riders',
-    q: 'How many people will use Line 12?',
-    a: `About ${p.daily_ridership_2031.display} riders a day by 2031, as projected. MMRDA says the line saves about ${p.travel_time_benefit.minutes_saved} minutes between Kalyan and Taloja, cutting road travel time by 50% to 75% depending on traffic.`,
-    grades: [
-      { status: p.daily_ridership_2031.status, source: p.daily_ridership_2031.source_url },
-      { status: p.travel_time_benefit.status, source: p.travel_time_benefit.source_url },
-    ],
-  },
-  {
-    id: 'line-12a',
-    q: 'Is Line 12A the same as Line 12?',
-    a: `No. ${line12a.name} is a separate project: ${line12a.summary} Its figures are not counted in Line 12's.`,
-    grades: [{ status: line12a.status, source: line12a.source_url }],
-  },
-  {
-    id: 'names',
-    q: 'What else is Metro Line 12 called?',
-    a: `${p.name.value} is also called ${aliases.join(' or ')}. It is part of the ${p.line_color.value}, as the southern extension of Metro Line 5.`,
-    grades: [{ status: p.name.status, source: p.name.source_url }],
-  },
-];
-
-const title = 'Mumbai Metro Line 12 Status: opening date, progress, route';
-const description = `When will Metro Line 12 (Kalyan to Taloja) open, how much is built, which stations and interchanges, cost and depot. Answers from MMRDA and news sources, checked ${formatDate(lastReviewed)}.`;
+const title = copy.status_title;
+const description = copy.status_description.replace('{checked}', formatDate(lastReviewed));
 
 const schema = [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Line 12 Tracker', item: site },
-      { '@type': 'ListItem', position: 2, name: 'Status', item: `${site}status/` },
+      { '@type': 'ListItem', position: 2, name: 'Status', item: `${site}${base.slice(1)}status/` },
     ],
   },
   {
@@ -148,17 +45,17 @@ const schema = [
   <main id="main" class="page inner">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
-        <li><a href="/">Line 12</a></li>
+        <li><a href={base}>{label}</a></li>
         <li aria-current="page">Status</li>
       </ol>
     </nav>
 
     <header class="inner__head">
-      <h1 class="inner__title">Metro Line 12 status, answered</h1>
-      <p class="inner__mr mr" lang="mr">कल्याण-तळोजा मेट्रो १२</p>
+      <h1 class="inner__title">{copy.status_h1}</h1>
+      <p class="inner__mr mr" lang="mr">{copy.status_mr}</p>
       <p class="inner__standfirst">
-        The questions people ask about Mumbai Metro Line 12, Kalyan to Taloja. Each answer shows how sure it is and
-        where it comes from. Checked <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>.
+        {copy.status_lead} Each answer shows how sure it is and where it comes from. Checked{' '}
+        <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>.
       </p>
     </header>
 
@@ -176,7 +73,7 @@ const schema = [
     </dl>
 
     <p class="inner__block fact__note">
-      <a href="/">The full Line 12 tracker</a>, with the route, map, tenders and timeline.
+      <a href={base}>The full {label} tracker</a>, with the route, map, tenders and timeline.
     </p>
   </main>
   <Colophon line={line} />

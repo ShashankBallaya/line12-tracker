@@ -1,8 +1,9 @@
 ---
 import Grade from './Grade.astro';
 import LeadPicture from './LeadPicture.astro';
-import { formatDate, hasStatusPage, lineBase, type Line } from '../lib/data';
+import { formatDate, lineBase, type Line } from '../lib/data';
 import { schematic } from '../lib/route';
+import { hasStatusPage } from '../lib/answers';
 
 interface Props {
   line: Line;

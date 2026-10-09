@@ -199,9 +199,6 @@ export function lineMark(text: string): { number: string; line?: LineInfo } | nu
   return { number: m[1], line: lines.find((l) => l.number === m[1]) };
 }
 
-/** Whether the line has a status page of answers. Line 5's answers are not written yet (MULTI-LINE-PLAN.md, data table). */
-export const hasStatusPage = (line: Line) => line.id === 'line-12';
-
 /** A station's page, or null when its line has no pages yet (then show its name as plain text). */
 export function stationHref(id: LineId, station: string): string | null {
   const base = lineBase(id);
