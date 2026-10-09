@@ -6,14 +6,15 @@
  * pins the stage and moves the train along a horizontal strip as the reader scrolls.
  */
 import Grade from './Grade.astro';
-import type { Line } from '../lib/data';
+import { lineCopy, type Line } from '../lib/data';
 import { schematic } from '../lib/route';
 
 interface Props {
   line: Line;
 }
 const { line } = Astro.props;
-const { stations } = line;
+const { stations, spurStations, spurFrom } = line;
+const start = stations[0].name;
 
 
 // Same bent schematic as the front page, drawn at poster weight.
@@ -30,10 +31,7 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
   <div class="page">
     <header class="section-head">
       <h2 id="route-title">Route</h2>
-      <p>
-        Nineteen stations, Kalyan to Amandoot. Scroll to ride the line station by station. Distances follow MMRDA's
-        approved alignment of 20 March 2025.
-      </p>
+      <p>{lineCopy(line, 'route_section')}</p>
     </header>
   </div>
 
@@ -53,6 +51,13 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
             <span class="ride__tick-name">{s.name}</span>
           </span>
         ))}
+        {strip.branch?.points.map(([x, y], k) => (
+          // Names alternate below and above the spur: its stations sit close together.
+          <span class:list={['ride__tick', k % 2 ? 'ride__tick--above' : 'ride__tick--below']} style={`--x:${(x / strip.width) * 100}%;--y:${(y / strip.height) * 100}%`}>
+            <span class="ride__dot"></span>
+            <span class="ride__tick-name">{spurStations[k].name}</span>
+          </span>
+        ))}
         <span class="ride__train" data-ride-train></span>
       </div>
 
@@ -61,13 +66,19 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
           <li class="ride__station" id={`station-${s.id}`} data-ride-station={i} style={`--x:${px(i)}%;--y:${py(i)}%`}>
             <div class="ride__id">
             <h3 class="ride__name">{s.name}</h3>
-            <p class="ride__km num" aria-hidden="true">{km(s.location.along_m)}<span> km</span></p>
+            {s.location.along_m !== null && <p class="ride__km num" aria-hidden="true">{km(s.location.along_m)}<span> km</span></p>}
             <p class="ride__order num">Station {s.order} of {stations.length}</p>
             {s.dpr_name && s.dpr_name !== s.name && <p class="ride__alias">Called "{s.dpr_name}" in the 2019 project report.</p>}
-            <p class="ride__distance num">
-              <span class="visually-hidden">{km(s.location.along_m)} km </span>from the start of the line at Kalyan{' '}
-              <Grade status={s.location.status} source={s.location.source_url} compact />
-            </p>
+            {s.location.along_m !== null ? (
+              <p class="ride__distance num">
+                <span class="visually-hidden">{km(s.location.along_m)} km </span>from the start of the line at {start}{' '}
+                <Grade status={s.location.status} source={s.location.source_url} compact />
+              </p>
+            ) : (
+              <p class="ride__distance">
+                Position not published <Grade status={s.location.status} source={s.location.source_url} compact />
+              </p>
+            )}
             </div>
             <div class="ride__info">
             {s.interchanges.value.length > 0 && (
@@ -84,6 +95,7 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
                 ))}
               </ul>
             )}
+            {s.type !== 'Elevated' && <p class="ride__status">{s.type} station</p>}
             <p class="ride__status">
               {s.construction_status.value} <Grade status={s.construction_status.status} compact noSource />
             </p>
@@ -95,10 +107,30 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
 
       <p class="ride__legend">
         <span class="ride__legend-line" aria-hidden="true"></span>
-        A hollow line marks track that is under construction. No part of Line 12 has opened.
+        {lineCopy(line, 'route_legend')}
       </p>
     </div>
   </div>
+
+  {spurStations.length > 0 && (
+    <div class="page ride__spur">
+      <h3 class="ride__spur-title">Line {spurStations[0].phase} spur, from {spurFrom?.name}</h3>
+      <ol class="ride__spur-list">
+        {spurStations.map((s) => (
+          <li class="ride__spur-stop" id={`station-${s.id}`}>
+            <h4 class="ride__spur-name">{s.name}</h4>
+            <p class="num">
+              {km(s.location.along_m)} km along the spur <Grade status={s.location.status} source={s.location.source_url} compact />
+            </p>
+            <p class="ride__status">
+              {s.construction_status.value} <Grade status={s.construction_status.status} compact noSource />
+            </p>
+            {s.notes && <p class="ride__note">{s.notes}</p>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  )}
 </section>
 
 <style>
@@ -393,6 +425,42 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
     gap: var(--s-3);
     font-size: var(--step--1);
     color: var(--ink-3);
+  }
+  /* A spur: its stations after the ride, in both states. */
+  .ride__spur {
+    margin-top: var(--s-6);
+  }
+  .ride__spur-title {
+    margin: 0 0 var(--s-3);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .ride__spur-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--s-4) var(--s-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ride__spur-stop {
+    display: grid;
+    gap: var(--s-1);
+    align-content: start;
+    padding-top: var(--s-3);
+    border-top: var(--rule-heavy) solid var(--rule-strong);
+    scroll-margin-top: var(--s-6);
+  }
+  .ride__spur-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: var(--step-2);
+    line-height: 1;
+    text-transform: uppercase;
   }
   .ride__legend-line {
     width: 3rem;

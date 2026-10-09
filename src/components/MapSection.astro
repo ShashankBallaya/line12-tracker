@@ -5,7 +5,7 @@
  * viewport) adds the route and stations; choosing a station fills the panel, including street level.
  */
 import Grade from './Grade.astro';
-import { formatDate, type Line } from '../lib/data';
+import { formatDate, positionBasis, type Line } from '../lib/data';
 
 interface Props {
   line: Line;
@@ -20,7 +20,6 @@ import { STREET_LEVEL_PROVIDER, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../conf
 const mapped = stations.filter((s) => s.location.lat !== null);
 // Same first choice as the map script.
 const first = mapped.find((s) => s.id === 'dombivli-midc') ?? mapped[0];
-const WHERE = "MMRDA's approved alignment, 20 Mar 2025";
 const alignMeta = JSON.parse(alignment).properties;
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
@@ -33,7 +32,7 @@ const toData = (s: (typeof stations)[number], group: Group) => ({
   name: s.name,
   lat: s.location.lat,
   lng: s.location.lng,
-  where: WHERE,
+  where: positionBasis(line, s),
   interchanges: s.interchanges.value,
   context: s.context.map((c) => ({ text: cap(c.text.replace(/^DPR: /, 'In the 2019 project report: ')), status: c.status, source: c.source_url })),
   status: s.construction_status.value,
@@ -115,7 +114,7 @@ const streetConfig = {
       <article class="panel" data-map-panel aria-live="polite">
         <h3 class="panel__name" data-panel-name>{first.name}</h3>
         <p class="panel__coords num" data-panel-coords>
-          {first.location.lat?.toFixed(5)}, {first.location.lng?.toFixed(5)} ({WHERE})
+          {first.location.lat?.toFixed(5)}, {first.location.lng?.toFixed(5)} ({positionBasis(line, first)})
         </p>
         <div data-panel-body>
           <p class="panel__muted">Choose a station on the map or in the list.</p>

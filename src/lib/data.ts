@@ -84,6 +84,8 @@ export interface Stage {
 /** One part of a line built on its own (Line 5: Phase 1, Phase 2, Phase 3 with the spur). `label` is null when the line is built as one. */
 export interface StageSection {
   label: string | null;
+  /** The station phases (stations.json `phase`) this section covers, on a line built in parts. */
+  phases?: (number | string)[];
   stages: Stage[];
 }
 
@@ -101,6 +103,8 @@ export interface Line {
   spurStations: Station[];
   /** Stations of an earlier plan that the current plan drops. */
   droppedStations: Station[];
+  /** The station the spur leaves from (alignment property `branch_from_station`), when the line has a spur. */
+  spurFrom?: Station;
   stationsMeta: StationsFile['_meta'];
   timeline: TimelineEvent[];
   tenders: Tender[];
@@ -164,12 +168,47 @@ export function getLine(id: LineId): Line {
       .sort()
       .at(-1)!,
   };
+  const branchFrom = line.alignmentRaw ? JSON.parse(line.alignmentRaw).properties?.branch_from_station : undefined;
+  if (branchFrom) {
+    line.spurFrom = line.stations.find((s) => s.id === branchFrom);
+    if (!line.spurFrom) throw new Error(`${id}: branch_from_station "${branchFrom}" is not a station`);
+  }
   byId.set(id, line);
   return line;
 }
 
 /** The latest review date across every line, for site-wide pages such as the sitemap. */
 export const lastReviewed: string = lines.map((l) => getLine(l.id).lastReviewed).sort().at(-1)!;
+
+/**
+ * Where a line's pages live, or null while it has none. Line 12 sits at the site root until the move to
+ * /line-12/ (MULTI-LINE-PLAN.md, step 4); other lines have pages only in the `astro dev` preview.
+ */
+export function lineBase(id: LineId): string | null {
+  if (id === 'line-12') return '/';
+  return import.meta.env.DEV ? `/preview/${id}/` : null;
+}
+
+/** A station's page, or null when its line has no pages yet (then show its name as plain text). */
+export function stationHref(id: LineId, station: string): string | null {
+  const base = lineBase(id);
+  return base && `${base}stations/${station}/`;
+}
+
+/** Where a station's coordinates come from, in a few words: matched on the source of its position. */
+export function positionBasis(line: Line, s: Station): string {
+  const { default: fallback, by_source } = line.info.position_basis as { default: string; by_source: Record<string, string> };
+  const url = s.location.source_url ?? '';
+  return Object.entries(by_source).find(([part]) => url.includes(part))?.[1] ?? fallback;
+}
+
+/** The line's own wording for a shared page (lines.json `copy`), with {total}, {km} and {name} filled in. */
+export function lineCopy(line: Line, key: 'stations_section' | 'stations_page' | 'stations_page_description' | 'route_section' | 'route_legend'): string {
+  return line.info.copy[key]
+    .replace('{total}', String(line.stations.length))
+    .replace('{km}', String(line.project.length_km.value))
+    .replace('{name}', line.info.about.name);
+}
 
 /** The schema.org @id of a line's node, e.g. "https://example.org/#line12". Station pages point at it. */
 export const lineNodeId = (siteUrl: string, line: Line) => `${siteUrl}#${line.id.replace('-', '')}`;

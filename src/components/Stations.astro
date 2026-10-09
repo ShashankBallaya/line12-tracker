@@ -1,22 +1,30 @@
 ---
 import Grade from './Grade.astro';
-import type { Line } from '../lib/data';
+import { lineCopy, stationHref, getLine, type Line, type LineId, type Station } from '../lib/data';
 
 interface Props {
   line: Line;
 }
 const { line } = Astro.props;
-const { stations, stationsMeta } = line;
+const { stations, spurStations, droppedStations, stationsMeta } = line;
+const page = (s: Station) => stationHref(line.id, s.id);
+type SameSite = { line: LineId; station: string };
+/** What the revised plan of 2026 says about a station (Line 5). */
+const plan = (s: Station) => (s as { revised_plan_2026?: { value: string; status: string; source_url: string } }).revised_plan_2026;
+/** A station of another line at the same place: its name, and a link when that line has pages. */
+const sameSite = (s: Station) => {
+  const other = (s as { same_site_as?: SameSite }).same_site_as;
+  if (!other) return null;
+  const o = getLine(other.line);
+  return { label: `${o.info.label} ${o.stations.find((x) => x.id === other.station)?.name ?? other.station}`, href: stationHref(other.line, other.station) };
+};
 
 ---
 
 <section id="stations" class="section page" aria-labelledby="stations-title">
   <header class="section-head">
     <h2 id="stations-title">Stations</h2>
-    <p>
-      All nineteen, in order from Kalyan. Names follow the civil contract. Select a station to ride to it, or open
-      its own page.
-    </p>
+    <p>{lineCopy(line, 'stations_section')}</p>
   </header>
 
   <ol class="directory">
@@ -28,11 +36,57 @@ const { stations, stationsMeta } = line;
         </a>
         <span class="entry__mr mr" lang="mr">{s.name_mr}</span>
         {s.interchanges.value.length > 0 && <span class="entry__change">Interchange: {s.interchanges.value.join(', ')}</span>}
+        {sameSite(s) && (
+          <span class="entry__change">
+            Same site as {sameSite(s)!.href ? <a href={sameSite(s)!.href}>{sameSite(s)!.label}</a> : sameSite(s)!.label}
+          </span>
+        )}
+        {s.type !== 'Elevated' && <span class="entry__change">{s.type}</span>}
         {s.location.lat === null && <span class="entry__change">Position not yet mapped</span>}
-        <a class="entry__page" href={`/stations/${s.id}/`}>Station page<span class="visually-hidden">: {s.name}</span></a>
+        {page(s) && <a class="entry__page" href={page(s)}>Station page<span class="visually-hidden">: {s.name}</span></a>}
       </li>
     ))}
   </ol>
+
+  {spurStations.length > 0 && (
+    <>
+      <h3 class="directory__group">Line {spurStations[0].phase} spur, from {line.spurFrom?.name}</h3>
+      <ol class="directory">
+        {spurStations.map((s) => (
+          <li class="entry">
+            <a class="entry__link" href={`#station-${s.id}`}>
+              <span class="entry__order num">{String(s.order).padStart(2, '0')}</span>
+              <span class="entry__name">{s.name}</span>
+            </a>
+            {s.name_mr && <span class="entry__mr mr" lang="mr">{s.name_mr}</span>}
+            {page(s) && <a class="entry__page" href={page(s)}>Station page<span class="visually-hidden">: {s.name}</span></a>}
+          </li>
+        ))}
+      </ol>
+    </>
+  )}
+
+  {droppedStations.length > 0 && (
+    <>
+      <h3 class="directory__group">On the 2017 plan, dropped in the revised plan</h3>
+      <ul class="directory directory--dropped">
+        {droppedStations.map((s) => (
+          <li class="entry">
+            <span class="entry__link">
+              <span class="entry__order num" aria-hidden="true"></span>
+              <span class="entry__name">{s.name}</span>
+            </span>
+            {sameSite(s) && <span class="entry__change">Near {sameSite(s)!.href ? <a href={sameSite(s)!.href}>{sameSite(s)!.label}</a> : sameSite(s)!.label}</span>}
+            {plan(s) && (
+              <span class="entry__change">
+                {plan(s)!.value} <Grade status={plan(s)!.status} source={plan(s)!.source_url} compact />
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
   <p class="directory__source">
     Station list and order <Grade status="reported" source={stationsMeta.order_source_url} />
     <span aria-hidden="true">,</span> station count <Grade status="verified" source={stationsMeta.count_source_url} />
@@ -115,6 +169,20 @@ const { stations, stationsMeta } = line;
     padding-left: calc(1.6rem + var(--s-3));
     font-size: var(--step--1);
     color: var(--ink-2);
+  }
+  /* A line in parts: the spur and the dropped stations each under their own heading. */
+  .directory__group {
+    margin: var(--s-6) 0 var(--s-3);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .directory--dropped .entry__name {
+    color: var(--ink-3);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
   }
   .directory__source {
     display: flex;

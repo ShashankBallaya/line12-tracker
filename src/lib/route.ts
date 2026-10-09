@@ -33,7 +33,6 @@ export interface Schematic {
 
 interface AlignmentProps {
   bend_along_m?: number;
-  branch_from_station?: string;
   underground_along_m?: [number, number];
 }
 
@@ -56,8 +55,7 @@ export function schematic(line: Line, { width = 1000, top = 26, drop = 44, pad =
   /** For Line 12, where it leaves Kalyan-Shilphata Road: the DPR's bend (ch. 7,182 m) found on the 2025 line. */
   const bendM = props.bend_along_m;
   const { along, placed } = distances(stations);
-  const from = props.branch_from_station ? stations.findIndex((s) => s.id === props.branch_from_station) : -1;
-  if (props.branch_from_station && from < 0) throw new Error(`${line.id}: branch_from_station ${props.branch_from_station} is not a station`);
+  const from = line.spurFrom ? stations.indexOf(line.spurFrom) : -1;
   const spur = from >= 0 && spurStations.length ? spurStations.map((s) => along[from] + s.location.along_m) : [];
   const c0 = along[0];
   const c1 = Math.max(along[along.length - 1], ...spur);

@@ -8,52 +8,99 @@ import Masthead from '../../components/Masthead.astro';
 import Colophon from '../../components/Colophon.astro';
 import Grade from '../../components/Grade.astro';
 import LocatorMap from '../../components/LocatorMap.astro';
-import { getLine, lineNodeId, formatDate, type Station } from '../../lib/data';
+import { getLine, lines, lineNodeId, lineBase, stationHref, positionBasis, formatDate, type LineId, type Station } from '../../lib/data';
+import type { GetStaticPathsOptions } from 'astro';
 import '../../styles/inner.css';
 
-export function getStaticPaths() {
+interface PageProps {
+  i: number;
+  /** Absent for Line 12, the line these pages were built for. */
+  lineId?: LineId;
+  /** The station is on the line's spur (spurStations), not on the line itself. */
+  spur?: boolean;
+}
+
+export function getStaticPaths({ routePattern }: GetStaticPathsOptions) {
+  // `astro dev` also serves other lines' station pages from this file, at /preview/<line>/stations/<id>/ (astro.config.mjs).
+  if (routePattern.startsWith('/preview')) {
+    return lines
+      .filter((l) => l.id !== 'line-12')
+      .flatMap((l) => {
+        const other = getLine(l.id);
+        const own = other.stations.map((s, i) => ({ params: { line: l.id, id: s.id }, props: { i, lineId: l.id } as PageProps }));
+        const spur = other.spurStations.map((s, i) => ({ params: { line: l.id, id: s.id }, props: { i, lineId: l.id, spur: true } as PageProps }));
+        return [...own, ...spur];
+      });
+  }
   return getLine('line-12').stations.map((s, i) => ({ params: { id: s.id }, props: { i } }));
 }
 
-const line = getLine('line-12');
-const { stations, stationsMeta, stationPhotos, project } = line;
-const { label, route_short, about } = line.info;
-const { i } = Astro.props as { i: number };
-const s: Station = stations[i];
-const prev = stations[i - 1];
-const next = stations[i + 1];
-const total = stations.length;
+const { i, lineId = 'line-12', spur = false } = Astro.props as PageProps;
+const line = getLine(lineId);
+const { stations, spurStations, spurFrom, stationsMeta, stationPhotos, project, stages } = line;
+const { label, route_short, about, copy } = line.info;
+const base = lineBase(line.id)!;
+const list = spur ? spurStations : stations;
+const s: Station = list[i];
+// The spur's first station steps back to the station the spur leaves from.
+const prev: Station | undefined = list[i - 1] ?? (spur ? spurFrom : undefined);
+const next: Station | undefined = list[i + 1];
+const total = list.length;
+const on = spur ? `the Line ${s.phase} spur of ${about.name}` : about.name;
+const [endA, endB] = spur ? [spurFrom!.name, list.at(-1)!.name] : copy.ends;
+// A line built as one says its state (Line 12: under construction); a line in parts names the part.
+const section = stages.find((sec) => sec.phases?.includes(s.phase!));
+const state = copy.station_state ?? (section?.label ? `Part of ${section.label}.` : '');
+type SameSite = { line: LineId; station: string };
+const other = (s as { same_site_as?: SameSite }).same_site_as;
+const otherLine = other && getLine(other.line);
+const sameSite = other && {
+  label: `${otherLine!.info.label} ${otherLine!.stations.find((x) => x.id === other.station)?.name ?? other.station}`,
+  href: stationHref(other.line, other.station),
+};
 const loc = s.location as Station['location'] & { earlier?: { basis: string; distance_m: number }[] };
-const where = "MMRDA's approved alignment, 20 Mar 2025";
+const where = positionBasis(line, s);
 // Only moves a reader would notice on the map; readings within a few dozen metres are not news.
 const moved = (loc.earlier ?? []).filter((e) => e.distance_m >= 50);
 const ch = loc.dpr_chainage_m;
 const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 const target = project.target_completion;
+/**
+ * The target that covers this station. Line 12 has one target for the whole line (and an earlier one);
+ * Line 5's target covers Phase 1, and `rest_of_line` the other phases and the spur.
+ */
+type Target = typeof target & { scope?: string; rest_of_line?: { value: string; context: string; status: string; source_url: string } };
+const t = target as Target;
+const opening =
+  t.scope && s.phase === 1
+    ? { scope: t.scope, when: formatDate(t.value), reported: false, status: t.status, source_url: t.source_url }
+    : t.scope && t.rest_of_line
+      ? { scope: t.rest_of_line.context, when: t.rest_of_line.value, reported: true, status: t.rest_of_line.status, source_url: t.rest_of_line.source_url }
+      : { scope: undefined, when: '', reported: true, status: target.status, source_url: target.source_url };
 const site = Astro.site!.toString();
 // Dated ground photos (the maintainer's, or shared with permission), when there are any; otherwise the slot waits for them.
 const photos = stationPhotos[s.id] ?? [];
 const [lead, ...more] = photos;
 
 const title = `${s.name} Metro Station, ${about.name} (${route_short})`;
-const description = `${s.name} is station ${s.order} of ${total} on ${about.name}, ${route_short}. Where it is, what is around it, interchanges and construction status, each with its source.`;
+const description = `${s.name} is station ${s.order} of ${total} on ${on}, ${route_short}. Where it is, what is around it, interchanges and construction status, each with its source.`;
 
 const schema: Record<string, unknown>[] = [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Line 12 Tracker', item: site },
-      { '@type': 'ListItem', position: 2, name: 'Stations', item: `${site}stations/` },
-      { '@type': 'ListItem', position: 3, name: s.name, item: `${site}stations/${s.id}/` },
+      { '@type': 'ListItem', position: 2, name: 'Stations', item: `${site}${base.slice(1)}stations/` },
+      { '@type': 'ListItem', position: 3, name: s.name, item: `${site}${base.slice(1)}stations/${s.id}/` },
     ],
   },
   {
     '@type': 'TrainStation',
     name: `${s.name} metro station`,
-    alternateName: `${s.name_mr} मेट्रो स्थानक`,
-    description: `Elevated station ${s.order} of ${total} on ${about.name} (${route_short}). Under construction.`,
-    url: `${site}stations/${s.id}/`,
+    ...(s.name_mr ? { alternateName: `${s.name_mr} मेट्रो स्थानक` } : {}),
+    description: `${s.type} station ${s.order} of ${total} on ${on} (${route_short}). ${state}`,
+    url: `${site}${base.slice(1)}stations/${s.id}/`,
     address: { '@type': 'PostalAddress', addressRegion: 'Maharashtra', addressCountry: 'IN' },
     ...(loc.lat !== null ? { geo: { '@type': 'GeoCoordinates', latitude: loc.lat, longitude: loc.lng } } : {}),
     containedInPlace: { '@id': lineNodeId(site, line) },
@@ -66,8 +113,8 @@ const schema: Record<string, unknown>[] = [
   <main id="main" class="page inner">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
-        <li><a href="/">{label}</a></li>
-        <li><a href="/stations/">Stations</a></li>
+        <li><a href={base}>{label}</a></li>
+        <li><a href={`${base}stations/`}>Stations</a></li>
         <li aria-current="page">{s.name}</li>
       </ol>
     </nav>
@@ -75,10 +122,10 @@ const schema: Record<string, unknown>[] = [
     <div class="inner__lead">
       <header class="inner__head">
         <h1 class="inner__title">{s.name} metro station</h1>
-        <p class="inner__mr mr" lang="mr">{s.name_mr} मेट्रो स्थानक</p>
+        {s.name_mr && <p class="inner__mr mr" lang="mr">{s.name_mr} मेट्रो स्थानक</p>}
         <p class="inner__standfirst">
-          Station {s.order} of {total} on {about.name}, which will run fully elevated from Kalyan to Taloja.{' '}
-          {s.type}. Under construction.
+          Station {s.order} of {total} on {on}, {copy.runs}.{' '}
+          {s.type}. {state}
         </p>
       </header>
 
@@ -113,7 +160,7 @@ const schema: Record<string, unknown>[] = [
             <>
               <p class="num">{loc.lat.toFixed(5)}, {loc.lng!.toFixed(5)} ({where})</p>
               <p>
-                <a href={`/?station=${s.id}#map`}>See it on the map</a>
+                <a href={`${base}?station=${s.id}#map`}>See it on the map</a>
                 <span aria-hidden="true"> / </span>
                 <a href={`https://www.openstreetmap.org/?mlat=${loc.lat}&mlon=${loc.lng}#map=17/${loc.lat}/${loc.lng}`} target="_blank" rel="noopener">OpenStreetMap<span class="visually-hidden"> (opens in a new tab)</span></a>
               </p>
@@ -132,10 +179,12 @@ const schema: Record<string, unknown>[] = [
         <dt>Along the line</dt>
         <dd>
           {loc.lat !== null && <LocatorMap line={line} station={s} />}
-          <p>
-            {km(loc.along_m)} km from the start of the line at Kalyan
-            {ch !== null && <span class="fact__note num"> (2019 project report: chainage {ch.toLocaleString('en-IN')} m)</span>}
-          </p>
+          {loc.along_m !== null && (
+            <p>
+              {km(loc.along_m)} km {spur ? `along the spur from ${spurFrom!.name}` : `from the start of the line at ${stations[0].name}`}
+              {ch != null && <span class="fact__note num"> (2019 project report: chainage {ch.toLocaleString('en-IN')} m)</span>}
+            </p>
+          )}
         </dd>
       </div>
 
@@ -143,10 +192,10 @@ const schema: Record<string, unknown>[] = [
         <dt>Next stations</dt>
         <dd>
           <ul>
-            {prev && <li>Towards Kalyan: <a href={`/stations/${prev.id}/`}>{prev.name}</a></li>}
-            {next && <li>Towards Taloja: <a href={`/stations/${next.id}/`}>{next.name}</a></li>}
-            {!prev && <li>{s.name} is the first station, at the Kalyan end.</li>}
-            {!next && <li>{s.name} is the last station, at the Taloja end.</li>}
+            {prev && <li>Towards {endA}: <a href={`${base}stations/${prev.id}/`}>{prev.name}</a></li>}
+            {next && <li>Towards {endB}: <a href={`${base}stations/${next.id}/`}>{next.name}</a></li>}
+            {!prev && <li>{s.name} is the first station{s.name === endA ? '' : `, at the ${endA} end`}.</li>}
+            {!next && <li>{s.name} is the last station{s.name === endB ? '' : `, at the ${endB} end`}.</li>}
           </ul>
         </dd>
       </div>
@@ -156,6 +205,7 @@ const schema: Record<string, unknown>[] = [
         <dd>
           <p>{s.interchanges.value.length ? s.interchanges.value.join(', ') : 'None announced'}</p>
           <p class="grades"><Grade status={s.interchanges.status} source={s.interchanges.source_url} /></p>
+          {sameSite && <p>Same site as {sameSite.href ? <a href={sameSite.href}>{sameSite.label}</a> : sameSite.label}.</p>}
         </dd>
       </div>
 
@@ -187,12 +237,19 @@ const schema: Record<string, unknown>[] = [
       <div>
         <dt>When it opens</dt>
         <dd>
-          <p>
-            No date has been announced for this station on its own. For {label} as a whole, the reported target is{' '}
-            {formatDate(target.value)}; an earlier reported target was {formatDate(target.alternatives[0].value)}.
-          </p>
-          <p class="grades"><Grade status={target.status} source={target.source_url} /></p>
-          <p><a href="/status/">{label} status and opening date, answered</a></p>
+          {opening.scope ? (
+            <p>
+              No date has been announced for this station on its own. For {opening.scope}, the {opening.reported ? 'reported ' : ''}target is{' '}
+              {opening.when}.
+            </p>
+          ) : (
+            <p>
+              No date has been announced for this station on its own. For {label} as a whole, the reported target is{' '}
+              {formatDate(target.value)}; an earlier reported target was {formatDate(target.alternatives[0].value)}.
+            </p>
+          )}
+          <p class="grades"><Grade status={opening.status} source={opening.source_url} /></p>
+          {line.id === 'line-12' && <p><a href="/status/">{label} status and opening date, answered</a></p>}
         </dd>
       </div>
 
@@ -202,7 +259,7 @@ const schema: Record<string, unknown>[] = [
           <p>{s.name}{s.dpr_name && s.dpr_name !== s.name ? ` (the 2019 project report calls it ${s.dpr_name})` : ''}</p>
           {s.notes && <p class="fact__note">{s.notes}</p>}
           <p class="grades"><Grade status={s.name_status} source={s.name_source_url} /></p>
-          <p>In Marathi: <span class="mr" lang="mr">{s.name_mr}</span></p>
+          {s.name_mr ? <p>In Marathi: <span class="mr" lang="mr">{s.name_mr}</span></p> : <p>Marathi name not yet found in a source.</p>}
           <p class="grades"><Grade status={stationsMeta.names_mr_status} source={stationsMeta.names_mr_source_url} /></p>
         </dd>
       </div>
@@ -229,9 +286,9 @@ const schema: Record<string, unknown>[] = [
 
     <p class="inner__block fact__note">
       Facts checked <time datetime={s.last_verified}>{formatDate(s.last_verified)}</time>.{' '}
-      <a href="/stations/">All {total} stations</a>
+      <a href={`${base}stations/`}>All {total} stations</a>
       <span aria-hidden="true"> / </span>
-      <a href="/">The full {label} tracker</a>
+      <a href={base}>The full {label} tracker</a>
     </p>
   </main>
   <Colophon line={line} stationId={s.id} />

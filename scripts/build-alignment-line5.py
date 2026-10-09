@@ -338,6 +338,8 @@ geo = {
         # For the schematic strip (src/lib/route.ts): where the spur leaves the line, and the stretch to dash.
         'branch_from_station': 'bhoirwadi',
         'underground_along_m': [round(along_of['dhamankar-naka']), round(along_of['temghar'])],
+        # The station-page locator (src/components/LocatorMap.astro): Kapurbawdi sits bottom left, so north goes top left.
+        'locator_north': 'top-left',
     },
     'features': [
         feature({'name': 'Line 5 centre line', 'part': 'current', 'note': f'Phase 1 (built) and Phase 2 (approved) from Kapurbawdi to the Ulhas river bridge, from MMRDA\'s 2025 file (verified); then Phase 3 to Kalyan from the tender key plan (reported). Phase 3 starts {fork_m / 1000:.2f} km from Kapurbawdi.'}, ph3_line),

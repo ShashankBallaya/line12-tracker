@@ -1,0 +1,11 @@
+---
+/* Dev-only: the live stations index, for a line that has no pages yet. Routed only by `astro dev` (astro.config.mjs). */
+import StationsIndex from '../pages/stations/index.astro';
+import { lines, type LineId } from '../lib/data';
+
+export function getStaticPaths() {
+  return lines.map((l) => ({ params: { line: l.id } }));
+}
+---
+
+<StationsIndex lineId={Astro.params.line as LineId} />

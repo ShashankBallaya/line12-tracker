@@ -4,30 +4,35 @@ import Base from '../../layouts/Base.astro';
 import Masthead from '../../components/Masthead.astro';
 import Colophon from '../../components/Colophon.astro';
 import Grade from '../../components/Grade.astro';
-import { getLine } from '../../lib/data';
+import { getLine, lineBase, lineCopy, type LineId } from '../../lib/data';
 import '../../styles/inner.css';
 
-const line = getLine('line-12');
-const { stations, stationsMeta, project } = line;
+interface Props {
+  /** Set by the `astro dev` preview (src/preview/stations.astro); the live page is Line 12's. */
+  lineId?: LineId;
+}
+const line = getLine(Astro.props.lineId ?? 'line-12');
+const { stations, spurStations, spurFrom, stationsMeta } = line;
 const { label, route_short, about } = line.info;
+const base = lineBase(line.id)!;
 const total = stations.length;
 const site = Astro.site!.toString();
 const title = `${about.name} Stations: all ${total}, ${route_short}`;
-const description = `The ${total} stations of ${about.name} in order, from Kalyan through Dombivli MIDC and Nilje to Amandoot in Taloja, with interchanges and a page for each station.`;
+const description = lineCopy(line, 'stations_page_description');
 
 const schema = [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Line 12 Tracker', item: site },
-      { '@type': 'ListItem', position: 2, name: 'Stations', item: `${site}stations/` },
+      { '@type': 'ListItem', position: 2, name: 'Stations', item: `${site}${base.slice(1)}stations/` },
     ],
   },
   {
     '@type': 'ItemList',
     name: `${about.name} stations, in order from ${stations[0].name}`,
     numberOfItems: total,
-    itemListElement: stations.map((s) => ({ '@type': 'ListItem', position: s.order, name: `${s.name} (${s.name_mr})`, url: `${site}stations/${s.id}/` })),
+    itemListElement: stations.map((s) => ({ '@type': 'ListItem', position: s.order, name: s.name_mr ? `${s.name} (${s.name_mr})` : s.name, url: `${site}${base.slice(1)}stations/${s.id}/` })),
   },
 ];
 ---
@@ -37,7 +42,7 @@ const schema = [
   <main id="main" class="page inner">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
-        <li><a href="/">{label}</a></li>
+        <li><a href={base}>{label}</a></li>
         <li aria-current="page">Stations</li>
       </ol>
     </nav>
@@ -45,10 +50,7 @@ const schema = [
     <header class="inner__head">
       <h1 class="inner__title">{about.name} stations</h1>
       <p class="inner__mr mr" lang="mr">{line.info.mark_mr}: सर्व स्थानके</p>
-      <p class="inner__standfirst">
-        All {total}, in order from Kalyan to Amandoot in Taloja. Every station is elevated. The line is{' '}
-        {project.length_km.value} km long.
-      </p>
+      <p class="inner__standfirst">{lineCopy(line, 'stations_page')}</p>
     </header>
 
     <ol class="stlist">
@@ -56,15 +58,33 @@ const schema = [
         <li class="stlist__row">
           <span class="stlist__order num">{String(s.order).padStart(2, '0')}</span>
           <span class="stlist__names">
-            <a class="stlist__name" href={`/stations/${s.id}/`}>{s.name}</a>
-            <span class="stlist__mr mr" lang="mr">{s.name_mr}</span>
+            <a class="stlist__name" href={`${base}stations/${s.id}/`}>{s.name}</a>
+            {s.name_mr && <span class="stlist__mr mr" lang="mr">{s.name_mr}</span>}
           </span>
           <span class="stlist__meta">
-            {s.interchanges.value.length > 0 ? `Interchange: ${s.interchanges.value.join(', ')}` : 'Elevated'}
+            {s.interchanges.value.length > 0 ? `Interchange: ${s.interchanges.value.join(', ')}` : s.type}
           </span>
         </li>
       ))}
     </ol>
+
+    {spurStations.length > 0 && (
+      <section class="inner__block" aria-labelledby="spur-title">
+        <h2 id="spur-title">Line {spurStations[0].phase} spur, from {spurFrom?.name}</h2>
+        <ol class="stlist">
+          {spurStations.map((s) => (
+            <li class="stlist__row">
+              <span class="stlist__order num">{String(s.order).padStart(2, '0')}</span>
+              <span class="stlist__names">
+                <a class="stlist__name" href={`${base}stations/${s.id}/`}>{s.name}</a>
+                {s.name_mr && <span class="stlist__mr mr" lang="mr">{s.name_mr}</span>}
+              </span>
+              <span class="stlist__meta">{s.type}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
 
     <p class="inner__block fact__note">
       Station list and order <Grade status="reported" source={stationsMeta.order_source_url} />

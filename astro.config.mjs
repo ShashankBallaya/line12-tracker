@@ -7,7 +7,11 @@ const linePreview = {
   hooks: {
     /** @param {{ command: string, injectRoute: (r: { pattern: string, entrypoint: string }) => void }} opts */
     'astro:config:setup': ({ command, injectRoute }) => {
-      if (command === 'dev') injectRoute({ pattern: '/preview/[line]', entrypoint: './src/preview/[line].astro' });
+      if (command !== 'dev') return;
+      injectRoute({ pattern: '/preview/[line]', entrypoint: './src/preview/[line].astro' });
+      // The live station pages, serving the previewed line (they tell the routes apart by routePattern).
+      injectRoute({ pattern: '/preview/[line]/stations/[id]', entrypoint: './src/pages/stations/[id].astro' });
+      injectRoute({ pattern: '/preview/[line]/stations', entrypoint: './src/preview/stations.astro' });
     },
   },
 };

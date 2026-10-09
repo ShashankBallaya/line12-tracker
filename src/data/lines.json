@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "The lines this site covers, in hub order. Each line's facts live in src/data/lines/<id>/. project.json and stations.json are required; every other file is optional, and a section without its file does not show. 'alignment' names the GeoJSON file the map and schematic draw from. 'about' feeds the line's schema.org node on every page of that line.",
+    "description": "The lines this site covers, in hub order. Each line's facts live in src/data/lines/<id>/. project.json and stations.json are required; every other file is optional, and a section without its file does not show. 'alignment' names the GeoJSON file the map and schematic draw from. 'about' feeds the line's schema.org node on every page of that line. 'position_basis' names where station coordinates come from: 'by_source' matches part of a station's location source_url, else 'default'. 'copy' holds the line's own wording for shared pages; {total}, {km} and {name} are filled in.",
     "last_reviewed": "2026-10-09"
   },
   "lines": [
@@ -24,6 +24,27 @@
           "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
           "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
         ]
+      },
+      "position_basis": {
+        "default": "MMRDA's approved alignment, 20 Mar 2025",
+        "by_source": {}
+      },
+      "copy": {
+        "ends": [
+          "Kalyan",
+          "Taloja"
+        ],
+        "runs": "which will run fully elevated from Kalyan to Taloja",
+        "station_state": "Under construction.",
+        "stations_section": "All nineteen, in order from Kalyan. Names follow the civil contract. Select a station to ride to it, or open its own page.",
+        "stations_page": "All {total}, in order from Kalyan to Amandoot in Taloja. Every station is elevated. The line is {km} km long.",
+        "stations_page_description": "The {total} stations of {name} in order, from Kalyan through Dombivli MIDC and Nilje to Amandoot in Taloja, with interchanges and a page for each station.",
+        "route_section": "Nineteen stations, Kalyan to Amandoot. Scroll to ride the line station by station. Distances follow MMRDA's approved alignment of 20 March 2025.",
+        "route_legend": "A hollow line marks track that is under construction. No part of Line 12 has opened.",
+        "drawn_from": [
+          "MMRDA's approved alignment",
+          " of 20 Mar 2025"
+        ]
       }
     },
     {
@@ -43,6 +64,30 @@
         "same_as": [
           "https://en.wikipedia.org/wiki/Orange_Line_(Mumbai_Metro)",
           "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+        ]
+      },
+      "position_basis": {
+        "default": "MMRDA's alignment file, Mar 2025",
+        "by_source": {
+          "openstreetmap.org": "OpenStreetMap, checked on satellite imagery",
+          "x.com/Maha7Arindam": "tentative key plan, MMRDA tender, Mar 2026"
+        }
+      },
+      "copy": {
+        "ends": [
+          "Thane",
+          "Kalyan"
+        ],
+        "runs": "which will run from Thane through Bhiwandi to Kalyan, with a spur to Ulhasnagar",
+        "station_state": null,
+        "stations_section": "All {total} on the line, in order from Kapurbawdi, then the three on the Line 5A spur and the three the 2017 plan had. Names follow MMRDA. Select a station to ride to it, or open its own page.",
+        "stations_page": "All {total} on the line, in order from Kapurbawdi in Thane to Kalyan, then the Line 5A spur from Bhoirwadi to Ulhasnagar. Bhiwandi is underground; every other station is elevated. The line is {km} km long with the spur.",
+        "stations_page_description": "The stations of {name} in order, from Kapurbawdi in Thane through Bhiwandi and Durgadi to Kalyan, and the Line 5A spur to Ulhasnagar, with interchanges and a page for each station.",
+        "route_section": "Eighteen stations, Kapurbawdi to Kalyan, and the Line 5A spur to Ulhasnagar. Scroll to ride the line station by station. Distances follow MMRDA's alignment file of March 2025 to the Ulhas river bridge, and the tentative key plan of March 2026 past it.",
+        "route_legend": "A hollow line marks track that is not yet open, and a dashed outline the underground stretch. No part of Line 5 has opened.",
+        "drawn_from": [
+          "MMRDA's alignment file",
+          " of March 2025 and the tentative key plan of March 2026"
         ]
       }
     }

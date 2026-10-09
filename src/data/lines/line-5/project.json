@@ -246,10 +246,13 @@
     "notes": "MMRDA's press release (28 May 2026) says Phase 1 is preparing for the CMRS inspection. The report quotes MMRDA: inspection for 15 to 20 days after energisation, then about six months of trial runs. Work beyond Bhiwandi, towards Kalyan, has not begun."
   },
   "stages": {
-    "notes": "Each section of the line from planning to opening. 'sections' has one entry per part of the line that is built on its own (label null when the line is built as one). state: done, now (the current stage), started, next (not started). A note may contain {progress_as_of} or {event:<timeline id>}, which the page fills with that date, so the note stays current when the data changes. The facts behind each note are in timeline.json and in this file.",
+    "notes": "Each section of the line from planning to opening. 'sections' has one entry per part of the line that is built on its own (label null when the line is built as one). state: done, now (the current stage), started, next (not started). A note may contain {progress_as_of} or {event:<timeline id>}, which the page fills with that date, so the note stays current when the data changes. The facts behind each note are in timeline.json and in this file. 'phases' lists the station phases (stations.json 'phase') a section covers.",
     "sections": [
       {
         "label": "Phase 1, Kapurbawdi to Dhamankar Naka",
+        "phases": [
+          1
+        ],
         "stages": [
           {
             "name": "Planning",
@@ -285,6 +288,9 @@
       },
       {
         "label": "Phase 2, Dhamankar Naka to Durgadi",
+        "phases": [
+          2
+        ],
         "stages": [
           {
             "name": "Planning",
@@ -320,6 +326,10 @@
       },
       {
         "label": "Phase 3 and the Line 5A spur, Durgadi to Kalyan and Ulhasnagar",
+        "phases": [
+          3,
+          "5A"
+        ],
         "stages": [
           {
             "name": "Planning",

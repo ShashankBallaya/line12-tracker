@@ -14,11 +14,16 @@ interface Props {
   station: Station;
 }
 const { line: lineData, station } = Astro.props;
-const { stations } = lineData;
+const { stations, spurStations } = lineData;
 const alignmentRaw = lineData.alignmentRaw!;
 
 const alignment = JSON.parse(alignmentRaw) as GeoJSON.FeatureCollection<GeoJSON.LineString> & { properties: { source_url: string } };
 const line = alignment.features.find((f) => f.properties?.name === `${lineData.info.label} centre line`)!.geometry.coordinates;
+/** Other parts drawn with the line (Line 5): a spur, and a stretch underground. */
+const partOf = (part: string) => alignment.features.find((f) => f.properties?.part === part)?.geometry.coordinates;
+const spurLine = partOf('spur');
+const tunnel = partOf('underground');
+const [drawnLink, drawnAfter] = lineData.info.copy.drawn_from;
 
 // Flatten longitude to ground distance at this latitude, then turn the line so its two ends sit level.
 const k = Math.cos((19.15 * Math.PI) / 180);
@@ -39,7 +44,7 @@ const W = 640;
 const PAD_X = 22;
 const PAD_TOP = 64;
 const PAD_BOTTOM = 24;
-const turned = line.map(([lng, lat]) => rotate(lng, lat));
+const turned = [...line, ...(spurLine ?? [])].map(([lng, lat]) => rotate(lng, lat));
 const xs = turned.map((p) => p[0]);
 const ys = turned.map((p) => p[1]);
 const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
@@ -52,13 +57,16 @@ const place = (lng: number, lat: number) => {
 // HTML labels sit over the drawing in percentages, so they keep real type sizes at every width.
 const pct = (x: number, y: number) => `left:${((x / W) * 100).toFixed(2)}%;top:${((y / H) * 100).toFixed(2)}%`;
 
-const path = 'M' + line.map(([lng, lat]) => place(lng, lat).join(',')).join('L');
-const dots = stations
+const pathOf = (coords: number[][]) => 'M' + coords.map(([lng, lat]) => place(lng, lat).join(',')).join('L');
+const path = pathOf(line);
+const spurPath = spurLine && pathOf(spurLine);
+const tunnelPath = tunnel && pathOf(tunnel);
+const dots = [...stations, ...spurStations]
   .filter((s) => s.location.lat !== null)
   .map((s) => ({ s, at: place(s.location.lng!, s.location.lat!), here: s.id === station.id, change: s.interchanges.value.length > 0 }));
 const here = dots.find((d) => d.here)!;
 const first = dots[0];
-const last = dots.at(-1)!;
+const last = dots[stations.filter((s) => s.location.lat !== null).length - 1];
 // An end label gives way when the marked station sits close to that end, so labels never collide.
 const clear = (d: (typeof dots)[number]) => !d.here && Math.abs(here.at[0] - d.at[0]) > 150;
 const align = here.at[0] < W * 0.2 ? 'start' : here.at[0] > W * 0.8 ? 'end' : 'middle';
@@ -75,8 +83,10 @@ const nLen = Math.hypot(n1x - n0x, n1y - n0y);
 const [nx, ny] = [(n1x - n0x) / nLen, (n1y - n0y) / nLen];
 // SVG turns clockwise from straight up.
 const northDeg = +((Math.atan2(nx, -ny) * 180) / Math.PI).toFixed(1);
-// Bottom left is always empty: the line leaves Kalyan near the top of the drawing.
-const NORTH = [52, H - 34] as const;
+// Bottom left by default: always empty on Line 12, which leaves Kalyan near the top of the drawing.
+// A line whose start sits there names another corner in its alignment (Line 5: `locator_north` top-left).
+const corner = (alignment.properties as { locator_north?: string }).locator_north ?? 'bottom-left';
+const NORTH = ({ 'bottom-left': [52, H - 34], 'bottom-right': [W - 52, H - 34], 'top-left': [52, PAD_TOP], 'top-right': [W - 52, PAD_TOP] } as const)[corner as 'bottom-left'];
 
 const label = `Drawing of ${lineData.info.label} from ${stations[0].name} to ${stations.at(-1)!.name} with ${station.name} marked, station ${station.order} of ${stations.length}.`;
 ---
@@ -85,7 +95,10 @@ const label = `Drawing of ${lineData.info.label} from ${stations[0].name} to ${s
   <div class="locator__plot">
     <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label}>
       <path class="locator__casing" d={path} />
+      {spurPath && <path class="locator__casing" d={spurPath} />}
       <path class="locator__core" d={path} />
+      {spurPath && <path class="locator__core" d={spurPath} />}
+      {tunnelPath && <path class="locator__tunnel" d={tunnelPath} />}
       {dots.map((d) => !d.here && <circle class="locator__stop" cx={d.at[0]} cy={d.at[1]} r="5.5" />)}
       {dots.map(
         (d) =>
@@ -114,7 +127,7 @@ const label = `Drawing of ${lineData.info.label} from ${stations[0].name} to ${s
       </span>
     </span>
     <span>
-      Drawn from <a href={alignment.properties.source_url} rel="noopener">MMRDA's approved alignment</a> of 20 Mar 2025, turned so Kalyan is on the left.
+      Drawn from <a href={alignment.properties.source_url} rel="noopener">{drawnLink}</a>{drawnAfter}, turned so {stations[0].name} is on the left.
     </span>
   </figcaption>
 </figure>
@@ -147,6 +160,13 @@ const label = `Drawing of ${lineData.info.label} from ${stations[0].name} to ${s
   .locator__core {
     stroke: var(--paper);
     stroke-width: 4;
+  }
+  /* Underground: gaps cut into the hollow line, a dashed outline. */
+  .locator__tunnel {
+    fill: none;
+    stroke: var(--paper);
+    stroke-width: 11;
+    stroke-dasharray: 5 4;
   }
   .locator__stop {
     fill: var(--ink);

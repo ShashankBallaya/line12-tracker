@@ -6,6 +6,7 @@ import FrontPage from '../components/FrontPage.astro';
 import RouteRide from '../components/RouteRide.astro';
 import MapSection from '../components/MapSection.astro';
 import Progress from '../components/Progress.astro';
+import Stations from '../components/Stations.astro';
 import { getLine, lines, type LineId } from '../lib/data';
 
 export function getStaticPaths() {
@@ -26,5 +27,6 @@ const line = {
     <RouteRide line={real} />
     <MapSection line={real} />
     <Progress line={real} />
+    <Stations line={real} />
   </main>
 </Base>
