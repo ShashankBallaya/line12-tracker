@@ -153,6 +153,8 @@ export async function mount(section: HTMLElement) {
     maxZoom: 18,
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  // `astro dev` only: lets capture scripts (share images, screen recordings) drive the map.
+  if (import.meta.env.DEV) (window as unknown as { __map: maplibregl.Map }).__map = map;
 
   const setTheme = () => map.setStyle(buildStyle(alignment, stations, selected, showOld), { diff: true });
   function setOld(on: boolean) {
