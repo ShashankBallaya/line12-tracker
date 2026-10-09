@@ -39,7 +39,8 @@ export interface Sourced {
   last_verified: string;
 }
 
-export type Station = StationsFile['stations'][number];
+/** A station. `phase` is set on lines built in phases (Line 5: 1, 2, 3, or '5A' for the spur). */
+export type Station = StationsFile['stations'][number] & { phase?: number | string };
 export type TimelineEvent = TimelineFile['events'][number];
 export type Tender = TendersFile['tenders'][number];
 

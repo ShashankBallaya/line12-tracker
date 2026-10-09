@@ -25,7 +25,12 @@ interface StationData {
   context: { text: string; status: string; source: string | null }[];
   status: string;
   note: string | null;
+  /** Not on the line itself: on a spur, or dropped from an earlier plan. */
+  group?: 'spur' | 'dropped';
 }
+
+/** Parts of an alignment drawn apart from the line (a feature without `part` is the line). */
+const isPart = (...parts: string[]) => ['in', ['get', 'part'], ['literal', parts]] as maplibregl.ExpressionSpecification;
 
 const css = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
@@ -43,7 +48,7 @@ function gradeHtml(status: string, source: string | null): string {
   return `<span class="mini-grade"><svg viewBox="0 0 16 16" aria-hidden="true">${mark[status] ?? mark.unverified}</svg><span class="visually-hidden">${GRADE_LABEL[status] ?? 'Unverified'}</span>${link}</span>`;
 }
 
-function buildStyle(alignment: GeoJSON.FeatureCollection, stations: StationData[], selected: string | null): StyleSpecification {
+function buildStyle(alignment: GeoJSON.FeatureCollection, stations: StationData[], selected: string | null, showOld = false): StyleSpecification {
   const paper = css('--paper');
   const paper2 = css('--paper-2');
   const paper3 = css('--paper-3');
@@ -60,7 +65,7 @@ function buildStyle(alignment: GeoJSON.FeatureCollection, stations: StationData[
     type: 'FeatureCollection',
     features: stations
       .filter((s) => s.lat !== null)
-      .map((s) => ({ type: 'Feature', properties: { id: s.id, name: s.name, sel: s.id === selected ? 1 : 0, change: s.interchanges.length ? 1 : 0 }, geometry: { type: 'Point', coordinates: [s.lng!, s.lat!] } })),
+      .map((s) => ({ type: 'Feature', properties: { id: s.id, name: s.name, sel: s.id === selected ? 1 : 0, change: s.interchanges.length ? 1 : 0, dropped: s.group === 'dropped' ? 1 : 0 }, geometry: { type: 'Point', coordinates: [s.lng!, s.lat!] } })),
   };
   return {
     version: 8,
@@ -83,11 +88,17 @@ function buildStyle(alignment: GeoJSON.FeatureCollection, stations: StationData[
       { id: 'rail', type: 'line', source: 'omt', 'source-layer': 'transportation', filter: ['==', ['get', 'class'], 'rail'], paint: { 'line-color': ink3, 'line-width': 1.2, 'line-dasharray': [3, 2] } },
       { id: 'road-label', type: 'symbol', source: 'omt', 'source-layer': 'transportation_name', minzoom: 14, layout: { 'symbol-placement': 'line', 'text-field': ['get', 'name:latin'], 'text-font': font, 'text-size': 11 }, paint: { 'text-color': ink3, 'text-halo-color': paper, 'text-halo-width': 1.5 } },
       { id: 'place-label', type: 'symbol', source: 'omt', 'source-layer': 'place', filter: ['in', ['get', 'class'], ['literal', ['city', 'town', 'suburb', 'village', 'neighbourhood']]], layout: { 'text-field': ['get', 'name:latin'], 'text-font': font, 'text-size': ['match', ['get', 'class'], 'city', 15, 'town', 14, 12], 'text-transform': 'uppercase', 'text-letter-spacing': 0.08 }, paint: { 'text-color': ink3, 'text-halo-color': paper, 'text-halo-width': 1.5 } },
+      // The route an earlier plan had, which the current plan replaces: thin and dashed, off until asked for.
+      { id: 'route-old', type: 'line', source: 'route', filter: isPart('superseded'), layout: { visibility: showOld ? 'visible' : 'none' }, paint: { 'line-color': ink3, 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 1.5, 16, 4], 'line-dasharray': [2, 1.5] } },
       // Line 12: hollow orange line = under construction (same grammar as the page).
-      { id: 'route-casing', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': signal, 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 5, 16, 16] } },
-      { id: 'route-core', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': paper, 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 1.6, 16, 6] } },
-      { id: 'stations', type: 'circle', source: 'stations', paint: { 'circle-color': ['case', ['==', ['get', 'sel'], 1], signal, ink], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, ['case', ['==', ['get', 'sel'], 1], 7, 4.5], 16, ['case', ['==', ['get', 'sel'], 1], 14, 9]], 'circle-stroke-color': paper, 'circle-stroke-width': 2.5 } },
-      { id: 'station-label', type: 'symbol', source: 'stations', layout: { 'text-field': ['get', 'name'], 'text-font': ['Noto Sans Bold'], 'text-size': ['case', ['==', ['get', 'sel'], 1], 15, 12], 'text-offset': [0.9, 0], 'text-anchor': 'left', 'text-optional': true }, paint: { 'text-color': ink, 'text-halo-color': paper, 'text-halo-width': 2 } },
+      { id: 'route-casing', type: 'line', source: 'route', filter: ['!', isPart('superseded', 'underground')], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': signal, 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 5, 16, 16] } },
+      { id: 'route-core', type: 'line', source: 'route', filter: ['!', isPart('superseded', 'underground')], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': paper, 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 1.6, 16, 6] } },
+      // Underground: gaps cut into the hollow line, so it reads as a dashed outline.
+      { id: 'route-tunnel', type: 'line', source: 'route', filter: isPart('underground'), layout: { 'line-cap': 'butt', 'line-join': 'round' }, paint: { 'line-color': paper, 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 5, 16, 16], 'line-dasharray': [0.7, 0.6] } },
+      { id: 'stations-old', type: 'circle', source: 'stations', filter: ['==', ['get', 'dropped'], 1], layout: { visibility: showOld ? 'visible' : 'none' }, paint: { 'circle-color': ['case', ['==', ['get', 'sel'], 1], ink3, paper], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 4, 16, 8], 'circle-stroke-color': ink3, 'circle-stroke-width': 2 } },
+      { id: 'station-old-label', type: 'symbol', source: 'stations', filter: ['==', ['get', 'dropped'], 1], layout: { visibility: showOld ? 'visible' : 'none', 'text-field': ['get', 'name'], 'text-font': font, 'text-size': 11, 'text-offset': [0.9, 0], 'text-anchor': 'left', 'text-optional': true }, paint: { 'text-color': ink3, 'text-halo-color': paper, 'text-halo-width': 2 } },
+      { id: 'stations', type: 'circle', source: 'stations', filter: ['==', ['get', 'dropped'], 0], paint: { 'circle-color': ['case', ['==', ['get', 'sel'], 1], signal, ink], 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, ['case', ['==', ['get', 'sel'], 1], 7, 4.5], 16, ['case', ['==', ['get', 'sel'], 1], 14, 9]], 'circle-stroke-color': paper, 'circle-stroke-width': 2.5 } },
+      { id: 'station-label', type: 'symbol', source: 'stations', filter: ['==', ['get', 'dropped'], 0], layout: { 'text-field': ['get', 'name'], 'text-font': ['Noto Sans Bold'], 'text-size': ['case', ['==', ['get', 'sel'], 1], 15, 12], 'text-offset': [0.9, 0], 'text-anchor': 'left', 'text-optional': true }, paint: { 'text-color': ink, 'text-halo-color': paper, 'text-halo-width': 2 } },
     ],
   };
 }
@@ -117,28 +128,39 @@ export async function mount(section: HTMLElement) {
   const stations: StationData[] = JSON.parse(section.querySelector('[data-map-stations]')!.textContent!);
   const alignment: GeoJSON.FeatureCollection = JSON.parse(section.querySelector('[data-map-alignment]')!.textContent!);
   const street = JSON.parse(section.querySelector('[data-street-config]')!.textContent!) as { provider: string; mapillary: boolean; google: boolean };
+  const oldToggle = section.querySelector<HTMLInputElement>('[data-map-old]');
+  let showOld = false;
 
   // A station page links here as /?station=<id>#map, so the map opens on that station.
   const asked = new URLSearchParams(location.search).get('station');
-  const linked = stations.find((s) => s.id === asked && s.lat !== null)?.id;
+  const linked = stations.find((s) => s.id === asked && s.lat !== null && s.group !== 'dropped')?.id;
   let selected = linked ?? stations.find((s) => s.id === 'dombivli-midc' && s.lat !== null)?.id ?? stations.find((s) => s.lat !== null)!.id;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Open on the whole route (the line and any spur), with room east of it for station names.
+  const bounds = new maplibregl.LngLatBounds();
+  for (const f of alignment.features) {
+    if (f.geometry.type !== 'LineString' || ['superseded', 'underground'].includes(f.properties?.part)) continue;
+    for (const c of f.geometry.coordinates) bounds.extend(c as [number, number]);
+  }
   const map = new maplibregl.Map({
     container,
     style: buildStyle(alignment, stations, selected),
-    bounds: [
-      [73.075, 19.07],
-      [73.135, 19.242],
-    ],
-    fitBoundsOptions: { padding: 30 },
+    bounds,
+    fitBoundsOptions: { padding: { top: 30, bottom: 30, left: 30, right: 70 } },
     attributionControl: { compact: true },
     cooperativeGestures: true,
     maxZoom: 18,
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
-  const setTheme = () => map.setStyle(buildStyle(alignment, stations, selected), { diff: true });
+  const setTheme = () => map.setStyle(buildStyle(alignment, stations, selected, showOld), { diff: true });
+  function setOld(on: boolean) {
+    showOld = on;
+    if (oldToggle) oldToggle.checked = on;
+    for (const id of ['route-old', 'stations-old', 'station-old-label']) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
+  }
+  oldToggle?.addEventListener('change', () => setOld(oldToggle.checked));
   new MutationObserver(setTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
 
@@ -181,10 +203,13 @@ export async function mount(section: HTMLElement) {
     if (!s || s.lat === null) return;
     selected = id;
     select.value = id;
+    if (s.group === 'dropped' && !showOld) setOld(true);
     nameEl.textContent = s.name;
     coordsEl.textContent = `${s.lat.toFixed(5)}, ${s.lng!.toFixed(5)} (${s.where})`;
     const rows: string[] = [];
-    rows.push(`<li><span class="panel__label">Order</span>Station ${s.order} of ${stations.length}</li>`);
+    const own = stations.filter((x) => x.group === s.group);
+    const order = s.group === 'dropped' ? 'Dropped: on the earlier plan, not on the current one' : `${s.group === 'spur' ? 'Spur station' : 'Station'} ${s.order} of ${own.length}`;
+    rows.push(`<li><span class="panel__label">Order</span>${order}</li>`);
     if (s.interchanges.length) rows.push(`<li><span class="panel__label">Interchange</span>${s.interchanges.map(esc).join(', ')}</li>`);
     if (s.context.length) rows.push(`<li><span class="panel__label">Around the station</span>${s.context.map((c) => `${esc(c.text)} ${gradeHtml(c.status, c.source)}`).join('<br>')}</li>`);
     rows.push(`<li><span class="panel__label">Construction</span>${esc(s.status)}</li>`);
@@ -192,7 +217,7 @@ export async function mount(section: HTMLElement) {
     bodyEl.innerHTML = `<ul class="panel__list">${rows.join('')}</ul>`;
     const src = map.getSource('stations') as maplibregl.GeoJSONSource | undefined;
     if (src) {
-      const style = buildStyle(alignment, stations, selected);
+      const style = buildStyle(alignment, stations, selected, showOld);
       src.setData((style.sources.stations as { data: GeoJSON.FeatureCollection }).data);
     }
     if (fly) map.flyTo({ center: [s.lng!, s.lat] as LngLatLike, zoom: 15.5, duration: reduced ? 0 : 1400, essential: true });

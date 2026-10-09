@@ -4,6 +4,7 @@
 import Base from '../layouts/Base.astro';
 import FrontPage from '../components/FrontPage.astro';
 import RouteRide from '../components/RouteRide.astro';
+import MapSection from '../components/MapSection.astro';
 import { getLine, lines, type LineId } from '../lib/data';
 
 export function getStaticPaths() {
@@ -22,5 +23,6 @@ const line = {
   <main id="main">
     <FrontPage line={line} />
     <RouteRide line={real} />
+    <MapSection line={real} />
   </main>
 </Base>
