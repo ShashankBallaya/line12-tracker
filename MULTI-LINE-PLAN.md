@@ -122,7 +122,7 @@ Status 2026-10-09. The page reuses Line 12's components and layout; this list is
 |---|---|---|
 | Lead picture | Isometric drawing of the viaduct over a road marked 12 (`draw-lead-picture.py`) | Its own drawing. Candidate signature: the 550 m Kasheli creek viaduct, or the double-decker metro and flyover between Rajnoli and Durgadi (reported). |
 | Hero 3D scene | `three/viaduct.ts` | Done 2026-10-09 (owner's request): the same scene and static drawing with Line 5's number painted on the ground (`data-line-number`, LeadPicture `number` prop). A Line 5 signature scene (Kasheli creek) can replace it later. |
-| 3D station | `three/station.ts` + `station-model.json` captions | Phase 1 stations are a different design: spine and wings, two levels, about 145 m long, platforms about 13.5 m above the road (MMRDA environmental report, verified). New model and sourced captions. |
+| 3D station | `three/station.ts` + `station-model.json` captions | Research done 2026-10-09: see "Line 5 station: design brief" below. Structure and sizes are sourced; roof and facade are not published, so the model waits for the owner's photos. Do not add `station-model.json` to Line 5 before its own model exists: the section would show Line 12's station. |
 | Before and after | `beforeafter.json` from `build-wayback.mjs` | Done 2026-10-09: `node scripts/build-wayback.mjs line-5` (per-line spots and start date in the script). Kasheli, Anjurphata, Dhamankar Naka: Oct 2018 against Oct 2025. |
 | Trains | `rollingstock.json` | Done 2026-10-09: Line 5's file (Titagarh, CA-241, letter of acceptance announced 31 Oct 2025, 22 six-car trains built at Uttarpara near Kolkata, ABB traction; MMRDA's car figures). `Trains` shows an ordered line's maker, contract and figures. Maintenance term conflicts (5 years in the award reports, 15 after a 2-year defect period in the tender). Still wanted: a sourced image of the train. |
 | Ground photos | `photos.json` (owner, and Arindam with permission) | Phase 1 is built and near the owner: dated photos of Kapurbawdi, Kasheli, Dhamankar Naka. Same rules: EXIF stripped, plates blurred. |
@@ -140,6 +140,41 @@ Status 2026-10-09. The page reuses Line 12's components and layout; this list is
 ### Facts still missing (see `SOURCES.md`, Line 5)
 
 Trial-run and CMRS dates; the tunnel's route at Bhiwandi; a position for Kongaon West; approval dates 2016 to 2018; final AIIB and OPEC Fund amounts; the remaining packages; a newer route for Phase 3 and the spur than the tentative key plan of March 2026 (that tender was cancelled).
+
+## Line 5 station: design brief (for the 3D model)
+
+Researched 2026-10-09. Grades as in SOURCES.md. "EIA" is MMRDA's Phase 1 environmental report for AIIB (11 Sep 2023), primary source 3 under Line 5.
+
+### Sourced: structure and sizes
+
+| # | Fact | Grade | Where |
+|---|---|---|---|
+| 1 | Six elevated stations in Phase 1 (Balkum Naka to Dhamankar Naka); Kapurbawdi is Line 4's station. All are two-level stations: a concourse over the road, platforms above it. | verified | EIA para 51-52 |
+| 2 | Two side platforms (not an island). Station length 145 m. | verified | EIA para 52 |
+| 3 | The station box is 21 m wide; entry/exit structures take 6 m on either side. | verified | EIA para 20 |
+| 4 | The station stands on the road median, on central piers. Stairs and escalators come down on both sides of the road, on the sidewalks. | verified | EIA para 52 |
+| 5 | At least 5.5 m clear under the concourse; platforms about 13.5 m above the road. | verified | EIA para 52 |
+| 6 | One column on the median per frame; a cantilever arm on it carries the concourse girders, so there are no columns at the roadside. The viaduct does not run through the station (to keep the rail level low): the station's own structure carries the tracks. | verified | EIA para 69 |
+| 7 | Parts: "spine and wings" at concourse level; U-girder and inverted U-girder at platform level. Box-shaped cantilever cross girders carry the concourse girders and the escalators at mezzanine level; I or double-T girders carry the platform and concourse floors. | verified | EIA project table (p. 24) and para 69 |
+| 8 | 1,098 precast station elements across the six stations: spines, wings, U-girders, pier arms and L-structures, all erected by Aug 2023. Roof, facades, flooring and false ceilings came after. | reported | MMRDA via India Infra Hub, 4 Aug 2023 |
+| 9 | Concourse: ticketing and information; paid and unpaid public areas; a staff zone (station control room, station master, signalling room, crew room, UPS and battery room, stores, toilets). | verified | EIA para 52 |
+| 10 | Platform screen doors at all stations. | verified | EIA project table (PSD system); CA-241 scope |
+| 11 | Viaduct between stations: U-girders on single round piers 1.8 to 2.0 m across, a 1.0 m crash barrier round each pier, standard span 28 m, tracks 4.2 m apart. | verified (U-girders: MMRDA progress table); conflicting (the EIA's viaduct text says box girders, its own table says twin U-girders) | EIA para 47-49 and table; MMRDA Line 5 page |
+
+### How it differs from Line 12's model
+
+- Same family: a concourse on cantilever arms over the road median, about 145 m long.
+- Different: precast spine-and-wings concourse; side platforms behind platform screen doors; platforms about 13.5 m up; the station carries its own tracks. Line 12's model also follows a published elevation drawing (Dombivli), with its branched-frame cladding and dark cantilevered roof. Line 5 has no published elevation.
+
+### Not published (what the model still needs)
+
+- Roof form and material, facade and cladding, colours, the entry/exit stair buildings, and the bay spacing along the station.
+- Wanted from the owner (Phase 1 is built and nearby), dated, any one station (Balkum Naka or Kasheli are best):
+  1. the whole side of the station from the sidewalk, end to end;
+  2. one entry/exit stair building;
+  3. the underside: a pier with its cantilever arm and the spine above;
+  4. the roof edge and the platform level from the road.
+- The photos are references for our own stylized drawing, and can also go on the station pages (same rules: EXIF stripped, plates blurred). Google Street View is not a usable source: its imagery cannot be copied, and near Balkum Naka it shows indoor photos, not the road.
 
 ## Risks
 
