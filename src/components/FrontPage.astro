@@ -59,7 +59,11 @@ const spurEnd = line.spurStations.at(-1)?.name;
     {hasStatusPage(line) && <p class="front__status"><a href={`${lineBase(line.id)}status/`}>Opening date and status, answered</a></p>}
   </aside>
 
-  {copy.lead_scene && <div class="front__picture scene-host" data-scene={copy.lead_scene}><LeadPicture /></div>}
+  {copy.lead_scene && (
+    <div class="front__picture scene-host" data-scene={copy.lead_scene} data-line-number={line.id === 'line-12' ? undefined : line.info.number}>
+      <LeadPicture number={line.info.number} label={line.info.label} />
+    </div>
+  )}
 
   <a class={branch ? 'front__strip front__strip--branch' : 'front__strip'} href="#route">
     <span class="front__strip-end front__strip-end--a">{first}</span>

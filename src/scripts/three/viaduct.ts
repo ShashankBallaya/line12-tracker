@@ -1,6 +1,7 @@
 /**
- * Hero scene: an isometric, flat-shaded stretch of the Line 12 viaduct on an orange halftone field,
- * a train gliding along it, and a giant "12" painted on the ground (the Tren Urbano reference).
+ * Hero scene: an isometric, flat-shaded stretch of viaduct on an orange halftone field, a train gliding
+ * along it, and the line's number painted giant on the ground (the Tren Urbano reference). The number
+ * comes from the host's data-line-number (FrontPage); Line 12's "12" when it has none.
  * Orthographic camera, so it reads like the drawing it replaces. Original geometry, not an official design.
  */
 import * as THREE from 'three';
@@ -57,16 +58,16 @@ export async function mount(host: HTMLElement, { reduced }: { reduced: boolean }
     }
   }
 
-  // The giant "12", painted flat on the field in front of the road.
-  const tex = await textTexture('12', '#0c1422');
-  const twelve = new THREE.Mesh(
+  // The giant line number, painted flat on the field in front of the road.
+  const tex = await textTexture(host.dataset.lineNumber ?? '12', '#0c1422');
+  const number = new THREE.Mesh(
     new THREE.PlaneGeometry(46, 46),
     new THREE.MeshLambertMaterial({ map: tex, transparent: true }),
   );
-  twelve.rotation.x = -Math.PI / 2;
-  twelve.position.set(-8, 0.04, 36);
-  twelve.receiveShadow = true;
-  scene.add(twelve);
+  number.rotation.x = -Math.PI / 2;
+  number.position.set(-8, 0.04, 36);
+  number.receiveShadow = true;
+  scene.add(number);
 
   // Piers, pier caps and the U-girder deck.
   const con = flat('#c9c1b4');

@@ -121,7 +121,7 @@ Status 2026-10-09. The page reuses Line 12's components and layout; this list is
 | Section | Line 12 has | Line 5 needs |
 |---|---|---|
 | Lead picture | Isometric drawing of the viaduct over a road marked 12 (`draw-lead-picture.py`) | Its own drawing. Candidate signature: the 550 m Kasheli creek viaduct, or the double-decker metro and flyover between Rajnoli and Durgadi (reported). |
-| Hero 3D scene | `three/viaduct.ts` | A Line 5 variant, same engine. |
+| Hero 3D scene | `three/viaduct.ts` | Done 2026-10-09 (owner's request): the same scene and static drawing with Line 5's number painted on the ground (`data-line-number`, LeadPicture `number` prop). A Line 5 signature scene (Kasheli creek) can replace it later. |
 | 3D station | `three/station.ts` + `station-model.json` captions | Phase 1 stations are a different design: spine and wings, two levels, about 145 m long, platforms about 13.5 m above the road (MMRDA environmental report, verified). New model and sourced captions. |
 | Before and after | `beforeafter.json` from `build-wayback.mjs` | Make the script take a line. Phase 1 is built, so the pairs will be dramatic: imagery from before Feb 2020 (construction start) against the latest. Kasheli creek, Anjurphata, Dhamankar Naka. |
 | Trains | `rollingstock.json` | A Line 5 file: Titagarh CA-241, 22 six-car trains, car size and capacity (MMRDA page). The owner's "LINE 5" train render lead, once sourced. |

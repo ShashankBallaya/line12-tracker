@@ -144,7 +144,7 @@
         "front_standfirst": "Phase 1, from Kapurbawdi in Thane to Dhamankar Naka in Bhiwandi, is built: on {as_of}, MMRDA's progress table showed every civil activity complete. Phases 2 and 3 take the line on to Kalyan, with a spur to Ulhasnagar: {stations} stations in all, as MMRDA counts them.",
         "countdown_title": "Days to the Phase 1 target",
         "target_html": "Target: <strong>{target}</strong> for Phase 1, Kapurbawdi to Dhamankar Naka, from MMRDA's press release of May 2026. No exact date. The rest of the line: {rest}, as reported.",
-        "lead_scene": null,
+        "lead_scene": "viaduct",
         "map_section": "The line on a street map. Choose a station to see where it sits, what surrounds it and what the street looks like today. The route to the Ulhas river bridge comes from MMRDA's alignment file of March 2025; Phase 3 and the spur come from the tentative key plan of March 2026.",
         "map_legend": "Route not yet open: MMRDA's alignment file, then the tentative key plan",
         "map_first_station": "kapurbawdi",
