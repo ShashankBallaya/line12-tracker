@@ -85,7 +85,7 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
             {s.interchanges.value.length > 0 && (
               <p class="ride__interchange">
                 <span class="ride__interchange-bar" aria-hidden="true"></span>
-                Change for {s.interchanges.value.map((v, k) => <>{k > 0 && ', '}<LineMark text={v} />{v}</>)}
+                Change for {s.interchanges.value.map((v, k) => <span class="ride__change-to"><LineMark text={v} />{v}{k < s.interchanges.value.length - 1 && ','}</span>)}
                 <Grade status={s.interchanges.status} source={s.interchanges.source_url} compact />
               </p>
             )}
@@ -212,6 +212,10 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
     align-items: center;
     gap: var(--s-2) var(--s-3);
     font-weight: 700;
+  }
+  /* Each line it changes for: its mark and its name stay together when the row wraps. */
+  .ride__change-to {
+    display: inline;
   }
   .ride__interchange-bar {
     /* two lines meeting: this line (orange) and the other line (ink) */

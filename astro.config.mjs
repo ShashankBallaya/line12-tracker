@@ -23,4 +23,7 @@ export default defineConfig({
   output: 'static',
   build: { inlineStylesheets: 'auto' },
   integrations: [linePreview],
+  // `astro dev` only: bundle the lazily loaded libraries up front. Otherwise Vite finds them when the map or the
+  // 3D scene first loads, bundles them again, and the open page gets "504 Outdated Optimize Dep": no map, no train.
+  vite: { optimizeDeps: { include: ['maplibre-gl', 'three', 'gsap', 'gsap/ScrollTrigger', 'gsap/SplitText', 'lenis'] } },
 });

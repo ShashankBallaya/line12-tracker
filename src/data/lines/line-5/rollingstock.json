@@ -80,14 +80,15 @@
   "notes": "ABB's order from Titagarh (January 2026) covers 40 six-car trains: 22 for Line 5 and 18 for Line 6."
  },
  "image": {
-  "src": null,
-  "alt": "Line 5 metro train",
-  "caption": "The Line 5 train design.",
-  "credit": null,
+  "src": "/images/titagarh-mumbai-metro-render.webp",
+  "width": 443,
+  "height": 443,
+  "alt": "Render of an orange and silver Titagarh metro train with a black front and a blue and green stripe, car D6A001, on an elevated track.",
+  "caption": "Titagarh's render of its Mumbai Metro train. Titagarh builds the trains for Lines 5 and 6 and does not say which line this shows; the car number, D6A001, may point to Line 6.",
+  "credit": "Titagarh Rail Systems",
   "status": "unverified",
-  "source_url": null,
+  "source_url": "https://www.titagarh.in/project/mumbai-metro",
   "last_verified": "2026-10-09",
-  "link_url": "https://www.titagarh.in/project/mumbai-metro",
-  "notes": "Titagarh's project page shows a Mumbai metro picture, all rights reserved, and does not say it is the Line 5 train, so the site links to it and does not copy it. Until a picture with usable terms is found, the page shows a generic drawing."
+  "notes": "Supplied by the owner, 2026-10-09, for the Trains section. The maker's render, all rights reserved on its site; shown with credit at the owner's decision. Unverified because no source says which line it shows. Replace with a Line 5 picture when MMRDA or Titagarh publishes one."
  }
 }

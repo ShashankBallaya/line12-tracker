@@ -28,7 +28,7 @@ interface Ordered {
 const ordered = rollingstock.procurement.manufacturer ? (rollingstock as unknown as Ordered) : undefined;
 const d = rollingstock.dpr_design_assumptions;
 const l5 = rollingstock.line5_contract;
-const img = rollingstock.image as { src: string | null; alt: string; caption: string; credit: string | null; status: string; source_url: string | null };
+const img = rollingstock.image as { src: string | null; width?: number; height?: number; alt: string; caption: string; credit: string | null; status: string; source_url: string | null };
 const tender = timeline.find((e) => e.id === 'systems-tender');
 // The generic drawing: one car per car in a train at opening (6 on Line 5, 3 on Line 12).
 const cars = ordered ? ordered.procurement.cars_per_train : 3;
@@ -69,9 +69,10 @@ const specs: [string, string][] = ordered ? ordered.specs.rows : [
   <div class="trains">
     {img.src ? (
       <figure class="trains__photo">
-        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+        <img src={img.src} alt={img.alt} width={img.width} height={img.height} loading="lazy" decoding="async" style={img.width ? `max-width:${img.width}px` : undefined} />
         <figcaption>
           {img.caption} {img.credit && <>Image: {img.credit}.</>} <Grade status={img.status} source={img.source_url} />
+          {ordered && <span class="trains__photo-maker">{ordered.procurement.trains} trains of {ordered.procurement.cars_per_train} cars are ordered for {line.info.label} (package {ordered.procurement.package}).</span>}
         </figcaption>
       </figure>
     ) : (
