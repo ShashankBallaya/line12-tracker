@@ -149,8 +149,8 @@
         "map_legend": "Route not yet open: MMRDA's alignment file, then the tentative key plan",
         "map_first_station": "kapurbawdi",
         "numbers": {
-          "length_unit": "km with the spur; Bhiwandi underground, the rest elevated",
-          "stations_unit": "as MMRDA counts them; Kapurbawdi, built with Line 4, is not counted",
+          "length_unit": "km with the spur; Bhiwandi underground",
+          "stations_unit": "as MMRDA counts them, without Kapurbawdi",
           "cost_unit": ", Phases 1, 2 and 5A",
           "cost_note": "Phase 1 ₹6,741 crore, Phase 2 ₹7,326 crore, Phase 5A (Phase 3 and the spur) ₹4,063 crore, MMRDA, May 2026.",
           "funding_head": "Loans for the systems",
@@ -162,7 +162,7 @@
             ]
           ],
           "travel_head": "40 to 50% shorter",
-          "travel_unit": "than by road, MMRDA's 2026 figure. Its Line 5 page still says 50 to 75%, from the 2017 plan."
+          "travel_unit": "than by road (MMRDA, 2026). Its Line 5 page still says 50 to 75%."
         },
         "primary_sources": [
           {

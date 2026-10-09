@@ -109,7 +109,7 @@
   --s-8: 4.5rem;
   --s-9: 7rem;
   --gutter: clamp(1rem, 0.6rem + 1.8vw, 2.5rem);
-  --measure: 68ch;
+  --measure: 54ch; /* about 72 characters a line in Mukta, whose average letter is about 0.75ch */
   --page-max: 88rem;
 
   /* The bar module: the one orange shape the whole identity is built from */

@@ -104,7 +104,7 @@ spacing:
   bar: "0.5rem"
   rule-w: "1px"
   rule-heavy: "4px"
-  measure: "68ch"
+  measure: "54ch"
   page-max: "88rem"
 components:
   masthead-band:
@@ -245,8 +245,8 @@ Warm newsprint and night navy, cut by one orange.
 - **Headline** (800, 75% width, step-3 clamp 2.1rem to 3.6rem, line-height 0.95, uppercase): section heads, station names in the vertical route, the rolling-stock maker, word-valued facts.
 - **Title** (800, 75% width, step-2 clamp 1.6rem to 2.3rem, line-height 1, uppercase): sub-heads inside a section, phase names, firm names, station directory entries, timeline dates.
 - **Subhead** (700, 87.5% width, step-1, uppercase): fact names in the numbers list, the masthead tagline (600), the countdown title and the primary button (800, 75%).
-- **Standfirst** (400, step-1, line-height 1.4 to 1.45, Faded Ink, max 52ch on the front, 68ch in sections): the paragraph under a headline.
-- **Body** (400, step-0 clamp 1.02rem to 1.14rem, line-height 1.55, max 68ch): running copy.
+- **Standfirst** (400, step-1, line-height 1.4 to 1.45, Faded Ink, max 52ch on the front, 54ch in sections): the paragraph under a headline.
+- **Body** (400, step-0 clamp 1.02rem to 1.14rem, line-height 1.55, max 54ch, about 72 characters): running copy.
 - **Small** (400, step--1, line-height 1.3 to 1.45): source lines, captions, target notes, history under a fact.
 - **Label** (500, step--1, uppercase, 0.06em to 0.08em tracking): table column heads, grade words, phase states, the edition line, pills, mobile table field names. Labels name data; they do not introduce headings.
 

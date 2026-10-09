@@ -279,10 +279,14 @@ export function outletName(url: string | null | undefined): string {
     'livingatlas.arcgis.com': 'Esri Wayback',
   };
   if (url.includes('Metro%20Line%2012.pdf')) return 'MMRDA DPR (2019)';
+  // A post on X is named by its account, so the reader sees who posted it.
+  if (host === 'x.com') {
+    const handle = new URL(url).pathname.split('/')[1];
+    if (handle) return `@${handle} on X`;
+  }
   return known[host] ?? host;
 }
 
-/** Formats "2024-03-27" / "2024-03" / "2019" by its precision. Never invents a day. */
 /** Fills {progress_as_of} and {event:<timeline id>} in stage notes. An unknown event id stops the build. */
 function fillStages(id: string, sections: StageSection[], progressAsOf: string, events: TimelineEvent[]): StageSection[] {
   const fill = (note: string) =>
@@ -296,6 +300,7 @@ function fillStages(id: string, sections: StageSection[], progressAsOf: string, 
   return sections.map((sec) => ({ ...sec, stages: sec.stages.map((st) => ({ ...st, note: fill(st.note) })) }));
 }
 
+/** Formats "2024-03-27" / "2024-03" / "2019" by its precision. Never invents a day. */
 export function formatDate(value: string | null | undefined): string {
   if (!value) return 'Date not announced';
   const [y, m, d] = value.split('-');

@@ -29,7 +29,8 @@ const fill = (text: string) =>
     .replace(/\{pct:([^}]+)\}/g, (_, name: string) => String(pct(name)))
     .replace('{target}', formatDate(target.value))
     .replace('{earlier}', earlier ? formatDate(earlier.value) : '')
-    .replace('{rest}', t.rest_of_line?.value ?? '');
+    // A range like "2030-31" stays on one line.
+    .replace('{rest}', t.rest_of_line ? `<span class="nowrap">${t.rest_of_line.value}</span>` : '');
 const first = stations[0].name;
 const last = stations[stations.length - 1].name;
 
@@ -197,6 +198,9 @@ const spurEnd = line.spurStations.at(-1)?.name;
     max-width: 38ch;
   }
   /* The front-page infographic: the whole line in one strip, a door into the ride. */
+  .front__target :global(.nowrap) {
+    white-space: nowrap;
+  }
   .front__strip {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
