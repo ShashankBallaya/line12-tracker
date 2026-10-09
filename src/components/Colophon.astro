@@ -15,6 +15,9 @@ const stationName = line?.stations.find((s) => s.id === stationId)?.name;
 
 // Build date in India time, so it matches the edition date readers see.
 const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+// The line's own disclaimer (lines.json copy): the site name waits for the domain, and a line may show a maker's image.
+const DISCLAIMER = 'Line 12 Tracker is an independent public-interest site. It is not affiliated with, endorsed by or connected to MMRDA or the Government of Maharashtra. Drawings are original illustrations, not official designs. Check official sources before making decisions.';
+const disclaimer = line?.info.copy.footer_disclaimer ?? DISCLAIMER;
 ---
 
 <footer class="colophon">
@@ -36,9 +39,7 @@ const builtAt = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata
       </section>
     )}
     <p class="colophon__disclaimer">
-      <strong>Unofficial.</strong> Line 12 Tracker is an independent public-interest site. It is not affiliated with,
-      endorsed by or connected to MMRDA or the Government of Maharashtra. Drawings are original illustrations, not
-      official designs. Check official sources before making decisions.
+      <strong>Unofficial.</strong> {disclaimer}
     </p>
     <p class="colophon__meta">
       Data last reviewed <time datetime={lastReviewed}>{formatDate(lastReviewed)}</time>

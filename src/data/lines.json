@@ -98,7 +98,8 @@
         "status_description": "When will Metro Line 12 (Kalyan to Taloja) open, how much is built, which stations and interchanges, cost and depot. Answers from MMRDA and news sources, checked {checked}.",
         "status_h1": "Metro Line 12 status, answered",
         "status_mr": "कल्याण-तळोजा मेट्रो १२",
-        "status_lead": "The questions people ask about Mumbai Metro Line 12, Kalyan to Taloja."
+        "status_lead": "The questions people ask about Mumbai Metro Line 12, Kalyan to Taloja.",
+        "footer_disclaimer": "Line 12 Tracker is an independent public-interest site. It is not affiliated with, endorsed by or connected to MMRDA or the Government of Maharashtra. Drawings are original illustrations, not official designs. Check official sources before making decisions."
       }
     },
     {
@@ -201,7 +202,8 @@
         "status_description": "When will Metro Line 5 (Thane to Kalyan) open, which stations open first, what happens past Bhiwandi, where the Line 5A spur goes, cost and trains. Answers from MMRDA and news sources, checked {checked}.",
         "status_h1": "Metro Line 5 status, answered",
         "status_mr": "ठाणे-भिवंडी-कल्याण मेट्रो ५",
-        "status_lead": "The questions people ask about Mumbai Metro Line 5, Thane to Kalyan."
+        "status_lead": "The questions people ask about Mumbai Metro Line 5, Thane to Kalyan.",
+        "footer_disclaimer": "This tracker is an independent public-interest site. It is not affiliated with, endorsed by or connected to MMRDA or the Government of Maharashtra. Drawings are original illustrations, not official designs; the one exception, the train render, is credited to its maker. Check official sources before making decisions."
       }
     }
   ]

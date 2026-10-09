@@ -324,3 +324,5 @@ export function inr(n: number, digits = 2): string {
 
 export const REPO_URL = 'https://github.com/ShashankBallaya/mumbai-metro-tracker';
 export const CORRECTION_URL = `${REPO_URL}/issues/new?labels=correction&title=Correction%3A%20`;
+/** The correction link for a line's pages: other lines than Line 12 name themselves in the issue title. */
+export const correctionUrl = (line: Line) => (line.id === 'line-12' ? CORRECTION_URL : `${CORRECTION_URL}${encodeURIComponent(`${line.info.label}, `)}`);

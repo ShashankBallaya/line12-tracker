@@ -1,7 +1,7 @@
 ---
 import Grade from './Grade.astro';
 import Colophon from './Colophon.astro';
-import { CORRECTION_URL, REPO_URL, gradeHelp, type Grade as G, type Line } from '../lib/data';
+import { correctionUrl, REPO_URL, gradeHelp, type Grade as G, type Line } from '../lib/data';
 
 interface Props {
   line: Line;
@@ -42,7 +42,7 @@ const grades: G[] = ['verified', 'reported', 'unverified', 'conflicting'];
     <div class="correct">
       <h3 class="sources__title">Spotted a mistake?</h3>
       <p>Tell us what is wrong and where you saw the right figure. Corrections are public and dated.</p>
-      <a class="correct__btn" data-magnetic href={CORRECTION_URL} rel="noopener" target="_blank">Report a correction on GitHub</a>
+      <a class="correct__btn" data-magnetic href={correctionUrl(line)} rel="noopener" target="_blank">Report a correction on GitHub</a>
     </div>
   </div>
 </section>
