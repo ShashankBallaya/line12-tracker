@@ -1,44 +1,138 @@
 {
   "_meta": {
     "description": "Written by scripts/fetch-feed.mjs. Do not edit by hand: add an item's URL to exclude_urls in feed-sources.json to hide it. Items are found automatically and are not checked by a person.",
-    "updated_at": "2026-09-28T19:44:02.963Z"
+    "updated_at": "2026-10-09T10:35:25.670Z",
+    "updated_at_by_line": {
+      "line-12": "2026-09-28T19:44:02.963Z",
+      "line-5": "2026-10-09T10:35:25.670Z"
+    }
   },
   "news": [
     {
       "title": "Kalyan-Taloja Metro Line 12 Crosses 53% Work, May 2028 Target Set",
       "outlet": "Urban Acres",
       "date": "2026-09-28",
-      "url": "https://urbanacres.in/kalyan-taloja-metro-line-12-crosses-53-work-may-2028-target-set/"
+      "url": "https://urbanacres.in/kalyan-taloja-metro-line-12-crosses-53-work-may-2028-target-set/",
+      "lines": [
+        "line-12"
+      ]
     },
     {
       "title": "Metro Line 12 Crosses 53% Completion as MMRDA Targets May 2028 Commissioning",
       "outlet": "Re-Mumbai",
       "date": "2026-09-28",
-      "url": "https://remumbai.in/2026/09/28/metro-line-12-crosses-53-completion-as-mmrda-targets-may-2028-commissioning/"
+      "url": "https://remumbai.in/2026/09/28/metro-line-12-crosses-53-completion-as-mmrda-targets-may-2028-commissioning/",
+      "lines": [
+        "line-12"
+      ]
+    },
+    {
+      "title": "Metro 5 Moves Beyond Bhiwandi As Centre Clears Kalyan-Ulhasnagar Extension",
+      "outlet": "Re-Mumbai",
+      "date": "2026-09-03",
+      "url": "https://remumbai.in/2026/09/03/metro-5-moves-beyond-bhiwandi-as-centre-clears-kalyan-ulhasnagar-extension/",
+      "lines": [
+        "line-5"
+      ]
+    },
+    {
+      "title": "Centre Approves Mumbai Metro Line 5 & 5A: Metro to Link Thane, Bhiwandi, Kalyan & Ulhasnagar",
+      "outlet": "Metro Rail News",
+      "date": "2026-09-02",
+      "url": "https://metrorailnews.in/center-approved-mumbai-metro-line-5-and-5a/",
+      "lines": [
+        "line-5"
+      ]
     },
     {
       "title": "Panvel Civic Body Approves Water, Infrastructure Projects; Rejects LED Streetlight, Metro Line 12 Funding Proposals",
       "outlet": "Re-Mumbai",
       "date": "2026-07-28",
-      "url": "https://remumbai.in/2026/07/28/panvel-civic-body-approves-water-infrastructure-projects-rejects-led-streetlight-metro-line-12-funding-proposals/"
+      "url": "https://remumbai.in/2026/07/28/panvel-civic-body-approves-water-infrastructure-projects-rejects-led-streetlight-metro-line-12-funding-proposals/",
+      "lines": [
+        "line-12"
+      ]
+    },
+    {
+      "title": "Kasheli Depot for Mumbai Metro Line 5 Achieves 23% Physical Progress",
+      "outlet": "Metro Rail News",
+      "date": "2026-07-22",
+      "url": "https://metrorailnews.in/kasheli-depot-for-mumbai-metro-progresses-ahead/",
+      "lines": [
+        "line-5"
+      ]
+    },
+    {
+      "title": "MMRDA invites bids for track works at Kasheli Depot of Mumbai Metro Line 5",
+      "outlet": "Metro Rail News",
+      "date": "2026-06-03",
+      "url": "https://metrorailnews.in/bids-invited-for-track-work-mumbai-metro-line-5/",
+      "lines": [
+        "line-5"
+      ]
+    },
+    {
+      "title": "Mumbai Metro Line 5 expands to 34.21 km, first phase moves closer to opening",
+      "outlet": "Metro Rail News",
+      "date": "2026-05-30",
+      "url": "https://metrorailnews.in/mumbai-metro-line-5-expands-to-34-21-km-first-phase-moves-closer-to-opening/",
+      "lines": [
+        "line-5"
+      ]
+    },
+    {
+      "title": "Mumbai Metro Line-5 expansion to transform mobility across Thane, Bhiwandi, Kalyan and Ulhasnagar",
+      "outlet": "Rail Analysis India",
+      "date": "2026-05-30",
+      "url": "https://railanalysis.in/metro/mumbai-metro-line-5-expansion-to-transform-mobility-across-thane-bhiwandi-kalyan-and-ulhasnagar/",
+      "lines": [
+        "line-5"
+      ]
+    },
+    {
+      "title": "Mumbai Metro Line 5 gets state approval: Project cost surges to Rs 18,131 crore",
+      "outlet": "Metro Rail News",
+      "date": "2026-04-27",
+      "url": "https://metrorailnews.in/mumbai-metro-line-5-gets-state-approval/",
+      "lines": [
+        "line-5"
+      ]
     },
     {
       "title": "MMRDA Announces Mumbai Metro Line 12 Extension at ₹8,415 Crore",
       "outlet": "Metro Rail News",
       "date": "2026-02-21",
-      "url": "https://metrorailnews.in/mumbai-metro-line-12-extension/"
+      "url": "https://metrorailnews.in/mumbai-metro-line-12-extension/",
+      "lines": [
+        "line-12"
+      ]
     },
     {
       "title": "MMRDA achieves milestone as Mumbai Metro Line-12 launches 200th U-Girder near Golavali",
       "outlet": "Rail Analysis India",
       "date": "2026-02-16",
-      "url": "https://railanalysis.in/metro/mmrda-achieves-milestone-as-mumbai-metro-line-12-launches-200th-u-girder-near-golavali/"
+      "url": "https://railanalysis.in/metro/mmrda-achieves-milestone-as-mumbai-metro-line-12-launches-200th-u-girder-near-golavali/",
+      "lines": [
+        "line-12"
+      ]
     },
     {
       "title": "MMRDA’s Mumbai Metro Line-12 marks major milestone with 100th U-Girder launch near Dombivli",
       "outlet": "Rail Analysis India",
       "date": "2025-12-15",
-      "url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/"
+      "url": "https://railanalysis.in/metro/mmrdas-mumbai-metro-line-12-marks-major-milestone-with-100th-u-girder-launch-near-dombivli/",
+      "lines": [
+        "line-12"
+      ]
+    },
+    {
+      "title": "Titagarh secures Rs. 2,481 crore order for manufacturing 132 metro coaches of Mumbai Metro Line-5",
+      "outlet": "Rail Analysis India",
+      "date": "2025-11-01",
+      "url": "https://railanalysis.in/metro/titagarh-secures-rs-2481-crore-order-for-manufacturing-132-metro-coaches-of-mumbai-metro-line-5/",
+      "lines": [
+        "line-5"
+      ]
     }
   ],
   "videos": []

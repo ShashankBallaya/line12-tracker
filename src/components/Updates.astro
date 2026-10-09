@@ -1,6 +1,6 @@
 ---
 import Grade from './Grade.astro';
-import { feed, formatDate, outletName, type Line } from '../lib/data';
+import { aboutLine, feed, formatDate, outletName, type Line } from '../lib/data';
 
 interface Props {
   line: Line;
@@ -19,9 +19,10 @@ const latest = timeline
 // and videos only once the feed has found some.
 const bare = (u: string) => u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 const curated = new Set(timeline.map((e) => e.source_url && bare(e.source_url)).filter(Boolean));
-const news = feed.news.filter((n) => !curated.has(bare(n.url))).slice(0, 10);
-const videos = feed.videos.slice(0, 6);
-const feedUpdated = feed._meta.updated_at.slice(0, 10);
+const news = feed.news.filter((n) => aboutLine(n, line) && !curated.has(bare(n.url))).slice(0, 10);
+const videos = feed.videos.filter((v) => aboutLine(v, line)).slice(0, 6);
+// When this line last gained or lost an item (the feed's own time, for a feed written before lines).
+const feedUpdated = (feed._meta.updated_at_by_line?.[line.id] ?? feed._meta.updated_at).slice(0, 10);
 ---
 
 <section id="updates" class="section page" aria-labelledby="updates-title">

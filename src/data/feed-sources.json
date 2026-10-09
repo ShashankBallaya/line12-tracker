@@ -1,22 +1,117 @@
 {
   "_meta": {
-    "description": "Where the automatic news and video feed looks, and what it keeps. Edited by hand; read by scripts/fetch-feed.mjs every 6 hours (.github/workflows/feed.yml). Only outlets' own RSS feeds and the YouTube Data API are used: Google News RSS is for personal feed readers only, so it is not used.",
-    "last_reviewed": "2026-09-28"
+    "description": "Where the automatic news and video feed looks, and what it keeps. Edited by hand; read by scripts/fetch-feed.mjs every 6 hours (.github/workflows/feed.yml). Only outlets' own RSS feeds and the YouTube Data API are used: Google News RSS is for personal feed readers only, so it is not used. Each line has its own block under 'lines': the words searched for on each outlet ('search', put in place of {q} in an outlet's URL), the video queries, and the rules for keeping an item. An item is tagged with every line whose rules it meets.",
+    "last_reviewed": "2026-10-09"
   },
   "news_feeds": [
-    { "outlet": "The Metro Rail Guy", "url": "https://themetrorailguy.com/?s=taloja&feed=rss2" },
-    { "outlet": "Metro Rail News", "url": "https://metrorailnews.in/?s=taloja&feed=rss2" },
-    { "outlet": "Rail Analysis India", "url": "https://railanalysis.in/?s=taloja&feed=rss2" },
-    { "outlet": "Re-Mumbai", "url": "https://remumbai.in/?s=taloja&feed=rss2" },
-    { "outlet": "Urban Acres", "url": "https://urbanacres.in/?s=taloja&feed=rss2" },
-    { "outlet": "Mid-day", "url": "https://www.mid-day.com/Resources/midday/rss/mumbai-news.xml" }
+    {
+      "outlet": "The Metro Rail Guy",
+      "url": "https://themetrorailguy.com/?s={q}&feed=rss2"
+    },
+    {
+      "outlet": "Metro Rail News",
+      "url": "https://metrorailnews.in/?s={q}&feed=rss2"
+    },
+    {
+      "outlet": "Rail Analysis India",
+      "url": "https://railanalysis.in/?s={q}&feed=rss2"
+    },
+    {
+      "outlet": "Re-Mumbai",
+      "url": "https://remumbai.in/?s={q}&feed=rss2"
+    },
+    {
+      "outlet": "Urban Acres",
+      "url": "https://urbanacres.in/?s={q}&feed=rss2"
+    },
+    {
+      "outlet": "Mid-day",
+      "url": "https://www.mid-day.com/Resources/midday/rss/mumbai-news.xml"
+    }
   ],
-  "video_queries": ["Metro Line 12 Kalyan Taloja", "Kalyan Taloja Metro"],
-  "match": {
-    "comment": "An item is kept if its title matches a 'line_12' pattern, or its title names a 'corridor' place and its summary matches a 'line_12' pattern. Case does not matter. 'line[\\s-]*12\\b' does not match Line 12A.",
-    "line_12": ["line[\\s-]*12\\b", "metro[\\s-]*12\\b", "line[\\s-]*xii\\b", "kalyan[\\s-]*(dombivli[\\s-]*)?taloja"],
-    "corridor": ["kalyan", "dombivli", "taloja", "shilphata", "amandoot", "mmrda", "navi mumbai", "nilje", "golavli", "golavali", "sonarpada", "manpada"]
+  "lines": {
+    "line-12": {
+      "search": [
+        "taloja"
+      ],
+      "video_queries": [
+        "Metro Line 12 Kalyan Taloja",
+        "Kalyan Taloja Metro"
+      ],
+      "match": {
+        "comment": "An item is kept if its title matches a 'line_12' pattern, or its title names a 'corridor' place and its summary matches a 'line_12' pattern. Case does not matter. 'line[\\s-]*12\\b' does not match Line 12A.",
+        "strong": [
+          "line[\\s-]*12\\b",
+          "metro[\\s-]*12\\b",
+          "line[\\s-]*xii\\b",
+          "kalyan[\\s-]*(dombivli[\\s-]*)?taloja"
+        ],
+        "line": [
+          "line[\\s-]*12\\b",
+          "metro[\\s-]*12\\b",
+          "line[\\s-]*xii\\b",
+          "kalyan[\\s-]*(dombivli[\\s-]*)?taloja"
+        ],
+        "corridor": [
+          "kalyan",
+          "dombivli",
+          "taloja",
+          "shilphata",
+          "amandoot",
+          "mmrda",
+          "navi mumbai",
+          "nilje",
+          "golavli",
+          "golavali",
+          "sonarpada",
+          "manpada"
+        ],
+        "require_corridor": false
+      }
+    },
+    "line-5": {
+      "search": [
+        "bhiwandi"
+      ],
+      "video_queries": [
+        "Metro Line 5 Thane Bhiwandi Kalyan",
+        "Bhiwandi Metro"
+      ],
+      "match": {
+        "comment": "Pune, Chennai and Bengaluru also have a Line 5, so a bare 'Line 5' or 'Metro 5' needs a Line 5 place in the title or summary. A 'strong' pattern in the title is enough on its own. 'line[\\s-]*5a?\\b' does not match Line 50 or Line 55.",
+        "strong": [
+          "mumbai[\\s-]*metro[\\s-]*(line[\\s-]*)?5a?\\b",
+          "thane[\\s-]*bhiwandi[\\s-]*kalyan",
+          "bhiwandi[\\s-]*metro",
+          "metro[\\s-]*line[\\s-]*5a\\b"
+        ],
+        "line": [
+          "line[\\s-]*5a?\\b",
+          "metro[\\s-]*5a?\\b"
+        ],
+        "corridor": [
+          "thane",
+          "bhiwandi",
+          "kalyan",
+          "kasheli",
+          "kapurbawdi",
+          "kapurbawadi",
+          "balkum",
+          "anjurphata",
+          "dhamankar",
+          "durgadi",
+          "ulhasnagar",
+          "temghar",
+          "mmrda"
+        ],
+        "require_corridor": true
+      }
+    }
   },
   "exclude_urls": [],
-  "keep": { "news": 30, "videos": 12, "max_age_days": 365 }
+  "keep": {
+    "news_per_line": 30,
+    "videos_per_line": 12,
+    "max_age_days": 365
+  }
 }

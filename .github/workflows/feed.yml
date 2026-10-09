@@ -1,4 +1,4 @@
-# Every 6 hours: fetch news and videos about Line 12 into src/data/feed.json.
+# Every 6 hours: fetch news and videos about each line (src/data/feed-sources.json) into src/data/feed.json.
 # Commits and deploys only when the feed finds something new.
 # Optional repository secret (Settings > Secrets and variables > Actions):
 #   YOUTUBE_API_KEY   a YouTube Data API v3 key. Without it, the job fetches news only.

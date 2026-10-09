@@ -225,10 +225,13 @@ export const lineNodeId = (siteUrl: string, line: Line) => `${siteUrl}#${line.id
 
 /** Automatic feed (scripts/fetch-feed.mjs). Found by a script, not checked by a person. */
 export const feed = feedJson as {
-  _meta: { updated_at: string };
-  news: { title: string; outlet: string; date: string; url: string }[];
-  videos: { id: string; title: string; channel: string; date: string; url: string }[];
+  _meta: { updated_at: string; updated_at_by_line?: Record<string, string> };
+  news: { title: string; outlet: string; date: string; url: string; lines?: string[] }[];
+  videos: { id: string; title: string; channel: string; date: string; url: string; lines?: string[] }[];
 };
+
+/** Whether a feed item is about the line. Items written before the feed knew of lines are Line 12's. */
+export const aboutLine = (item: { lines?: string[] }, line: Line) => (item.lines ?? ['line-12']).includes(line.id);
 
 /** People who shared their photos with permission (those with an X handle) on one station page. */
 export const photoContributorsFor = (line: Line, stationId: string) => {
