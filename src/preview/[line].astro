@@ -1,0 +1,26 @@
+---
+/* Dev-only preview of a line that has no pages yet (MULTI-LINE-PLAN.md, step 7). Routed only by `astro dev` (astro.config.mjs).
+   Until FrontPage's copy is per line, it borrows Line 12's progress and target so the strip can render. */
+import Base from '../layouts/Base.astro';
+import FrontPage from '../components/FrontPage.astro';
+import RouteRide from '../components/RouteRide.astro';
+import { getLine, lines, type LineId } from '../lib/data';
+
+export function getStaticPaths() {
+  return lines.map((l) => ({ params: { line: l.id } }));
+}
+
+const real = getLine(Astro.params.line as LineId);
+const line12 = getLine('line-12');
+const line = {
+  ...real,
+  project: { ...real.project, progress: line12.project.progress, target_completion: line12.project.target_completion },
+};
+---
+
+<Base title={`Preview: ${real.info.label}`} description="Dev preview" line={real}>
+  <main id="main">
+    <FrontPage line={line} />
+    <RouteRide line={real} />
+  </main>
+</Base>

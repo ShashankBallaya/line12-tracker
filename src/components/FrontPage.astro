@@ -23,7 +23,8 @@ const first = stations[0].name;
 const last = stations[stations.length - 1].name;
 
 // Schematic strip (shared geometry with the route ride).
-const { width: W, height: H, path, points: dots } = schematic(line);
+const { width: W, height: H, path, points: dots, placed, underground, branch } = schematic(line);
+const spurEnd = line.spurStations.at(-1)?.name;
 ---
 
 <section class="front page" aria-labelledby="front-headline">
@@ -58,16 +59,21 @@ const { width: W, height: H, path, points: dots } = schematic(line);
 
   <div class="front__picture scene-host" data-scene="viaduct"><LeadPicture /></div>
 
-  <a class="front__strip" href="#route">
+  <a class={branch ? 'front__strip front__strip--branch' : 'front__strip'} href="#route">
     <span class="front__strip-end front__strip-end--a">{first}</span>
     <svg class="front__strip-line" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path d={path} class="line-casing" vector-effect="non-scaling-stroke" />
+      {branch && <path d={branch.path} class="line-casing" vector-effect="non-scaling-stroke" />}
       <path d={path} class="line-core" vector-effect="non-scaling-stroke" />
+      {branch && <path d={branch.path} class="line-core" vector-effect="non-scaling-stroke" />}
+      {underground && <path d={underground} class="line-tunnel" vector-effect="non-scaling-stroke" />}
     </svg>
     <span class="front__strip-dots" aria-hidden="true">
-      {dots.map(([x, y]) => <span class="front__strip-dot" style={`left:${(x / W) * 100}%;top:${(y / H) * 100}%`}></span>)}
+      {dots.map(([x, y], i) => <span class={placed[i] ? 'front__strip-dot' : 'front__strip-dot front__strip-dot--unplaced'} style={`left:${(x / W) * 100}%;top:${(y / H) * 100}%`}></span>)}
+      {branch?.points.map(([x, y]) => <span class="front__strip-dot" style={`left:${(x / W) * 100}%;top:${(y / H) * 100}%`}></span>)}
     </span>
     <span class="front__strip-end front__strip-end--b">{last}</span>
+    {branch && <span class="front__strip-end front__strip-end--spur">{spurEnd}</span>}
     <span class="front__strip-meta num">{stations.length} stations<span aria-hidden="true"> / </span>{project.length_km.value} km<span class="visually-hidden">. Ride the line.</span></span>
   </a>
 </section>
@@ -221,6 +227,14 @@ const { width: W, height: H, path, points: dots } = schematic(line);
     stroke: var(--paper);
     stroke-width: 5px;
   }
+  /* Underground: the hollow line drawn as a dashed outline. */
+  .front__strip-line .line-tunnel {
+    fill: none;
+    stroke: var(--paper);
+    stroke-width: 14px;
+    stroke-linecap: butt;
+    stroke-dasharray: 6px 5px;
+  }
   .front__strip-dot {
     position: absolute;
     width: 0.85rem;
@@ -230,6 +244,12 @@ const { width: W, height: H, path, points: dots } = schematic(line);
     background: var(--ink);
     border: 2.5px solid var(--paper);
     transition: scale 0.2s var(--ease-out);
+  }
+  /* No published position: put between its neighbours, drawn open. */
+  .front__strip-dot--unplaced {
+    background: var(--paper);
+    border-color: var(--ink);
+    border-style: dashed;
   }
   @media (hover: hover) and (pointer: fine) {
     .front__strip:hover .front__strip-dot {
@@ -243,6 +263,15 @@ const { width: W, height: H, path, points: dots } = schematic(line);
   .front__strip-end--b {
     grid-area: 1 / 3;
     align-self: end;
+  }
+  /* A line with a spur: the line's end at the top right, the spur's end at the bottom right. */
+  .front__strip--branch .front__strip-end--b {
+    align-self: start;
+  }
+  .front__strip-end--spur {
+    grid-area: 1 / 3;
+    align-self: end;
+    color: var(--ink-2);
   }
   /* Phones: the line gets the full width, station names above and below it. */
   @media (max-width: 47.99rem) {
@@ -260,6 +289,14 @@ const { width: W, height: H, path, points: dots } = schematic(line);
       height: 4rem;
     }
     .front__strip-end--b {
+      grid-area: 3 / 1;
+      justify-self: end;
+    }
+    .front__strip--branch .front__strip-end--b {
+      grid-area: 1 / 1;
+      justify-self: end;
+    }
+    .front__strip-end--spur {
       grid-area: 3 / 1;
       justify-self: end;
     }

@@ -79,6 +79,10 @@ export interface Line {
   info: LineInfo;
   project: ProjectFile;
   stations: Station[];
+  /** A branch off the line (Line 5A for Line 5), in order from where it leaves; along_m is measured on the branch. */
+  spurStations: Station[];
+  /** Stations of an earlier plan that the current plan drops. */
+  droppedStations: Station[];
   stationsMeta: StationsFile['_meta'];
   timeline: TimelineEvent[];
   tenders: Tender[];
@@ -119,6 +123,8 @@ export function getLine(id: LineId): Line {
     info,
     project,
     stations: stations.stations,
+    spurStations: (stations as { spur_stations?: Station[] }).spur_stations ?? [],
+    droppedStations: (stations as { dropped_stations?: Station[] }).dropped_stations ?? [],
     stationsMeta: stations._meta,
     timeline: timeline?.events ?? [],
     tenders: tenders?.tenders ?? [],

@@ -115,7 +115,9 @@ const graph = {
       <div class="preloader" aria-hidden="true">
         <svg viewBox={`0 0 ${pre.width} ${pre.height}`} preserveAspectRatio="xMidYMid meet">
           <path d={pre.path} pathLength="1" class="preloader__casing" />
+          {pre.branch && <path d={pre.branch.path} pathLength="1" class="preloader__casing" />}
           <path d={pre.path} pathLength="1" class="preloader__core" />
+          {pre.branch && <path d={pre.branch.path} pathLength="1" class="preloader__core" />}
         </svg>
       </div>
     )}

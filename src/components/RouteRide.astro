@@ -42,7 +42,10 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
       <div class="ride__track" aria-hidden="true">
         <svg class="ride__line" viewBox={`0 0 ${strip.width} ${strip.height}`} preserveAspectRatio="none" focusable="false">
           <path d={strip.path} class="casing" vector-effect="non-scaling-stroke" />
+          {strip.branch && <path d={strip.branch.path} class="casing" vector-effect="non-scaling-stroke" />}
           <path d={strip.path} class="core" vector-effect="non-scaling-stroke" />
+          {strip.branch && <path d={strip.branch.path} class="core" vector-effect="non-scaling-stroke" />}
+          {strip.underground && <path d={strip.underground} class="tunnel" vector-effect="non-scaling-stroke" />}
         </svg>
         {stations.map((s, i) => (
           <span class:list={['ride__tick', onBend(i) ? 'ride__tick--side' : i % 2 ? 'ride__tick--below' : 'ride__tick--above']} style={`--x:${px(i)}%;--y:${py(i)}%`} data-ride-tick={i}>
@@ -259,6 +262,13 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
   .ride__line .core {
     stroke: var(--paper);
     stroke-width: 9px;
+  }
+  /* Underground: the hollow line drawn as a dashed outline. */
+  .ride__line .tunnel {
+    stroke: var(--paper);
+    stroke-width: 22px;
+    stroke-linecap: butt;
+    stroke-dasharray: 9px 7px;
   }
   .ride__tick {
     position: absolute;

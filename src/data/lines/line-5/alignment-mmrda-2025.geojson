@@ -8,7 +8,12 @@
   "length_m": 25298,
   "fork_m": 22602,
   "centre_line_m": 29330,
-  "spur_m": 4882
+  "spur_m": 4882,
+  "branch_from_station": "bhoirwadi",
+  "underground_along_m": [
+   12837,
+   16150
+  ]
  },
  "features": [
   {
