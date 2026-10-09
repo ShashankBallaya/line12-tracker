@@ -134,7 +134,7 @@ Status 2026-10-09. The page reuses Line 12's components and layout; this list is
 ### New for Line 5 (Line 12 does not have it yet)
 
 - **Opening mode.** Phase 1 may open before the end of 2026. Plan sections for a running line: opening date, timings, fares, frequency, and "open" against "under construction" per station. Line 12 will need the same later.
-- **Phase status at a glance.** One line in three phases at three stages (built, approved, approved), plus a spur.
+- **Phase status at a glance.** Done 2026-10-09: Progress shows one row of stages per phase (item 3).
 - **The 2017 plan against the 2026 plan.** A short "what changed" view: Gopal Nagar, Sahajanand Chowk and APMC Kalyan dropped, the loop to Kalyan, Bhiwandi underground.
 
 ### Facts still missing (see `SOURCES.md`, Line 5)
@@ -187,4 +187,4 @@ Researched 2026-10-09. Grades as in SOURCES.md. "EIA" is MMRDA's Phase 1 environ
 ## Questions for the owner
 
 1. Line 12A: a line of its own in the registry, or still out of scope?
-2. Line 5 and Line 12 share the orange colour. On the hub and at Kalyan the two lines need a second cue (the line number, always shown) so they never rely on colour alone.
+2. ~~Line 5 and Line 12 share the orange colour.~~ Answered 2026-10-09 by item 6: the line number always shows with the colour (LineMark).
