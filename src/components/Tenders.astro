@@ -51,7 +51,7 @@ const cr = (v: number | null | undefined) => (v == null ? null : `₹${inr(v)} c
             <td data-label="Floated">{formatDate(t.floated)}</td>
             <td data-label="Estimate" class="r">{cr(t.estimated_value_crore) ?? <span class="nil">Not published</span>}</td>
             <td data-label="Awarded" class="r">
-              {cr(t.awarded_value_crore) ?? <span class="nil">None</span>}
+              {cr(t.awarded_value_crore) ?? <span class="nil">{t.award_date ? 'Not published' : 'None'}</span>}
               {t.award_date && <span class="sub">{formatDate(t.award_date)}</span>}
             </td>
             <td data-label="Awarded to">{who(t.awarded_to) ?? <span class="nil">None</span>}</td>
@@ -76,6 +76,7 @@ const cr = (v: number | null | undefined) => (v == null ? null : `₹${inr(v)} c
     </ul>
   </div>
 
+  {excludedClaims.length > 0 && (
   <aside class="unprinted" aria-labelledby="unprinted-title">
     <h3 id="unprinted-title">Claims we did not print</h3>
     <ul>
@@ -84,6 +85,7 @@ const cr = (v: number | null | undefined) => (v == null ? null : `₹${inr(v)} c
       ))}
     </ul>
   </aside>
+  )}
 </section>
 
 <style>

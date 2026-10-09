@@ -1,0 +1,89 @@
+{
+ "_meta": {
+  "description": "Rolling stock for Line 5. The trains are ordered: Titagarh Rail Systems holds package CA-241 (trains, signalling, telecom, platform screen doors, depot machinery) for Phases 1 and 2. 'specs' are MMRDA's published figures, shown as rows. Phase 3 and the Line 5A spur are not in this contract.",
+  "last_reviewed": "2026-10-09"
+ },
+ "procurement": {
+  "manufacturer": "Titagarh Rail Systems",
+  "value": "MMRDA's letter of acceptance, announced by Titagarh to the stock exchanges on 31 Oct 2025",
+  "package": "CA-241",
+  "date": "2025-10-31",
+  "value_crore": 2481,
+  "trains": 22,
+  "cars_per_train": 6,
+  "coaches": 132,
+  "phases": "Phases 1 and 2",
+  "scope": "Design, manufacture, supply and commissioning of the trains, with CBTC signalling and train control, telecom, platform screen doors and depot machinery at Kasheli",
+  "built_at": "Titagarh's plant at Uttarpara, near Kolkata",
+  "commissioning_weeks": 217,
+  "commissioning_source_url": "https://www.motilaloswal.com/news/stocks/108209",
+  "maintenance": {
+   "value": "Five years of comprehensive maintenance in the award reports; the tender set 15 years after a 2-year defect liability period",
+   "status": "conflicting",
+   "source_url": "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
+   "also_see": [
+    "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/"
+   ],
+   "last_verified": "2026-10-09"
+  },
+  "status": "reported",
+  "source_url": "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
+  "also_see": [
+   "https://www.bajajbroking.in/share-market-news/titagarh-rail-systems-wins-rs-2481-crore-mumbai-metro-order",
+   "https://www.motilaloswal.com/news/stocks/108209",
+   "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/"
+  ],
+  "last_verified": "2026-10-09",
+  "notes": "Titagarh was declared the lowest bidder in June 2025 (The Metro Rail Guy, against MMRDA's estimate of Rs 2,640.72 crore from the February 2024 bid invitation). The award reports name Phase 2 as running to Kalyan APMC, the 2017 plan's end."
+ },
+ "specs": {
+  "rows": [
+   [
+    "Cars per train",
+    "6"
+   ],
+   [
+    "Trains",
+    "22"
+   ],
+   [
+    "Car width",
+    "3.20 m"
+   ],
+   [
+    "Car height",
+    "3.90 m"
+   ],
+   [
+    "Length",
+    "21.84 m"
+   ],
+   [
+    "Capacity, 6 cars",
+    "1,756 people"
+   ]
+  ],
+  "status": "verified",
+  "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
+  "last_verified": "2026-10-09",
+  "notes": "MMRDA's Line 5 page lists width, height and length under rolling stock; it does not say whether the length is one car or a whole train, so the page shows it as given. Trains and cars per train come from the contract."
+ },
+ "traction": {
+  "supplier": "ABB India",
+  "value": "Traction and train control (TCMS) for the 22 trains, on 25 kV AC overhead power; automation at grade GoA2, upgradable to GoA4",
+  "status": "reported",
+  "source_url": "https://machinist.in/2026/01/abb-india-wins-traction-and-control-systems-order-for-metro-trainsets-from-titagarh-rail-systems/",
+  "last_verified": "2026-10-09",
+  "notes": "ABB's order from Titagarh (January 2026) covers 40 six-car trains: 22 for Line 5 and 18 for Line 6."
+ },
+ "image": {
+  "src": null,
+  "alt": "Line 5 metro train",
+  "caption": "The Line 5 train design.",
+  "credit": null,
+  "status": "unverified",
+  "source_url": null,
+  "last_verified": "2026-10-09",
+  "notes": "Owner to add a sourced image of the Titagarh train for Line 5, if one is published. Until then the page shows a generic drawing."
+ }
+}

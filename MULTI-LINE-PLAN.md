@@ -85,7 +85,7 @@ Each step ships on its own and leaves the live site working.
    - `FrontPage`, `Numbers`: done in step 7 (lines.json `copy`).
    - `Progress`: done in step 7 (stages and the standfirst are in each line's `project.json`).
    - `RouteRide`, `Stations`: done in step 7 (lines.json `copy`).
-   - `Trains`: still Line 12's wording; it shows only for a line with rollingstock.json, so it moves to data when Line 5 gets that file.
+   - `Trains`: done in step 7 (an ordered line shows its maker and contract).
    - `MapSection`, `[id].astro`, `LocatorMap`: done in step 7.
    - `SourcesFooter`: done in step 7 (`copy.primary_sources`).
    - `status.astro`: every answer. Line 12 only (`hasStatusPage`) until Line 5's answers are written.
@@ -124,7 +124,7 @@ Status 2026-10-09. The page reuses Line 12's components and layout; this list is
 | Hero 3D scene | `three/viaduct.ts` | Done 2026-10-09 (owner's request): the same scene and static drawing with Line 5's number painted on the ground (`data-line-number`, LeadPicture `number` prop). A Line 5 signature scene (Kasheli creek) can replace it later. |
 | 3D station | `three/station.ts` + `station-model.json` captions | Phase 1 stations are a different design: spine and wings, two levels, about 145 m long, platforms about 13.5 m above the road (MMRDA environmental report, verified). New model and sourced captions. |
 | Before and after | `beforeafter.json` from `build-wayback.mjs` | Make the script take a line. Phase 1 is built, so the pairs will be dramatic: imagery from before Feb 2020 (construction start) against the latest. Kasheli creek, Anjurphata, Dhamankar Naka. |
-| Trains | `rollingstock.json` | A Line 5 file: Titagarh CA-241, 22 six-car trains, car size and capacity (MMRDA page). The owner's "LINE 5" train render lead, once sourced. |
+| Trains | `rollingstock.json` | Done 2026-10-09: Line 5's file (Titagarh, CA-241, letter of acceptance announced 31 Oct 2025, 22 six-car trains built at Uttarpara near Kolkata, ABB traction; MMRDA's car figures). `Trains` shows an ordered line's maker, contract and figures. Maintenance term conflicts (5 years in the award reports, 15 after a 2-year defect period in the tender). Still wanted: a sourced image of the train. |
 | Ground photos | `photos.json` (owner, and Arindam with permission) | Phase 1 is built and near the owner: dated photos of Kapurbawdi, Kasheli, Dhamankar Naka. Same rules: EXIF stripped, plates blurred. |
 | Updates | `social.json`, feed match block | A `line_5` block in `feed-sources.json`. Patterns must keep "Line 5" and "Metro 5" but not other cities' Line 5 (Pune, Chennai, Bengaluru all have one). Posts by @bodkeitis and @Maha7Arindam as reported. |
 | Status page | `status.astro`, Line 12 answers | Line 5 answers: when Phase 1 opens, which stations open first, where it meets Line 4, what happens past Bhiwandi, where the spur goes. |

@@ -71,14 +71,36 @@
       "last_verified": "2026-10-09"
     },
     {
-      "id": "ca241-award",
-      "date": "2025",
-      "date_precision": "year",
-      "kind": "award",
-      "title": "Titagarh wins the trains and signalling contract",
-      "summary": "Package CA-241, Rs 2,481 crore: 22 six-car trains, CBTC signalling, telecom, platform screen doors and depot machinery.",
+      "id": "ca241-lowest-bidder",
+      "date": "2025-06",
+      "date_precision": "month",
+      "kind": "tender",
+      "title": "Titagarh is the lowest bidder for the trains and signalling",
+      "summary": "Package CA-241, against MMRDA's estimate of Rs 2,640.72 crore from the February 2024 bid invitation.",
       "status": "reported",
       "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "ca241-award",
+      "date": "2025-10-31",
+      "date_precision": "day",
+      "kind": "award",
+      "title": "Titagarh gets the trains and signalling contract",
+      "summary": "Package CA-241, Rs 2,481 crore: 22 six-car trains built near Kolkata, CBTC signalling, telecom, platform screen doors and depot machinery, for Phases 1 and 2. Titagarh announced MMRDA's letter of acceptance to the stock exchanges.",
+      "status": "reported",
+      "source_url": "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
+      "last_verified": "2026-10-09"
+    },
+    {
+      "id": "abb-traction",
+      "date": "2026-01",
+      "date_precision": "month",
+      "kind": "related",
+      "title": "ABB to supply traction and train control for the trains",
+      "summary": "Titagarh orders traction and train control for 40 six-car trains from ABB India: 22 for Line 5, 18 for Line 6.",
+      "status": "reported",
+      "source_url": "https://machinist.in/2026/01/abb-india-wins-traction-and-control-systems-order-for-metro-trainsets-from-titagarh-rail-systems/",
       "last_verified": "2026-10-09"
     },
     {

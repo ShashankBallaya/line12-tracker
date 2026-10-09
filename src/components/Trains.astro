@@ -11,11 +11,30 @@ const rollingstock = line.rollingstock!;
 const { timeline } = line;
 
 
+/**
+ * A line whose trains are ordered (Line 5) has a maker, the contract, and the maker's published figures.
+ * A line whose trains are not ordered yet (Line 12) shows its project report's planning figures.
+ */
+interface Graded { status: string; source_url: string | null }
+interface Ordered {
+  procurement: Graded & {
+    manufacturer: string; value: string; package: string; date: string; value_crore: number; trains: number;
+    cars_per_train: number; coaches: number; phases: string; scope: string; built_at: string;
+    commissioning_weeks?: number; commissioning_source_url?: string; maintenance?: Graded & { value: string };
+  };
+  specs: Graded & { rows: [string, string][]; notes?: string };
+  traction?: Graded & { supplier: string; value: string };
+}
+const ordered = rollingstock.procurement.manufacturer ? (rollingstock as unknown as Ordered) : undefined;
 const d = rollingstock.dpr_design_assumptions;
 const l5 = rollingstock.line5_contract;
 const img = rollingstock.image as { src: string | null; alt: string; caption: string; credit: string | null; status: string; source_url: string | null };
-const tender = timeline.find((e) => e.id === 'systems-tender')!;
-const specs: [string, string][] = [
+const tender = timeline.find((e) => e.id === 'systems-tender');
+// The generic drawing: one car per car in a train at opening (6 on Line 5, 3 on Line 12).
+const cars = ordered ? ordered.procurement.cars_per_train : 3;
+const carW = (680 - (cars - 1) * 10) / cars;
+const carXs = Array.from({ length: cars }, (_, i) => 20 + i * (carW + 10));
+const specs: [string, string][] = ordered ? ordered.specs.rows : [
   ['Car width', `${d.car_width_m} m`],
   ['Body', d.body],
   ['Cars per train at opening', `${d.initial_formation_cars}`],
@@ -34,9 +53,17 @@ const specs: [string, string][] = [
 <section id="trains" class="section page" aria-labelledby="trains-title">
   <header class="section-head">
     <h2 id="trains-title">Trains</h2>
-    <p>
-      No train has been ordered yet. The trains, signalling and power systems are in one tender floated in {formatDate(tender.date)}. Until a maker is chosen, these are the 2019 project report's planning figures.
-    </p>
+    {ordered ? (
+      <p>
+        The trains are ordered. {ordered.procurement.manufacturer} is building {ordered.procurement.trains} six-car trains for{' '}
+        {ordered.procurement.phases}, with the signalling, platform screen doors and depot machinery, under one contract
+        announced on {formatDate(ordered.procurement.date)}.
+      </p>
+    ) : (
+      <p>
+        No train has been ordered yet. The trains, signalling and power systems are in one tender floated in {formatDate(tender!.date)}. Until a maker is chosen, these are the 2019 project report's planning figures.
+      </p>
+    )}
   </header>
 
   <div class="trains">
@@ -50,9 +77,22 @@ const specs: [string, string][] = [
     ) : (
       <figure class="trains__drawing halftone">
         <svg viewBox="0 0 720 200" role="img" aria-labelledby="train-drawing-title">
-        <title id="train-drawing-title">Side view of a generic three-car metro train, each car 3.2 metres wide as planned in the 2019 report.</title>
+        {ordered ? (
+          <title id="train-drawing-title">{`Side view of a generic ${cars}-car metro train, not the maker's design.`}</title>
+        ) : (
+          <title id="train-drawing-title">Side view of a generic three-car metro train, each car 3.2 metres wide as planned in the 2019 report.</title>
+        )}
         <rect x="0" y="160" width="720" height="4" fill="var(--ink)" />
-        {[20, 250, 480].map((x, i) => (
+        {ordered ? carXs.map((x, i) => (
+          <g>
+            <rect x={x} y="60" width={carW} height="92" rx={i === 0 || i === cars - 1 ? 10 : 2} fill="var(--signal)" />
+            <rect x={x + 10} y="76" width={carW - 20} height="30" fill="var(--on-signal)" />
+            <rect x={x} y="120" width={carW} height="5" fill="var(--on-signal)" />
+            <rect x={x + carW / 2 - 10} y="72" width="20" height="80" fill="var(--on-signal)" opacity="0.35" />
+            <circle cx={x + carW * 0.22} cy="156" r="8" fill="var(--ink)" />
+            <circle cx={x + carW * 0.78} cy="156" r="8" fill="var(--ink)" />
+          </g>
+        )) : [20, 250, 480].map((x, i) => (
           <g>
             <rect x={x} y="60" width="220" height="92" rx={i === 1 ? 2 : 10} fill="var(--signal)" />
             <rect x={x + 16} y="76" width="188" height="30" fill="var(--on-signal)" />
@@ -63,23 +103,51 @@ const specs: [string, string][] = [
           </g>
         ))}
         <path d="M20 36H700M20 30v12M700 30v12" stroke="var(--ink-3)" stroke-width="1.5" fill="none" />
-        <text x="360" y="26" text-anchor="middle" font-size="14" fill="var(--ink-2)" font-family="Mukta, sans-serif">3 cars at opening, 6 cars later</text>
+        <text x="360" y="26" text-anchor="middle" font-size="14" fill="var(--ink-2)" font-family="Mukta, sans-serif">{ordered ? `${cars} cars per train` : '3 cars at opening, 6 cars later'}</text>
       </svg>
-        <figcaption>Generic drawing, not any maker's design. Line 12 extends Line 5; its own trains are not ordered yet.</figcaption>
+        {ordered ? (
+          <figcaption>Generic drawing, not the maker's design. No image of this train is sourced yet.</figcaption>
+        ) : (
+          <figcaption>Generic drawing, not any maker's design. Line 12 extends Line 5; its own trains are not ordered yet.</figcaption>
+        )}
       </figure>
     )}
 
     <div class="trains__spec">
       <p class="trains__maker">
-        <span class="trains__maker-value">Maker not chosen</span>
+        <span class="trains__maker-value">{ordered ? ordered.procurement.manufacturer : 'Maker not chosen'}</span>
         <Grade status={rollingstock.procurement.status} source={rollingstock.procurement.source_url} />
       </p>
+      {ordered ? (
+        <>
+          <p class="trains__line5">
+            <strong>Package {ordered.procurement.package}, ₹{ordered.procurement.value_crore.toLocaleString('en-IN')} crore:</strong>{' '}
+            {ordered.procurement.trains} trains of {ordered.procurement.cars_per_train} cars ({ordered.procurement.coaches} coaches), built at{' '}
+            {ordered.procurement.built_at}.{' '}
+            {ordered.procurement.commissioning_weeks && <>To be commissioned within {ordered.procurement.commissioning_weeks} weeks. </>}
+            <Grade status={ordered.procurement.status} source={ordered.procurement.source_url} />
+          </p>
+          {ordered.procurement.maintenance && (
+            <p class="trains__line5">
+              <strong>Maintenance:</strong> {ordered.procurement.maintenance.value}.{' '}
+              <Grade status={ordered.procurement.maintenance.status} source={ordered.procurement.maintenance.source_url} />
+            </p>
+          )}
+          {ordered.traction && (
+            <p class="trains__line5">
+              <strong>Traction, from {ordered.traction.supplier}:</strong> {ordered.traction.value}.{' '}
+              <Grade status={ordered.traction.status} source={ordered.traction.source_url} />
+            </p>
+          )}
+        </>
+      ) : (
       <p class="trains__line5">
         <strong>On Line 5, which Line 12 extends:</strong> {l5.supplier} is building {l5.trains} six-coach trains
         ({l5.coaches} coaches) with signalling, platform screen doors and depot machinery, for
         ₹{l5.value_crore.toLocaleString('en-IN')} crore (package {l5.package}). Line 12 may end up with the same design, but its
         trains are a separate tender. <Grade status={l5.status} source={l5.source_url} />
       </p>
+      )}
       <dl class="spec">
         {specs.map(([k, v]) => (
           <div class="spec__row">
@@ -88,10 +156,16 @@ const specs: [string, string][] = [
           </div>
         ))}
       </dl>
+      {ordered ? (
+        <p class="trains__note">
+          MMRDA's published figures. {ordered.specs.notes} <Grade status={ordered.specs.status} source={ordered.specs.source_url} />
+        </p>
+      ) : (
       <p class="trains__note">
         Planning figures, not a procured train. Capacity counts 6 standing people per square metre.
         <Grade status={d.status} source={d.source_url} />
       </p>
+      )}
     </div>
   </div>
 </section>
@@ -191,6 +265,7 @@ const specs: [string, string][] = [
     text-align: right;
   }
   .trains__note {
+    max-width: var(--measure);
     margin-top: var(--s-4);
     font-size: var(--step--1);
     color: var(--ink-3);

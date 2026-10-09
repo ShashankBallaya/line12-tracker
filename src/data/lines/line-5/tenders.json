@@ -40,17 +40,21 @@
       "id": "ca-241",
       "package": "CA-241",
       "scope": "Rolling stock (22 six-car trains), CBTC signalling and train control, telecom, platform screen doors, and depot machinery at Kasheli",
-      "floated": null,
-      "estimated_value_crore": null,
+      "floated": "2024-02",
+      "estimated_value_crore": 2640.72,
       "awarded_value_crore": 2481,
       "awarded_to": "titagarh",
-      "award_date": "2025",
+      "award_date": "2025-10-31",
       "duration_months": null,
       "tender_status": "awarded",
       "status": "reported",
-      "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+      "source_url": "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
       "last_verified": "2026-10-09",
-      "notes": "Award date not pinned down: reports range from mid to late 2025."
+      "notes": "Bids invited in February 2024 at an estimate of Rs 2,640.72 crore; Titagarh lowest bidder in June 2025 (The Metro Rail Guy); letter of acceptance announced on 31 Oct 2025. Maintenance term reported as 5 years (award reports) or 15 years after a 2-year defect period (tender).",
+      "also_see": [
+        "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+        "https://www.bajajbroking.in/share-market-news/titagarh-rail-systems-wins-rs-2481-crore-mumbai-metro-order"
+      ]
     }
   ]
 }

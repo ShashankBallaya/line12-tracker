@@ -56,14 +56,14 @@
     "cars_per_train": 6,
     "coaches": 132,
     "value_crore": 2481,
-    "scope": "Rolling stock, CBTC signalling and train control, telecom, platform screen doors, and depot machinery at Kasheli, with 2 years of defect liability and 5 years of maintenance",
+    "scope": "Rolling stock, CBTC signalling and train control, telecom, platform screen doors, and depot machinery at Kasheli",
     "status": "reported",
-    "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+    "source_url": "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
     "also_see": [
-      "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
+      "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
       "https://railanalysis.in/metro/titagarh-secures-rs-2481-crore-order-for-manufacturing-132-metro-coaches-of-mumbai-metro-line-5/"
     ],
-    "last_verified": "2026-09-28",
-    "notes": "Line 5's contract, not Line 12's. Line 12's trains are in its own systems tender (June 2026). Award date not pinned down: reports range from mid to late 2025."
+    "last_verified": "2026-10-09",
+    "notes": "Line 5's contract, not Line 12's. Line 12's trains are in its own systems tender (June 2026). Titagarh announced MMRDA's letter of acceptance on 31 Oct 2025. Maintenance term: 5 years in the award reports, 15 years after a 2-year defect period in the tender (The Metro Rail Guy)."
   }
 }

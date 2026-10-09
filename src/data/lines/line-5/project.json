@@ -475,7 +475,7 @@
     "value_crore": 2481,
     "scope": "Rolling stock, CBTC signalling and train control, telecom, platform screen doors, and depot machinery at Kasheli",
     "status": "reported",
-    "source_url": "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/",
+    "source_url": "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
     "last_verified": "2026-10-09",
     "car": {
       "width_m": 3.2,
@@ -486,7 +486,7 @@
       "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview",
       "last_verified": "2026-10-09"
     },
-    "notes": "The same contract is in Line 12's rollingstock.json (line5_contract). Award date not pinned down: reports range from mid to late 2025."
+    "notes": "Letter of acceptance announced by Titagarh on 31 Oct 2025, for Phases 1 and 2. Details in rollingstock.json. The same contract is noted in Line 12's rollingstock.json (line5_contract)."
   },
   "related_projects": [
     {
