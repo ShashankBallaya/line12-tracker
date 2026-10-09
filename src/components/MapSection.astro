@@ -18,8 +18,9 @@ const { stations, spurStations, droppedStations, stationsMeta } = line;
 import { STREET_LEVEL_PROVIDER, MAPILLARY_TOKEN, GOOGLE_MAPS_KEY } from '../config';
 
 const mapped = stations.filter((s) => s.location.lat !== null);
-// Same first choice as the map script.
-const first = mapped.find((s) => s.id === 'dombivli-midc') ?? mapped[0];
+// The station the map opens on (lines.json `copy.map_first_station`); the map script reads it from data-map-first.
+const firstId = line.info.copy.map_first_station;
+const first = mapped.find((s) => s.id === firstId) ?? mapped[0];
 const alignMeta = JSON.parse(alignment).properties;
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
@@ -60,20 +61,17 @@ const streetConfig = {
 };
 ---
 
-<section id="map" class="section page mapsec" aria-labelledby="map-title" data-map-section>
+<section id="map" class="section page mapsec" aria-labelledby="map-title" data-map-section data-map-first={first.id}>
   <header class="section-head">
     <h2 id="map-title">Map</h2>
-    <p>
-      The line on a street map. Choose a station to see where it sits, what surrounds it and what the street looks
-      like today. The route and stations come from MMRDA's approved alignment of 20 March 2025.
-    </p>
+    <p>{line.info.copy.map_section}</p>
   </header>
 
   <div class="mapsec__layout">
     <div class="mapsec__map-wrap">
       <div class="mapsec__map" data-map aria-label={`Map of the Mumbai Metro ${line.info.label} route`} role="region"></div>
       <p class="mapsec__map-note">
-        <span class="mapsec__key" aria-hidden="true"></span> Route under construction, MMRDA's approved alignment
+        <span class="mapsec__key" aria-hidden="true"></span> {line.info.copy.map_legend}
         <Grade status={alignMeta.status} source={alignMeta.source_url} compact />
       </p>
       {parts.has('underground') && (

@@ -14,16 +14,17 @@ import Stations from '../components/Stations.astro';
 import StationModel from '../components/StationModel.astro';
 import Updates from '../components/Updates.astro';
 import SourcesFooter from '../components/SourcesFooter.astro';
-import { getLine } from '../lib/data';
+import { getLine, type LineId } from '../lib/data';
 
-const line = getLine('line-12');
+interface Props {
+  /** Set by the `astro dev` preview (src/preview/[line].astro); the live page is Line 12's. */
+  lineId?: LineId;
+}
+const line = getLine(Astro.props.lineId ?? 'line-12');
+const { about, route_short, copy } = line.info;
 ---
 
-<Base
-  title="Mumbai Metro Line 12 Tracker: Kalyan to Taloja status, stations, map"
-  line={line}
-  description="Unofficial, sourced tracker for Mumbai Metro Line 12, the Kalyan-Dombivli-Taloja metro: opening date, construction progress, all 19 stations, map, tenders and trains. Every figure links to its source."
->
+<Base title={`${about.name} Tracker: ${route_short} status, stations, map`} line={line} description={copy.page_description}>
   <Masthead line={line} />
   <main id="main">
     <FrontPage line={line} />

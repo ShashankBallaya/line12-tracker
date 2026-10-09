@@ -11,6 +11,13 @@ const { project } = line;
 
 const p = project;
 const hist = (h: { value: number | string; context: string }[]) => h;
+/** The line's own wording for each figure (lines.json `copy.numbers`). */
+const c = line.info.copy.numbers;
+const cost = p.completion_cost_crore_inr as typeof p.completion_cost_crore_inr & { history?: { value: number; context: string }[] };
+const alt = (cost.alternatives as { value: number }[] | undefined)?.[0];
+// Riders as MMRDA writes them, e.g. "2.62 lakh": the figure and its decimals.
+const riders = p.daily_ridership_2031.display.split(' ')[0];
+const riderDecimals = riders.split('.')[1]?.length ?? 0;
 ---
 
 <section id="numbers" class="section page" aria-labelledby="numbers-title">
@@ -24,7 +31,7 @@ const hist = (h: { value: number | string; context: string }[]) => h;
       <dt>Length</dt>
       <dd class="fact__figure">
         <span class="fact__big num" data-count={p.length_km.value} data-decimals="2">{p.length_km.value}</span>
-        <span class="fact__unit">km, fully elevated</span>
+        <span class="fact__unit">{c.length_unit}</span>
       </dd>
       <dd class="fact__history">
         {hist(p.length_km.history).map((h) => <span><s class="superseded num">{h.value} km</s> {h.context.split('(')[0].trim()}</span>)}
@@ -36,7 +43,7 @@ const hist = (h: { value: number | string; context: string }[]) => h;
       <dt>Stations</dt>
       <dd class="fact__figure">
         <span class="fact__big num" data-count={p.stations_count.value}>{p.stations_count.value}</span>
-        <span class="fact__unit">all elevated</span>
+        <span class="fact__unit">{c.stations_unit}</span>
       </dd>
       <dd class="fact__history">
         {hist(p.stations_count.history).map((h) => <span><s class="superseded num">{h.value}</s> {h.context}</span>)}
@@ -48,10 +55,11 @@ const hist = (h: { value: number | string; context: string }[]) => h;
       <dt>Estimated cost</dt>
       <dd class="fact__figure">
         <span class="fact__big num"><span aria-hidden="true">₹</span><span data-count={p.completion_cost_crore_inr.value}>{inr(p.completion_cost_crore_inr.value)}</span></span>
-        <span class="fact__unit">crore<span class="visually-hidden"> rupees</span>, plus interest during construction</span>
+        <span class="fact__unit">crore<span class="visually-hidden"> rupees</span>{c.cost_unit}</span>
       </dd>
       <dd class="fact__history">
-        <span>MMRDA's loan invitation, March 2026. MMRDA's project page still gives ₹{inr(p.completion_cost_crore_inr.alternatives[0].value)} crore, the 2019 report's figure.</span>
+        {(cost.history ?? []).map((h) => <span><s class="superseded num">₹{inr(h.value)} crore</s> {h.context.split('(')[0].trim()}</span>)}
+        <span>{c.cost_note.replace('{alt}', alt ? inr(alt.value) : '')}</span>
       </dd>
       <dd class="fact__grade"><Grade status={p.completion_cost_crore_inr.status} source={p.completion_cost_crore_inr.source_url} /></dd>
     </div>
@@ -59,10 +67,10 @@ const hist = (h: { value: number | string; context: string }[]) => h;
     <div class="fact">
       <dt>Funding</dt>
       <dd class="fact__figure">
-        <span class="fact__words">Loan sought</span>
+        <span class="fact__words">{c.funding_head}</span>
       </dd>
       <dd class="fact__history">
-        <span>In March 2026 MMRDA invited banks to lend ₹7,800 crore for Line 12, alongside fares and State support. No lender has been named yet.</span>
+        <span>{c.funding_note}</span>
       </dd>
       <dd class="fact__grade"><Grade status={p.funding.status} source={p.funding.source_url} /></dd>
     </div>
@@ -70,7 +78,7 @@ const hist = (h: { value: number | string; context: string }[]) => h;
     <div class="fact">
       <dt>Daily riders by 2031</dt>
       <dd class="fact__figure">
-        <span class="fact__big num" data-count="2.62" data-decimals="2">2.62</span>
+        <span class="fact__big num" data-count={riders} data-decimals={riderDecimals}>{riders}</span>
         <span class="fact__unit">lakh a day (projected)</span>
       </dd>
       <dd class="fact__grade"><Grade status={p.daily_ridership_2031.status} source={p.daily_ridership_2031.source_url} /></dd>
@@ -83,7 +91,7 @@ const hist = (h: { value: number | string; context: string }[]) => h;
         <span class="fact__unit num">{p.depot.area_ha} ha</span>
       </dd>
       <dd class="fact__history">
-        <span><s class="superseded">Near Pisarve, 20 ha</s> 2019 project report</span>
+        {c.depot_history.map(([was, when]) => <span><s class="superseded">{was}</s> {when}</span>)}
       </dd>
       <dd class="fact__grade"><Grade status={p.depot.status} source={p.depot.source_url} /></dd>
     </div>
@@ -101,8 +109,8 @@ const hist = (h: { value: number | string; context: string }[]) => h;
     <div class="fact fact--wide">
       <dt>Travel time</dt>
       <dd class="fact__figure">
-        <span class="fact__words">About {p.travel_time_benefit.minutes_saved} minutes saved</span>
-        <span class="fact__unit">Kalyan to Taloja; 50 to 75% shorter than by road today, depending on traffic (MMRDA estimates)</span>
+        <span class="fact__words">{c.travel_head.replace('{minutes}', String((p.travel_time_benefit as { minutes_saved?: number }).minutes_saved))}</span>
+        <span class="fact__unit">{c.travel_unit}</span>
       </dd>
       <dd class="fact__grade"><Grade status={p.travel_time_benefit.status} source={p.travel_time_benefit.source_url} /></dd>
     </div>

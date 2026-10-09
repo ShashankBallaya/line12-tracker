@@ -8,28 +8,8 @@ interface Props {
 }
 const { line } = Astro.props;
 
-const primary = [
-  {
-    name: 'MMRDA, Metro Line 12 project page',
-    note: 'Length, stations, depot, interchanges, cost, riders, monthly progress.',
-    url: 'https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview',
-  },
-  {
-    name: 'Detailed Project Report, Kalyan to Taloja (DMRC for MMRDA, April 2019)',
-    note: 'Design basis, station positions, alignment, planned trains.',
-    url: 'https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf',
-  },
-  {
-    name: 'Approved alignment of Line 12 (MMRDA, 20 March 2025)',
-    note: 'The route line and every station position on the map.',
-    url: 'https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc',
-  },
-  {
-    name: 'Loan invitation for Metro Lines 10 and 12 (MMRDA, March 2026)',
-    note: 'Approval dates, estimated cost, the loan sought, time saved.',
-    url: 'https://mmrda.maharashtra.gov.in/sites/default/files/2026-03/tender_document.pdf',
-  },
-];
+// The documents most of the line's figures come from (lines.json `copy.primary_sources`).
+const primary = line.info.copy.primary_sources;
 const grades: G[] = ['verified', 'reported', 'unverified', 'conflicting'];
 ---
 

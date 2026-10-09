@@ -134,7 +134,7 @@ export async function mount(section: HTMLElement) {
   // A station page links here as /?station=<id>#map, so the map opens on that station.
   const asked = new URLSearchParams(location.search).get('station');
   const linked = stations.find((s) => s.id === asked && s.lat !== null && s.group !== 'dropped')?.id;
-  let selected = linked ?? stations.find((s) => s.id === 'dombivli-midc' && s.lat !== null)?.id ?? stations.find((s) => s.lat !== null)!.id;
+  let selected = linked ?? section.dataset.mapFirst ?? stations.find((s) => s.lat !== null)!.id;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Open on the whole route (the line and any spur), with room east of it for station names.

@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "The lines this site covers, in hub order. Each line's facts live in src/data/lines/<id>/. project.json and stations.json are required; every other file is optional, and a section without its file does not show. 'alignment' names the GeoJSON file the map and schematic draw from. 'about' feeds the line's schema.org node on every page of that line. 'position_basis' names where station coordinates come from: 'by_source' matches part of a station's location source_url, else 'default'. 'copy' holds the line's own wording for shared pages; {total}, {km} and {name} are filled in.",
+    "description": "The lines this site covers, in hub order. Each line's facts live in src/data/lines/<id>/. project.json and stations.json are required; every other file is optional, and a section without its file does not show. 'alignment' names the GeoJSON file the map and schematic draw from. 'about' feeds the line's schema.org node on every page of that line. 'position_basis' names where station coordinates come from: 'by_source' matches part of a station's location source_url, else 'default'. 'copy' holds the line's own wording for shared pages; {total}, {km} and {name} are filled in. Tokens in copy: {stations}, {as_of}, {pct:<activity>}, {target}, {earlier}, {rest}, {alt}, {minutes} come from project.json. Keys ending in _html may contain inline markup.",
     "last_reviewed": "2026-10-09"
   },
   "lines": [
@@ -44,7 +44,54 @@
         "drawn_from": [
           "MMRDA's approved alignment",
           " of 20 Mar 2025"
-        ]
+        ],
+        "headline_html": "Watch Mumbai Metro Line&nbsp;12 rise,<br> pillar by pillar.",
+        "front_standfirst": "The line will run fully elevated from Kalyan through Dombivli MIDC, Kalyan Growth Centre and Turbhe to Amandoot in Taloja, with {stations} stations. On {as_of}, MMRDA put pile work at about {pct:Pile works} per cent and U-girder erection at about {pct:U-girder} per cent.",
+        "countdown_title": "Days to the reported target",
+        "target_html": "Target: <strong>{target}</strong>, as reported in December 2025. Earlier reported target: {earlier}. MMRDA's project page gives no date.",
+        "lead_scene": "viaduct",
+        "map_section": "The line on a street map. Choose a station to see where it sits, what surrounds it and what the street looks like today. The route and stations come from MMRDA's approved alignment of 20 March 2025.",
+        "map_legend": "Route under construction, MMRDA's approved alignment",
+        "map_first_station": "dombivli-midc",
+        "numbers": {
+          "length_unit": "km, fully elevated",
+          "stations_unit": "all elevated",
+          "cost_unit": ", plus interest during construction",
+          "cost_note": "MMRDA's loan invitation, March 2026. MMRDA's project page still gives ₹{alt} crore, the 2019 report's figure.",
+          "funding_head": "Loan sought",
+          "funding_note": "In March 2026 MMRDA invited banks to lend ₹7,800 crore for Line 12, alongside fares and State support. No lender has been named yet.",
+          "depot_history": [
+            [
+              "Near Pisarve, 20 ha",
+              "2019 project report"
+            ]
+          ],
+          "travel_head": "About {minutes} minutes saved",
+          "travel_unit": "Kalyan to Taloja; 50 to 75% shorter than by road today, depending on traffic (MMRDA estimates)"
+        },
+        "primary_sources": [
+          {
+            "name": "MMRDA, Metro Line 12 project page",
+            "note": "Length, stations, depot, interchanges, cost, riders, monthly progress.",
+            "url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-12/overview"
+          },
+          {
+            "name": "Detailed Project Report, Kalyan to Taloja (DMRC for MMRDA, April 2019)",
+            "note": "Design basis, station positions, alignment, planned trains.",
+            "url": "https://mmrda.maharashtra.gov.in/sites/default/files/2021-10/Metro%20Line%2012.pdf"
+          },
+          {
+            "name": "Approved alignment of Line 12 (MMRDA, 20 March 2025)",
+            "note": "The route line and every station position on the map.",
+            "url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+          },
+          {
+            "name": "Loan invitation for Metro Lines 10 and 12 (MMRDA, March 2026)",
+            "note": "Approval dates, estimated cost, the loan sought, time saved.",
+            "url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-03/tender_document.pdf"
+          }
+        ],
+        "page_description": "Unofficial, sourced tracker for Mumbai Metro Line 12, the Kalyan-Dombivli-Taloja metro: opening date, construction progress, all 19 stations, map, tenders and trains. Every figure links to its source."
       }
     },
     {
@@ -88,7 +135,59 @@
         "drawn_from": [
           "MMRDA's alignment file",
           " of March 2025 and the tentative key plan of March 2026"
-        ]
+        ],
+        "headline_html": "Watch Mumbai Metro Line&nbsp;5 reach Kalyan,<br> phase by phase.",
+        "front_standfirst": "Phase 1, from Kapurbawdi in Thane to Dhamankar Naka in Bhiwandi, is built: on {as_of}, MMRDA's progress table showed every civil activity complete. Phases 2 and 3 take the line on to Kalyan, with a spur to Ulhasnagar: {stations} stations in all, as MMRDA counts them.",
+        "countdown_title": "Days to the Phase 1 target",
+        "target_html": "Target: <strong>{target}</strong> for Phase 1, Kapurbawdi to Dhamankar Naka, from MMRDA's press release of May 2026. No exact date. The rest of the line: {rest}, as reported.",
+        "lead_scene": null,
+        "map_section": "The line on a street map. Choose a station to see where it sits, what surrounds it and what the street looks like today. The route to the Ulhas river bridge comes from MMRDA's alignment file of March 2025; Phase 3 and the spur come from the tentative key plan of March 2026.",
+        "map_legend": "Route not yet open: MMRDA's alignment file, then the tentative key plan",
+        "map_first_station": "kapurbawdi",
+        "numbers": {
+          "length_unit": "km with the spur; Bhiwandi underground, the rest elevated",
+          "stations_unit": "as MMRDA counts them; Kapurbawdi, built with Line 4, is not counted",
+          "cost_unit": ", Phases 1, 2 and 5A",
+          "cost_note": "Phase 1 ₹6,741 crore, Phase 2 ₹7,326 crore, Phase 5A (Phase 3 and the spur) ₹4,063 crore, MMRDA, May 2026.",
+          "funding_head": "Loans for the systems",
+          "funding_note": "In April 2020 AIIB approved a loan concept of USD 236 million for the trains, signalling and power, with the OPEC Fund planned to lend too; MMRDA funds the rest. The final loan amounts are not published.",
+          "depot_history": [
+            [
+              "Kon (MIDC) or APMC Kalyan",
+              "earlier options, both on Phase 2"
+            ]
+          ],
+          "travel_head": "40 to 50% shorter",
+          "travel_unit": "than by road, MMRDA's 2026 figure. Its Line 5 page still says 50 to 75%, from the 2017 plan."
+        },
+        "primary_sources": [
+          {
+            "name": "MMRDA, Metro Line 5 project page",
+            "note": "Cost, riders, depot, interchanges, monthly progress (it still describes the 2017 plan).",
+            "url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
+          },
+          {
+            "name": "MMRDA press release on the expanded corridor (28 May 2026)",
+            "note": "Length, stations and cost of each phase, the Line 5A spur, the Phase 1 target.",
+            "url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf"
+          },
+          {
+            "name": "Alignment file of Line 5 (MMRDA, March 2025)",
+            "note": "The route and station positions from Kapurbawdi to the Ulhas river bridge.",
+            "url": "https://mmrda.maharashtra.gov.in/en/division/metro-piu/metro-influence-zone-noc"
+          },
+          {
+            "name": "Phase 1 environmental report (MMRDA for AIIB, September 2023)",
+            "note": "Station design, the Kasheli depot, funding of Phase 1.",
+            "url": "https://mmrda.maharashtra.gov.in/sites/default/files/2023-12/mmrda-aiib-mml5-final-draft-eia-11-sep-2023.pdf"
+          },
+          {
+            "name": "Tentative key plan for Phase 3 and the spur (MMRDA tender, March 2026)",
+            "note": "The route past the Ulhas river bridge. Posted by Arindam Mahapatra; the tender was cancelled in August 2026.",
+            "url": "https://x.com/Maha7Arindam/status/2029366179580772677"
+          }
+        ],
+        "page_description": "Unofficial, sourced tracker for Mumbai Metro Line 5, the Thane-Bhiwandi-Kalyan metro: Phase 1 opening target, progress by phase, every station, the Line 5A spur to Ulhasnagar, map and tenders. Every figure links to its source."
       }
     }
   ]

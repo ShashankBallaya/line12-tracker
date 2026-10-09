@@ -1,5 +1,5 @@
 ---
-import { formatDate, lastReviewed as siteReviewed, type Line } from '../lib/data';
+import { formatDate, lineBase, lastReviewed as siteReviewed, type Line } from '../lib/data';
 
 interface Props {
   /** The line this page is about. Off a line page, dates are site-wide. */
@@ -9,7 +9,8 @@ interface Props {
 }
 const { line, home = true } = Astro.props;
 const lastReviewed = line?.lastReviewed ?? siteReviewed;
-const to = (id: string) => (home ? `#${id}` : `/#${id}`);
+const base = (line && lineBase(line.id)) ?? '/';
+const to = (id: string) => (home ? `#${id}` : `${base}#${id}`);
 
 // Edition = the day this page was built (India time). Facts checked = the latest data review.
 const edition = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
@@ -27,13 +28,25 @@ const inside = [
   ['updates', 'Updates'],
   ['timeline', 'Timeline'],
   ['sources', 'Sources'],
-];
+].filter(([id]) => {
+  // Only the sections this line's page shows (src/pages/index.astro shows a section when its data exists).
+  if (!line) return true;
+  const shows: Record<string, boolean> = {
+    map: Boolean(line.alignmentRaw),
+    'before-after': Boolean(line.beforeAfter),
+    station: Boolean(line.stationModel),
+    tenders: line.tenders.length > 0,
+    trains: Boolean(line.rollingstock),
+    timeline: line.timeline.length > 0,
+  };
+  return shows[id] ?? true;
+});
 ---
 
 <header class="masthead">
   <div class="masthead__band">
     <div class="page masthead__inner">
-      <a class="masthead__title" href="/">
+      <a class="masthead__title" href={base}>
         {line ? (
           <>
             <span class="masthead__name">{line.info.label}</span>

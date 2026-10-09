@@ -82,16 +82,15 @@ Each step ships on its own and leaves the live site working.
 1. **Decisions.** Done, see above.
 2. **Data move, no visible change.** Done 2026-10-08: build output matched the old one, apart from the order of two style blocks that target different elements. Move per-line files into `src/data/lines/line-12/`. Add `lines.json`. `getLine()` in `data.ts`. Old exports stay as thin wrappers for now. Update `validate-data.mjs` to walk folders and check `lines.json`. Build output must be byte-identical apart from asset hashes.
 3. **Components take `line`.** Done 2026-10-09: every component and page takes a `Line` from `getLine()`, the old Line 12 exports are gone, and sections whose data file is missing do not show. Build output matched the old one byte for byte. Line 12 facts still written in shared code, to sort out in step 7 (move into Line 12's data, or show only for Line 12):
-   - `FrontPage`: the route sentence (Kalyan through Dombivli MIDC to Amandoot).
-   - `Numbers`: loan sentence, depot history, travel-time unit text.
+   - `FrontPage`, `Numbers`: done in step 7 (lines.json `copy`).
    - `Progress`: done in step 7 (stages and the standfirst are in each line's `project.json`).
    - `RouteRide`, `Stations`: done in step 7 (lines.json `copy`).
-   - `Trains`: the Line 5 contract note and the DPR spec table.
-   - `MapSection`, `[id].astro`, `LocatorMap`: position source and north arrow done in step 7 (lines.json `position_basis`, alignment `locator_north`); still Line 12's: the map standfirst and legend, first station `dombivli-midc`.
-   - `SourcesFooter`: the primary sources list.
-   - `status.astro`: every answer.
+   - `Trains`: still Line 12's wording; it shows only for a line with rollingstock.json, so it moves to data when Line 5 gets that file.
+   - `MapSection`, `[id].astro`, `LocatorMap`: done in step 7.
+   - `SourcesFooter`: done in step 7 (`copy.primary_sources`).
+   - `status.astro`: every answer. Line 12 only (`hasStatusPage`) until Line 5's answers are written.
    - `stations/index.astro`: done in step 7.
-   - `Masthead`: the section index lists every section, even one a line does not have.
+   - `Masthead`: done in step 7 (lists only the sections a line shows).
    - Site name "Line 12 Tracker" (Base, Colophon, breadcrumbs, OG, llms.txt): changes at the domain move.
 4. **Routes under `/line-12/`** with `[line]` dynamic routes, the hub page, `_redirects`, sitemap and `llms.txt` per line. Ship this with the domain (step 5), not before.
 5. **Domain move.** Custom domain on Cloudflare Pages, `site` in `astro.config.mjs`, Search Console property for the new domain plus the Change of Address tool, 301 from `pages.dev`. Note: `_redirects` cannot match on host name, so the `pages.dev` to new-domain redirect needs Cloudflare Bulk Redirects (to check before this step).
@@ -114,7 +113,7 @@ Status 2026-10-09. The page reuses Line 12's components and layout; this list is
 2. **Map** (`MapSection`, `scripts/map.ts`). Done 2026-10-09. The GeoJSON parts draw apart: the line and the spur hollow, the underground stretch as a dashed outline, the 2017 route thin and dashed. The 2017 route and the dropped stations are off until the reader ticks "Show the earlier plan's route and dropped stations" (choosing a dropped station ticks it). Spur and dropped stations have their own groups in the station list and their own order line in the panel. The map opens on the whole route, not on Line 12's box. Still Line 12 text in it (item 5): the standfirst, the legend's "under construction, MMRDA's approved alignment", and "MMRDA's approved alignment, 20 Mar 2025" beside every station's coordinates (Line 5's Phase 3 and spur come from the key plan).
 3. **Progress** (`Progress.astro`). Done 2026-10-09. The planning-to-opening steps are now "stages" (Line 5 already uses "phase" for its sections) in `project.json` under `stages.sections`: one section for Line 12, three for Line 5 (Phase 1; Phase 2; Phase 3 with the spur). Notes take `{progress_as_of}` and `{event:<id>}`, filled by `getLine`; the data check fails on an unknown event. The standfirst is `progress.summary`; the reported overall figure shows only when a line has one.
 4. **Station lists and pages** (`Stations`, `RouteRide`, `stations/[id]`, `stations/index`, `LocatorMap`). Done 2026-10-09. Spur stations have their own group, ride entries and pages (prev/next run along the spur, back to Bhoirwadi); dropped stations are listed struck through with the revised plan's grade, without pages; Bhiwandi is marked underground; Kongaon West says "position not published"; `same_site_as` links across when the other line has pages (`stationHref`, else plain text). Line wording lives in lines.json `copy`, coordinates' source in `position_basis`. The locator draws the spur and the tunnel; its north arrow takes the corner the alignment names (`locator_north`). The same page files serve `/preview/line-5/stations/` in `astro dev`. Line 12 changed in one sentence only (Kalyan: "the first station", not "the first station, at the Kalyan end"). Not done: Line 12's Kalyan page does not link to Line 5's (Line 5 has no live pages yet); Line 5 has no status page.
-5. **Line 12 facts in shared code**: the list under step 3 above. Each one moves into Line 12's data or shows only for Line 12.
+5. **Line 12 facts in shared code**: the list under step 3 above. Done 2026-10-09 for everything a Line 5 page shows: front page (headline, standfirst, countdown title and target text, lead picture only where a line has one), Numbers, the map's text and first station, the primary sources, the masthead's section list, the page title and description. All of it is in lines.json `copy`, with figures filled from project.json. Left, because Line 5's data does not exist yet: `Trains` (needs rollingstock.json) and the status page (needs Line 5's answers); and the site name, which changes with the domain. The dev preview now renders the real front page (`src/pages/index.astro` takes a `lineId`).
 6. **Two lines, one colour.** Line 5 and Line 12 are both orange. On the hub, at Kalyan and on any shared map, show the line number with the colour every time.
 
 ### Data and assets still to make

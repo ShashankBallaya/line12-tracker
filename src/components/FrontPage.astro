@@ -1,7 +1,7 @@
 ---
 import Grade from './Grade.astro';
 import LeadPicture from './LeadPicture.astro';
-import { formatDate, type Line } from '../lib/data';
+import { formatDate, hasStatusPage, lineBase, type Line } from '../lib/data';
 import { schematic } from '../lib/route';
 
 interface Props {
@@ -18,7 +18,18 @@ const pct = (name: string) => Math.round(progress.items.find((i) => i.activity.s
 // Build-time value; the countdown script refreshes it in the browser.
 const msPerDay = 86_400_000;
 const daysLeft = Math.max(0, Math.ceil((Date.parse(`${target.countdown_date}T23:59:59+05:30`) - Date.now()) / msPerDay));
-const earlier = target.alternatives[0];
+const t = target as typeof target & { rest_of_line?: { value: string } };
+const earlier = t.alternatives?.[0];
+const copy = line.info.copy;
+/** The line's own wording (lines.json `copy`), with figures from project.json. */
+const fill = (text: string) =>
+  text
+    .replace('{stations}', String(project.stations_count.value))
+    .replace('{as_of}', formatDate(progress.as_of))
+    .replace(/\{pct:([^}]+)\}/g, (_, name: string) => String(pct(name)))
+    .replace('{target}', formatDate(target.value))
+    .replace('{earlier}', earlier ? formatDate(earlier.value) : '')
+    .replace('{rest}', t.rest_of_line?.value ?? '');
 const first = stations[0].name;
 const last = stations[stations.length - 1].name;
 
@@ -27,16 +38,10 @@ const { width: W, height: H, path, points: dots, placed, underground, branch } =
 const spurEnd = line.spurStations.at(-1)?.name;
 ---
 
-<section class="front page" aria-labelledby="front-headline">
+<section class={copy.lead_scene ? 'front page' : 'front front--no-picture page'} aria-labelledby="front-headline">
   <div class="front__lead">
-    <h1 id="front-headline" class="front__headline" data-split>
-      Watch Mumbai Metro Line&nbsp;12 rise,<br /> pillar by pillar.
-    </h1>
-    <p class="front__standfirst">
-      The line will run fully elevated from Kalyan through Dombivli MIDC, Kalyan Growth Centre and Turbhe to
-      Amandoot in Taloja, with {project.stations_count.value} stations. On {formatDate(progress.as_of)}, MMRDA put pile
-      work at about {pct('Pile works')} per cent and U-girder erection at about {pct('U-girder')} per cent.
-    </p>
+    <h1 id="front-headline" class="front__headline" data-split set:html={copy.headline_html} />
+    <p class="front__standfirst">{fill(copy.front_standfirst)}</p>
     <p class="front__grade"><Grade status={progress.status} source={progress.source_url} /></p>
     <a class="front__ride" href="#route" data-magnetic>
       Ride the line
@@ -45,19 +50,16 @@ const spurEnd = line.spurStations.at(-1)?.name;
   </div>
 
   <aside class="front__countdown" aria-labelledby="countdown-title">
-    <h2 id="countdown-title" class="front__countdown-title">Days to the reported target</h2>
+    <h2 id="countdown-title" class="front__countdown-title">{copy.countdown_title}</h2>
     <p class="front__days num" data-countdown={target.countdown_date} aria-live="off">
       <span data-countdown-value>{daysLeft.toLocaleString('en-IN')}</span>
     </p>
-    <p class="front__target">
-      Target: <strong>{formatDate(target.value)}</strong>, as reported in December 2025. Earlier reported target:{' '}
-      {formatDate(earlier.value)}. MMRDA's project page gives no date.
-    </p>
+    <p class="front__target" set:html={fill(copy.target_html)} />
     <p><Grade status={target.status} source={target.source_url} /></p>
-    <p class="front__status"><a href="/status/">Opening date and status, answered</a></p>
+    {hasStatusPage(line) && <p class="front__status"><a href={`${lineBase(line.id)}status/`}>Opening date and status, answered</a></p>}
   </aside>
 
-  <div class="front__picture scene-host" data-scene="viaduct"><LeadPicture /></div>
+  {copy.lead_scene && <div class="front__picture scene-host" data-scene={copy.lead_scene}><LeadPicture /></div>}
 
   <a class={branch ? 'front__strip front__strip--branch' : 'front__strip'} href="#route">
     <span class="front__strip-end front__strip-end--a">{first}</span>
@@ -99,6 +101,8 @@ const spurEnd = line.spurStations.at(-1)?.name;
     .front__lead { grid-area: lead; }
     .front__countdown { grid-area: count; }
     .front__picture { grid-area: pic; align-self: start; }
+    /* No lead picture yet (Line 5): the countdown takes the picture's place. */
+    .front--no-picture .front__countdown { grid-row: 1 / 3; align-self: start; }
     .front__strip { grid-area: strip; }
     .front__countdown {
       grid-template-columns: auto minmax(0, 1fr);
