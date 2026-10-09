@@ -291,6 +291,8 @@ export function outletName(url: string | null | undefined): string {
     'livingatlas.arcgis.com': 'Esri Wayback',
   };
   if (url.includes('Metro%20Line%2012.pdf')) return 'MMRDA DPR (2019)';
+  // A map anyone can make: say so, so it is never read as Google's own.
+  if (host === 'google.com' && url.includes('/maps/d/')) return 'User map on Google My Maps';
   // A post on X is named by its account, so the reader sees who posted it.
   if (host === 'x.com') {
     const handle = new URL(url).pathname.split('/')[1];
