@@ -14,6 +14,8 @@ const p = project;
 const hist = (h: { value: number | string; context: string }[]) => h;
 /** The line's own wording for each figure (lines.json `copy.numbers`). */
 const c = line.info.copy.numbers;
+/** Interchanges planned on other networks, graded on their own (Line 5: the Thane Integral Ring Metro). */
+const planned = (p.interchanges as { planned?: { station: string; connects_to: string; status: string; source_url: string }[] }).planned ?? [];
 const cost = p.completion_cost_crore_inr as typeof p.completion_cost_crore_inr & { history?: { value: number; context: string }[] };
 const alt = (cost.alternatives as { value: number }[] | undefined)?.[0];
 // Riders as MMRDA writes them, e.g. "2.62 lakh": the figure and its decimals.
@@ -105,6 +107,11 @@ const riderDecimals = riders.split('.')[1]?.length ?? 0;
         </ul>
       </dd>
       <dd class="fact__grade"><Grade status={p.interchanges.status} source={p.interchanges.source_url} /></dd>
+      {planned.map((i) => (
+        <dd class="fact__history">
+          <span>Planned: {i.station} for {i.connects_to}.</span> <Grade status={i.status} source={i.source_url} compact />
+        </dd>
+      ))}
     </div>
 
     <div class="fact fact--wide">

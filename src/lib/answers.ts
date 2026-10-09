@@ -146,6 +146,7 @@ function line5(line: Line): Answer[] {
   const travel = p.travel_time_benefit as { status: string; source_url: string };
   const colour = p.line_color as { status: string; source_url: string };
   const list = (names: string[]) => `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`;
+  const planned = (p.interchanges as { planned?: { station: string; connects_to: string; status: string; source_url: string }[] }).planned ?? [];
   return [
     {
       id: 'opening',
@@ -191,9 +192,9 @@ function line5(line: Line): Answer[] {
     },
     {
       id: 'interchanges',
-      q: 'Where does Line 5 meet Line 4 and Line 12?',
-      a: `${p.interchanges.value.map((x) => `At ${x.station}, with ${x.connects_to}`).join('. ')}. The 2017 plan also had a stop at APMC Kalyan, near Line 12's APMC Kalyan station; the revised plan drops it.`,
-      grades: [{ status: p.interchanges.status, source: p.interchanges.source_url }],
+      q: 'Where does Line 5 meet other lines?',
+      a: `${p.interchanges.value.map((x) => `At ${x.station}, with ${x.connects_to}`).join('. ')}. ${planned.map((x) => `At ${x.station}, a planned interchange with ${x.connects_to}, as reported; where its station sits against Line 5's is not published. `).join('')}The 2017 plan also had a stop at APMC Kalyan, near Line 12's APMC Kalyan station; the revised plan drops it.`,
+      grades: [{ status: p.interchanges.status, source: p.interchanges.source_url }, ...planned.map((x) => ({ status: x.status, source: x.source_url }))],
     },
     {
       id: 'past-bhiwandi',

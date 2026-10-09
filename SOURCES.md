@@ -130,6 +130,11 @@ Research started 2026-10-09. Data in `src/data/lines/line-5/`. Figures follow MM
 4. **MMRDA press release PRC/PR/31/2026, "Extended Metro Line 5 to Strengthen Connectivity Across Thane, Bhiwandi, Kalyan and Ulhasnagar", 28 May 2026.** Corridor 34.21 km and Rs 18,130 Cr. Phase 1, Thane to Dhamankar Naka: 11.9 km, 6 stations, Rs 6,741 Cr. Phase 2, Dhamankar Naka to Durgadi: 10.48 km, 6 stations (Bhiwandi underground; Temghar, Rajnoli, Gove Gaon, Kon Gaon, Kongaon West elevated), Rs 7,326 Cr. Phase 5A, Durgadi - Khadakpada - Bhoirwadi - Kalyan with a spur to Ulhasnagar from Bhoirwadi: 11.83 km, 7 elevated stations, Rs 4,063 Cr. Interchanges with Line 4 at Balkhum (Kapurbawadi) and Line 12 at Kalyan Junction; Phase 1 preparing for the CMRS inspection. No map: its images are construction photos.
    https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf
 
+5. **Press Information Bureau, "Cabinet approves Thane integral Ring Metro Rail Project", 16 Aug 2024 (Release ID 2046082).** 29 km (26 elevated, 3 underground), 22 stations, Rs 12,200.10 Cr, Maha-Metro to build, due by 2029. Names no interchange stations.
+   https://www.pib.gov.in/PressReleasePage.aspx?PRID=2046082
+
+Lead (owner, 2026-10-09): a Google My Maps "Thane Metro Route Map" (author not stated) with the ring line's 22 stations; it puts the ring line's Balkum Naka at 19.2224, 72.9977, about 1 km east of Line 5's Balkum Naka. Not a source; kept as a caution that the interchange may need a walk. https://www.google.com/maps/d/u/0/embed?mid=1YNvo8fqUuYUWJqEiwstEdGWJTZMJbEQ
+
 ## Secondary sources
 
 | Outlet | Date | Used for | URL |
@@ -144,6 +149,8 @@ Research started 2026-10-09. Data in `src/data/lines/line-5/`. Figures follow MM
 | Titagarh Rail Systems (the maker) | read 9 Oct 2026 | Its own project page: 132 coaches for Line 5, about Rs 2,481 Cr; execution from 62 weeks after signing, complete within the next 154 weeks. Its picture is all rights reserved and not shown as the Line 5 train, so the site links to it only | https://www.titagarh.in/project/mumbai-metro |
 | machinist.in | 28 Jan 2026 | ABB India's traction and train control order from Titagarh: 22 six-car trains for Line 5, 25 kV AC, GoA2 upgradable to GoA4 | https://machinist.in/2026/01/abb-india-wins-traction-and-control-systems-order-for-metro-trainsets-from-titagarh-rail-systems/ |
 | Construction World | 13 Mar 2026 | Route shape past Durgadi: from Kon Gaon through Durgadi, Khadakpada and Bhoirwadi, then two arms, to Kalyan (Line 12 interchange) and to Ulhasnagar; DPR ready, not published | https://www.constructionworld.in/transport-infrastructure/metro-rail-and-railways-infrastructure/mmrda-advances-metro-line-five-a-from-kalyan-to-ulhasnagar/88025 |
+| The Metro Rail Guy | 17 Aug 2024 | Thane Integral Ring Metro approved; passenger interchanges with Lines 4 and 5 and Thane station (no station named) | https://themetrorailguy.com/2024/08/17/thane-metros-ring-line-approved-by-central-government/ |
+| housing.com | 4 Nov 2025 | Thane Integral Ring Metro station list (cited to Maha-Metro's site): interchange with Line 5 at Balkum Naka, with Line 4 at Raila Devi and Dongripada | https://housing.com/news/thane-internal-ring-metro-project/ |
 | India Infra Hub | 4 Aug 2023 | MMRDA: all 1,098 precast station elements of Phase 1 erected (spines, wings, U-girders, pier arms, L-structures); roof, facades and finishes next | https://indiainfrahub.com/featured/mumbai-metro-line-5-73-per-cent-station-work-completed-in-first-phase-of-thane-bhiwandi-kalyan-corridor/ |
 | Free Press Journal | 9 Feb 2026 | Phase 1 civil work 95%, December 2026 target | https://www.freepressjournal.in/mumbai/mmrda-nears-completion-of-metro-line-5-phase-1-thanebhiwandi-services-set-for-december-2026-launch |
 | Indian Infrastructure | 23 Apr 2026 | State approval of revised Lines 5 and 5A, 22 Apr 2026 | https://indianinfrastructure.com/2026/04/23/maharashtra-government-approves-mumbai-metro-line-5-5a/ |

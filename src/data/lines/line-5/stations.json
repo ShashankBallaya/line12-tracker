@@ -90,6 +90,18 @@
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/en/projects/transport/metro-line-5/overview"
    },
+   "interchanges_planned": {
+    "value": [
+     "Thane Integral Ring Metro (Maha-Metro)"
+    ],
+    "status": "reported",
+    "source_url": "https://housing.com/news/thane-internal-ring-metro-project/",
+    "also_see": [
+     "https://themetrorailguy.com/2024/08/17/thane-metros-ring-line-approved-by-central-government/"
+    ],
+    "last_verified": "2026-10-09",
+    "notes": "The Thane Integral Ring Metro is Maha-Metro's 29 km ring line round west Thane, 22 stations, approved by the Union Cabinet on 16 Aug 2024 and due by 2029. It has its own Balkum Naka station; where that sits against Line 5's station is not published. The Cabinet release names no interchange; The Metro Rail Guy reports interchanges with Lines 4 and 5 without naming stations; housing.com, citing Maha-Metro's site, names Balkum Naka."
+   },
    "context": [],
    "construction_status": {
     "value": "Built. Overhead wires energised from 7 Sep 2026, ahead of trial runs.",

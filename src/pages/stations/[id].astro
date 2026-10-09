@@ -9,7 +9,7 @@ import Colophon from '../../components/Colophon.astro';
 import Grade from '../../components/Grade.astro';
 import LocatorMap from '../../components/LocatorMap.astro';
 import LineMark from '../../components/LineMark.astro';
-import { getLine, lines, lineNodeId, lineBase, stationHref, positionBasis, streetViewUrl, formatDate, type LineId, type Station } from '../../lib/data';
+import { getLine, lines, lineNodeId, lineBase, stationHref, positionBasis, streetViewUrl, plannedInterchanges, formatDate, type LineId, type Station } from '../../lib/data';
 import type { GetStaticPathsOptions } from 'astro';
 import { hasStatusPage } from '../../lib/answers';
 import '../../styles/inner.css';
@@ -213,6 +213,13 @@ const schema: Record<string, unknown>[] = [
         <dd>
           <p>{s.interchanges.value.length ? <>{s.interchanges.value.map((v, k) => <>{k > 0 && ', '}<LineMark text={v} />{v}</>)}</> : 'None announced'}</p>
           <p class="grades"><Grade status={s.interchanges.status} source={s.interchanges.source_url} /></p>
+          {plannedInterchanges(s) && (
+            <>
+              <p>Planned: {plannedInterchanges(s)!.value.join(', ')}.</p>
+              {plannedInterchanges(s)!.notes && <p class="fact__note">{plannedInterchanges(s)!.notes}</p>}
+              <p class="grades"><Grade status={plannedInterchanges(s)!.status} source={plannedInterchanges(s)!.source_url} /></p>
+            </>
+          )}
           {sameSite && <p>Same site as <LineMark lineId={other!.line} />{sameSite.href ? <a href={sameSite.href}>{sameSite.label}</a> : sameSite.label}.</p>}
         </dd>
       </div>

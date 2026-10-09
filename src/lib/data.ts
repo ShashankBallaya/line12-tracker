@@ -207,6 +207,10 @@ export function streetViewUrl(s: Station): string | null {
   return lat === null ? null : `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
 }
 
+/** Interchanges planned on other networks (Line 5's Balkum Naka: the Thane Integral Ring Metro), kept apart from MMRDA's list. */
+export type PlannedInterchanges = { value: string[]; status: string; source_url: string; notes?: string };
+export const plannedInterchanges = (s: Station) => (s as { interchanges_planned?: PlannedInterchanges }).interchanges_planned;
+
 /** A station's page, or null when its line has no pages yet (then show its name as plain text). */
 export function stationHref(id: LineId, station: string): string | null {
   const base = lineBase(id);

@@ -215,7 +215,21 @@
     "status": "verified",
     "source_url": "https://mmrda.maharashtra.gov.in/sites/default/files/2026-05/extended_metro_line_5_to_strengthen_connectivity_across_thane_bhiwandi_kalyan_and_ulhasnagar.pdf",
     "last_verified": "2026-10-09",
-    "notes": "MMRDA's press release (May 2026) names Line 4 at Balkhum (Kapurbawadi) and Line 12 at Kalyan Junction, and direct access to the suburban stations at Thane, Kalyan, Vitthalwadi and Ulhasnagar."
+    "notes": "MMRDA's press release (May 2026) names Line 4 at Balkhum (Kapurbawadi) and Line 12 at Kalyan Junction, and direct access to the suburban stations at Thane, Kalyan, Vitthalwadi and Ulhasnagar.",
+    "planned": [
+      {
+        "station": "Balkum Naka",
+        "connects_to": "the Thane Integral Ring Metro (Maha-Metro), due by 2029",
+        "status": "reported",
+        "source_url": "https://housing.com/news/thane-internal-ring-metro-project/",
+        "also_see": [
+          "https://themetrorailguy.com/2024/08/17/thane-metros-ring-line-approved-by-central-government/",
+          "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2046082"
+        ],
+        "last_verified": "2026-10-09",
+        "notes": "The Thane Integral Ring Metro is Maha-Metro's 29 km ring line round west Thane, 22 stations, approved by the Union Cabinet on 16 Aug 2024 and due by 2029. It has its own Balkum Naka station; where that sits against Line 5's station is not published. The Cabinet release names no interchange; The Metro Rail Guy reports interchanges with Lines 4 and 5 without naming stations; housing.com, citing Maha-Metro's site, names Balkum Naka."
+      }
+    ]
   },
   "daily_ridership_2031": {
     "value": 302500,

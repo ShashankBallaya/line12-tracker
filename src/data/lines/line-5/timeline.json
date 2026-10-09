@@ -71,6 +71,17 @@
       "last_verified": "2026-10-09"
     },
     {
+      "id": "tirm-approval",
+      "date": "2024-08-16",
+      "date_precision": "day",
+      "kind": "related",
+      "title": "Union Cabinet approves the Thane Integral Ring Metro",
+      "summary": "Maha-Metro's 29 km ring line round west Thane, 22 stations, Rs 12,200 crore, due by 2029. Reported to interchange with Line 5 at Balkum Naka.",
+      "status": "verified",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2046082",
+      "last_verified": "2026-10-09"
+    },
+    {
       "id": "ca241-lowest-bidder",
       "date": "2025-06",
       "date_precision": "month",
