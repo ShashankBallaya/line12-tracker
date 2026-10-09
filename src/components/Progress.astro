@@ -6,44 +6,35 @@ interface Props {
   line: Line;
 }
 const { line } = Astro.props;
-const { project, timeline } = line;
-
+const { project, stages } = line;
 
 const progress = project.progress;
-const overall = progress.overall_reported;
-const systems = timeline.find((e) => e.id === 'systems-tender')!;
-
-/** Project phases. State is written in words and drawn as a pattern, never colour alone. */
-const phases = [
-  { name: 'Planning', state: 'done', note: 'Project report, April 2019' },
-  { name: 'Tenders and design', state: 'done', note: 'Civil contract awarded, March 2024' },
-  { name: 'Civil construction', state: 'now', note: `Piles, piers and girders, ${formatDate(progress.as_of)}` },
-  { name: 'Systems and trains', state: 'started', note: `Tender floated, ${formatDate(systems.date)}` },
-  { name: 'Testing and safety approval', state: 'next', note: 'No date announced' },
-  { name: 'Opening', state: 'next', note: 'Reported target May 2028' },
-] as const;
+/** A figure for the whole line from a news report, when there is one. */
+const overall = (progress as { overall_reported?: typeof project.progress.overall_reported }).overall_reported;
 const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not started' };
 ---
 
 <section id="progress" class="section page" aria-labelledby="progress-title">
   <header class="section-head">
     <h2 id="progress-title">Progress</h2>
-    <p>
-      MMRDA publishes one progress table for the whole corridor, updated monthly. It does not publish progress by
-      station.
-    </p>
+    <p>{progress.summary}</p>
   </header>
 
-  <ol class="phases" aria-label="Project phases">
-    {phases.map((ph) => (
-      <li class:list={['phase', `phase--${ph.state}`]}>
-        <span class="phase__bar" aria-hidden="true"></span>
-        <span class="phase__name">{ph.name}</span>
-        <span class="phase__state">{stateLabel[ph.state]}</span>
-        <span class="phase__note">{ph.note}</span>
-      </li>
-    ))}
-  </ol>
+  {stages.map((sec) => (
+    <Fragment>
+      {sec.label && <h3 class="phases__label">{sec.label}</h3>}
+      <ol class:list={['phases', sec.label && 'phases--part']} aria-label={sec.label ?? 'Project phases'}>
+        {sec.stages.map((ph) => (
+          <li class:list={['phase', `phase--${ph.state}`]}>
+            <span class="phase__bar" aria-hidden="true"></span>
+            <span class="phase__name">{ph.name}</span>
+            <span class="phase__state">{stateLabel[ph.state]}</span>
+            <span class="phase__note">{ph.note}</span>
+          </li>
+        ))}
+      </ol>
+    </Fragment>
+  ))}
 
   <div class="works">
     <h3 class="works__title">Civil works complete, as of <time datetime={progress.as_of}>{formatDate(progress.as_of)}</time></h3>
@@ -67,6 +58,7 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
     </ul>
     <p><Grade status={progress.status} source={progress.source_url} /></p>
 
+    {overall && (
     <div class="overall">
       <p class="overall__pct num"><span data-count={overall.percent_complete} data-decimals="2">{overall.percent_complete.toFixed(2)}</span><span class="work__unit">%</span></p>
       <p class="overall__text">
@@ -76,6 +68,7 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
       </p>
       <p><Grade status={overall.status} source={overall.source_url} /></p>
     </div>
+    )}
   </div>
 </section>
 
@@ -87,6 +80,20 @@ const stateLabel = { done: 'Done', now: 'Now', started: 'Started', next: 'Not st
     margin: 0 0 var(--s-7);
     padding: 0;
     list-style: none;
+  }
+  /* A line built in parts: one row of stages per part, each under its name. */
+  .phases__label {
+    margin: 0 0 var(--s-3);
+    font-size: var(--step-0);
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .phases--part {
+    margin-bottom: var(--s-6);
+    padding-bottom: var(--s-5);
+    border-bottom: var(--rule-w) solid var(--rule);
   }
   .phase {
     display: grid;

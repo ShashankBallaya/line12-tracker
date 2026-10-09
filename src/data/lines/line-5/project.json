@@ -245,7 +245,118 @@
     "last_verified": "2026-10-09",
     "notes": "MMRDA's press release (28 May 2026) says Phase 1 is preparing for the CMRS inspection. The report quotes MMRDA: inspection for 15 to 20 days after energisation, then about six months of trial runs. Work beyond Bhiwandi, towards Kalyan, has not begun."
   },
+  "stages": {
+    "notes": "Each section of the line from planning to opening. 'sections' has one entry per part of the line that is built on its own (label null when the line is built as one). state: done, now (the current stage), started, next (not started). A note may contain {progress_as_of} or {event:<timeline id>}, which the page fills with that date, so the note stays current when the data changes. The facts behind each note are in timeline.json and in this file.",
+    "sections": [
+      {
+        "label": "Phase 1, Kapurbawdi to Dhamankar Naka",
+        "stages": [
+          {
+            "name": "Planning",
+            "state": "done",
+            "note": "Approved, {event:original-approval}"
+          },
+          {
+            "name": "Tenders and design",
+            "state": "done",
+            "note": "Civil contract awarded, {event:ca28-award}"
+          },
+          {
+            "name": "Civil construction",
+            "state": "done",
+            "note": "Every civil activity complete, {progress_as_of}"
+          },
+          {
+            "name": "Systems and trains",
+            "state": "now",
+            "note": "Overhead wires energised, {event:ohe-energised} (reported)"
+          },
+          {
+            "name": "Testing and safety approval",
+            "state": "next",
+            "note": "Preparing for the safety inspection (reported). No date announced"
+          },
+          {
+            "name": "Opening",
+            "state": "next",
+            "note": "Target end of 2026, MMRDA"
+          }
+        ]
+      },
+      {
+        "label": "Phase 2, Dhamankar Naka to Durgadi",
+        "stages": [
+          {
+            "name": "Planning",
+            "state": "done",
+            "note": "Union approval, {event:union-approval-revised} (reported)"
+          },
+          {
+            "name": "Tenders and design",
+            "state": "next",
+            "note": "No tender reported yet"
+          },
+          {
+            "name": "Civil construction",
+            "state": "next",
+            "note": "Work beyond Bhiwandi has not begun (reported)"
+          },
+          {
+            "name": "Systems and trains",
+            "state": "next",
+            "note": "No date announced"
+          },
+          {
+            "name": "Testing and safety approval",
+            "state": "next",
+            "note": "No date announced"
+          },
+          {
+            "name": "Opening",
+            "state": "next",
+            "note": "Reported target 2030-31"
+          }
+        ]
+      },
+      {
+        "label": "Phase 3 and the Line 5A spur, Durgadi to Kalyan and Ulhasnagar",
+        "stages": [
+          {
+            "name": "Planning",
+            "state": "done",
+            "note": "Union approval, {event:union-approval-revised} (reported)"
+          },
+          {
+            "name": "Tenders and design",
+            "state": "next",
+            "note": "Consultant tender cancelled, {event:line5a-gc-tender-cancelled} (reported)"
+          },
+          {
+            "name": "Civil construction",
+            "state": "next",
+            "note": "Work beyond Bhiwandi has not begun (reported)"
+          },
+          {
+            "name": "Systems and trains",
+            "state": "next",
+            "note": "No date announced"
+          },
+          {
+            "name": "Testing and safety approval",
+            "state": "next",
+            "note": "No date announced"
+          },
+          {
+            "name": "Opening",
+            "state": "next",
+            "note": "Reported target 2030-31"
+          }
+        ]
+      }
+    ]
+  },
   "progress": {
+    "summary": "MMRDA publishes one progress table for Line 5, updated monthly. It does not say which stretch the table covers; its items match Phase 1, the only part being built. It does not publish progress by station.",
     "as_of": "2026-08-31",
     "items": [
       {

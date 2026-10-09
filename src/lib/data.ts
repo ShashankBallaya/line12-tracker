@@ -21,6 +21,9 @@ type PhotosFile = typeof import('../data/lines/line-12/photos.json');
 type BeforeAfterFile = typeof import('../data/lines/line-12/beforeafter.json');
 type StationModelFile = typeof import('../data/lines/line-12/station-model.json');
 
+// Above getLine: lines load while this module loads, and their stage notes format dates.
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 const jsonFiles = import.meta.glob('../data/lines/*/*.json', { eager: true, import: 'default' });
 const rawFiles = import.meta.glob('../data/lines/*/*.geojson', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>;
 
@@ -70,6 +73,20 @@ export interface StationPhoto {
   caption?: string;
 }
 
+/** Where a section of the line stands on the way from planning to opening. Drawn as a pattern and written in words, never colour alone. */
+export type StageState = 'done' | 'now' | 'started' | 'next';
+export interface Stage {
+  name: string;
+  state: StageState;
+  /** Dates in it are filled in from the data (see `stages.notes` in project.json). */
+  note: string;
+}
+/** One part of a line built on its own (Line 5: Phase 1, Phase 2, Phase 3 with the spur). `label` is null when the line is built as one. */
+export interface StageSection {
+  label: string | null;
+  stages: Stage[];
+}
+
 /**
  * Everything the data holds about one line. Only project and stations are required:
  * lists are empty and other parts undefined when the line has no file for them,
@@ -93,6 +110,8 @@ export interface Line {
   socialPosts: SocialPost[];
   stationPhotos: Record<string, StationPhoto[]>;
   photoPairs: PhotosFile['pairs'];
+  /** From project.json `stages`, with dates filled in; empty when the line has none. */
+  stages: StageSection[];
   beforeAfter?: BeforeAfterFile;
   stationModel?: StationModelFile;
   /** The GeoJSON named by `alignment` in lines.json, as text. */
@@ -135,6 +154,7 @@ export function getLine(id: LineId): Line {
     socialPosts: (social?.posts ?? []) as SocialPost[],
     stationPhotos: (photos?.stations ?? {}) as Record<string, StationPhoto[]>,
     photoPairs: photos?.pairs ?? [],
+    stages: fillStages(id, (project as { stages?: { sections: StageSection[] } }).stages?.sections ?? [], project.progress.as_of, timeline?.events ?? []),
     beforeAfter: file('beforeafter.json'),
     stationModel: file('station-model.json'),
     alignmentRaw: info.alignment ? rawFiles[dir + info.alignment] : undefined,
@@ -210,9 +230,20 @@ export function outletName(url: string | null | undefined): string {
   return known[host] ?? host;
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 /** Formats "2024-03-27" / "2024-03" / "2019" by its precision. Never invents a day. */
+/** Fills {progress_as_of} and {event:<timeline id>} in stage notes. An unknown event id stops the build. */
+function fillStages(id: string, sections: StageSection[], progressAsOf: string, events: TimelineEvent[]): StageSection[] {
+  const fill = (note: string) =>
+    note
+      .replace('{progress_as_of}', formatDate(progressAsOf))
+      .replace(/\{event:([^}]+)\}/g, (_, ev: string) => {
+        const e = events.find((x) => x.id === ev);
+        if (!e) throw new Error(`${id}: a stage note names timeline event "${ev}", which timeline.json does not have`);
+        return formatDate(e.date);
+      });
+  return sections.map((sec) => ({ ...sec, stages: sec.stages.map((st) => ({ ...st, note: fill(st.note) })) }));
+}
+
 export function formatDate(value: string | null | undefined): string {
   if (!value) return 'Date not announced';
   const [y, m, d] = value.split('-');

@@ -161,7 +161,48 @@
     "last_verified": "2026-09-28",
     "notes": "Civil progress is verified (see 'progress'). The systems tender stage is from trade press, June 2026."
   },
+  "stages": {
+    "notes": "Each section of the line from planning to opening. 'sections' has one entry per part of the line that is built on its own (label null when the line is built as one). state: done, now (the current stage), started, next (not started). A note may contain {progress_as_of} or {event:<timeline id>}, which the page fills with that date, so the note stays current when the data changes. The facts behind each note are in timeline.json and in this file.",
+    "sections": [
+      {
+        "label": null,
+        "stages": [
+          {
+            "name": "Planning",
+            "state": "done",
+            "note": "Project report, April 2019"
+          },
+          {
+            "name": "Tenders and design",
+            "state": "done",
+            "note": "Civil contract awarded, March 2024"
+          },
+          {
+            "name": "Civil construction",
+            "state": "now",
+            "note": "Piles, piers and girders, {progress_as_of}"
+          },
+          {
+            "name": "Systems and trains",
+            "state": "started",
+            "note": "Tender floated, {event:systems-tender}"
+          },
+          {
+            "name": "Testing and safety approval",
+            "state": "next",
+            "note": "No date announced"
+          },
+          {
+            "name": "Opening",
+            "state": "next",
+            "note": "Reported target May 2028"
+          }
+        ]
+      }
+    ]
+  },
   "progress": {
+    "summary": "MMRDA publishes one progress table for the whole corridor, updated monthly. It does not publish progress by station.",
     "as_of": "2026-08-31",
     "items": [
       {

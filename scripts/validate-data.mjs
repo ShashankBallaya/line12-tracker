@@ -5,6 +5,7 @@
 //   - no em dashes anywhere (house style)
 //   - every line in lines.json has a folder with project.json, stations.json and its alignment file,
 //     and every line folder is listed in lines.json
+//   - project.json stages: a known state, and every {event:<id>} names an event in that line's timeline.json
 // Run: npm run validate
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -52,6 +53,19 @@ for (const line of lines) {
   for (const need of ['project.json', 'stations.json', line.alignment].filter(Boolean)) {
     if (!existsSync(join(DIR, 'lines', line.id, need))) errors.push(`lines.json: ${line.id} has no lines/${line.id}/${need}`);
   }
+}
+const STATES = new Set(['done', 'now', 'started', 'next']);
+for (const line of lines) {
+  const read = (f) => (existsSync(join(DIR, 'lines', line.id, f)) ? JSON.parse(readFileSync(join(DIR, 'lines', line.id, f), 'utf8')) : null);
+  const sections = read('project.json')?.stages?.sections ?? [];
+  const events = new Set((read('timeline.json')?.events ?? []).map((e) => e.id));
+  sections.forEach((sec, i) =>
+    sec.stages.forEach((st, j) => {
+      const at = `lines/${line.id}/project.json stages.sections[${i}].stages[${j}]`;
+      if (!STATES.has(st.state)) errors.push(`${at}: state "${st.state}" is not one of ${[...STATES].join(', ')}`);
+      for (const [, ev] of st.note.matchAll(/\{event:([^}]+)\}/g)) if (!events.has(ev)) errors.push(`${at}: no timeline event "${ev}"`);
+    }),
+  );
 }
 for (const dir of readdirSync(join(DIR, 'lines'))) {
   if (!ids.has(dir)) errors.push(`lines/${dir}: folder not listed in lines.json`);
