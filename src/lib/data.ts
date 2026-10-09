@@ -199,6 +199,14 @@ export function lineMark(text: string): { number: string; line?: LineInfo } | nu
   return { number: m[1], line: lines.find((l) => l.number === m[1]) };
 }
 
+/** A Google Street View link: a chosen view when the station has one (`street_view`), else the nearest panorama. */
+export function streetViewUrl(s: Station): string | null {
+  const v = (s as { street_view?: { pano: string; heading: number; pitch: number; fov: number } }).street_view;
+  if (v) return `https://www.google.com/maps/@?api=1&map_action=pano&pano=${v.pano}&heading=${v.heading}&pitch=${v.pitch}&fov=${v.fov}`;
+  const { lat, lng } = s.location;
+  return lat === null ? null : `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
+}
+
 /** A station's page, or null when its line has no pages yet (then show its name as plain text). */
 export function stationHref(id: LineId, station: string): string | null {
   const base = lineBase(id);

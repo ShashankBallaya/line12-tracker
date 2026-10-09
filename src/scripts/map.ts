@@ -27,6 +27,8 @@ interface StationData {
   note: string | null;
   /** Not on the line itself: on a spur, or dropped from an earlier plan. */
   group?: 'spur' | 'dropped';
+  /** A chosen Street View link for the station. */
+  streetView?: string;
 }
 
 /** Parts of an alignment drawn apart from the line (a feature without `part` is the line). */
@@ -171,7 +173,7 @@ export async function mount(section: HTMLElement) {
     const lng = s.lng!;
     const links = [
       `<a href="https://www.mapillary.com/app/?lat=${lat}&lng=${lng}&z=17" target="_blank" rel="noopener">Open in Mapillary</a>`,
-      `<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}" target="_blank" rel="noopener">Open in Google Street View</a>`,
+      `<a href="${esc(s.streetView ?? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`)}" target="_blank" rel="noopener">Open in Google Street View</a>`,
       `<a href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18/${lat}/${lng}" target="_blank" rel="noopener">Open in OpenStreetMap</a>`,
     ];
     streetLinks.innerHTML = links.join('');

@@ -106,7 +106,12 @@ const specs: [string, string][] = ordered ? ordered.specs.rows : [
         <text x="360" y="26" text-anchor="middle" font-size="14" fill="var(--ink-2)" font-family="Mukta, sans-serif">{ordered ? `${cars} cars per train` : '3 cars at opening, 6 cars later'}</text>
       </svg>
         {ordered ? (
-          <figcaption>Generic drawing, not the maker's design. No image of this train is sourced yet.</figcaption>
+          <figcaption>
+            Generic drawing, not the maker's design.
+            {(img as { link_url?: string }).link_url
+              ? <>The maker shows a picture on <a href={(img as { link_url?: string }).link_url} rel="noopener">its own project page</a>; it is not copied here.</>
+              : 'No image of this train is sourced yet.'}
+          </figcaption>
         ) : (
           <figcaption>Generic drawing, not any maker's design. Line 12 extends Line 5; its own trains are not ordered yet.</figcaption>
         )}

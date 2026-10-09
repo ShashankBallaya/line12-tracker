@@ -28,13 +28,16 @@
   },
   "status": "reported",
   "source_url": "https://www.freepressjournal.in/business/titagarh-rail-systems-secures-2481-crore-contract-from-mmrda-to-manufacture-132-coaches-associated-systems-for-mumbai-metro-line-5",
+  "maker_url": "https://www.titagarh.in/project/mumbai-metro",
   "also_see": [
+   "https://www.titagarh.in/project/mumbai-metro",
    "https://www.bajajbroking.in/share-market-news/titagarh-rail-systems-wins-rs-2481-crore-mumbai-metro-order",
    "https://www.motilaloswal.com/news/stocks/108209",
    "https://themetrorailguy.com/2025/06/30/titagarh-wins-mumbai-metro-line-5s-132-coach-signaling-contract-ca-241/"
   ],
   "last_verified": "2026-10-09",
-  "notes": "Titagarh was declared the lowest bidder in June 2025 (The Metro Rail Guy, against MMRDA's estimate of Rs 2,640.72 crore from the February 2024 bid invitation). The award reports name Phase 2 as running to Kalyan APMC, the 2017 plan's end."
+  "schedule": "Execution starts 62 weeks after the contract is signed, and is to be complete within the following 154 weeks (Titagarh's project page): 216 weeks, against the 217 reported.",
+  "notes": "Titagarh's own project page lists the order: 132 metro coaches for Line 5, about Rs 2,481 crore. Titagarh was declared the lowest bidder in June 2025 (The Metro Rail Guy, against MMRDA's estimate of Rs 2,640.72 crore from the February 2024 bid invitation). The award reports name Phase 2 as running to Kalyan APMC, the 2017 plan's end."
  },
  "specs": {
   "rows": [
@@ -84,6 +87,7 @@
   "status": "unverified",
   "source_url": null,
   "last_verified": "2026-10-09",
-  "notes": "Owner to add a sourced image of the Titagarh train for Line 5, if one is published. Until then the page shows a generic drawing."
+  "link_url": "https://www.titagarh.in/project/mumbai-metro",
+  "notes": "Titagarh's project page shows a Mumbai metro picture, all rights reserved, and does not say it is the Line 5 train, so the site links to it and does not copy it. Until a picture with usable terms is found, the page shows a generic drawing."
  }
 }
