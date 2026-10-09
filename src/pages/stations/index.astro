@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Masthead from '../../components/Masthead.astro';
 import Colophon from '../../components/Colophon.astro';
 import Grade from '../../components/Grade.astro';
+import LineMark from '../../components/LineMark.astro';
 import { getLine, lineBase, lineCopy, type LineId } from '../../lib/data';
 import '../../styles/inner.css';
 
@@ -62,7 +63,7 @@ const schema = [
             {s.name_mr && <span class="stlist__mr mr" lang="mr">{s.name_mr}</span>}
           </span>
           <span class="stlist__meta">
-            {s.interchanges.value.length > 0 ? `Interchange: ${s.interchanges.value.join(', ')}` : s.type}
+            {s.interchanges.value.length > 0 ? <>Interchange: {s.interchanges.value.map((v, k) => <>{k > 0 && ', '}<LineMark text={v} />{v}</>)}</> : s.type}
           </span>
         </li>
       ))}

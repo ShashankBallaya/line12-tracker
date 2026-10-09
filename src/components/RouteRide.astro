@@ -6,6 +6,7 @@
  * pins the stage and moves the train along a horizontal strip as the reader scrolls.
  */
 import Grade from './Grade.astro';
+import LineMark from './LineMark.astro';
 import { lineCopy, type Line } from '../lib/data';
 import { schematic } from '../lib/route';
 
@@ -84,7 +85,7 @@ const km = (m: number) => (m / 1000).toLocaleString('en-IN', { minimumFractionDi
             {s.interchanges.value.length > 0 && (
               <p class="ride__interchange">
                 <span class="ride__interchange-bar" aria-hidden="true"></span>
-                Change for {s.interchanges.value.join(', ')}
+                Change for {s.interchanges.value.map((v, k) => <>{k > 0 && ', '}<LineMark text={v} />{v}</>)}
                 <Grade status={s.interchanges.status} source={s.interchanges.source_url} compact />
               </p>
             )}

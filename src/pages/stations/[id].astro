@@ -8,6 +8,7 @@ import Masthead from '../../components/Masthead.astro';
 import Colophon from '../../components/Colophon.astro';
 import Grade from '../../components/Grade.astro';
 import LocatorMap from '../../components/LocatorMap.astro';
+import LineMark from '../../components/LineMark.astro';
 import { getLine, lines, lineNodeId, lineBase, hasStatusPage, stationHref, positionBasis, formatDate, type LineId, type Station } from '../../lib/data';
 import type { GetStaticPathsOptions } from 'astro';
 import '../../styles/inner.css';
@@ -203,9 +204,9 @@ const schema: Record<string, unknown>[] = [
       <div>
         <dt>Interchange</dt>
         <dd>
-          <p>{s.interchanges.value.length ? s.interchanges.value.join(', ') : 'None announced'}</p>
+          <p>{s.interchanges.value.length ? <>{s.interchanges.value.map((v, k) => <>{k > 0 && ', '}<LineMark text={v} />{v}</>)}</> : 'None announced'}</p>
           <p class="grades"><Grade status={s.interchanges.status} source={s.interchanges.source_url} /></p>
-          {sameSite && <p>Same site as {sameSite.href ? <a href={sameSite.href}>{sameSite.label}</a> : sameSite.label}.</p>}
+          {sameSite && <p>Same site as <LineMark lineId={other!.line} />{sameSite.href ? <a href={sameSite.href}>{sameSite.label}</a> : sameSite.label}.</p>}
         </dd>
       </div>
 

@@ -189,6 +189,16 @@ export function lineBase(id: LineId): string | null {
   return import.meta.env.DEV ? `/preview/${id}/` : null;
 }
 
+/**
+ * The Mumbai Metro line a text names ("Metro Line 5 (Thane-Bhiwandi-Kalyan)"): its number, and its entry in
+ * lines.json when the site covers it. Navi Mumbai's lines are a separate network, so they get no mark.
+ */
+export function lineMark(text: string): { number: string; line?: LineInfo } | null {
+  const m = /^Metro Line (\d+[A-Z]?)\b/.exec(text);
+  if (!m) return null;
+  return { number: m[1], line: lines.find((l) => l.number === m[1]) };
+}
+
 /** Whether the line has a status page of answers. Line 5's answers are not written yet (MULTI-LINE-PLAN.md, data table). */
 export const hasStatusPage = (line: Line) => line.id === 'line-12';
 

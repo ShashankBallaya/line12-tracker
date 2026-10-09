@@ -1,0 +1,50 @@
+---
+/**
+ * A line's number on its colour, before any mention of that line. Line 5 and Line 12 are both orange,
+ * so the number shows every time and colour is never the only cue. A line the site does not cover is
+ * drawn neutral: its colour is not ours to assert. Hidden from screen readers; the text after it names the line.
+ */
+import { lineMark, lines, type LineId } from '../lib/data';
+
+interface Props {
+  /** The mention, e.g. "Metro Line 5 (Thane-Bhiwandi-Kalyan)". Nothing renders when it names no Mumbai Metro line. */
+  text?: string;
+  /** Or a line the site covers, by id. */
+  lineId?: LineId;
+}
+const { text, lineId } = Astro.props;
+const known = lineId && lines.find((l) => l.id === lineId);
+const mark = known ? { number: known.number, line: known } : text ? lineMark(text) : null;
+const colour = mark?.line?.colour;
+---
+
+{mark && (
+  <span
+    class:list={['line-mark', !colour && 'line-mark--other']}
+    style={colour ? `--mark:var(--${colour});--on-mark:var(--on-${colour})` : undefined}
+    aria-hidden="true">{mark.number}</span>
+)}
+
+<style>
+  /* The bar module: a hard-edged block, like the masthead's line band. */
+  .line-mark {
+    display: inline-block;
+    min-width: 1.7em;
+    margin-right: 0.4em;
+    padding: 0.08em 0.3em 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: 0.95em;
+    line-height: 1.15;
+    text-align: center;
+    background: var(--mark);
+    color: var(--on-mark);
+  }
+  .line-mark--other {
+    padding: 0 calc(0.3em - 1.5px);
+    background: none;
+    color: var(--ink);
+    border: 1.5px solid var(--ink-2);
+  }
+</style>

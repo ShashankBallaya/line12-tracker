@@ -1,5 +1,6 @@
 ---
 import Grade from './Grade.astro';
+import LineMark from './LineMark.astro';
 import { lineCopy, stationHref, getLine, type Line, type LineId, type Station } from '../lib/data';
 
 interface Props {
@@ -16,7 +17,7 @@ const sameSite = (s: Station) => {
   const other = (s as { same_site_as?: SameSite }).same_site_as;
   if (!other) return null;
   const o = getLine(other.line);
-  return { label: `${o.info.label} ${o.stations.find((x) => x.id === other.station)?.name ?? other.station}`, href: stationHref(other.line, other.station) };
+  return { line: other.line, label: `${o.info.label} ${o.stations.find((x) => x.id === other.station)?.name ?? other.station}`, href: stationHref(other.line, other.station) };
 };
 
 ---
@@ -35,10 +36,10 @@ const sameSite = (s: Station) => {
           <span class="entry__name">{s.name}</span>
         </a>
         <span class="entry__mr mr" lang="mr">{s.name_mr}</span>
-        {s.interchanges.value.length > 0 && <span class="entry__change">Interchange: {s.interchanges.value.join(', ')}</span>}
+        {s.interchanges.value.length > 0 && <span class="entry__change">Interchange: {s.interchanges.value.map((v, k) => <>{k > 0 && ', '}<LineMark text={v} />{v}</>)}</span>}
         {sameSite(s) && (
           <span class="entry__change">
-            Same site as {sameSite(s)!.href ? <a href={sameSite(s)!.href}>{sameSite(s)!.label}</a> : sameSite(s)!.label}
+            Same site as <LineMark lineId={sameSite(s)!.line} />{sameSite(s)!.href ? <a href={sameSite(s)!.href}>{sameSite(s)!.label}</a> : sameSite(s)!.label}
           </span>
         )}
         {s.type !== 'Elevated' && <span class="entry__change">{s.type}</span>}
@@ -76,7 +77,7 @@ const sameSite = (s: Station) => {
               <span class="entry__order num" aria-hidden="true"></span>
               <span class="entry__name">{s.name}</span>
             </span>
-            {sameSite(s) && <span class="entry__change">Near {sameSite(s)!.href ? <a href={sameSite(s)!.href}>{sameSite(s)!.label}</a> : sameSite(s)!.label}</span>}
+            {sameSite(s) && <span class="entry__change">Near <LineMark lineId={sameSite(s)!.line} />{sameSite(s)!.href ? <a href={sameSite(s)!.href}>{sameSite(s)!.label}</a> : sameSite(s)!.label}</span>}
             {plan(s) && (
               <span class="entry__change">
                 {plan(s)!.value} <Grade status={plan(s)!.status} source={plan(s)!.source_url} compact />

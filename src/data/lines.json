@@ -1,12 +1,14 @@
 {
   "_meta": {
-    "description": "The lines this site covers, in hub order. Each line's facts live in src/data/lines/<id>/. project.json and stations.json are required; every other file is optional, and a section without its file does not show. 'alignment' names the GeoJSON file the map and schematic draw from. 'about' feeds the line's schema.org node on every page of that line. 'position_basis' names where station coordinates come from: 'by_source' matches part of a station's location source_url, else 'default'. 'copy' holds the line's own wording for shared pages; {total}, {km} and {name} are filled in. Tokens in copy: {stations}, {as_of}, {pct:<activity>}, {target}, {earlier}, {rest}, {alt}, {minutes} come from project.json. Keys ending in _html may contain inline markup.",
+    "description": "The lines this site covers, in hub order. Each line's facts live in src/data/lines/<id>/. project.json and stations.json are required; every other file is optional, and a section without its file does not show. 'alignment' names the GeoJSON file the map and schematic draw from. 'about' feeds the line's schema.org node on every page of that line. 'position_basis' names where station coordinates come from: 'by_source' matches part of a station's location source_url, else 'default'. 'copy' holds the line's own wording for shared pages; {total}, {km} and {name} are filled in. Tokens in copy: {stations}, {as_of}, {pct:<activity>}, {target}, {earlier}, {rest}, {alt}, {minutes} come from project.json. Keys ending in _html may contain inline markup. 'number' is the line's mark; 'colour' names its colour token in src/styles/tokens.css (with an on- token for text on it). Line 5 and Line 12 share orange, so every mention of a line shows its number with the colour (LineMark.astro).",
     "last_reviewed": "2026-10-09"
   },
   "lines": [
     {
       "id": "line-12",
       "label": "Line 12",
+      "number": "12",
+      "colour": "signal",
       "mark_mr": "मेट्रो १२",
       "route_short": "Kalyan to Taloja",
       "alignment": "alignment-mmrda-2025.geojson",
@@ -97,6 +99,8 @@
     {
       "id": "line-5",
       "label": "Line 5",
+      "number": "5",
+      "colour": "signal",
       "mark_mr": "मेट्रो ५",
       "route_short": "Thane to Kalyan",
       "alignment": "alignment-mmrda-2025.geojson",

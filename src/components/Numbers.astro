@@ -1,5 +1,6 @@
 ---
 import Grade from './Grade.astro';
+import LineMark from './LineMark.astro';
 import { inr, type Line } from '../lib/data';
 
 interface Props {
@@ -100,7 +101,7 @@ const riderDecimals = riders.split('.')[1]?.length ?? 0;
       <dt>Interchanges</dt>
       <dd class="fact__figure">
         <ul class="fact__list">
-          {p.interchanges.value.map((i) => <li><strong>{i.station}</strong> for {i.connects_to}</li>)}
+          {p.interchanges.value.map((i) => <li><strong>{i.station}</strong> for <LineMark text={i.connects_to} />{i.connects_to}</li>)}
         </ul>
       </dd>
       <dd class="fact__grade"><Grade status={p.interchanges.status} source={p.interchanges.source_url} /></dd>
