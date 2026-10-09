@@ -133,7 +133,8 @@ Research started 2026-10-09. Data in `src/data/lines/line-5/`. Figures follow MM
 5. **Press Information Bureau, "Cabinet approves Thane integral Ring Metro Rail Project", 16 Aug 2024 (Release ID 2046082).** 29 km (26 elevated, 3 underground), 22 stations, Rs 12,200.10 Cr, Maha-Metro to build, due by 2029. Names no interchange stations.
    https://www.pib.gov.in/PressReleasePage.aspx?PRID=2046082
 
-Lead (owner, 2026-10-09): a Google My Maps "Thane Metro Route Map" (author not stated) with the ring line's 22 stations; it puts the ring line's Balkum Naka at 19.2224, 72.9977, about 1 km east of Line 5's Balkum Naka. Not a source; kept as a caution that the interchange may need a walk. https://www.google.com/maps/d/u/0/embed?mid=1YNvo8fqUuYUWJqEiwstEdGWJTZMJbEQ
+6. **Thane Integral Ring Metro Rail Project, official website, route map (read 9 Oct 2026).** Lists the 22 stations and embeds the project's Google My Maps map ("Thane Metro Route Map"), which also draws Line 5 ("METRO LINE -5(MMRDA)") with its stations. The ring line's Balkum Naka is at 19.2224, 72.9977; the map's Line 5 Balkum Naka is 18 m from MMRDA's point, and the two are 976 m apart. It does not call them an interchange. Site footer: "Thane Integral Ring Metro Rail Project", with RTI and disclaimer pages; Wikipedia lists it as the project's website (Maha-Metro). Found by the owner, 2026-10-09.
+   https://thanemetrorail.com/route-map (map: https://www.google.com/maps/d/u/0/embed?mid=1YNvo8fqUuYUWJqEiwstEdGWJTZMJbEQ)
 
 ## Secondary sources
 

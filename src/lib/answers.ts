@@ -193,7 +193,7 @@ function line5(line: Line): Answer[] {
     {
       id: 'interchanges',
       q: 'Where does Line 5 meet other lines?',
-      a: `${p.interchanges.value.map((x) => `At ${x.station}, with ${x.connects_to}`).join('. ')}. ${planned.map((x) => `At ${x.station}, a planned interchange with ${x.connects_to}, as reported; no official source gives where its station sits, and a public map of its design puts it about 1 km east of Line 5's. `).join('')}The 2017 plan also had a stop at APMC Kalyan, near Line 12's APMC Kalyan station; the revised plan drops it.`,
+      a: `${p.interchanges.value.map((x) => `At ${x.station}, with ${x.connects_to}`).join('. ')}. ${planned.map((x) => `At ${x.station}, a planned interchange with ${x.connects_to}, as reported; the ring line's official route map puts its Balkum Naka station about 1 km east of Line 5's, and does not call the two an interchange. `).join('')}The 2017 plan also had a stop at APMC Kalyan, near Line 12's APMC Kalyan station; the revised plan drops it.`,
       grades: [{ status: p.interchanges.status, source: p.interchanges.source_url }, ...planned.map((x) => ({ status: x.status, source: x.source_url }))],
     },
     {

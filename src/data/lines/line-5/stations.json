@@ -100,13 +100,13 @@
      "https://themetrorailguy.com/2024/08/17/thane-metros-ring-line-approved-by-central-government/"
     ],
     "last_verified": "2026-10-09",
-    "notes": "The Thane Integral Ring Metro is Maha-Metro's 29 km ring line round west Thane, 22 stations, approved by the Union Cabinet on 16 Aug 2024 and due by 2029. It has its own Balkum Naka station; no official source gives its position (see Around the station). The Cabinet release names no interchange; The Metro Rail Guy reports interchanges with Lines 4 and 5 without naming stations; housing.com, citing Maha-Metro's site, names Balkum Naka."
+    "notes": "The Thane Integral Ring Metro is Maha-Metro's 29 km ring line round west Thane, 22 stations, approved by the Union Cabinet on 16 Aug 2024 and due by 2029. It has its own Balkum Naka station; its official route map puts it about 1 km east of Line 5's (see Around the station), and does not call the two an interchange. The Cabinet release names no interchange; The Metro Rail Guy reports interchanges with Lines 4 and 5 without naming stations; housing.com, citing Maha-Metro's site, names Balkum Naka."
    },
    "context": [
     {
-     "text": "the Thane Integral Ring Metro's own Balkum Naka station is about 1 km east, on Balkum Pipeline Road near Balkum Road, on a public map of that line's design (author not stated); the same map puts this station within 18 m of MMRDA's point",
-     "status": "unverified",
-     "source_url": "https://www.google.com/maps/d/u/0/embed?mid=1YNvo8fqUuYUWJqEiwstEdGWJTZMJbEQ"
+     "text": "the Thane Integral Ring Metro's own Balkum Naka station is about 1 km east, on Balkum Pipeline Road near Balkum Road, on that project's official route map; the same map puts this station within 18 m of MMRDA's point",
+     "status": "verified",
+     "source_url": "https://thanemetrorail.com/route-map"
     }
    ],
    "construction_status": {

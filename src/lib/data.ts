@@ -289,6 +289,7 @@ export function outletName(url: string | null | undefined): string {
     'en.wikipedia.org': 'Wikipedia',
     'x.com': 'X',
     'livingatlas.arcgis.com': 'Esri Wayback',
+    'thanemetrorail.com': 'Thane Ring Metro (official)',
   };
   if (url.includes('Metro%20Line%2012.pdf')) return 'MMRDA DPR (2019)';
   // A map anyone can make: say so, so it is never read as Google's own.
